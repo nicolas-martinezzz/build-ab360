@@ -1,0 +1,14 @@
+/node_modules
+/.next/
+/out/
+/build
+.env*.local
+npm-debug.log*
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+
+# Agent skills from skills.sh (local Cursor only; not committed)
+/.agents/
+/skills-lock.json
+/.cursor/

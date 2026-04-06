@@ -1,0 +1,329 @@
+{
+  "metadata": {
+    "title": "Yutopias Systems  Decisions amb impacte mesurable",
+    "description": "Simula l'impacte de les teves decisions en cost i sostenibilitat abans d'executar-les."
+  },
+  "nav": {
+    "brandAria": "Yutopias systems, inici",
+    "mainNavAria": "Navegació principal",
+    "mobileMenuAria": "Menú principal",
+    "mobileDrawerLinksAria": "Enllaços de navegació (mòbil)",
+    "openMenu": "Obrir menú",
+    "closeMenu": "Tancar menú",
+    "skipToContent": "Saltar al contingut",
+    "challenge": "El repte",
+    "solution": "La solució",
+    "program": "El programa",
+    "about": "Nosaltres",
+    "joinBootcamp": "Uneix-te al Bootcamp Zero"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "",
+      "headline": "Com decidis el cost, l'energia i l'impacte d'un edifici al llarg dels propers 50 anys?",
+      "subhead": "Aquestes tres variables sempre han estat connectades. El problema és que ningú les mesura juntes abans de prendre decisions.",
+      "cta": "Uneix-te al Bootcamp Zero"
+    },
+    "introStrip": {
+      "regionAria": "Missatge introductori",
+      "leftLine1": "En edificació tothom decideix bé.",
+      "leftLine2": "Cada actor amb les seves dades.",
+      "leftLine3": "Atrapats en silos.",
+      "leftLine4": "Sense connectar.",
+      "leftLine5": "Cada actor optimitza la seva part.",
+      "leftLine6": "Ningú optimitza el conjunt.",
+      "rightLine1": "Una bona decisió ja no és una intuïció.",
+      "rightLine2": "s la simulació del seu impacte real."
+    },
+    "simulab": {
+      "headline": "SimuLab projecta l'impacte de les teves decisions abans d'executar-les.",
+      "feature1Title": "Connecta cost i impacte",
+      "feature1Body": "Integra cost i petjades ambientals per entendre l'impacte real de cada decisió.",
+      "feature2Title": "Alineat amb la normativa",
+      "feature2Body": "Avalua les decisions segons els criteris regulatoris, la taxonomia europea i els objectius de sostenibilitat.",
+      "feature3Title": "Basat en arquetips",
+      "feature3Body": "Utilitza models validats científicament per simular amb precisió cada tipologia d'edifici.",
+      "cta": "Descobreix SimuLab",
+      "closing1": "Simulab és tan bo com les dades que estàs disposat a posar sobre la taula.",
+      "closing2": "L'eina no fa la feina per tu  fa possible que la facis millor",
+      "imageAlt": "SimuLab a AB360: comparativa de simulacions de cost en un portàtil."
+    },
+    "openlab": {
+      "quote": "Yutopias, La Salle R&D i ACCI han definit una forma distinta de desplegar Simulab: construir-lo juntament amb els primers partners. No venem un programari acabat  construïm junts l'estàndard. A aquest procés li diem <openlab>OpenLab</openlab>.",
+      "pathLabel": "El camí",
+      "headlineLine1": "OpenLab és el programa d'innovació oberta.",
+      "headlineLine2": "Primer adaptar, després adoptar.",
+      "headlineLine3": "No a la inversa.",
+      "description": "No és formació ni consultoria. s el procés de fer-ho teu  on les teves dades i la teva operativa co-creen l'estàndard que el sector necessita.",
+      "bootcampLead": "El Bootcamp Zero és el punt d'entrada.",
+      "ctaPrimary": "Uneix-te al Bootcamp Zero",
+      "ctaSecondary": "Explora OpenLab",
+      "col1": {
+        "title": "Treballes amb dades reals dels teus projectes",
+        "body": "La informació ja existeix a la teva empresa. A l'OpenLab la connectem amb bases de dades de referència del sector. Cada simulació alimenta el sistema. El resultat millora amb cada projecte."
+      },
+      "col2": {
+        "title": "Configures Simulab a la teva operativa",
+        "body": "Amb l'OpenLab el simulador es converteix en el teu agent d'IA operatiu. Un salt tecnològic real  calibrat a la teva tipologia d'edificació i alineant els objectius del projecte amb els drivers del teu negoci."
+      },
+      "col3": {
+        "title": "Calcules impacte en cost i sostenibilitat",
+        "body": "Simulab calcula el cost i les petjades de carboni, energètica i hídrica de cada solució constructiva  des del capítol fins a la partida. Genera escenaris i compara. Tu decideixes."
+      },
+      "col4": {
+        "title": "El SmartCheck: els teus objectius alineats amb els del projecte",
+        "body": "Els objectius del projecte marquen el nord. El SmartCheck valida que els teus i els drivers del negoci estan alineats amb ells. I quan vulguis, el mateix per a tots els actors."
+      },
+      "footerTagline": "Els primers no segueixen l'estàndard. El construeixen."
+    },
+    "simulationChoiceBanner": {
+      "regionAria": "Missatge sobre decisions de projecte i simulació",
+      "left": "Si continues prenent decisions de projecte sense simulació, ja no és per manca d'eines.",
+      "rightLine1": "s una elecció.",
+      "rightLine2": "I té conseqüències."
+    },
+    "partnersBootcampCta": {
+      "headline": "Busquem partners que vulguin definir com es prendran les decisions en aquest sector.",
+      "cta": "Uneix-te al Bootcamp Zero"
+    },
+    "partners": {
+      "intro": "Hem arribat fins aquí junts amb:",
+      "cta": "Coneix el nostre ecosistema d'innovació",
+      "marqueeAria": "Logotips d'institucions col·laboradores"
+    },
+    "ab360": {
+      "label": "La plataforma",
+      "headlineLine1": "Això no és tot.",
+      "headlineLine2": "Al fons, alguna cosa més està creixent: AB360.",
+      "body": "Estem construint una plataforma que connecta les dades de l'edifici per prendre millors decisions al llarg de tot el cicle de vida, amb l'ajuda de tres agents d'IA.",
+      "cta": "Coneix AB360",
+      "agent1": {
+        "badge": "Live",
+        "role": "Agent 1",
+        "title": "SimuLab",
+        "body": "Simula l'impacte de les teves decisions en cost i sostenibilitat abans d'executar-les.",
+        "metricsLabel": "El seu llenguatge",
+        "pill1": "Preu / m²",
+        "pill2": "Kg CO2 / m2",
+        "pill3": "+ 40%"
+      },
+      "agent2": {
+        "badge": "En desenvolupament",
+        "role": "Agent 2",
+        "title": "Cycle Planner",
+        "body": "Converteix aquestes decisions en planificació per optimitzar temps, cost i abast.",
+        "metricsLabel": "El seu llenguatge",
+        "pill1": "OKR",
+        "pill2": "Tasques",
+        "pill3": "Planificació"
+      },
+      "agent3": {
+        "badge": "En desenvolupament",
+        "role": "Agent 3",
+        "title": "Platón",
+        "body": "Assistència en la presa de decisions connectant dades, normativa i coneixement del projecte.",
+        "metricsLabel": "El seu llenguatge",
+        "pill1": "Decisions",
+        "pill2": "Recomanacions"
+      }
+    },
+    "testimonials": {
+      "label": "Experiència",
+      "title": "Què diuen els nostres clients",
+      "card1": {
+        "initials": "MN",
+        "name": "Marc Nicolau",
+        "company": "Sorigué",
+        "role": "Director d'estudis i contractació",
+        "highlight": "",
+        "quote": "Els nostres estudis triguen de mitjana uns 15 dies. Amb SimuLAB veiem un clar potencial per avaluar alternatives de disseny, costos i sostenibilitat en només un dia."
+      },
+      "card2": {
+        "initials": "TB",
+        "name": "Teresa Batlle",
+        "company": "PitchArchitects",
+        "role": "Arquitecta i sòcia",
+        "highlight": "Redueix una mitjana del 60% l'impacte ambiental del projecte.",
+        "quote": "Simulab d'AB360 ens va permetre comptar amb un assistent predictiu i prescriptiu per guiar el disseny arquitectònic, reduint les petjades ambientals i complint la normativa més exigent."
+      },
+      "card3": {
+        "initials": "HP",
+        "name": "Howard Pierce",
+        "company": "UrbanInput",
+        "role": "Soci i asset management",
+        "highlight": "Redueix fins a un 30% les desviacions del projecte.",
+        "quote": "Amb Simulab d'AB360 vam poder estructurar decisions complexes en objectius clars, alineant equips i tasques per a una execució més àgil i amb menys desviacions."
+      }
+    },
+    "yutopiasAbout": {
+      "headlinePrefix": "Som",
+      "headlineBrand": "<y>yūtopias</y> <s>systems</s>",
+      "subline": "Treballem per crear sistemes que ajudin a <accent>construir</accent> un futur millor.",
+      "philosophy": "El nom Yutopias neix de la utopia \nno com a ideal inabastable,\nsinó del bon disseny.\nDel Lean com a filosofia.\nDel pensament sistèmic aplicat\na una modernitat sostenible.",
+      "cta": "Coneix Yutopias Systems"
+    },
+    "closingStandardCta": {
+      "titleLine1": "L'estàndard de com es prenen decisions al sector",
+      "titleLine2": "de la construcció s'està definint ara.",
+      "cta": "En parlem?"
+    }
+  },
+  "challengePage": {
+    "headline": "L'edificació és un sistema complex.\nMilers de decisions.\nDècades de conseqüències.\nPerò s'aborda sense una visió de conjunt.",
+    "body": "La visió existeix. Les dades, no. O arriben tard. O estan fragmentades o són inexistents - dins de cada organització i entre totes elles. I quan arriben, les decisions més importants ja s'han pres - conscientment o no.",
+    "cta": "Quin és el teu repte?",
+    "nextSection": {
+      "eyebrow": "Fins ara",
+      "titleLine1": "Així funciona avui.",
+      "titleLine2Prefix": "I així s'acumulen",
+      "titleLine2Costes": "costos",
+      "titleLine2Huellas": "petjades",
+      "titleLine2Connector": "i",
+      "titleLine2Errores": "errors",
+      "problemCards": {
+        "card1": {
+          "title": "Hi ha fragmentació\ni es valida tard",
+          "body": "Les dades existeixen. O estan en un calaix. O cadascú té les seves. Ningú treballa amb la mateixa informació al mateix temps. I això, multiplicat per tots els actors, defineix com es prenen les decisions."
+        },
+        "card2": {
+          "title": "Falta connexió\ni es valida tard",
+          "body": "El cost es calcula. Les petjades, a vegades. Però quan arriben, la decisió sovint ja està presa - o s'utilitzen per justificar-la. Qui les integra des de l'inici té un avantatge real."
+        },
+        "card3": {
+          "title": "Falta anticipació\ni es valida tard",
+          "body": "Prens la decisió amb la informació que tens. No es pot simular abans d'executar. Quan finalment apareix l'impacte real, ja no es pot canviar sense cost. La validació arriba per justificar - no per millorar."
+        }
+      },
+      "evidenceCards": {
+        "card1": {
+          "quote": "\"El sector immobiliari i de la construcció genera prop del 38% de les emissions globals de CO2.\"",
+          "source": "United Nations Environment Programme - Informe sobre la situació mundial dels edificis 2024-2025"
+        },
+        "card2": {
+          "quote": "\"Globalment, 4 de cada 10 projectes no compleixen pressupost, temps o abast: milions en sobrecostos i retards.\"",
+          "source": "Project Management Institute (PMI) - Informe: Un alt cost d'un baix rendiment"
+        },
+        "card3": {
+          "quote": "\"Fins a un 30% del treball en construcció és retraball o malbaratament.\"",
+          "source": "World Economic Forum - Shaping the Future of Construction: A Breakthrough in Mindset and Technology"
+        }
+      },
+      "closingLine1": "No és un problema de talent.\nÉs un problema de tecnologia.",
+      "closingLine2": "I això ja té solució."
+    },
+    "todaySection": {
+      "eyebrow": "Avui",
+      "headline": "Durant anys, la intuïció i l'experiència eren suficients.\nAvui ja no ho són.",
+      "paragraph1": "La regulació ja no permet estimar-ho. Els marges ja no permeten ignorar-ho. I les decisions tenen conseqüències econòmiques que abans no existien.",
+      "paragraph2": "El camí ja està traçat. Lean, dades compartides, decisions basades en evidència. El que falta és la tecnologia que ho faci operatiu.",
+      "taxonomy": {
+        "title": "Taxonomia Europea",
+        "body": "La UE exigeix reduir les petjades de CO2, energètica i hídrica a l'edificació, un sector de ~3B€ i ~18% del seu PIB.",
+        "source": "Energy Performance of Buildings Directive (EPBD)"
+      },
+      "pillarsAria": "Àmbits d'impacte regulatori",
+      "pillarsImageAlt": "Àmbits de la taxonomia europea per a l'edificació",
+      "pillars": {
+        "item1": "Mitigació climàtica",
+        "item2": "Gestió hídrica",
+        "item3": "Economia circular",
+        "item4": "Prevenció contaminació",
+        "item5": "Adaptació al canvi",
+        "item6": "Protecció biodiversitat"
+      }
+    }
+  },
+  "privacyPage": {
+    "metadata": {
+      "title": "Política de privacitat",
+      "description": "Protecció de dades personals i drets de les persones usuàries d'AB360."
+    },
+    "title": "Política de privacitat",
+    "lead": "Protecció de dades personals i drets de les persones usuàries.",
+    "intro": "Aquest document adapta el contingut de la web AB360 a partir de la política publicada per YUTOPIAS SYSTEMS S.L.",
+    "sections": [
+      {
+        "title": "Objecte",
+        "paragraphs": [
+          "Aquesta web s'ha dissenyat per donar a conèixer els serveis de YUTOPIAS SYSTEMS S.L. i per rebre sol·licituds d'informació, contactes comercials i candidatures.",
+          "Els formularis de contacte s'utilitzen exclusivament per a la finalitat indicada en cada cas, inclosa la subscripció a newsletter informativa quan correspongui."
+        ]
+      },
+      {
+        "title": "Responsable del tractament",
+        "paragraphs": [
+          "YUTOPIAS SYSTEMS S.L. (B44747095), Carrer de l'Església, núm. 4 local 2D, 08024 Barcelona, Espanya.",
+          "Correu de contacte: enl@yutopias.com."
+        ]
+      },
+      {
+        "title": "Base legal i drets",
+        "paragraphs": [
+          "Les dades personals es tracten per gestionar sol·licituds d'informació, comunicacions i serveis sol·licitats, sobre la base del consentiment, relació contractual o obligació legal.",
+          "La persona usuària pot exercir els drets d'accés, rectificació, supressió, oposició, limitació, portabilitat i retirada del consentiment."
+        ],
+        "bullets": [
+          "Les sol·licituds es poden presentar per escrit al domicili social o al correu de contacte.",
+          "Es pot requerir document identificatiu vàlid per verificar la identitat."
+        ]
+      }
+    ]
+  },
+  "cookiesPage": {
+    "metadata": {
+      "title": "Política de cookies",
+      "description": "Informació sobre l'ús de cookies a AB360."
+    },
+    "title": "Política de cookies",
+    "body": "Estem actualitzant aquesta secció per detallar l'ús de cookies, la seva finalitat i les opcions de configuració disponibles per a cada usuari."
+  },
+  "contactPage": {
+    "metadata": {
+      "title": "Contacte",
+      "description": "Canals de contacte per a consultes comercials o de producte."
+    },
+    "title": "Contacte",
+    "body": "Estem actualitzant aquesta secció amb canals de contacte i temps de resposta per a consultes comercials, col·laboracions i suport."
+  },
+  "informationPage": {
+    "metadata": {
+      "title": "Informació",
+      "description": "Informació legal i corporativa d'AB360 i Yutopias Systems."
+    },
+    "title": "Informació",
+    "body": "Estem preparant aquesta secció amb informació corporativa i legal rellevant per a usuaris, partners i entitats col·laboradores."
+  },
+  "footer": {
+    "barcelonaTitle": "Barcelona",
+    "barcelonaAddress1": "Carrer de l'Església, 4, 2D",
+    "barcelonaAddress2": "08024 Barcelona",
+    "barcelonaPhone": "+34 627 32 72 07",
+    "barcelonaEmail": "jmd@yutopias.com",
+    "madridTitle": "Madrid",
+    "madridAddress1": "Calle Hermosilla 147, 2D",
+    "madridAddress2": "28028 Madrid",
+    "madridPhone": "+34 650 69 13 38",
+    "madridEmail": "en@yutopias.com",
+    "legalTitle": "Informació legal",
+    "legalNavAria": "Enllaços legals",
+    "localeNavAria": "Selector d'idioma",
+    "localeEs": "Español",
+    "localeEn": "English",
+    "localeCa": "Català",
+    "siteMapTitle": "Inici",
+    "siteMapNavAria": "Navegació del lloc",
+    "home": "Inici",
+    "solution": "La solució",
+    "program": "El programa",
+    "about": "Nosaltres",
+    "privacy": "Privacitat",
+    "cookies": "Política de cookies",
+    "contact": "Contacte",
+    "information": "Informació",
+    "legalPagePlaceholder": "Aquesta pagina esta en construccio.",
+    "kitDigitalAlt": "Programa Kit Digital cofinançat pels fons Next Generation EU",
+    "linkedinAria": "Perfil de LinkedIn de Yutopias Systems",
+    "linkedinUrl": "https://www.linkedin.com/company/yutopias/posts/?feedView=all",
+    "copyright": "Copyright © {year} yūtopias systems. Tots els drets reservats."
+  }
+}

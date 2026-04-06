@@ -1,0 +1,38 @@
+{
+  "name": "yutopias-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "prebuild": "npm run check:json-bom",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:palette": "node scripts/check-color-palette.mjs",
+    "check:json-bom": "node scripts/check-json-bom.mjs",
+    "verify": "npm run lint && npm run lint:palette && npm run check:json-bom && npm run build",
+    "skills:install": "npx skills add vercel-labs/agent-skills -y -a cursor -s vercel-react-best-practices web-design-guidelines vercel-composition-patterns --copy && npx skills add vercel-labs/next-skills -y -a cursor -s next-best-practices --copy && npx skills add vercel-labs/skills -y -a cursor -s find-skills --copy && node scripts/sync-skills.mjs",
+    "skills:sync": "node scripts/sync-skills.mjs",
+    "skills:find": "npx skills find",
+    "skills:list-remote": "npx skills add vercel-labs/agent-skills -l -a cursor"
+  },
+  "dependencies": {
+    "next": "^15.5.0",
+    "next-intl": "^3.26.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.5.0",
+    "postcss": "^8.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

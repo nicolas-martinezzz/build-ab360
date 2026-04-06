@@ -1,0 +1,329 @@
+{
+  "metadata": {
+    "title": "Yutopias Systems  Decisions with measurable impact",
+    "description": "Simulate how your choices affect cost and sustainability before you commit."
+  },
+  "nav": {
+    "brandAria": "Yutopias systems, home",
+    "mainNavAria": "Main navigation",
+    "mobileMenuAria": "Main menu",
+    "mobileDrawerLinksAria": "Navigation links (mobile)",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to content",
+    "challenge": "The challenge",
+    "solution": "The solution",
+    "program": "The program",
+    "about": "About us",
+    "joinBootcamp": "Join the Zero Bootcamp"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "",
+      "headline": "How do you decide the cost, energy, and impact of a building over the next 50 years?",
+      "subhead": "Those three variables have always been connected. The problem is that no one measures them together before making decisions.",
+      "cta": "Join the Zero Bootcamp"
+    },
+    "introStrip": {
+      "regionAria": "Introductory message",
+      "leftLine1": "In construction, everyone decides well.",
+      "leftLine2": "Each actor with their own data.",
+      "leftLine3": "Trapped in silos.",
+      "leftLine4": "Disconnected.",
+      "leftLine5": "Each actor optimizes their part.",
+      "leftLine6": "No one optimizes the whole.",
+      "rightLine1": "A good decision is no longer a hunch.",
+      "rightLine2": "It is the simulation of its real impact."
+    },
+    "simulab": {
+      "headline": "SimuLab projects the impact of your decisions before you execute them.",
+      "feature1Title": "Connect cost and impact",
+      "feature1Body": "Bring cost and environmental footprints together to understand the real impact of every decision.",
+      "feature2Title": "Aligned with regulation",
+      "feature2Body": "Assess decisions against regulatory criteria, the EU taxonomy, and sustainability objectives.",
+      "feature3Title": "Built on archetypes",
+      "feature3Body": "Use scientifically validated models to simulate each building typology with precision.",
+      "cta": "Discover SimuLab",
+      "closing1": "SimuLab is only as good as the data you are willing to put on the table.",
+      "closing2": "The tool does not do the work for you  it makes it possible to do it better",
+      "imageAlt": "SimuLab in AB360: laptop showing a simulation cost comparison dashboard."
+    },
+    "openlab": {
+      "quote": "Yutopias, La Salle R&D, and ACCI have defined a different way to roll out Simulab: build it alongside the first partners. We do not sell finished software  we co-build the standard together. We call this process <openlab>OpenLab</openlab>.",
+      "pathLabel": "The path",
+      "headlineLine1": "OpenLab is the open innovation program.",
+      "headlineLine2": "Adapt first, then adopt.",
+      "headlineLine3": "Not the other way around.",
+      "description": "It is not training or consulting. It is the process of making it yours  where your data and your operations co-create the standard the sector needs.",
+      "bootcampLead": "Zero Bootcamp is the entry point.",
+      "ctaPrimary": "Join the Zero Bootcamp",
+      "ctaSecondary": "Explore OpenLab",
+      "col1": {
+        "title": "You work with real data from your projects",
+        "body": "The information already exists inside your company. In OpenLab we connect it with sector reference databases. Every simulation feeds the system. The outcome improves with each project."
+      },
+      "col2": {
+        "title": "You configure Simulab to your operations",
+        "body": "With OpenLab the simulator becomes your operational AI agent. A real technology leap  calibrated to your building typology and aligning project goals with your business drivers."
+      },
+      "col3": {
+        "title": "You calculate impact on cost and sustainability",
+        "body": "Simulab calculates cost and carbon, energy, and water footprints for each construction solution  from chapter to line item. Generate scenarios and compare. You decide."
+      },
+      "col4": {
+        "title": "SmartCheck: your goals aligned with the project",
+        "body": "Project objectives set the north star. SmartCheck validates that yours and your business drivers are aligned with them. And when you want, the same for every stakeholder."
+      },
+      "footerTagline": "The first movers do not follow the standard. They build it."
+    },
+    "simulationChoiceBanner": {
+      "regionAria": "Message on project decisions and simulation",
+      "left": "If you still make project decisions without simulation, it is no longer for lack of tools.",
+      "rightLine1": "It is a choice.",
+      "rightLine2": "And it has consequences."
+    },
+    "partnersBootcampCta": {
+      "headline": "We are looking for partners who want to define how decisions will be made in this sector.",
+      "cta": "Join the Zero Bootcamp"
+    },
+    "partners": {
+      "intro": "We've come this far together with:",
+      "cta": "Discover Our Innovation Ecosystem",
+      "marqueeAria": "Partner institution logos"
+    },
+    "ab360": {
+      "label": "The platform",
+      "headlineLine1": "This is not everything.",
+      "headlineLine2": "Behind it, something else is growing: AB360.",
+      "body": "We are building a platform that connects building data to support better decisions across the full lifecycle, with the help of three AI agents.",
+      "cta": "Discover AB360",
+      "agent1": {
+        "badge": "Live",
+        "role": "Agent 1",
+        "title": "SimuLab",
+        "body": "Simulate how your decisions affect cost and sustainability before you execute them.",
+        "metricsLabel": "Its language",
+        "pill1": "Price / m²",
+        "pill2": "Kg CO2 / m2",
+        "pill3": "+ 40%"
+      },
+      "agent2": {
+        "badge": "In development",
+        "role": "Agent 2",
+        "title": "Cycle Planner",
+        "body": "Turn those decisions into planning to optimize time, cost, and scope.",
+        "metricsLabel": "Its language",
+        "pill1": "OKRs",
+        "pill2": "Tasks",
+        "pill3": "Planning"
+      },
+      "agent3": {
+        "badge": "In development",
+        "role": "Agent 3",
+        "title": "Platón",
+        "body": "Supports decision-making by connecting data, regulation, and project knowledge.",
+        "metricsLabel": "Its language",
+        "pill1": "Decisions",
+        "pill2": "Recommendations"
+      }
+    },
+    "testimonials": {
+      "label": "Experience",
+      "title": "What our clients say",
+      "card1": {
+        "initials": "MN",
+        "name": "Marc Nicolau",
+        "company": "Sorigué",
+        "role": "Director of Studies and Procurement",
+        "highlight": "",
+        "quote": "Our studies typically take about 15 days on average. With SimuLAB we see clear potential to evaluate design alternatives, costs, and sustainability in just one day."
+      },
+      "card2": {
+        "initials": "TB",
+        "name": "Teresa Batlle",
+        "company": "PitchArchitects",
+        "role": "Architect and partner",
+        "highlight": "Cuts the project's environmental impact by an average of 60%.",
+        "quote": "Simulab from AB360 gave us a predictive and prescriptive assistant to guide architectural design, reducing environmental footprints while meeting the most demanding regulations."
+      },
+      "card3": {
+        "initials": "HP",
+        "name": "Howard Pierce",
+        "company": "UrbanInput",
+        "role": "Partner and asset management",
+        "highlight": "Reduces project deviations by up to 30%.",
+        "quote": "With Simulab from AB360 we structured complex decisions into clear objectives, aligning teams and tasks for faster execution with fewer deviations."
+      }
+    },
+    "yutopiasAbout": {
+      "headlinePrefix": "We are",
+      "headlineBrand": "<y>yūtopias</y> <s>systems</s>",
+      "subline": "We work to create systems that help <accent>build</accent> a better future.",
+      "philosophy": "The name Yutopias comes from utopia \nnot as an unreachable ideal,\nbut from good design.\nFrom Lean as a philosophy.\nFrom systems thinking applied\nto a sustainable modernity.",
+      "cta": "Discover Yutopias Systems"
+    },
+    "closingStandardCta": {
+      "titleLine1": "The standard for how decisions are made in construction",
+      "titleLine2": "is being defined right now.",
+      "cta": "Shall we talk?"
+    }
+  },
+  "challengePage": {
+    "headline": "Building is a complex system.\nThousands of decisions.\nDecades of consequences.\nYet it is approached without a holistic view.",
+    "body": "The vision exists. The data does not. Or it arrives late. Or it is fragmented or non-existent - within each organization and across all of them. And when it does arrive, the most important decisions have already been made - consciously or not.",
+    "cta": "What is your challenge?",
+    "nextSection": {
+      "eyebrow": "Until now",
+      "titleLine1": "This is how it works today.",
+      "titleLine2Prefix": "And this is how",
+      "titleLine2Costes": "costs",
+      "titleLine2Huellas": "footprints",
+      "titleLine2Connector": "and",
+      "titleLine2Errores": "errors",
+      "problemCards": {
+        "card1": {
+          "title": "There is fragmentation\nand validation comes late",
+          "body": "Data exists. Or it sits in a drawer. Or each team has its own. Nobody works with the same information at the same time. That, multiplied across all stakeholders, defines how decisions are made."
+        },
+        "card2": {
+          "title": "There is no connection\nand validation comes late",
+          "body": "Cost is calculated. Footprints, sometimes. But when they arrive, the decision is often already made - or they are used to justify it. Those who integrate them from the start gain a real advantage."
+        },
+        "card3": {
+          "title": "There is no anticipation\nand validation comes late",
+          "body": "You decide with the information you have. You cannot simulate before execution. When the real impact finally appears, changing course is expensive. Validation arrives to justify - not to improve."
+        }
+      },
+      "evidenceCards": {
+        "card1": {
+          "quote": "\"The real estate and construction sector generates around 38% of global CO2 emissions.\"",
+          "source": "United Nations Environment Programme - Global Status Report for Buildings and Construction 2024-2025"
+        },
+        "card2": {
+          "quote": "\"Globally, 4 out of 10 projects fail to meet budget, schedule, or scope: millions lost in overruns and delays.\"",
+          "source": "Project Management Institute (PMI) - Report: A High Cost of Low Performance"
+        },
+        "card3": {
+          "quote": "\"Up to 30% of work in construction is rework or waste.\"",
+          "source": "World Economic Forum - Shaping the Future of Construction: A Breakthrough in Mindset and Technology"
+        }
+      },
+      "closingLine1": "It is not a talent problem.\nIt is a technology problem.",
+      "closingLine2": "And there is already a solution."
+    },
+    "todaySection": {
+      "eyebrow": "Today",
+      "headline": "For years, intuition and experience were enough.\nToday they are not.",
+      "paragraph1": "Regulation no longer allows estimation. Margins no longer allow ignoring it. And decisions now carry economic consequences that did not exist before.",
+      "paragraph2": "The path is already mapped. Lean, shared data, evidence-based decisions. What is missing is the technology to make it operational.",
+      "taxonomy": {
+        "title": "European Taxonomy",
+        "body": "The EU requires reducing CO2, energy, and water footprints in buildings, a sector worth ~€3T and ~18% of its GDP.",
+        "source": "Energy Performance of Buildings Directive (EPBD)"
+      },
+      "pillarsAria": "Regulatory impact areas",
+      "pillarsImageAlt": "European taxonomy areas for buildings",
+      "pillars": {
+        "item1": "Climate mitigation",
+        "item2": "Water management",
+        "item3": "Circular economy",
+        "item4": "Pollution prevention",
+        "item5": "Climate adaptation",
+        "item6": "Biodiversity protection"
+      }
+    }
+  },
+  "privacyPage": {
+    "metadata": {
+      "title": "Privacy policy",
+      "description": "Personal data protection and user rights for AB360."
+    },
+    "title": "Privacy policy",
+    "lead": "Personal data protection and user rights.",
+    "intro": "This document adapts AB360 website content based on the policy published by YUTOPIAS SYSTEMS S.L.",
+    "sections": [
+      {
+        "title": "Purpose",
+        "paragraphs": [
+          "This website is designed to present YUTOPIAS SYSTEMS S.L. services and receive information requests, commercial contacts, and applications.",
+          "Contact forms are used exclusively for the purpose indicated in each case, including newsletter subscription where applicable."
+        ]
+      },
+      {
+        "title": "Data controller",
+        "paragraphs": [
+          "YUTOPIAS SYSTEMS S.L. (B44747095), Carrer de l'Església, no. 4 local 2D, 08024 Barcelona, Spain.",
+          "Contact email: enl@yutopias.com."
+        ]
+      },
+      {
+        "title": "Legal basis and data subject rights",
+        "paragraphs": [
+          "Personal data is processed to manage information requests, communications, and requested services under consent, contractual relationship, or legal obligation.",
+          "Users may exercise access, rectification, erasure, objection, restriction, portability, and consent withdrawal rights."
+        ],
+        "bullets": [
+          "Requests can be submitted in writing to the registered address or contact email.",
+          "A valid identification document may be required to verify identity."
+        ]
+      }
+    ]
+  },
+  "cookiesPage": {
+    "metadata": {
+      "title": "Cookie policy",
+      "description": "Information about cookie usage on AB360."
+    },
+    "title": "Cookie policy",
+    "body": "We are updating this section to provide detailed information about cookie usage, purposes, and configuration options for each user."
+  },
+  "contactPage": {
+    "metadata": {
+      "title": "Contact",
+      "description": "Contact channels for product and business inquiries."
+    },
+    "title": "Contact",
+    "body": "We are updating this section with contact channels and response times for business inquiries, collaborations, and support."
+  },
+  "informationPage": {
+    "metadata": {
+      "title": "Information",
+      "description": "Legal and corporate information about AB360 and Yutopias Systems."
+    },
+    "title": "Information",
+    "body": "We are preparing this section with relevant corporate and legal information for users, partners, and collaborating entities."
+  },
+  "footer": {
+    "barcelonaTitle": "Barcelona",
+    "barcelonaAddress1": "Carrer de l'Església, 4, 2D",
+    "barcelonaAddress2": "08024 Barcelona",
+    "barcelonaPhone": "+34 627 32 72 07",
+    "barcelonaEmail": "jmd@yutopias.com",
+    "madridTitle": "Madrid",
+    "madridAddress1": "Calle Hermosilla 147, 2D",
+    "madridAddress2": "28028 Madrid",
+    "madridPhone": "+34 650 69 13 38",
+    "madridEmail": "en@yutopias.com",
+    "legalTitle": "Legal information",
+    "legalNavAria": "Legal links",
+    "localeNavAria": "Language selector",
+    "localeEs": "Español",
+    "localeEn": "English",
+    "localeCa": "Català",
+    "siteMapTitle": "Home",
+    "siteMapNavAria": "Site navigation",
+    "home": "Home",
+    "solution": "The solution",
+    "program": "The program",
+    "about": "About us",
+    "privacy": "Privacy",
+    "cookies": "Cookie policy",
+    "contact": "Contact",
+    "information": "Information",
+    "legalPagePlaceholder": "This page is currently under construction.",
+    "kitDigitalAlt": "Kit Digital program co-financed by Next Generation EU funds",
+    "linkedinAria": "Yutopias Systems LinkedIn profile",
+    "linkedinUrl": "https://www.linkedin.com/company/yutopias/posts/?feedView=all",
+    "copyright": "Copyright © {year} yūtopias systems. All rights reserved."
+  }
+}

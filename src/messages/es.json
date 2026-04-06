@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "title": "Yutopias Systems  Decisiones con impacto medible",
+    "description": "Simula el impacto de tus decisiones en coste y sostenibilidad antes de ejecutarlas."
+  },
+  "nav": {
+    "brandAria": "Yutopias systems, inicio",
+    "mainNavAria": "Navegación principal",
+    "mobileMenuAria": "Menú principal",
+    "mobileDrawerLinksAria": "Enlaces de navegación (móvil)",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "skipToContent": "Saltar al contenido",
+    "challenge": "El desafío",
+    "solution": "La solución",
+    "program": "El programa",
+    "about": "Nosotros",
+    "joinBootcamp": "Únete al Bootcamp Zero"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "",
+      "headline": "¿Cómo decides el coste, la energía y el impacto de un edificio durante los próximos 50 años?",
+      "subhead": "Esas tres variables siempre han estado conectadas.\nEl problema es que nadie los mide juntos antes de tomar decisiones.",
+      "cta": "Únete al Bootcamp Zero"
+    },
+    "introStrip": {
+      "regionAria": "Mensaje introductorio",
+      "leftLine1": "En edificación todos deciden bien.",
+      "leftLine2": "Cada actor con sus datos.",
+      "leftLine3": "Atrapados en silos.",
+      "leftLine4": "Sin conectar.",
+      "leftLine5": "Cada actor optimiza su parte.",
+      "leftLine6": "Nadie optimiza el conjunto.",
+      "rightLine1": "Una buena decisión ya no es una intuición.",
+      "rightLine2": "Es la simulación de su impacto real."
+    },
+    "simulab": {
+      "headline": "SimuLab proyecta el impacto de tus decisiones antes de ejecutarlas.",
+      "feature1Title": "Conecta coste e impacto",
+      "feature1Body": "Integra coste y huellas ambientales para entender el impacto real de cada decisión.",
+      "feature2Title": "Alineado con la normativa",
+      "feature2Body": "Evalúa las decisiones según los criterios regulatorios, taxonomía europea y objetivos de sostenibilidad.",
+      "feature3Title": "Basado en arquetipos",
+      "feature3Body": "Utiliza modelos validados científicamente para simular con precisión cada tipología de edificio.",
+      "cta": "Descúbre SimuLab",
+      "closing1": "Simulab es tan bueno como los datos que estás dispuesto a poner sobre la mesa.",
+      "closing2": "La herramienta no hace el trabajo por ti  hace posible que lo hagas mejor",
+      "imageAlt": "Vista de SimuLab en AB360: comparativa de simulaciones de coste en un portátil."
+    },
+    "openlab": {
+      "quote": "Yutopias, La Salle R&D y ACCI han definido una forma distinta de desplegar Simulab: construirlo junto a los primeros partners. No vendemos un software terminado  construimos juntos el estándar. A este proceso lo llamamos <openlab>OpenLab</openlab>.",
+      "pathLabel": "El camino",
+      "headlineLine1": "OpenLab es el programa de innovación abierta.",
+      "headlineLine2": "Primero adaptar, luego adoptar.",
+      "headlineLine3": "No al revés.",
+      "description": "No es formación ni consultoría. Es el proceso de hacerlo tuyo  donde tus datos y tu operativa co-crean el estándar que el sector necesita.",
+      "bootcampLead": "El Bootcamp Zero es el punto de entrada.",
+      "ctaPrimary": "Únete al Bootcamp Zero",
+      "ctaSecondary": "Explora OpenLab",
+      "col1": {
+        "title": "Trabajas con datos reales de tus proyectos",
+        "body": "La información ya existe en tu empresa. En el OpenLab la conectamos con bases de datos de referencia del sector. Cada simulación alimenta el sistema. El resultado mejora con cada proyecto."
+      },
+      "col2": {
+        "title": "Configuras Simulab a tu operativa",
+        "body": "Con OpenLab el simulador se convierte en tu agente IA operativo. Un salto tecnológico real  calibrado a tu tipología de edificación y alineando los objetivos del proyecto con los drivers de tu negocio."
+      },
+      "col3": {
+        "title": "Calculas impacto en coste y sostenibilidad",
+        "body": "Simulab calcula el coste y las huellas de carbono, energética e hídrica de cada solución constructiva  desde el capítulo hasta la partida. Genera escenarios y compara. Tú decides."
+      },
+      "col4": {
+        "title": "El SmartCheck: tus objetivos alineados con los del proyecto",
+        "body": "Los objetivos del proyecto marcan el norte. El SmartCheck valida que los tuyos y tus drivers de negocio están alineados con él. Y cuando quieras, lo mismo para todos los actores."
+      },
+      "footerTagline": "Los primeros no siguen el estándar. Lo construyen."
+    },
+    "simulationChoiceBanner": {
+      "regionAria": "Mensaje sobre decisiones de proyecto y simulación",
+      "left": "Si sigues tomando decisiones de proyecto sin simulación, ya no es por falta de herramientas.",
+      "rightLine1": "Es una elección.",
+      "rightLine2": "Y tiene consecuencias."
+    },
+    "partnersBootcampCta": {
+      "headline": "Buscamos partners que quieran definir cómo se tomarán decisiones en este sector.",
+      "cta": "Únete al Bootcamp Zero"
+    },
+    "partners": {
+      "intro": "Hemos llegado hasta aquí junto con:",
+      "cta": "Conoce Nuestro Ecosistema de Innovación",
+      "marqueeAria": "Logos de instituciones colaboradoras"
+    },
+    "ab360": {
+      "label": "La plataforma",
+      "headlineLine1": "Esto no es todo.",
+      "headlineLine2": "Detrás está creciendo algo más: AB360.",
+      "body": "Estamos construyendo una plataforma que conecta los datos del edificio para tomar mejores decisiones en todo su ciclo de vida, con la ayuda de tres agentes de IA.",
+      "cta": "Conoce AB360",
+      "agent1": {
+        "badge": "Live",
+        "role": "Agente 1",
+        "title": "SimuLab",
+        "body": "Simula el impacto de tus decisiones en coste y sostenibilidad antes de ejecutarlas.",
+        "metricsLabel": "Su lenguaje",
+        "pill1": "Precio / m²",
+        "pill2": "Kg CO2 / m2",
+        "pill3": "+ 40%"
+      },
+      "agent2": {
+        "badge": "En desarrollo",
+        "role": "Agente 2",
+        "title": "Cycle Planner",
+        "body": "Convierte esas decisiones en planificación para optimizar tiempo, coste y alcance.",
+        "metricsLabel": "Su lenguaje",
+        "pill1": "OKR",
+        "pill2": "Tareas",
+        "pill3": "Planificación"
+      },
+      "agent3": {
+        "badge": "En desarrollo",
+        "role": "Agente 3",
+        "title": "Platón",
+        "body": "Asiste en la toma de decisiones conectando datos, normativa y conocimiento del proyecto.",
+        "metricsLabel": "Su lenguaje",
+        "pill1": "Decisiones",
+        "pill2": "Recomendaciones"
+      }
+    },
+    "testimonials": {
+      "label": "Experiencia",
+      "title": "Qué dicen nuestros clientes",
+      "card1": {
+        "initials": "MN",
+        "name": "Marc Nicolau",
+        "company": "Sorigué",
+        "role": "Director de Estudios y Contratación",
+        "highlight": "",
+        "quote": "Nuestros estudios tardan de media unos 15 días. Con SimuLAB vemos un claro potencial para evaluar alternativas de diseño, costes y sostenibilidad en tan solo un día."
+      },
+      "card2": {
+        "initials": "TB",
+        "name": "Teresa Batlle",
+        "company": "PitchArchitects",
+        "role": "Arquitecta y socia",
+        "highlight": "Reduce una media del 60% el impacto ambiental del proyecto.",
+        "quote": "Simulab de AB360 nos permitió contar con un asistente predictivo y prescriptivo para guiar el diseño arquitectónico, reduciendo las huellas ambientales y cumpliendo la normativa más exigente."
+      },
+      "card3": {
+        "initials": "HP",
+        "name": "Howard Pierce",
+        "company": "UrbanInput",
+        "role": "Socio y Asset Management",
+        "highlight": "Reduce hasta un 30% las desviaciones del proyecto.",
+        "quote": "Con Simulab de AB360 pudimos estructurar decisiones complejas en objetivos claros, alineando equipos y tareas para una ejecución más ágil y con menos desviaciones."
+      }
+    },
+    "yutopiasAbout": {
+      "headlinePrefix": "Somos",
+      "headlineBrand": "<y>yūtopias</y> <s>systems</s>",
+      "subline": "Trabajamos para crear sistemas que ayuden a <accent>construir</accent> un futuro mejor.",
+      "philosophy": "El nombre Yutopias nace de la utopía \nno como ideal inalcanzable,\nsino del buen diseño.\nDel Lean como filosofía.\nDel pensamiento sistémico aplicado\na una modernidad sostenible.",
+      "cta": "Conoce Yutopias Systems"
+    },
+    "closingStandardCta": {
+      "titleLine1": "El estándar de cómo se toman decisiones en el sector",
+      "titleLine2": "de la construcción se está definiendo ahora.",
+      "cta": "¿Hablamos?"
+    }
+  },
+  "challengePage": {
+    "headline": "La edificación es un sistema complejo.\nMiles de decisiones.\nDécadas de consecuencias.\nPero se aborda sin una visión de conjunto.",
+    "body": "La visión existe. Los datos, no. O llegan tarde. O están fragmentados o son inexistentes - dentro de cada organización y entre todas ellas. Y cuando llegan, las decisiones más importantes ya se han tomado - conscientemente o no.",
+    "cta": "¿Cuál es tu reto?",
+    "nextSection": {
+      "eyebrow": "Hasta ahora",
+      "titleLine1": "Así funciona hoy.",
+      "titleLine2Prefix": "Y así se acumulan",
+      "titleLine2Costes": "costes",
+      "titleLine2Huellas": "huellas",
+      "titleLine2Connector": "y",
+      "titleLine2Errores": "errores",
+      "problemCards": {
+        "card1": {
+          "title": "Hay fragmentación\ny se valida tarde",
+          "body": "Los datos existen. O están en un cajón. O cada uno tiene los suyos. Nadie trabaja con la misma información al mismo tiempo. Y eso, multiplicado por todos los actores, define cómo se toman las decisiones."
+        },
+        "card2": {
+          "title": "Falta de conexión\ny se valida tarde",
+          "body": "El coste se calcula. Las huellas, a veces. Pero cuando llegan, la decisión a menudo ya está tomada - o se usan para justificarla. Quien las integra desde el inicio tiene una ventaja real."
+        },
+        "card3": {
+          "title": "Falta anticipación\ny se valida tarde",
+          "body": "Tomas la decisión con la información que tienes. No se puede simular antes de ejecutar. Cuando por fin aparece el impacto real, ya no se puede cambiar sin coste. La validación llegara para justificar - no para mejorar."
+        }
+      },
+      "evidenceCards": {
+        "card1": {
+          "quote": "“El sector inmobiliario y de la construcción genera cerca del 38% de las emisiones globales de CO2.”",
+          "source": "United Nations Environment Programme - Informe sobre la Situación Mundial de los Edificios 2024-2025"
+        },
+        "card2": {
+          "quote": "“Globalmente, 4 de cada 10 proyectos no cumplen con presupuesto, tiempo o alcance: millones en sobrecostes y retrasos.”",
+          "source": "Project Management Institute (PMI) - Informe: Un alto coste de un bajo desempeño"
+        },
+        "card3": {
+          "quote": "“Hasta un 30% del trabajo en construcción es retrabajo o desperdicio.”",
+          "source": "World Economic Forum - Shaping the Future of Construction: A Breakthrough in Mindset and Technology"
+        }
+      },
+      "closingLine1": "No es un problema de talento.\nEs un problema de tecnología.",
+      "closingLine2": "Y eso ya tiene solución."
+    },
+    "todaySection": {
+      "eyebrow": "Hoy",
+      "headline": "Durante años, la intuición y la experiencia eran suficientes.\nHoy ya no lo son.",
+      "paragraph1": "La regulación ya no permite estimarlo. Los márgenes ya no permiten ignorarlo. Y las decisiones tienen consecuencias económicas que antes no existían.",
+      "paragraph2": "El camino ya está trazado. Lean, datos compartidos, decisiones basadas en evidencia. Lo que falta es la tecnología que lo haga operativo.",
+      "taxonomy": {
+        "title": "Taxonomía Europea",
+        "body": "La UE exige reducir las huellas de CO2, energética e hídrica en la edificación, un sector de ~3B€ y ~18% de su PIB.",
+        "source": "Energy Performance of Buildings Directive (EPBD)"
+      },
+      "pillarsAria": "Ámbitos de impacto regulatorio",
+      "pillarsImageAlt": "Ámbitos de la taxonomía europea para la edificación",
+      "pillars": {
+        "item1": "Mitigación climática",
+        "item2": "Gestión hídrica",
+        "item3": "Economía circular",
+        "item4": "Prevención contaminación",
+        "item5": "Adaptación al cambio",
+        "item6": "Protección biodiversidad"
+      }
+    }
+  },
+  "privacyPage": {
+    "metadata": {
+      "title": "Política de privacidad",
+      "description": "Protección de datos personales y derechos de las personas usuarias de AB360."
+    },
+    "title": "Política de privacidad",
+    "lead": "Protección de datos personales y derechos de las personas usuarias.",
+    "intro": "Documento adaptado para la web AB360 siguiendo el contenido de la política publicada por YUTOPIAS SYSTEMS S.L.",
+    "sections": [
+      {
+        "title": "Objeto",
+        "paragraphs": [
+          "Esta web se ha diseñado para dar a conocer los servicios de YUTOPIAS SYSTEMS S.L. y para la recepción de solicitudes de información, contactos comerciales y candidaturas.",
+          "Los formularios de contacto se utilizan exclusivamente para la finalidad indicada en cada caso. También existe un formulario específico para suscripción a newsletter informativa."
+        ]
+      },
+      {
+        "title": "Propiedad intelectual e industrial",
+        "paragraphs": [
+          "Los contenidos, código fuente, diseño, estructura de navegación, textos, imágenes, logotipos, marcas y demás elementos de las webs corporativas son titularidad de YUTOPIAS SYSTEMS S.L. o de terceros con licencia.",
+          "Queda prohibida su reproducción, distribución, comunicación pública o transformación sin autorización previa y expresa."
+        ]
+      },
+      {
+        "title": "Acceso y uso",
+        "paragraphs": [
+          "El acceso y uso del sitio web es responsabilidad exclusiva del usuario y debe realizarse conforme a la legalidad vigente, la buena fe y el uso lícito.",
+          "Se prohíbe el uso de la web con fines ilegales o no autorizados."
+        ]
+      },
+      {
+        "title": "Responsabilidad",
+        "paragraphs": [
+          "YUTOPIAS SYSTEMS S.L. no asume responsabilidad por daños ocasionados por uso indebido o ilegal del sitio web o de su contenido por parte de usuarios.",
+          "La empresa se reserva el derecho de suspender temporalmente el acceso o modificar contenidos y condiciones sin previo aviso por razones técnicas o de negocio."
+        ]
+      },
+      {
+        "title": "Uso de cookies",
+        "paragraphs": [
+          "El sitio puede utilizar cookies para recordar preferencias del usuario y mejorar la experiencia de navegación.",
+          "Las cookies se asocian al navegador de un dispositivo concreto y no identifican por sí mismas al usuario de forma nominal.",
+          "El usuario puede configurar su navegador para bloquear cookies o ser avisado de su recepción."
+        ]
+      },
+      {
+        "title": "Responsable del tratamiento",
+        "paragraphs": [
+          "YUTOPIAS SYSTEMS S.L. (B44747095), con domicilio en Carrer de l'Església, n.º 4 local 2D, 08024 Barcelona, España.",
+          "Email de contacto: enl@yutopias.com."
+        ]
+      },
+      {
+        "title": "Base legal y finalidad del tratamiento",
+        "paragraphs": [
+          "Los datos personales se tratan para gestionar solicitudes de información, relaciones comerciales, comunicaciones y prestación de servicios solicitados por el usuario.",
+          "Cuando proceda, el tratamiento se basa en consentimiento, ejecución de una relación precontractual/contractual o cumplimiento de obligaciones legales."
+        ]
+      },
+      {
+        "title": "Medidas de seguridad",
+        "paragraphs": [
+          "La entidad aplica medidas técnicas y organizativas adecuadas para proteger la confidencialidad, integridad y disponibilidad de los datos personales."
+        ]
+      },
+      {
+        "title": "Conservación de datos",
+        "bullets": [
+          "Datos de clientes: hasta 10 años desde el fin de la relación comercial, salvo obligación legal distinta.",
+          "Datos de suscriptores: hasta la baja voluntaria.",
+          "Datos de candidatos: hasta 10 años para futuras vacantes, salvo oposición expresa.",
+          "Datos anonimizados o agregados: sin plazo de supresión cuando no permitan identificar personas."
+        ]
+      },
+      {
+        "title": "Cesión de datos a terceros",
+        "paragraphs": [
+          "No se ceden datos personales a terceros sin base legal o consentimiento expreso, salvo cuando sea necesario para prestación de servicios o por obligación legal."
+        ]
+      },
+      {
+        "title": "Derechos de protección de datos",
+        "paragraphs": [
+          "El usuario puede ejercer los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad.",
+          "También puede retirar su consentimiento en cualquier momento cuando el tratamiento se base en consentimiento."
+        ],
+        "bullets": [
+          "Canal de ejercicio: solicitud escrita al domicilio social o al email de contacto.",
+          "Debe adjuntarse documento identificativo válido para verificar identidad.",
+          "Si el usuario considera que hay incumplimiento, puede reclamar ante la Agencia Española de Protección de Datos."
+        ]
+      },
+      {
+        "title": "Confidencialidad",
+        "paragraphs": [
+          "Todo el personal y proveedores autorizados con acceso a datos personales están sujetos a obligaciones de confidencialidad y al cumplimiento de la normativa aplicable."
+        ]
+      },
+      {
+        "title": "Cambios en esta política",
+        "paragraphs": [
+          "YUTOPIAS SYSTEMS S.L. puede actualizar esta política para adaptarla a cambios normativos, criterios jurisprudenciales o decisiones de negocio.",
+          "La versión vigente será la publicada en esta página."
+        ]
+      },
+      {
+        "title": "Normativa aplicable y jurisdicción",
+        "paragraphs": [
+          "Esta política se rige por la legislación española y europea aplicable en materia de protección de datos.",
+          "En caso de conflicto, y salvo norma imperativa en contrario, la jurisdicción competente será la de Barcelona."
+        ]
+      }
+    ]
+  },
+  "cookiesPage": {
+    "metadata": {
+      "title": "Política de cookies",
+      "description": "Información sobre el uso de cookies en AB360."
+    },
+    "title": "Política de cookies",
+    "body": "Estamos actualizando esta sección para detallar el uso de cookies, su finalidad y las opciones de configuración disponibles para cada usuario."
+  },
+  "contactPage": {
+    "metadata": {
+      "title": "Contacto",
+      "description": "Canales de contacto para consultas comerciales o de producto."
+    },
+    "title": "Contacto",
+    "body": "Estamos actualizando esta sección con los canales de contacto y tiempos de respuesta para consultas comerciales, colaboraciones y soporte."
+  },
+  "informationPage": {
+    "metadata": {
+      "title": "Información",
+      "description": "Información legal y corporativa de AB360 y Yutopias Systems."
+    },
+    "title": "Información",
+    "body": "Estamos preparando esta sección con información corporativa y legal relevante para usuarios, partners y entidades colaboradoras."
+  },
+  "footer": {
+    "barcelonaTitle": "Barcelona",
+    "barcelonaAddress1": "Carrer de l'Església, 4, 2D",
+    "barcelonaAddress2": "08024 Barcelona",
+    "barcelonaPhone": "+34 627 32 72 07",
+    "barcelonaEmail": "jmd@yutopias.com",
+    "madridTitle": "Madrid",
+    "madridAddress1": "Calle Hermosilla 147, 2D",
+    "madridAddress2": "28028 Madrid",
+    "madridPhone": "+34 650 69 13 38",
+    "madridEmail": "en@yutopias.com",
+    "legalTitle": "Información legal",
+    "legalNavAria": "Enlaces legales",
+    "localeNavAria": "Selector de idioma",
+    "localeEs": "Español",
+    "localeEn": "English",
+    "localeCa": "Català",
+    "siteMapTitle": "Inicio",
+    "siteMapNavAria": "Navegación del sitio",
+    "home": "Inicio",
+    "solution": "La solución",
+    "program": "El programa",
+    "about": "Nosotros",
+    "privacy": "Privacidad",
+    "cookies": "Política de cookies",
+    "contact": "Contacto",
+    "information": "Información",
+    "legalPagePlaceholder": "Esta pagina esta en construccion.",
+    "kitDigitalAlt": "Programa Kit Digital cofinanciado por fondos Next Generation EU",
+    "linkedinAria": "Perfil de LinkedIn de Yutopias Systems",
+    "linkedinUrl": "https://www.linkedin.com/company/yutopias/posts/?feedView=all",
+    "copyright": "Copyright © {year} yūtopias systems. Todos los derechos reservados."
+  }
+}
