@@ -169,6 +169,10 @@
     }
   },
   "challengePage": {
+    "metadata": {
+      "title": "The challenge",
+      "description": "How AB360 transforms decision-making in buildings through simulation and connected data."
+    },
     "headline": "Building is a complex system.\nThousands of decisions.\nDecades of consequences.\nYet it is approached without a holistic view.",
     "body": "The vision exists. The data does not. Or it arrives late. Or it is fragmented or non-existent - within each organization and across all of them. And when it does arrive, the most important decisions have already been made - consciously or not.",
     "cta": "What is your challenge?",
@@ -221,16 +225,48 @@
         "body": "The EU requires reducing CO2, energy, and water footprints in buildings, a sector worth ~€3T and ~18% of its GDP.",
         "source": "Energy Performance of Buildings Directive (EPBD)"
       },
-      "pillarsAria": "Regulatory impact areas",
-      "pillarsImageAlt": "European taxonomy areas for buildings",
-      "pillars": {
-        "item1": "Climate mitigation",
-        "item2": "Water management",
-        "item3": "Circular economy",
-        "item4": "Pollution prevention",
-        "item5": "Climate adaptation",
-        "item6": "Biodiversity protection"
+      "pillarsImageAlt": "European taxonomy areas for buildings"
+    },
+    "discoverAb360": {
+      "eyebrow": "DISCOVER AB360",
+      "headline": "AB360 is the platform that connects building data across its entire lifecycle.",
+      "highlight": "Its first operational agent is Simulab - already available.",
+      "paragraph1": "At the center of AB360 there is a semantic digital twin. It is not a representation of the building - it is understanding. It integrates object data and lifecycle management processes. It relates meaning from development to operation.",
+      "paragraph2": "Three AI agents operate on top of that core. Each one in its own domain. All of them so you can make better decisions.",
+      "metricsLabel": "Its language",
+      "agent1Cta": "Discover SimuLab",
+      "finalCta": "Discover AB360",
+      "agent1": {
+        "badge": "Live",
+        "role": "Agent 1",
+        "title": "SimuLab",
+        "body": "Simulate how your decisions affect cost and sustainability before execution.",
+        "pill1": "Price / m²",
+        "pill2": "Kg CO2 / m²",
+        "pill3": "+ 40%"
+      },
+      "agent2": {
+        "badge": "In development",
+        "role": "Agent 2",
+        "title": "Cycle Planner",
+        "body": "Turn those decisions into planning to optimize time, cost, and scope.",
+        "pill1": "OKR",
+        "pill2": "Tasks",
+        "pill3": "Planning"
+      },
+      "agent3": {
+        "badge": "In development",
+        "role": "Agent 3",
+        "title": "Platón",
+        "body": "Supports decision-making by connecting data, regulation, and project knowledge.",
+        "pill1": "Decisions",
+        "pill2": "Recommendations"
       }
+    },
+    "finalCtaSection": {
+      "line1": "The sector already knows it needs to change how decisions are made.",
+      "line2": "The question is not if - it is when and with whom.",
+      "cta": "Tell us your challenges"
     }
   },
   "privacyPage": {

@@ -169,6 +169,10 @@
     }
   },
   "challengePage": {
+    "metadata": {
+      "title": "El repte",
+      "description": "Com AB360 transforma la presa de decisions en edificació amb simulació i dades connectades."
+    },
     "headline": "L'edificació és un sistema complex.\nMilers de decisions.\nDècades de conseqüències.\nPerò s'aborda sense una visió de conjunt.",
     "body": "La visió existeix. Les dades, no. O arriben tard. O estan fragmentades o són inexistents - dins de cada organització i entre totes elles. I quan arriben, les decisions més importants ja s'han pres - conscientment o no.",
     "cta": "Quin és el teu repte?",
@@ -221,16 +225,48 @@
         "body": "La UE exigeix reduir les petjades de CO2, energètica i hídrica a l'edificació, un sector de ~3B€ i ~18% del seu PIB.",
         "source": "Energy Performance of Buildings Directive (EPBD)"
       },
-      "pillarsAria": "Àmbits d'impacte regulatori",
-      "pillarsImageAlt": "Àmbits de la taxonomia europea per a l'edificació",
-      "pillars": {
-        "item1": "Mitigació climàtica",
-        "item2": "Gestió hídrica",
-        "item3": "Economia circular",
-        "item4": "Prevenció contaminació",
-        "item5": "Adaptació al canvi",
-        "item6": "Protecció biodiversitat"
+      "pillarsImageAlt": "Àmbits de la taxonomia europea per a l'edificació"
+    },
+    "discoverAb360": {
+      "eyebrow": "DESCOBREIX AB360",
+      "headline": "AB360 és la plataforma que connecta les dades de l'edifici en tot el seu cicle de vida.",
+      "highlight": "El seu primer agent operatiu és Simulab - ja disponible.",
+      "paragraph1": "Al centre d'AB360 hi ha un bessó digital semàntic. No és una representació de l'edifici - és una comprensió. Integra les dades de l'objecte i els processos de gestió del seu cicle de vida. Relaciona el seu significat des de la promoció fins a l'explotació.",
+      "paragraph2": "Sobre aquest nucli operen tres agents d'IA. Cadascun des de la seva àrea. Tots perquè prenguis millors decisions.",
+      "metricsLabel": "El seu llenguatge",
+      "agent1Cta": "Descobreix SimuLab",
+      "finalCta": "Descobreix AB360",
+      "agent1": {
+        "badge": "Live",
+        "role": "Agent 1",
+        "title": "SimuLab",
+        "body": "Simula l'impacte de les teves decisions en cost i sostenibilitat abans d'executar-les.",
+        "pill1": "Preu / m²",
+        "pill2": "Kg CO2 / m²",
+        "pill3": "+ 40%"
+      },
+      "agent2": {
+        "badge": "En desenvolupament",
+        "role": "Agent 2",
+        "title": "Cycle Planner",
+        "body": "Converteix aquestes decisions en planificació per optimitzar temps, cost i abast.",
+        "pill1": "OKR",
+        "pill2": "Tasques",
+        "pill3": "Planificació"
+      },
+      "agent3": {
+        "badge": "En desenvolupament",
+        "role": "Agent 3",
+        "title": "Platón",
+        "body": "Assisteix la presa de decisions connectant dades, normativa i coneixement de projecte.",
+        "pill1": "Decisions",
+        "pill2": "Recomanacions"
       }
+    },
+    "finalCtaSection": {
+      "line1": "El sector ja sap que ha de canviar la manera de prendre decisions.",
+      "line2": "La pregunta no és si - és quan i amb qui.",
+      "cta": "Explica'ns els teus reptes"
     }
   },
   "privacyPage": {

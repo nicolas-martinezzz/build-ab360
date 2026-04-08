@@ -20,5 +20,7 @@ export const SITE_ASSETS = {
   },
   challenge: {
     taxonomyPillars: "/images/challenge/taxonomy-pillars.png",
+    rectangle1: "/images/challenge/rectangle-1.png",
+    rectangle64: "/images/challenge/rectangle-64.png",
   },
 } as const;
