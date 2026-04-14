@@ -23,22 +23,22 @@ export const Ab360PlatformSection = async () => {
   return (
     <section
       aria-labelledby="ab360-title"
-      className="bg-white py-16 sm:py-20 md:py-28"
+      className="section-block-spacious bg-white"
       id={SITE_SECTION_IDS.platform}
     >
       <SectionContainer>
         <header className="max-w-3xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-grey-dark sm:text-sm">{t("label")}</p>
+          <p className="type-eyebrow text-grey-dark">{t("label")}</p>
           <h2
-            className="mt-3 text-2xl font-bold text-surface-bg [overflow-wrap:anywhere] sm:text-3xl md:text-4xl"
+            className="type-title mt-3 text-surface-bg [overflow-wrap:anywhere]"
             id="ab360-title"
           >
             <span className="block">{t("headlineLine1")}</span>
             <span className="mt-1 block">{t("headlineLine2")}</span>
           </h2>
-          <p className="mt-5 text-base text-grey-dark leading-relaxed sm:mt-6 sm:text-lg">{t("body")}</p>
+          <p className="type-body mt-6 text-grey-dark sm:mt-7">{t("body")}</p>
           <LinkButton
-            className="mt-8 w-full min-h-12 sm:mt-10 sm:w-auto sm:min-w-[12rem]"
+            className="mt-10 w-full min-h-12 sm:mt-12 sm:w-auto sm:min-w-[12rem]"
             href={SITE_PATHS.challenge}
             variant="primary"
           >
@@ -46,7 +46,7 @@ export const Ab360PlatformSection = async () => {
           </LinkButton>
         </header>
 
-        <ul className="mt-14 grid list-none grid-cols-1 gap-12 p-0 sm:mt-16 md:mt-20 md:grid-cols-3 md:gap-8 lg:gap-10">
+        <ul className="mt-16 grid list-none grid-cols-1 gap-12 p-0 sm:mt-20 md:mt-24 md:grid-cols-3 md:gap-10 lg:gap-12">
           {AGENTS.map(({ key, live }) => (
             <li key={key} className="min-w-0">
               <article className="flex h-full flex-col">

@@ -9,23 +9,23 @@ export const TestimonialsSection = async () => {
   return (
     <section
       aria-labelledby="testimonials-title"
-      className="bg-green-100 py-16 sm:py-20 md:py-28"
+      className="section-block bg-green-100"
     >
       <SectionContainer>
-        <p className="text-xs font-medium uppercase tracking-wide text-grey-dark sm:text-sm">{t("label")}</p>
+        <p className="type-eyebrow text-grey-dark">{t("label")}</p>
         <h2
-          className="mt-3 text-2xl font-bold text-surface-bg [overflow-wrap:anywhere] sm:text-3xl md:text-4xl"
+          className="type-title mt-3 text-surface-bg [overflow-wrap:anywhere]"
           id="testimonials-title"
         >
           {t("title")}
         </h2>
 
-        <ul className="mt-10 grid list-none grid-cols-1 gap-8 p-0 sm:mt-12 md:grid-cols-3 md:gap-6 lg:gap-8">
+        <ul className="mt-12 grid list-none grid-cols-1 gap-8 p-0 sm:mt-14 md:grid-cols-3 md:gap-8 lg:gap-10">
           {CARD_KEYS.map((key) => {
             const highlight = t(`${key}.highlight`).trim();
             return (
               <li key={key} className="min-w-0">
-                <article className="flex h-full min-w-0 flex-col rounded-xl border border-grey-light/60 bg-white p-6 shadow-md sm:p-7">
+                <article className="flex h-full min-w-0 flex-col rounded-xl border border-grey-light/60 bg-white p-7 shadow-md sm:p-8">
                   <div className="flex min-w-0 gap-4">
                     <div
                       aria-hidden

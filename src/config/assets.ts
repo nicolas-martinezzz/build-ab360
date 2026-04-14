@@ -16,7 +16,7 @@ export const SITE_ASSETS = {
     ] as const,
   },
   simulab: {
-    dashboardMockup: "/images/simulab/dashboard-mockup.png",
+    dashboardMockup: "/images/simulab/simulab-yutopias-1.png",
   },
   challenge: {
     taxonomyPillars: "/images/challenge/taxonomy-pillars.png",

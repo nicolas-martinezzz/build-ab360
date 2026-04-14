@@ -32,11 +32,11 @@ export const PartnersBanner = async () => {
   return (
     <section
       aria-labelledby="partners-marquee-title"
-      className="bg-surface-bg py-16 text-white sm:py-20 md:py-24"
+      className="section-block bg-surface-bg text-white"
     >
       <SectionContainer>
         <h2
-          className="text-left text-base font-normal text-white [overflow-wrap:anywhere] sm:text-lg"
+          className="type-body text-left text-white [overflow-wrap:anywhere]"
           id="partners-marquee-title"
         >
           {t("intro")}

@@ -34,18 +34,18 @@ export const Hero = async () => {
       </div>
       <SectionContainer className="relative z-10 text-left">
         {eyebrow ? (
-          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-green-200 sm:mb-3 sm:text-sm">
+          <p className="type-eyebrow mb-2 text-green-200 sm:mb-3">
             {eyebrow}
           </p>
         ) : null}
         <h1
-          className="max-w-3xl text-2xl font-semibold leading-[1.15] text-white [overflow-wrap:anywhere] sm:text-3xl md:text-4xl md:leading-tight lg:text-5xl"
+          className="type-hero-headline max-w-3xl text-white [overflow-wrap:anywhere]"
           id="hero-heading"
         >
           {t("headline")}
         </h1>
         {subhead ? (
-          <p className="mt-4 max-w-2xl whitespace-pre-line text-[0.9375rem] leading-relaxed text-white/85 sm:mt-6 sm:text-base md:text-lg">
+          <p className="type-body mt-5 max-w-2xl whitespace-pre-line text-white/85 sm:mt-7 md:mt-8">
             {subhead}
           </p>
         ) : null}

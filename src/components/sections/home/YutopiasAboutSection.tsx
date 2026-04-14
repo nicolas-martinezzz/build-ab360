@@ -9,14 +9,14 @@ export const YutopiasAboutSection = async () => {
   return (
     <section
       aria-labelledby="yutopias-about-title"
-      className="bg-surface-bg py-16 text-white sm:py-20 md:py-28"
+      className="section-block bg-surface-bg text-white"
       id={SITE_SECTION_IDS.about}
     >
       <SectionContainer>
         <div className="grid gap-12 md:grid-cols-2 md:items-start md:gap-14 lg:gap-20">
           <div className="min-w-0">
             <h2
-              className="text-2xl font-bold leading-tight [overflow-wrap:anywhere] sm:text-3xl md:text-4xl"
+              className="type-title [overflow-wrap:anywhere]"
               id="yutopias-about-title"
             >
               <span className="text-white">{t("headlinePrefix")}</span>{" "}
@@ -25,7 +25,7 @@ export const YutopiasAboutSection = async () => {
                 s: (chunks) => <span className="text-green-500">{chunks}</span>,
               })}
             </h2>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/95 sm:text-lg">
+            <p className="type-body mt-5 max-w-xl text-white/95">
               {t.rich("subline", {
                 accent: (chunks) => <span className="font-medium text-green-400">{chunks}</span>,
               })}

@@ -7,12 +7,12 @@ export const IntroStripSection = async () => {
   return (
     <section
       aria-label={t("regionAria")}
-      className="bg-green-100 py-12 sm:py-14 md:py-16"
+      className="section-band bg-green-100"
     >
       <SectionContainer>
         <div className="grid gap-10 md:grid-cols-2 md:items-start md:justify-between md:gap-x-16 lg:gap-x-24">
           <div
-            className="intro-verse-col-left max-w-xl border-l-2 border-green-500/25 pl-5 text-left text-[1.05rem] leading-[1.75] tracking-[0.01em] text-surface-bg sm:text-base sm:leading-[1.8]"
+            className="intro-verse-col-left max-w-xl border-l-2 border-green-500/25 pl-5 text-left text-base leading-[1.75] tracking-[0.01em] text-surface-bg sm:text-[1.0625rem] sm:leading-[1.8]"
           >
             <p className="intro-verse-line">{t("leftLine1")}</p>
             <p className="intro-verse-line">{t("leftLine2")}</p>
@@ -22,7 +22,7 @@ export const IntroStripSection = async () => {
             <p className="intro-verse-line font-bold text-black">{t("leftLine6")}</p>
           </div>
           <div
-            className="intro-verse-col-right max-w-md border-l-2 border-green-500/35 pl-5 text-left text-[1.05rem] leading-[1.75] tracking-[0.01em] text-surface-bg sm:text-base sm:leading-[1.8] md:max-w-lg md:justify-self-end"
+            className="intro-verse-col-right max-w-md border-l-2 border-green-500/25 pl-5 text-left text-base leading-[1.75] tracking-[0.01em] text-surface-bg sm:text-[1.0625rem] sm:leading-[1.8] md:max-w-lg md:justify-self-end"
           >
             <p className="intro-verse-line">{t("rightLine1")}</p>
             <p className="intro-verse-line font-bold text-green-500">{t("rightLine2")}</p>
