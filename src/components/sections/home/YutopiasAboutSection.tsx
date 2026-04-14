@@ -9,14 +9,14 @@ export const YutopiasAboutSection = async () => {
   return (
     <section
       aria-labelledby="yutopias-about-title"
-      className="bg-surface-bg py-16 text-white sm:py-20 md:py-24"
+      className="section-block bg-surface-bg text-white"
       id={SITE_SECTION_IDS.about}
     >
       <SectionContainer>
         <div className="grid gap-12 md:grid-cols-2 md:items-start md:gap-14 lg:gap-20">
           <div className="min-w-0">
             <h2
-              className="figma-text-l [overflow-wrap:anywhere]"
+              className="type-title [overflow-wrap:anywhere]"
               id="yutopias-about-title"
             >
               <span className="text-white">{t("headlinePrefix")}</span>{" "}

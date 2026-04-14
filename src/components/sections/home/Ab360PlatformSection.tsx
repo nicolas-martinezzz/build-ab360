@@ -54,8 +54,8 @@ export const Ab360PlatformSection = async () => {
                   <span
                     className={
                       live
-                        ? "rounded-[0.3125rem] border border-green-600 px-2.5 py-0.5 text-base font-normal leading-[1.44] text-green-600"
-                        : "rounded-[0.3125rem] border border-grey-light px-2.5 py-0.5 text-base font-normal leading-[1.44] text-grey-dark"
+                        ? "rounded-full border border-green-600 px-2.5 py-0.5 text-xs font-semibold text-green-600"
+                        : "rounded-full border border-grey-light px-2.5 py-0.5 text-xs font-medium text-grey-dark"
                     }
                   >
                     {t(`${key}.badge`)}

@@ -25,18 +25,18 @@ export const TestimonialsSection = async () => {
             const highlight = t(`${key}.highlight`).trim();
             return (
               <li key={key} className="min-w-0">
-                <article className="flex h-full min-w-0 flex-col rounded-[0.3125rem] border border-[#e0e9e9] bg-white p-[1.875rem]">
+                <article className="flex h-full min-w-0 flex-col rounded-xl border border-grey-light/60 bg-white p-7 shadow-md sm:p-8">
                   <div className="flex min-w-0 gap-4">
                     <div
                       aria-hidden
-                      className="flex size-[3.3125rem] shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-green-200 to-green-300 text-sm font-bold text-green-900 shadow-inner"
+                      className="flex size-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-green-200 to-green-300 text-sm font-bold text-green-900 shadow-inner sm:size-[4.5rem] sm:text-base"
                     >
                       {t(`${key}.initials`)}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-[1.25rem] font-bold leading-[1.4] text-[#394a5a]">{t(`${key}.name`)}</p>
+                      <p className="text-[1.25rem] font-bold leading-[1.4] text-surface-bg">{t(`${key}.name`)}</p>
                       <p className="text-base font-medium leading-[1.4] text-black">{t(`${key}.company`)}</p>
-                      <p className="mt-1 text-[0.9375rem] italic leading-[1.4] text-[#394a5a]">{t(`${key}.role`)}</p>
+                      <p className="mt-1 text-[0.9375rem] italic leading-[1.4] text-grey-dark">{t(`${key}.role`)}</p>
                     </div>
                   </div>
                   {highlight ? (
