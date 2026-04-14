@@ -28,15 +28,15 @@ export const Ab360PlatformSection = async () => {
     >
       <SectionContainer>
         <header className="max-w-3xl">
-          <p className="type-eyebrow text-grey-dark">{t("label")}</p>
+          <p className="figma-text-l text-grey-dark">{t("label")}</p>
           <h2
-            className="type-title mt-3 text-surface-bg [overflow-wrap:anywhere]"
+            className="figma-title-2-bold mt-3 text-surface-bg [overflow-wrap:anywhere]"
             id="ab360-title"
           >
             <span className="block">{t("headlineLine1")}</span>
             <span className="mt-1 block">{t("headlineLine2")}</span>
           </h2>
-          <p className="type-body mt-6 text-grey-dark sm:mt-7">{t("body")}</p>
+          <p className="figma-text-l mt-6 text-grey-dark sm:mt-7">{t("body")}</p>
           <LinkButton
             className="mt-10 w-full min-h-12 sm:mt-12 sm:w-auto sm:min-w-[12rem]"
             href={SITE_PATHS.challenge}
@@ -54,21 +54,21 @@ export const Ab360PlatformSection = async () => {
                   <span
                     className={
                       live
-                        ? "rounded-full border border-green-600 px-2.5 py-0.5 text-xs font-semibold text-green-600"
-                        : "rounded-full border border-grey-light px-2.5 py-0.5 text-xs font-medium text-grey-dark"
+                        ? "rounded-[0.3125rem] border border-green-600 px-2.5 py-0.5 text-base font-normal leading-[1.44] text-green-600"
+                        : "rounded-[0.3125rem] border border-grey-light px-2.5 py-0.5 text-base font-normal leading-[1.44] text-grey-dark"
                     }
                   >
                     {t(`${key}.badge`)}
                   </span>
                 </div>
-                <p className="mt-3 text-sm italic text-grey-dark">{t(`${key}.role`)}</p>
-                <h3 className="mt-2 text-xl font-bold text-surface-bg">{t(`${key}.title`)}</h3>
-                <p className="mt-3 flex-1 text-sm text-grey-dark leading-relaxed sm:text-base">{t(`${key}.body`)}</p>
-                <p className="mt-6 text-xs font-semibold uppercase tracking-wide text-grey-dark">{t(`${key}.metricsLabel`)}</p>
+                <p className="mt-3 text-base italic leading-6 text-black">{t(`${key}.role`)}</p>
+                <h3 className="mt-2 text-2xl font-bold leading-[1.44] text-black">{t(`${key}.title`)}</h3>
+                <p className="mt-3 flex-1 figma-text-m text-surface-bg">{t(`${key}.body`)}</p>
+                <p className="mt-6 text-base font-normal leading-6 text-surface-bg">{t(`${key}.metricsLabel`)}</p>
                 <ul className="mt-2 flex flex-wrap gap-2">
                   {PILL_KEYS[key].map((pillKey) => (
                     <li key={pillKey}>
-                      <span className="inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-600">
+                      <span className="inline-block rounded-[0.125rem] bg-green-100 px-[0.3125rem] py-0 text-sm font-normal leading-6 text-green-400">
                         {t(pillKey)}
                       </span>
                     </li>

@@ -17,11 +17,11 @@ export const SiteFooter = async () => {
     >
       <SectionContainer className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
         <section className="min-w-0">
-          <h3 className="text-sm font-semibold text-white">{t("barcelonaTitle")}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-white/70">{t("barcelonaAddress1")}</p>
-          <p className="text-sm leading-relaxed text-white/70">{t("barcelonaAddress2")}</p>
-          <p className="mt-2 text-sm text-white/80">{t("barcelonaPhone")}</p>
-          <a className="text-sm text-white/80 transition hover:text-white" href={`mailto:${t("barcelonaEmail")}`}>
+          <h3 className="text-base font-medium leading-[1.4] text-white">{t("barcelonaTitle")}</h3>
+          <p className="mt-2 text-base leading-[1.4] text-white/70">{t("barcelonaAddress1")}</p>
+          <p className="text-base leading-[1.4] text-white/70">{t("barcelonaAddress2")}</p>
+          <p className="mt-2 text-base leading-[1.4] text-white/80">{t("barcelonaPhone")}</p>
+          <a className="text-base leading-[1.4] text-white/80 transition hover:text-white" href={`mailto:${t("barcelonaEmail")}`}>
             {t("barcelonaEmail")}
           </a>
           <div className="mt-4">
@@ -40,17 +40,17 @@ export const SiteFooter = async () => {
         </section>
 
         <section className="min-w-0">
-          <h3 className="text-sm font-semibold text-white">{t("madridTitle")}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-white/70">{t("madridAddress1")}</p>
-          <p className="text-sm leading-relaxed text-white/70">{t("madridAddress2")}</p>
-          <p className="mt-2 text-sm text-white/80">{t("madridPhone")}</p>
-          <a className="text-sm text-white/80 transition hover:text-white" href={`mailto:${t("madridEmail")}`}>
+          <h3 className="text-base font-medium leading-[1.4] text-white">{t("madridTitle")}</h3>
+          <p className="mt-2 text-base leading-[1.4] text-white/70">{t("madridAddress1")}</p>
+          <p className="text-base leading-[1.4] text-white/70">{t("madridAddress2")}</p>
+          <p className="mt-2 text-base leading-[1.4] text-white/80">{t("madridPhone")}</p>
+          <a className="text-base leading-[1.4] text-white/80 transition hover:text-white" href={`mailto:${t("madridEmail")}`}>
             {t("madridEmail")}
           </a>
         </section>
 
-        <nav aria-label={t("legalNavAria")} className="flex min-w-0 flex-col gap-2 text-sm">
-          <p className="font-semibold text-white">{t("legalTitle")}</p>
+        <nav aria-label={t("legalNavAria")} className="flex min-w-0 flex-col gap-2 text-base">
+          <p className="font-medium leading-[1.4] text-white">{t("legalTitle")}</p>
           <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.privacy}>
             {t("privacy")}
           </Link>
@@ -65,8 +65,8 @@ export const SiteFooter = async () => {
           </Link>
         </nav>
 
-        <nav aria-label={t("siteMapNavAria")} className="flex min-w-0 flex-col gap-2 text-sm">
-          <p className="font-semibold text-white">{t("siteMapTitle")}</p>
+        <nav aria-label={t("siteMapNavAria")} className="flex min-w-0 flex-col gap-2 text-base">
+          <p className="font-medium leading-[1.4] text-white">{t("siteMapTitle")}</p>
           <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.home}>
             {t("home")}
           </Link>
@@ -82,9 +82,9 @@ export const SiteFooter = async () => {
         </nav>
       </SectionContainer>
 
-      <SectionContainer className="mt-10 border-t border-white/10 pt-6 text-sm text-white/70 sm:mt-12">
+      <SectionContainer className="mt-10 border-t border-white/10 pt-6 text-base text-white/70 sm:mt-12">
         <div className="flex flex-col items-start gap-5 sm:items-center lg:flex-row lg:items-center lg:justify-between">
-          <p className="text-sm leading-relaxed [overflow-wrap:anywhere]">{t("copyright", { year: new Date().getFullYear() })}</p>
+          <p className="text-base leading-[1.4] [overflow-wrap:anywhere]">{t("copyright", { year: new Date().getFullYear() })}</p>
 
           <FooterLocaleSwitcher
             ariaLabel={t("localeNavAria")}

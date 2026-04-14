@@ -25,7 +25,7 @@ export const PartnersBootcampCtaSection = async () => {
       <div aria-hidden className="absolute inset-0 bg-black/60" />
       <SectionContainer className="relative z-10 text-center" width="narrow">
         <h2
-          className="type-title text-white [overflow-wrap:anywhere] md:leading-snug"
+          className="text-[2rem] font-normal leading-[1.45] text-white [overflow-wrap:anywhere] sm:text-[2.25rem] lg:text-[2.5rem]"
           id="partners-bootcamp-cta-title"
         >
           {t("headline")}

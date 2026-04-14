@@ -12,20 +12,20 @@ export const IntroStripSection = async () => {
       <SectionContainer>
         <div className="grid gap-10 md:grid-cols-2 md:items-start md:justify-between md:gap-x-16 lg:gap-x-24">
           <div
-            className="intro-verse-col-left max-w-xl border-l-2 border-green-500/25 pl-5 text-left text-base leading-[1.75] tracking-[0.01em] text-surface-bg sm:text-[1.0625rem] sm:leading-[1.8]"
+            className="intro-verse-col-left max-w-xl border-l-2 border-green-500/25 pl-5 text-left figma-text-l tracking-[0.01em] text-surface-bg"
           >
             <p className="intro-verse-line">{t("leftLine1")}</p>
             <p className="intro-verse-line">{t("leftLine2")}</p>
             <p className="intro-verse-line">{t("leftLine3")}</p>
             <p className="intro-verse-line">{t("leftLine4")}</p>
-            <p className="intro-verse-line pt-2 font-bold text-black">{t("leftLine5")}</p>
-            <p className="intro-verse-line font-bold text-black">{t("leftLine6")}</p>
+            <p className="intro-verse-line pt-2 figma-text-l-bold text-black">{t("leftLine5")}</p>
+            <p className="intro-verse-line figma-text-l-bold text-black">{t("leftLine6")}</p>
           </div>
           <div
-            className="intro-verse-col-right max-w-md border-l-2 border-green-500/25 pl-5 text-left text-base leading-[1.75] tracking-[0.01em] text-surface-bg sm:text-[1.0625rem] sm:leading-[1.8] md:max-w-lg md:justify-self-end"
+            className="intro-verse-col-right max-w-md border-l-2 border-green-500/25 pl-5 text-left figma-text-l tracking-[0.01em] text-surface-bg md:max-w-lg md:justify-self-end"
           >
             <p className="intro-verse-line">{t("rightLine1")}</p>
-            <p className="intro-verse-line font-bold text-green-500">{t("rightLine2")}</p>
+            <p className="intro-verse-line figma-text-l-bold text-green-500">{t("rightLine2")}</p>
           </div>
         </div>
       </SectionContainer>

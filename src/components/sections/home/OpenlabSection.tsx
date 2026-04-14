@@ -33,7 +33,7 @@ export const OpenlabSection = async () => {
     >
       <SectionContainer>
         <blockquote className="border-l-4 border-green-600 pl-4 sm:pl-5">
-          <p className="text-base text-green-600 italic leading-relaxed sm:text-lg">
+          <p className="figma-text-l text-green-600 italic">
             {t.rich("quote", {
               openlab: (chunks) => <strong className="font-bold not-italic">{chunks}</strong>,
             })}
@@ -41,19 +41,19 @@ export const OpenlabSection = async () => {
         </blockquote>
 
         <div className="mt-14 min-w-0 sm:mt-16 md:mt-20">
-          <p className="type-eyebrow text-grey-dark">{t("pathLabel")}</p>
+          <p className="figma-text-l uppercase text-grey-dark">{t("pathLabel")}</p>
           <h2
-            className="type-title mt-3 text-surface-bg [overflow-wrap:anywhere]"
+            className="figma-title-2-bold mt-3 text-surface-bg [overflow-wrap:anywhere]"
             id="openlab-title"
           >
             <span className="block">{t("headlineLine1")}</span>
             <span className="mt-1 block">{t("headlineLine2")}</span>
             <span className="mt-1 block">{t("headlineLine3")}</span>
           </h2>
-          <p className="type-body mt-7 max-w-3xl text-surface-bg sm:mt-8">
+          <p className="figma-text-l mt-7 max-w-3xl text-surface-bg sm:mt-8">
             {t("description")}
           </p>
-          <p className="mt-4 text-base font-bold text-surface-bg sm:text-lg">{t("bootcampLead")}</p>
+          <p className="mt-4 figma-text-l-bold text-surface-bg">{t("bootcampLead")}</p>
 
           <div className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:gap-4">
             <LinkButton
@@ -78,16 +78,16 @@ export const OpenlabSection = async () => {
             <li key={key} className="min-w-0">
               <div className="flex flex-col gap-4">
                 <OpenlabFeatureIcon />
-                <h3 className="text-lg font-bold text-surface-bg leading-snug">
+                <h3 className="text-[1.25rem] font-bold leading-6 text-surface-bg">
                   {t(`${key}.title`)}
                 </h3>
-                <p className="text-sm text-grey-dark leading-relaxed sm:text-base">{t(`${key}.body`)}</p>
+                <p className="figma-text-m text-grey-dark">{t(`${key}.body`)}</p>
               </div>
             </li>
           ))}
         </ul>
 
-        <p className="mt-16 text-base font-bold text-green-600 sm:mt-20 md:mt-24 sm:text-lg">{t("footerTagline")}</p>
+        <p className="mt-16 figma-text-l-bold text-green-600 sm:mt-20 md:mt-24">{t("footerTagline")}</p>
       </SectionContainer>
     </section>
   );

@@ -12,9 +12,9 @@ export const TestimonialsSection = async () => {
       className="section-block bg-green-100"
     >
       <SectionContainer>
-        <p className="type-eyebrow text-grey-dark">{t("label")}</p>
+        <p className="text-base font-normal leading-[1.4] text-surface-bg">{t("label")}</p>
         <h2
-          className="type-title mt-3 text-surface-bg [overflow-wrap:anywhere]"
+          className="mt-3 text-[2rem] font-medium leading-[1.22] text-surface-bg [overflow-wrap:anywhere] sm:text-[2.25rem] lg:text-[3rem]"
           id="testimonials-title"
         >
           {t("title")}
@@ -25,24 +25,24 @@ export const TestimonialsSection = async () => {
             const highlight = t(`${key}.highlight`).trim();
             return (
               <li key={key} className="min-w-0">
-                <article className="flex h-full min-w-0 flex-col rounded-xl border border-grey-light/60 bg-white p-7 shadow-md sm:p-8">
+                <article className="flex h-full min-w-0 flex-col rounded-[0.3125rem] border border-[#e0e9e9] bg-white p-[1.875rem]">
                   <div className="flex min-w-0 gap-4">
                     <div
                       aria-hidden
-                      className="flex size-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-green-200 to-green-300 text-sm font-bold text-green-900 shadow-inner sm:size-[4.5rem] sm:text-base"
+                      className="flex size-[3.3125rem] shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-green-200 to-green-300 text-sm font-bold text-green-900 shadow-inner"
                     >
                       {t(`${key}.initials`)}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-bold text-surface-bg">{t(`${key}.name`)}</p>
-                      <p className="font-bold text-surface-bg">{t(`${key}.company`)}</p>
-                      <p className="mt-1 text-sm italic text-grey-dark">{t(`${key}.role`)}</p>
+                      <p className="text-[1.25rem] font-bold leading-[1.4] text-[#394a5a]">{t(`${key}.name`)}</p>
+                      <p className="text-base font-medium leading-[1.4] text-black">{t(`${key}.company`)}</p>
+                      <p className="mt-1 text-[0.9375rem] italic leading-[1.4] text-[#394a5a]">{t(`${key}.role`)}</p>
                     </div>
                   </div>
                   {highlight ? (
-                    <p className="mt-5 text-sm font-bold text-green-600 leading-snug sm:text-base">{highlight}</p>
+                    <p className="mt-5 text-[1.125rem] font-bold leading-[1.4] text-green-600">{highlight}</p>
                   ) : null}
-                  <blockquote className="mt-4 border-l-0 pl-0 text-sm text-grey-dark leading-relaxed sm:text-base">
+                  <blockquote className="mt-4 border-l-0 pl-0 text-base font-normal leading-6 text-black">
                     <p className="[overflow-wrap:anywhere]">&ldquo;{t(`${key}.quote`)}&rdquo;</p>
                   </blockquote>
                 </article>

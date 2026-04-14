@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -10,6 +10,13 @@ import "../globals.css";
 const montserrat = Montserrat({
   subsets: ["latin", "latin-ext"],
   variable: "--font-montserrat",
+  display: "swap",
+  adjustFontFallback: true,
+});
+
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-inter",
   display: "swap",
   adjustFontFallback: true,
 });
@@ -55,7 +62,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <html className={montserrat.variable} lang={locale} suppressHydrationWarning>
+    <html className={`${montserrat.variable} ${inter.variable}`} lang={locale} suppressHydrationWarning>
       <body className="min-h-screen antialiased pb-[env(safe-area-inset-bottom)]">
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
       </body>

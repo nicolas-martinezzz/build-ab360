@@ -38,14 +38,11 @@ export const Hero = async () => {
             {eyebrow}
           </p>
         ) : null}
-        <h1
-          className="type-hero-headline max-w-3xl text-white [overflow-wrap:anywhere]"
-          id="hero-heading"
-        >
+        <h1 className="figma-title-1 max-w-4xl text-white [overflow-wrap:anywhere]" id="hero-heading">
           {t("headline")}
         </h1>
         {subhead ? (
-          <p className="type-body mt-5 max-w-2xl whitespace-pre-line text-white/85 sm:mt-7 md:mt-8">
+          <p className="figma-text-l mt-5 max-w-3xl whitespace-pre-line text-white/85 sm:mt-7 md:mt-8">
             {subhead}
           </p>
         ) : null}

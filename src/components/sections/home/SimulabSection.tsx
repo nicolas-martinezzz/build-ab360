@@ -16,7 +16,7 @@ export const SimulabSection = async () => {
     >
       <SectionContainer className="text-center">
         <h2
-          className="type-title mx-auto max-w-4xl text-surface-bg [overflow-wrap:anywhere]"
+          className="figma-title-3 mx-auto max-w-4xl text-surface-bg [overflow-wrap:anywhere]"
           id="simulab-title"
         >
           {t("headline")}
@@ -35,16 +35,16 @@ export const SimulabSection = async () => {
 
         <ul className="mt-16 grid gap-12 text-center sm:gap-12 md:mt-24 md:grid-cols-3 md:gap-12">
           <li className="min-w-0 px-1">
-            <h3 className="text-lg font-bold text-surface-bg">{t("feature1Title")}</h3>
-            <p className="mt-3 text-base text-grey-dark leading-relaxed">{t("feature1Body")}</p>
+            <h3 className="figma-text-l-bold text-surface-bg">{t("feature1Title")}</h3>
+            <p className="mt-3 figma-text-l text-grey-dark">{t("feature1Body")}</p>
           </li>
           <li className="min-w-0 px-1">
-            <h3 className="text-lg font-bold text-surface-bg">{t("feature2Title")}</h3>
-            <p className="mt-3 text-base text-grey-dark leading-relaxed">{t("feature2Body")}</p>
+            <h3 className="figma-text-l-bold text-surface-bg">{t("feature2Title")}</h3>
+            <p className="mt-3 figma-text-l text-grey-dark">{t("feature2Body")}</p>
           </li>
           <li className="min-w-0 px-1">
-            <h3 className="text-lg font-bold text-surface-bg">{t("feature3Title")}</h3>
-            <p className="mt-3 text-base text-grey-dark leading-relaxed">{t("feature3Body")}</p>
+            <h3 className="figma-text-l-bold text-surface-bg">{t("feature3Title")}</h3>
+            <p className="mt-3 figma-text-l text-grey-dark">{t("feature3Body")}</p>
           </li>
         </ul>
 
@@ -59,8 +59,8 @@ export const SimulabSection = async () => {
         </div>
 
         <div className="mx-auto mt-16 max-w-3xl space-y-3 md:mt-20">
-          <p className="type-body text-grey-dark">{t("closing1")}</p>
-          <p className="text-sm font-bold text-green-600 leading-relaxed sm:text-base">{t("closing2")}</p>
+          <p className="figma-text-l text-grey-dark">{t("closing1")}</p>
+          <p className="figma-text-l-bold text-green-600">{t("closing2")}</p>
         </div>
       </SectionContainer>
     </section>
