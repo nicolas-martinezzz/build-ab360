@@ -13,7 +13,7 @@ export const Hero = async () => {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative flex min-h-[100svh] items-end pb-[max(4rem,env(safe-area-inset-bottom))] pt-[max(6.5rem,env(safe-area-inset-top,0px)+5rem)] sm:pb-24 sm:pt-32 md:min-h-[85vh] md:items-center md:pb-32"
+      className="relative flex min-h-[44rem] items-end pb-16 pt-24 sm:min-h-[50.625rem] sm:pb-20 sm:pt-32 md:items-center md:pb-[8.375rem]"
       id={SITE_SECTION_IDS.challenge}
     >
       <div className="absolute inset-0 overflow-hidden">
@@ -30,24 +30,27 @@ export const Hero = async () => {
           fetchPriority="high"
           src={SITE_ASSETS.home.heroBackgroundGif}
         />
-        <MediaBackdrop opacity={0.78} />
+        <MediaBackdrop opacity={0.8} />
       </div>
-      <SectionContainer className="relative z-10 text-left">
+      <SectionContainer className="relative z-10 text-left md:pt-[2.875rem]">
         {eyebrow ? (
-          <p className="type-eyebrow mb-2 text-green-200 sm:mb-3">
+          <p className="type-eyebrow mb-[0.875rem] text-green-200">
             {eyebrow}
           </p>
         ) : null}
-        <h1 className="figma-title-1 max-w-4xl text-white [overflow-wrap:anywhere]" id="hero-heading">
+        <h1
+          className="figma-title-1 max-w-[62.5625rem] text-white [overflow-wrap:anywhere]"
+          id="hero-heading"
+        >
           {t("headline")}
         </h1>
         {subhead ? (
-          <p className="figma-text-l mt-5 max-w-3xl whitespace-pre-line text-white/85 sm:mt-7 md:mt-8">
+          <p className="figma-text-l mt-[1.375rem] max-w-[52.5rem] whitespace-pre-line text-white/85">
             {subhead}
           </p>
         ) : null}
         <LinkButton
-          className="mt-6 min-h-12 w-full max-w-sm px-6 sm:mt-8 sm:w-auto"
+          className="mt-[1.375rem] h-[45px] w-full max-w-sm px-5 text-base font-medium leading-[1.4] sm:w-auto"
           href={SITE_PATHS.contact}
           variant="primary"
         >

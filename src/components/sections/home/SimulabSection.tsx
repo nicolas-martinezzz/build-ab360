@@ -16,13 +16,13 @@ export const SimulabSection = async () => {
     >
       <SectionContainer className="text-center">
         <h2
-          className="figma-title-3 mx-auto max-w-4xl text-surface-bg [overflow-wrap:anywhere]"
+          className="mx-auto max-w-[49.5rem] text-[2.5rem] font-normal leading-[1.38] text-surface-bg [overflow-wrap:anywhere]"
           id="simulab-title"
         >
           {t("headline")}
         </h2>
 
-        <div className="relative mx-auto mt-14 aspect-[1636/974] w-full max-w-5xl md:mt-16">
+        <div className="relative mx-auto mt-11 aspect-[1636/974] w-full max-w-[51.125rem]">
           <Image
             alt={t("imageAlt")}
             className="object-contain"
@@ -33,24 +33,24 @@ export const SimulabSection = async () => {
           />
         </div>
 
-        <ul className="mt-16 grid gap-12 text-center sm:gap-12 md:mt-24 md:grid-cols-3 md:gap-12">
+        <ul className="mt-[5.75rem] grid gap-10 text-center md:grid-cols-[repeat(3,minmax(0,24rem))] md:justify-between md:gap-0">
           <li className="min-w-0 px-1">
             <h3 className="figma-text-l-bold text-surface-bg">{t("feature1Title")}</h3>
-            <p className="mt-3 figma-text-l text-grey-dark">{t("feature1Body")}</p>
+            <p className="mt-1 figma-text-l text-grey-dark">{t("feature1Body")}</p>
           </li>
           <li className="min-w-0 px-1">
             <h3 className="figma-text-l-bold text-surface-bg">{t("feature2Title")}</h3>
-            <p className="mt-3 figma-text-l text-grey-dark">{t("feature2Body")}</p>
+            <p className="mt-1 figma-text-l text-grey-dark">{t("feature2Body")}</p>
           </li>
           <li className="min-w-0 px-1">
             <h3 className="figma-text-l-bold text-surface-bg">{t("feature3Title")}</h3>
-            <p className="mt-3 figma-text-l text-grey-dark">{t("feature3Body")}</p>
+            <p className="mt-1 figma-text-l text-grey-dark">{t("feature3Body")}</p>
           </li>
         </ul>
 
-        <div className="mt-14 flex justify-center px-1 md:mt-16">
+        <div className="mt-[2.875rem] flex justify-center px-1">
           <LinkButton
-            className="w-full max-w-sm min-h-12 px-8 sm:w-auto sm:min-w-[12rem]"
+            className="h-[45px] w-full max-w-sm px-5 text-base font-medium leading-[1.4] sm:w-auto"
             href={SITE_PATHS.challenge}
             variant="primary"
           >
@@ -58,7 +58,7 @@ export const SimulabSection = async () => {
           </LinkButton>
         </div>
 
-        <div className="mx-auto mt-16 max-w-3xl space-y-3 md:mt-20">
+        <div className="mx-auto mt-[6.5rem] max-w-[57.375rem] space-y-0.5">
           <p className="figma-text-l text-grey-dark">{t("closing1")}</p>
           <p className="figma-text-l-bold text-green-600">{t("closing2")}</p>
         </div>

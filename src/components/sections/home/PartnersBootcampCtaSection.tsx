@@ -11,7 +11,7 @@ export const PartnersBootcampCtaSection = async () => {
   return (
     <section
       aria-labelledby="partners-bootcamp-cta-title"
-      className="relative isolate flex min-h-[min(72svh,34rem)] items-center justify-center overflow-hidden py-24 sm:min-h-[30rem] sm:py-28 md:min-h-[34rem] md:py-36"
+      className="relative isolate flex min-h-[35.5625rem] items-center justify-center overflow-hidden py-14 md:py-[4.625rem]"
     >
       <Image
         alt=""
@@ -23,15 +23,15 @@ export const PartnersBootcampCtaSection = async () => {
         src={SITE_ASSETS.home.partnersCtaLounge}
       />
       <div aria-hidden className="absolute inset-0 bg-black/60" />
-      <SectionContainer className="relative z-10 text-center" width="narrow">
+      <SectionContainer className="relative z-10 text-center">
         <h2
-          className="text-[2rem] font-normal leading-[1.45] text-white [overflow-wrap:anywhere] sm:text-[2.25rem] lg:text-[2.5rem]"
+          className="mx-auto max-w-[61.3125rem] text-[2.125rem] font-normal leading-[1.45] text-white [overflow-wrap:anywhere] md:text-[2.5rem]"
           id="partners-bootcamp-cta-title"
         >
           {t("headline")}
         </h2>
         <LinkButton
-          className="mx-auto mt-10 min-h-12 w-full max-w-sm justify-center sm:mt-12 sm:w-auto sm:min-w-[14rem]"
+          className="mx-auto mt-[2.6875rem] h-[45px] w-full max-w-sm justify-center px-5 text-base font-medium leading-[1.4] sm:w-auto"
           href={SITE_PATHS.contact}
           variant="primary"
         >

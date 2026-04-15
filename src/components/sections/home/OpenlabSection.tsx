@@ -6,7 +6,7 @@ import { SITE_PATHS, SITE_SECTION_IDS } from "@/config/routes";
 const OpenlabFeatureIcon = () => (
   <svg
     aria-hidden
-    className="size-12 shrink-0 text-green-600 sm:size-14"
+    className="size-[3.1875rem] shrink-0 text-green-600"
     fill="none"
     viewBox="0 0 48 48"
     xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ export const OpenlabSection = async () => {
       id={SITE_SECTION_IDS.program}
     >
       <SectionContainer>
-        <blockquote className="border-l-4 border-green-600 pl-4 sm:pl-5">
+        <blockquote className="border-l-2 border-green-600 pl-5">
           <p className="figma-text-l text-green-600 italic">
             {t.rich("quote", {
               openlab: (chunks) => <strong className="font-bold not-italic">{chunks}</strong>,
@@ -40,31 +40,31 @@ export const OpenlabSection = async () => {
           </p>
         </blockquote>
 
-        <div className="mt-14 min-w-0 sm:mt-16 md:mt-20">
+        <div className="mt-[10.8125rem] min-w-0">
           <p className="figma-text-l uppercase text-grey-dark">{t("pathLabel")}</p>
           <h2
-            className="figma-title-2-bold mt-3 text-surface-bg [overflow-wrap:anywhere]"
+            className="figma-title-2-bold mt-7 text-surface-bg [overflow-wrap:anywhere]"
             id="openlab-title"
           >
             <span className="block">{t("headlineLine1")}</span>
             <span className="mt-1 block">{t("headlineLine2")}</span>
             <span className="mt-1 block">{t("headlineLine3")}</span>
           </h2>
-          <p className="figma-text-l mt-7 max-w-3xl text-surface-bg sm:mt-8">
+          <p className="figma-text-l mt-5 max-w-[42.75rem] text-surface-bg">
             {t("description")}
           </p>
-          <p className="mt-4 figma-text-l-bold text-surface-bg">{t("bootcampLead")}</p>
+          <p className="mt-[0.5625rem] figma-text-l-bold text-surface-bg">{t("bootcampLead")}</p>
 
-          <div className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:gap-4">
+          <div className="mt-[1.1875rem] flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <LinkButton
-              className="w-full min-h-12 justify-center sm:w-auto sm:min-w-[14rem]"
+              className="h-[45px] w-full justify-center px-5 text-base font-medium leading-[1.4] sm:w-auto"
               href={SITE_PATHS.contact}
               variant="primary"
             >
               {t("ctaPrimary")}
             </LinkButton>
             <LinkButton
-              className="w-full min-h-12 justify-center sm:w-auto sm:min-w-[14rem]"
+              className="h-[45px] w-full justify-center px-5 text-base font-medium leading-[1.4] sm:w-auto"
               href={SITE_PATHS.challenge}
               variant="outline"
             >
@@ -73,12 +73,12 @@ export const OpenlabSection = async () => {
           </div>
         </div>
 
-        <ul className="mt-16 grid list-none gap-12 p-0 sm:mt-20 md:mt-24 md:grid-cols-2 md:gap-x-12 md:gap-y-14 lg:grid-cols-4">
+        <ul className="mt-[4.25rem] grid list-none gap-10 p-0 md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:grid-cols-[repeat(4,minmax(0,17.0625rem))] lg:justify-between lg:gap-0">
           {featureKeys.map((key) => (
             <li key={key} className="min-w-0">
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-[0.375rem]">
                 <OpenlabFeatureIcon />
-                <h3 className="text-[1.25rem] font-bold leading-6 text-surface-bg">
+                <h3 className="pt-[1.5625rem] text-[1.25rem] font-bold leading-6 text-surface-bg">
                   {t(`${key}.title`)}
                 </h3>
                 <p className="figma-text-m text-grey-dark">{t(`${key}.body`)}</p>
@@ -87,7 +87,7 @@ export const OpenlabSection = async () => {
           ))}
         </ul>
 
-        <p className="mt-16 figma-text-l-bold text-green-600 sm:mt-20 md:mt-24">{t("footerTagline")}</p>
+        <p className="mt-12 figma-text-l-bold text-green-600">{t("footerTagline")}</p>
       </SectionContainer>
     </section>
   );

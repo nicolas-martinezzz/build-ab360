@@ -32,7 +32,7 @@ export const PartnersBanner = async () => {
   return (
     <section
       aria-labelledby="partners-marquee-title"
-      className="section-block bg-surface-bg text-white"
+      className="bg-surface-bg py-14 text-white md:min-h-[24.5625rem] md:py-[3.875rem]"
     >
       <SectionContainer>
         <h2
@@ -44,7 +44,7 @@ export const PartnersBanner = async () => {
 
         <div
           aria-label={t("marqueeAria")}
-          className="partners-marquee mt-8 sm:mt-10"
+          className="partners-marquee mt-[2.375rem]"
           role="region"
         >
           <ul className="partners-marquee__track m-0 list-none p-0">
@@ -53,8 +53,11 @@ export const PartnersBanner = async () => {
           </ul>
         </div>
 
-        <div className="mt-12 flex justify-center px-2 sm:mt-14 md:mt-16">
-          <Link className={getButtonClassName("outlineInverse", "px-8")} href={homeSectionHref("program")}>
+        <div className="mt-[2.625rem] flex justify-center px-2">
+          <Link
+            className={getButtonClassName("outlineInverse", "h-[45px] px-5 text-base font-medium leading-[1.4]")}
+            href={homeSectionHref("program")}
+          >
             {t("cta")}
           </Link>
         </div>
