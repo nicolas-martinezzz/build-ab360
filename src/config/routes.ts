@@ -6,6 +6,8 @@
 export const SITE_PATHS = {
   home: "/",
   challenge: "/challenge",
+  solution: "/solution",
+  programa: "/programa",
   privacy: "/privacy",
   cookies: "/cookies",
   contact: "/contact",

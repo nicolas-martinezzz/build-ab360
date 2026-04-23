@@ -19,7 +19,7 @@ export const buildNavigationLinks = ({
   about: string;
 }): HeaderNavigationLink[] => [
   { key: "challenge", href: SITE_PATHS.challenge, label: challenge },
-  { key: "solution", href: homeSectionHref("solution"), label: solution },
-  { key: "program", href: homeSectionHref("program"), label: program },
+  { key: "solution", href: SITE_PATHS.solution, label: solution },
+  { key: "program", href: SITE_PATHS.programa, label: program },
   { key: "about", href: homeSectionHref("about"), label: about },
 ];
