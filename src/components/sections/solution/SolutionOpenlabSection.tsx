@@ -3,7 +3,7 @@ import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_PATHS } from "@/config/routes";
 
-export const SolutionRebuildOpenlabSection = async () => {
+export const SolutionOpenlabSection = async () => {
   const t = await getTranslations("solutionPage.openlab");
 
   return (
@@ -20,14 +20,14 @@ export const SolutionRebuildOpenlabSection = async () => {
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <LinkButton
-              className="h-[45px] px-5 text-base font-medium leading-[1.4]"
+              className="w-full sm:w-auto"
               href={SITE_PATHS.contact}
               variant="primary"
             >
               {t("ctaPrimary")}
             </LinkButton>
             <LinkButton
-              className="h-[45px] px-5 text-base font-medium leading-[1.4]"
+              className="w-full sm:w-auto"
               href={SITE_PATHS.contact}
               variant="outline"
             >

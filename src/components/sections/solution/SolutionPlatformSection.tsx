@@ -3,11 +3,11 @@ import Image from "next/image";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
 
-export const SolutionRebuildPlatformSection = async () => {
+export const SolutionPlatformSection = async () => {
   const t = await getTranslations("solutionPage.platform");
 
   return (
-    <section className="section-block-spacious relative overflow-hidden bg-[#e6ebde]">
+    <section className="section-block-spacious relative overflow-hidden bg-agent-surface">
       <SectionContainer className="relative z-10">
         <p className="figma-text-l uppercase tracking-[0.1em] text-grey-dark">
           {t("eyebrow")}

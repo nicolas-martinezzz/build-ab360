@@ -319,7 +319,13 @@
       "description": "Canals de contacte per a consultes comercials o de producte."
     },
     "title": "Contacte",
-    "body": "Estem actualitzant aquesta secció amb canals de contacte i temps de resposta per a consultes comercials, col·laboracions i suport."
+    "body": "Estem actualitzant aquesta secció amb canals de contacte i temps de resposta per a consultes comercials, col·laboracions i suport.",
+    "leadSummaryTitle": "Sol·licitud rebuda",
+    "leadSummaryBody": "Hem rebut les dades de la teva preinscripció al Bootcamp Zero. El nostre equip revisarà la informació i et contactarà.",
+    "fieldName": "Nom",
+    "fieldEmail": "Correu",
+    "fieldRole": "Càrrec",
+    "fieldCompany": "Empresa"
   },
   "informationPage": {
     "metadata": {
@@ -609,7 +615,15 @@
       "fieldEmail": "Correu",
       "fieldRole": "Càrrec",
       "fieldCompany": "Empresa",
-      "ctaCardCta": "Sol·licitar diagnòstic i reservar plaça"
+      "ctaCardCta": "Sol·licitar diagnòstic i reservar plaça",
+      "entryCard1Body": "El procés comença abans del programa: en una sessió inicial presentes el teu cas i coneixes el sistema. Després, se seleccionen les empreses que formaran part de l'OpenLab.",
+      "entryCard2Body": "Cada partner aporta un o més participants. Sense participació real, el procés no produeix resultats.",
+      "entryCard3Body": "Un Excel, un ERP, un BIM o un GMAO. Les dades dels teus projectes reals — no de laboratori.",
+      "entryCard4Body": "SmartCheck és el panell personalitzat que connecta les decisions del teu projecte amb els teus drivers de negoci. Es construeix amb tu.",
+      "entryCard5Body": "A OpenLab no treballes sol. Els SQUADS són grups d'empreses que comparteixen les mateixes dades sobre un mateix projecte, cadascun des del seu cas d'ús.",
+      "entryCard6Body": "12 mesos de programa més 12 mesos de Simulab operatiu sense cost addicional. En total, 24 mesos perquè el sistema sigui completament teu.",
+      "entryCard7Body": "Bootcamps #1 i #2 al Campus La Salle-URL. La resta, en remot per Google Meet. Cada sessió té un lliurable concret.",
+      "entryCard8Body": "20.000€ + IVA. Activable com a actiu intangible R+D+I en un període bianual — la factura es desgrava i no impacta en el teu compte de resultats."
     },
     "formadores": {
       "eyebrow": "QUI HO IMPARTEIX",
@@ -651,6 +665,15 @@
     "partnersBanner": {
       "headline": "Busquem partners que vulguin definir com es prendran decisions en aquest sector.",
       "cta": "Uneix-te al Bootcamp Zero"
+    },
+    "logosStrip": {
+      "ariaLabel": "Informació destacada del programa",
+      "topBanner": "Inscripcions al Bootcamp Zero per al juliol de 2026 a Barcelona obertes",
+      "topCta": "Saber-ne més",
+      "leftLine1": "Si el que busques és formació o consultoria, hi ha llocs millors.",
+      "leftLine2": "Això és una altra cosa.",
+      "rightLead": "Els primers partners co-creen el sistema i surten abans.",
+      "rightBody": "Els que arribin després trobaran les regles ja escrites i pagaran per utilitzar-les."
     }
   },
   "footer": {

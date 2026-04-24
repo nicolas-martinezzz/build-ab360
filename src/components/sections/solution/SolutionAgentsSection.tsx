@@ -108,17 +108,17 @@ const AgentCard = ({
   );
 };
 
-export const SolutionRebuildAgentsSection = async () => {
+export const SolutionAgentsSection = async () => {
   const t = await getTranslations("solutionPage.agents");
 
   return (
-    <section className="section-block-spacious bg-[#e6ebde]">
+    <section className="section-block-spacious bg-agent-surface">
       <SectionContainer>
         <h2 className="figma-title-2 max-w-[53.5rem] text-surface-bg">
           {t("headline")}
         </h2>
 
-        <div className="mt-10 divide-y divide-[#d9e5c6]">
+        <div className="mt-10 divide-y divide-agent-divider">
           <AgentCard
             checkIcon={SITE_ASSETS.solution.checkIcon}
             description={t("agent1.description")}

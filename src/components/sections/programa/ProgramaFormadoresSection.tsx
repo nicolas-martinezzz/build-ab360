@@ -36,7 +36,7 @@ export const ProgramaFormadoresSection = async ({
   ];
 
   return (
-    <div className={embedded ? "mt-10 md:mt-12" : "bg-[#f2f8e8] pb-16 pt-10 md:pb-20 md:pt-12"}>
+    <div className={embedded ? "mt-10 md:mt-12" : "bg-green-50 pb-16 pt-10 md:pb-20 md:pt-12"}>
       <h2 className="figma-title-3 text-surface-bg">{t("headline")}</h2>
 
       <ul className="mt-7 grid gap-x-10 gap-y-7 sm:grid-cols-2">

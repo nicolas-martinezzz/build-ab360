@@ -55,7 +55,7 @@ export const PartnersBanner = async () => {
 
         <div className="mt-[2.625rem] flex justify-center px-2">
           <Link
-            className={getButtonClassName("outlineInverse", "h-[45px] px-5 text-base font-medium leading-[1.4]")}
+            className={getButtonClassName("outlineInverse", "w-full sm:w-auto")}
             href={homeSectionHref("program")}
           >
             {t("cta")}

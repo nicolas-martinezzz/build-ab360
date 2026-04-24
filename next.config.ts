@@ -9,14 +9,6 @@ const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: projectRoot,
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "www.figma.com",
-      },
-    ],
-  },
 };
 
 export default withNextIntl(nextConfig);

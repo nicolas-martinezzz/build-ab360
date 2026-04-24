@@ -10,7 +10,7 @@ const FeatureBlock = ({ title, body }: { title: string; body: string }) => (
   </div>
 );
 
-export const SolutionRebuildSimulabSection = async () => {
+export const SolutionSimulabSection = async () => {
   const t = await getTranslations("solutionPage.simulab");
 
   return (

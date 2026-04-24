@@ -73,7 +73,7 @@ export const SiteFooter = async () => {
           <Link className="text-white/75 transition hover:text-white" href={homeSectionHref("solution")}>
             {t("solution")}
           </Link>
-          <Link className="text-white/75 transition hover:text-white" href={homeSectionHref("program")}>
+          <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.programa}>
             {t("program")}
           </Link>
           <Link className="text-white/75 transition hover:text-white" href={homeSectionHref("about")}>

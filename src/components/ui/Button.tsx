@@ -23,7 +23,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const baseClasses =
-  "inline-flex cursor-pointer touch-manipulation items-center justify-center rounded-[var(--radius-button)] px-5 py-2.5 text-base leading-[1.4] font-medium [font-family:var(--font-cta)] transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex h-[45px] cursor-pointer touch-manipulation items-center justify-center rounded-[var(--radius-button)] px-5 py-2.5 text-base leading-[1.4] font-medium [font-family:var(--font-cta)] transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50";
 
 export const getButtonClassName = (variant: ButtonVariant = "primary", className?: string) =>
   twMerge(baseClasses, variantClasses[variant], className ?? "");

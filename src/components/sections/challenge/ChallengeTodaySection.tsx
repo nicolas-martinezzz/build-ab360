@@ -7,34 +7,34 @@ export const ChallengeTodaySection = async () => {
   const t = await getTranslations("challengePage.todaySection");
 
   return (
-    <section className="bg-green-100 py-16 sm:py-20 md:py-24">
+    <section className="bg-green-100/40 py-14 md:min-h-[56.3125rem] md:py-[4.8125rem]">
       <SectionContainer>
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_23rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_25rem] xl:gap-10">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,43.0625rem)_35.5rem] lg:items-start lg:justify-between">
           <div>
-            <p className="text-xs font-medium uppercase tracking-wide text-grey-dark sm:text-sm">{t("eyebrow")}</p>
-            <h2 className="mt-4 max-w-3xl whitespace-pre-line text-2xl font-semibold leading-tight text-surface-bg sm:text-3xl md:text-4xl">
+            <p className="figma-text-l text-grey-dark">{t("eyebrow")}</p>
+            <h2 className="figma-title-2-bold mt-5 max-w-[46.6875rem] whitespace-pre-line text-black">
               {t("headline")}
             </h2>
-            <p className="mt-5 max-w-2xl text-[0.9375rem] leading-relaxed text-surface-bg/80 sm:text-base">{t("paragraph1")}</p>
-            <p className="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-surface-bg/80 sm:text-base">{t("paragraph2")}</p>
+            <p className="figma-text-l mt-8 max-w-[43.0625rem] text-black">{t("paragraph1")}</p>
+            <p className="figma-text-l mt-4 max-w-[43.0625rem] text-black">{t("paragraph2")}</p>
 
-            <article className="mt-7 max-w-3xl border-l-2 border-green-500 pl-4 sm:pl-5">
-              <h3 className="text-2xl font-semibold leading-tight text-green-500 sm:text-3xl">{t("taxonomy.title")}</h3>
-              <p className="mt-2 text-xl leading-snug text-green-500 sm:text-2xl">{t("taxonomy.body")}</p>
-              <p className="mt-3 text-sm text-green-500/80 underline decoration-green-500/60 underline-offset-2">
+            <article className="mt-10 max-w-[43.125rem] border-l-2 border-green-500 pl-5">
+              <h3 className="figma-text-l-bold uppercase text-green-500">{t("taxonomy.title")}</h3>
+              <p className="figma-text-l-bold mb-5 mt-0 text-green-500">{t("taxonomy.body")}</p>
+              <p className="text-base leading-[1.38] text-green-500 underline decoration-green-500 underline-offset-2">
                 {t("taxonomy.source")}
               </p>
             </article>
           </div>
 
-          <div className="mx-auto w-full max-w-md lg:pt-2">
+          <div className="mx-auto w-full max-w-[35.5rem] lg:pt-[3.4375rem]">
             <Image
               alt={t("pillarsImageAlt")}
               className="h-auto w-full"
-              height={956}
+              height={682}
               priority={false}
               src={SITE_ASSETS.challenge.taxonomyPillars}
-              width={704}
+              width={568}
             />
           </div>
         </div>

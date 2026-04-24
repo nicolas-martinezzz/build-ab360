@@ -16,7 +16,7 @@ export const SimulabSection = async () => {
     >
       <SectionContainer className="text-center">
         <h2
-          className="mx-auto max-w-[49.5rem] text-[2.5rem] font-normal leading-[1.38] text-surface-bg [overflow-wrap:anywhere]"
+          className="figma-title-3 mx-auto max-w-[49.5rem] text-surface-bg [overflow-wrap:anywhere]"
           id="simulab-title"
         >
           {t("headline")}
@@ -33,7 +33,7 @@ export const SimulabSection = async () => {
           />
         </div>
 
-        <ul className="mt-[5.75rem] grid gap-10 text-center md:grid-cols-[repeat(3,minmax(0,24rem))] md:justify-between md:gap-0">
+        <ul className="mt-[5.75rem] grid gap-10 text-center sm:grid-cols-3">
           <li className="min-w-0 px-1">
             <h3 className="figma-text-l-bold text-surface-bg">{t("feature1Title")}</h3>
             <p className="mt-1 figma-text-l text-grey-dark">{t("feature1Body")}</p>
@@ -50,7 +50,7 @@ export const SimulabSection = async () => {
 
         <div className="mt-[2.875rem] flex justify-center px-1">
           <LinkButton
-            className="h-[45px] w-full max-w-sm px-5 text-base font-medium leading-[1.4] sm:w-auto"
+            className="w-full max-w-sm sm:w-auto"
             href={SITE_PATHS.challenge}
             variant="primary"
           >

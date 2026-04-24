@@ -27,7 +27,7 @@ const ActorCard = ({ avatar, title, description, quote }: ActorCardProps) => (
         aria-hidden
         className="object-cover"
         fill
-        sizes="225px"
+        sizes="(max-width: 768px) 144px, 225px"
         src={avatar}
       />
     </div>
@@ -43,7 +43,7 @@ const ActorCard = ({ avatar, title, description, quote }: ActorCardProps) => (
   </article>
 );
 
-export const SolutionRebuildActorsSection = async () => {
+export const SolutionActorsSection = async () => {
   const t = await getTranslations("solutionPage.actors");
 
   return (

@@ -50,7 +50,7 @@ export const Hero = async () => {
           </p>
         ) : null}
         <LinkButton
-          className="mt-[1.375rem] h-[45px] w-full max-w-sm px-5 text-base font-medium leading-[1.4] sm:w-auto"
+          className="mt-[1.375rem] w-full max-w-sm sm:w-auto"
           href={SITE_PATHS.contact}
           variant="primary"
         >

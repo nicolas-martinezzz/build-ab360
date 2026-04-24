@@ -13,7 +13,7 @@ export const YutopiasAboutSection = async () => {
       id={SITE_SECTION_IDS.about}
     >
       <SectionContainer>
-        <div className="grid gap-12 md:grid-cols-[49.8125rem_23.5rem] md:items-start md:justify-between md:gap-0">
+        <div className="grid gap-12 lg:grid-cols-[1fr_23.5rem] lg:items-start">
           <div className="min-w-0">
             <h2 className="text-[1.25rem] font-normal leading-[1.44] [overflow-wrap:anywhere]" id="yutopias-about-title">
               <span className="text-white">{t("headlinePrefix")}</span>{" "}
@@ -28,7 +28,7 @@ export const YutopiasAboutSection = async () => {
               })}
             </p>
             <LinkButton
-              className="mt-[1.9375rem] h-[45px] w-full px-5 text-base font-medium leading-[1.4] focus-visible:ring-offset-surface-bg sm:w-auto"
+              className="mt-[1.9375rem] w-full focus-visible:ring-offset-surface-bg sm:w-auto"
               href={SITE_PATHS.information}
               variant="primary"
             >
@@ -36,8 +36,8 @@ export const YutopiasAboutSection = async () => {
             </LinkButton>
           </div>
 
-          <div className="min-w-0 md:flex md:justify-end md:pt-[0.125rem]">
-            <p className="max-w-[23.5rem] whitespace-pre-line border-white/90 text-base italic leading-6 text-white/95 md:border-r md:pr-5 md:text-right">
+          <div className="min-w-0 lg:flex lg:justify-end lg:pt-[0.125rem]">
+            <p className="max-w-[23.5rem] whitespace-pre-line border-white/90 text-base italic leading-6 text-white/95 lg:border-r lg:pr-5 lg:text-right">
               {t("philosophy")}
             </p>
           </div>

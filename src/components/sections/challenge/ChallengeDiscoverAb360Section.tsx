@@ -25,42 +25,42 @@ export const ChallengeDiscoverAb360Section = async () => {
   const t = await getTranslations("challengePage.discoverAb360");
 
   return (
-    <section className="bg-white py-16 sm:py-20 md:py-24">
+    <section className="bg-white py-14 md:py-[4.0625rem]">
       <SectionContainer>
-        <p className="text-sm font-medium uppercase tracking-wide text-grey-dark">{t("eyebrow")}</p>
-        <h2 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight text-surface-bg sm:text-4xl md:text-5xl">
+        <p className="figma-text-l text-black">{t("eyebrow")}</p>
+        <h2 className="figma-title-2-bold mt-5 max-w-[49.375rem] text-black">
           {t("headline")}
         </h2>
-        <p className="mt-4 max-w-3xl text-xl font-semibold leading-snug text-green-500 sm:text-2xl">{t("highlight")}</p>
-        <p className="mt-6 max-w-3xl text-base leading-relaxed text-surface-bg/80 sm:text-lg">{t("paragraph1")}</p>
-        <p className="mt-5 max-w-3xl text-base leading-relaxed text-surface-bg/80 sm:text-lg">{t("paragraph2")}</p>
+        <p className="figma-text-l-bold mt-10 max-w-[45.625rem] text-green-500">{t("highlight")}</p>
+        <p className="figma-text-l mt-8 max-w-[45.625rem] text-black">{t("paragraph1")}</p>
+        <p className="figma-text-l mt-0 max-w-[45.625rem] text-black">{t("paragraph2")}</p>
 
-        <ul className="mt-12 grid gap-8 md:grid-cols-3">
+        <ul className="mt-[2.625rem] grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {DISCOVER_AGENT_CARDS.map((card) => (
             <li key={card.key} className="min-w-0">
-              <article className="flex h-full flex-col">
+              <article className="flex h-full flex-col gap-1.5 p-5">
                 <span
                   className={
                     card.isLive
-                      ? "inline-flex w-fit rounded-[0.375rem] border border-green-500 px-2.5 py-0.5 text-xs font-semibold text-green-500"
-                      : "inline-flex w-fit rounded-[0.375rem] border border-grey-light px-2.5 py-0.5 text-xs font-medium text-grey-dark"
+                      ? "inline-flex w-fit rounded-[5px] border border-green-500 bg-white px-2.5 py-[3px] figma-text-m text-green-500"
+                      : "inline-flex w-fit rounded-[5px] border border-grey-light bg-white px-2.5 py-[3px] figma-text-m text-grey-dark"
                   }
                 >
                   {t(`${card.key}.badge`)}
                 </span>
-                <p className="mt-3 text-sm italic text-grey-dark">{t(`${card.key}.role`)}</p>
-                <h3 className="mt-2 text-3xl font-bold leading-tight text-surface-bg">{t(`${card.key}.title`)}</h3>
-                <p className="mt-3 flex-1 text-base leading-relaxed text-surface-bg/80">{t(`${card.key}.body`)}</p>
-                <p className="mt-5 text-sm font-semibold uppercase tracking-wide text-grey-dark">{t("metricsLabel")}</p>
-                <div className="mt-2 flex flex-wrap gap-2">
+                <p className="figma-text-m italic text-black">{t(`${card.key}.role`)}</p>
+                <h3 className="figma-text-l-bold text-black">{t(`${card.key}.title`)}</h3>
+                <p className="figma-text-m text-surface-bg">{t(`${card.key}.body`)}</p>
+                <p className="figma-text-m mt-1.5 text-surface-bg">{t("metricsLabel")}</p>
+                <div className="mt-[3px] flex flex-wrap gap-[7px]">
                   {card.pills.map((pillKey) => (
-                    <span className="rounded-[0.25rem] bg-green-100 px-2 py-1 text-xs font-medium text-green-600" key={pillKey}>
+                    <span className="rounded-[2px] bg-green-100 px-[5px] text-sm font-normal leading-6 text-green-400" key={pillKey}>
                       {t(pillKey)}
                     </span>
                   ))}
                 </div>
                 {card.key === "agent1" ? (
-                  <LinkButton className="mt-6 w-fit min-h-12 px-6" href={SITE_PATHS.contact} variant="primary">
+                  <LinkButton className="mt-4 w-fit" href={SITE_PATHS.contact} variant="primary">
                     {t("agent1Cta")}
                   </LinkButton>
                 ) : null}
@@ -69,8 +69,8 @@ export const ChallengeDiscoverAb360Section = async () => {
           ))}
         </ul>
 
-        <div className="mt-12 flex justify-center">
-          <LinkButton className="min-h-12 min-w-[12rem] px-8" href={SITE_PATHS.information} variant="outline">
+        <div className="mt-[0.9375rem] flex justify-center">
+          <LinkButton href={SITE_PATHS.information} variant="outline">
             {t("finalCta")}
           </LinkButton>
         </div>

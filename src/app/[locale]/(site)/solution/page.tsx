@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { SolutionRebuildPageSections } from "@/components/sections/solution-rebuild/SolutionRebuildPageSections";
+import { SolutionPageSections } from "@/components/sections/solution/SolutionPageSections";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("solutionPage.metadata");
@@ -11,5 +11,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function SolutionPage() {
-  return <SolutionRebuildPageSections />;
+  return <SolutionPageSections />;
 }

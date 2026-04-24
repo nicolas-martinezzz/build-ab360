@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { LinkButton } from "@/components/ui/LinkButton";
+import { Button } from "@/components/ui/Button";
 import { ProgramaFormadoresSection } from "./ProgramaFormadoresSection";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_PATHS } from "@/config/routes";
@@ -30,9 +30,9 @@ export const ProgramaBootcampSection = async () => {
   ];
 
   return (
-    <section className="bg-[#f2f8e8] py-16 md:py-20">
+    <section className="bg-green-50 py-16 md:py-20">
       <SectionContainer>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,19.75rem)] lg:gap-14">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,28.5rem)] lg:gap-14">
           <div className="max-w-[48rem]">
             <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
             <h2 className="figma-title-2-bold mt-3 text-surface-bg">{t("headline")}</h2>
@@ -80,35 +80,69 @@ export const ProgramaBootcampSection = async () => {
           </div>
 
           <div className="h-fit lg:sticky lg:top-20 lg:self-start">
-            <div className="flex h-fit flex-col rounded-[10px] border border-green-400/40 bg-gradient-to-b from-green-500 to-[#2f994f] p-6 text-white shadow-[0_14px_36px_rgba(16,24,40,0.22)]">
-              <h3 className="figma-title-3 text-white">{t("ctaCardHeadline")}</h3>
-              <p className="figma-text-l-bold mt-1 text-white">{t("ctaCardSubhead")}</p>
-              <p className="figma-text-l mt-4 text-white/90">{t("ctaCardBody")}</p>
-
-              <div className="mt-6 space-y-3">
-                <div className="h-11 rounded-[6px] border border-black/10 bg-white px-4 py-2.5 text-[1.125rem] leading-[1.35] text-surface-bg shadow-sm">
-                  {t("fieldName")}
+            <div className="flex h-fit flex-col gap-[34px] rounded-[5px] bg-green-500 px-10 py-[30px] text-white">
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-[30px] font-bold leading-[1.44] text-white">{t("ctaCardHeadline")}</h3>
+                  <p className="mt-[5px] text-base font-bold leading-6 text-white">{t("ctaCardSubhead")}</p>
                 </div>
-                <div className="h-11 rounded-[6px] border border-black/10 bg-white px-4 py-2.5 text-[1.125rem] leading-[1.35] text-surface-bg shadow-sm">
-                  {t("fieldEmail")}
-                </div>
-                <div className="h-11 rounded-[6px] border border-black/10 bg-white px-4 py-2.5 text-[1.125rem] leading-[1.35] text-surface-bg shadow-sm">
-                  {t("fieldRole")}
-                </div>
-                <div className="h-11 rounded-[6px] border border-black/10 bg-white px-4 py-2.5 text-[1.125rem] leading-[1.35] text-surface-bg shadow-sm">
-                  {t("fieldCompany")}
-                </div>
+                <p className="text-base leading-6 text-white">{t("ctaCardBody")}</p>
               </div>
 
-              <div className="mt-6">
-                <LinkButton
-                  className="h-12 w-full justify-center rounded-[6px] bg-surface-bg px-5 text-base font-medium leading-[1.4] text-white shadow-sm hover:bg-surface-bg/90"
-                  href={SITE_PATHS.contact}
-                  variant="dark"
-                >
+              <form action={SITE_PATHS.contact} className="space-y-5" method="get">
+                <label className="block" htmlFor="bootcamp-name">
+                  <span className="sr-only">{t("fieldName")}</span>
+                  <input
+                    autoComplete="name"
+                    className="h-[54px] w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                    id="bootcamp-name"
+                    name="name"
+                    placeholder={t("fieldName")}
+                    required
+                    type="text"
+                  />
+                </label>
+                <label className="block" htmlFor="bootcamp-email">
+                  <span className="sr-only">{t("fieldEmail")}</span>
+                  <input
+                    autoComplete="email"
+                    className="h-[54px] w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                    id="bootcamp-email"
+                    name="email"
+                    placeholder={t("fieldEmail")}
+                    required
+                    type="email"
+                  />
+                </label>
+                <label className="block" htmlFor="bootcamp-role">
+                  <span className="sr-only">{t("fieldRole")}</span>
+                  <input
+                    autoComplete="organization-title"
+                    className="h-[54px] w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                    id="bootcamp-role"
+                    name="role"
+                    placeholder={t("fieldRole")}
+                    required
+                    type="text"
+                  />
+                </label>
+                <label className="block" htmlFor="bootcamp-company">
+                  <span className="sr-only">{t("fieldCompany")}</span>
+                  <input
+                    autoComplete="organization"
+                    className="h-[54px] w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                    id="bootcamp-company"
+                    name="company"
+                    placeholder={t("fieldCompany")}
+                    required
+                    type="text"
+                  />
+                </label>
+
+                <Button className="mt-[14px] w-full" type="submit" variant="dark">
                   {t("ctaCardCta")}
-                </LinkButton>
-              </div>
+                </Button>
+              </form>
             </div>
           </div>
         </div>

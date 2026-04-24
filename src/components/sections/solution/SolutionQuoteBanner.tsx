@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 
-export const SolutionRebuildQuoteBanner = async () => {
+export const SolutionQuoteBanner = async () => {
   const t = await getTranslations("solutionPage.quoteBanner");
 
   return (

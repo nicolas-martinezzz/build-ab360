@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
+import { SITE_ASSETS } from "@/config/assets";
 
 export const ChallengeProblemSection = async () => {
   const t = await getTranslations("challengePage.nextSection");
@@ -34,52 +35,50 @@ export const ChallengeProblemSection = async () => {
   ] as const;
 
   return (
-    <section className="bg-white py-16 sm:py-20 md:py-24">
+    <section className="section-block-spacious bg-white">
       <SectionContainer>
-        <p className="text-sm font-medium uppercase tracking-wide text-grey-dark">{t("eyebrow")}</p>
-        <h2 className="mt-3 text-3xl font-semibold leading-tight text-surface-bg sm:text-4xl md:text-5xl">
+        <p className="figma-text-l text-grey-dark">{t("eyebrow")}</p>
+        <h2 className="figma-title-2-bold mt-2 text-black">
           {t("titleLine1")}
         </h2>
-        <p className="mt-2 text-3xl font-semibold leading-tight text-surface-bg sm:text-4xl md:text-5xl">
+        <p className="figma-title-2-bold text-black">
           {t("titleLine2Prefix")} <span className="text-green-500">{t("titleLine2Costes")}</span>,{" "}
           <span className="text-green-500">{t("titleLine2Huellas")}</span> {t("titleLine2Connector")}{" "}
           <span className="text-green-500">{t("titleLine2Errores")}</span>.
         </p>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
+        <div className="mt-[4.625rem] grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {problemCards.map((card) => (
             <article className="min-w-0" key={card.title}>
-              <div className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-md border border-green-500/50 text-green-500">
-                <svg aria-hidden className="h-4 w-4" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M10.5 3h3M10.5 21h3M3 10.5v3M21 10.5v3M6 6l2 2M18 18l-2-2M18 6l-2 2M6 18l2-2M9.5 12a2.5 2.5 0 1 0 5 0 2.5 2.5 0 0 0-5 0Z"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                  />
-                </svg>
-              </div>
-              <h3 className="max-w-xs whitespace-pre-line text-2xl font-semibold leading-snug text-surface-bg">{card.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-surface-bg/80">{card.body}</p>
+              {/* eslint-disable-next-line @next/next/no-img-element -- asset mirrors exact Figma icon */}
+              <img
+                alt=""
+                aria-hidden
+                className="mb-6 h-[51px] w-[51px] object-contain"
+                height={51}
+                src={SITE_ASSETS.challenge.scanSearchIcon}
+                width={51}
+              />
+              <h3 className="max-w-[23.5rem] whitespace-pre-line figma-text-l-bold text-black">{card.title}</h3>
+              <p className="figma-text-l mt-1 text-black">{card.body}</p>
             </article>
           ))}
         </div>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-[2.5rem] grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {evidenceCards.map((card) => (
-            <article className="rounded-md bg-surface-bg p-5 text-white sm:p-6" key={card.quote}>
-              <p className="text-lg font-semibold leading-snug">{card.quote}</p>
-              <p className="mt-4 text-sm leading-relaxed text-grey-light underline decoration-grey-light/60 underline-offset-2">
+            <article className="rounded-[5px] border border-grey-light bg-surface-bg p-[1.875rem] text-white" key={card.quote}>
+              <p className="figma-text-l-bold text-white">{card.quote}</p>
+              <p className="mt-5 text-[0.8125rem] italic leading-[1.4] text-grey-light underline decoration-grey-light underline-offset-2">
                 {card.source}
               </p>
             </article>
           ))}
         </div>
 
-        <div className="mt-14 text-center sm:mt-16">
-          <p className="whitespace-pre-line text-3xl leading-tight text-surface-bg sm:text-4xl">{t("closingLine1")}</p>
-          <p className="mt-2 text-3xl leading-tight text-green-500 sm:text-4xl">{t("closingLine2")}</p>
+        <div className="mt-[6.375rem] text-center">
+          <p className="whitespace-pre-line figma-title-3 text-black">{t("closingLine1")}</p>
+          <p className="figma-title-3 text-green-500">{t("closingLine2")}</p>
         </div>
       </SectionContainer>
     </section>

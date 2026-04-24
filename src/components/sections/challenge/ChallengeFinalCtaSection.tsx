@@ -11,7 +11,7 @@ export const ChallengeFinalCtaSection = async () => {
   return (
     <section
       aria-labelledby="challenge-final-cta-title"
-      className="relative isolate flex min-h-[min(70svh,32rem)] items-center justify-center overflow-hidden py-20 sm:min-h-[28rem] sm:py-24 md:min-h-[32rem] md:py-32"
+      className="relative isolate flex min-h-[35.5625rem] items-center justify-center overflow-hidden py-14 md:py-[4.8125rem]"
     >
       <Image
         alt=""
@@ -24,16 +24,16 @@ export const ChallengeFinalCtaSection = async () => {
       />
       <div aria-hidden className="absolute inset-0 bg-black/60" />
 
-      <SectionContainer className="relative z-10 text-center" width="narrow">
+      <SectionContainer className="relative z-10 text-center">
         <h2
-          className="mx-auto max-w-4xl text-2xl font-medium leading-snug text-white sm:text-3xl md:text-4xl"
+          className="figma-title-3 mx-auto max-w-[74.75rem] text-white"
           id="challenge-final-cta-title"
         >
           <span className="block">{t("line1")}</span>
-          <span className="mt-2 block">{t("line2")}</span>
+          <span className="block">{t("line2")}</span>
         </h2>
         <LinkButton
-          className="mx-auto mt-8 min-h-12 w-full max-w-xs justify-center sm:mt-10 sm:w-auto sm:min-w-[14rem]"
+          className="mx-auto mt-10 w-full max-w-xs justify-center sm:w-auto"
           href={SITE_PATHS.contact}
           variant="primary"
         >

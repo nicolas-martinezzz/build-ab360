@@ -13,9 +13,9 @@ type JourneyCardProps = {
 };
 
 const JourneyCard = ({ token, title, body, pills }: JourneyCardProps) => (
-  <article className="overflow-hidden rounded-[8px] border border-[#d9d9d9] bg-white">
+  <article className="overflow-hidden rounded-[8px] border border-grey-light bg-white">
     <div className="grid grid-cols-[5.2rem_1fr]">
-      <div className="relative flex items-start justify-center bg-[#1a1f3a] p-4">
+      <div className="relative flex items-start justify-center bg-surface-bg p-4">
         <div className="absolute right-0 top-0 h-full w-[3px] bg-green-500" />
         <span className="text-[2rem] font-bold leading-none text-white">{token}</span>
       </div>
@@ -44,7 +44,7 @@ export const ProgramaJourneySection = async () => {
   const t = await getTranslations("programaPage.journey");
 
   return (
-    <section className="section-block-spacious bg-[#efefef]">
+    <section className="section-block-spacious bg-journey-surface">
       <SectionContainer>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] lg:gap-12">
           <div className="lg:sticky lg:top-24 lg:h-fit">
@@ -55,7 +55,7 @@ export const ProgramaJourneySection = async () => {
             <p className="figma-text-m mt-5 text-surface-bg">{t("introFoot")}</p>
 
             <LinkButton
-              className="mt-7 h-[45px] border border-green-500 bg-transparent px-4 text-base font-medium text-green-500 hover:bg-green-100/40"
+              className="mt-7 border-green-500 px-4"
               href={SITE_PATHS.contact}
               variant="outline"
             >
@@ -65,7 +65,7 @@ export const ProgramaJourneySection = async () => {
 
           <div className="space-y-8">
             <section className="space-y-4">
-              <h3 className="text-[1.25rem] font-bold leading-[1.2] text-surface-bg">{t("block1Title")}</h3>
+              <h3 className="figma-card-title text-surface-bg">{t("block1Title")}</h3>
               <div className="space-y-4">
                 <JourneyCard
                   body={t("t1Body")}
@@ -89,7 +89,7 @@ export const ProgramaJourneySection = async () => {
             </section>
 
             <section className="space-y-4">
-              <h3 className="text-[1.25rem] font-bold leading-[1.2] text-surface-bg">{t("block2Title")}</h3>
+              <h3 className="figma-card-title text-surface-bg">{t("block2Title")}</h3>
               <div className="space-y-4">
                 <JourneyCard
                   body={t("t3Body")}
@@ -113,7 +113,7 @@ export const ProgramaJourneySection = async () => {
             </section>
 
             <section className="space-y-4">
-              <h3 className="text-[1.25rem] font-bold leading-[1.2] text-surface-bg">{t("block3Title")}</h3>
+              <h3 className="figma-card-title text-surface-bg">{t("block3Title")}</h3>
               <div className="space-y-4">
                 <JourneyCard
                   body={t("t5Body")}

@@ -319,7 +319,13 @@
       "description": "Contact channels for product and business inquiries."
     },
     "title": "Contact",
-    "body": "We are updating this section with contact channels and response times for business inquiries, collaborations, and support."
+    "body": "We are updating this section with contact channels and response times for business inquiries, collaborations, and support.",
+    "leadSummaryTitle": "Request received",
+    "leadSummaryBody": "We have received your Zero Bootcamp pre-registration details. Our team will review the information and contact you.",
+    "fieldName": "Name",
+    "fieldEmail": "Email",
+    "fieldRole": "Role",
+    "fieldCompany": "Company"
   },
   "informationPage": {
     "metadata": {
@@ -609,7 +615,15 @@
       "fieldEmail": "Email",
       "fieldRole": "Role",
       "fieldCompany": "Company",
-      "ctaCardCta": "Request diagnosis and reserve your place"
+      "ctaCardCta": "Request diagnosis and reserve your place",
+      "entryCard1Body": "The process starts before the programme: in an initial session you present your case and discover the system. Afterwards, the companies that will join OpenLab are selected.",
+      "entryCard2Body": "Each partner assigns one or more participants. Without real participation, the process does not deliver results.",
+      "entryCard3Body": "An Excel, an ERP, a BIM or a CMMS. Data from your real projects — not from a lab.",
+      "entryCard4Body": "SmartCheck is the personalised panel that connects your project decisions with your business drivers. It is built with you.",
+      "entryCard5Body": "In OpenLab you do not work alone. SQUADS are groups of companies that share the same data about the same project, each from its own use case.",
+      "entryCard6Body": "12 months of programme plus 12 months of Simulab running with no additional cost. In total, 24 months for the system to become fully yours.",
+      "entryCard7Body": "Bootcamps #1 and #2 at the La Salle-URL Campus. The rest is remote via Google Meet. Each session has a concrete deliverable.",
+      "entryCard8Body": "€20,000 + VAT. It can be activated as an intangible R&D+i asset over a two-year period — the invoice is tax-deductible and does not impact your profit and loss account."
     },
     "formadores": {
       "eyebrow": "WHO DELIVERS IT",
@@ -651,6 +665,15 @@
     "partnersBanner": {
       "headline": "We're looking for partners who want to define how decisions will be made in this sector.",
       "cta": "Join the Zero Bootcamp"
+    },
+    "logosStrip": {
+      "ariaLabel": "Program highlights",
+      "topBanner": "Registrations for Bootcamp Zero in Barcelona, July 2026 are now open",
+      "topCta": "Learn more",
+      "leftLine1": "If what you need is training or consulting, there are better places for that.",
+      "leftLine2": "This is something else.",
+      "rightLead": "The first partners co-create the system and move faster.",
+      "rightBody": "Those who arrive later will find the rules already written and will pay to use them."
     }
   },
   "footer": {

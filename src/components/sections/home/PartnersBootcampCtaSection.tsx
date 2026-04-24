@@ -31,7 +31,7 @@ export const PartnersBootcampCtaSection = async () => {
           {t("headline")}
         </h2>
         <LinkButton
-          className="mx-auto mt-[2.6875rem] h-[45px] w-full max-w-sm justify-center px-5 text-base font-medium leading-[1.4] sm:w-auto"
+          className="mx-auto mt-[2.6875rem] w-full max-w-sm justify-center sm:w-auto"
           href={SITE_PATHS.contact}
           variant="primary"
         >

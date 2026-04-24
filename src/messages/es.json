@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Yutopias Systems  Decisiones con impacto medible",
+    "title": "Yutopias Systems — Decisiones con impacto medible",
     "description": "Simula el impacto de tus decisiones en coste y sostenibilidad antes de ejecutarlas."
   },
   "nav": {
@@ -43,18 +43,18 @@
       "feature2Body": "Evalúa las decisiones según los criterios regulatorios, taxonomía europea y objetivos de sostenibilidad.",
       "feature3Title": "Basado en arquetipos",
       "feature3Body": "Utiliza modelos validados científicamente para simular con precisión cada tipología de edificio.",
-      "cta": "Descúbre SimuLab",
+      "cta": "Descubre SimuLab",
       "closing1": "Simulab es tan bueno como los datos que estás dispuesto a poner sobre la mesa.",
-      "closing2": "La herramienta no hace el trabajo por ti  hace posible que lo hagas mejor",
+      "closing2": "La herramienta no hace el trabajo por ti — hace posible que lo hagas mejor",
       "imageAlt": "Vista de SimuLab en AB360: comparativa de simulaciones de coste en un portátil."
     },
     "openlab": {
-      "quote": "Yutopias, La Salle R&D y ACCI han definido una forma distinta de desplegar Simulab: construirlo junto a los primeros partners. No vendemos un software terminado  construimos juntos el estándar. A este proceso lo llamamos <openlab>OpenLab</openlab>.",
+      "quote": "Yutopias, La Salle R&D y ACCIÓ han definido una forma distinta de desplegar Simulab: construirlo junto a los primeros partners. No vendemos un software terminado — construimos juntos el estándar. A este proceso lo llamamos <openlab>OpenLab</openlab>.",
       "pathLabel": "El camino",
       "headlineLine1": "OpenLab es el programa de innovación abierta.",
       "headlineLine2": "Primero adaptar, luego adoptar.",
       "headlineLine3": "No al revés.",
-      "description": "No es formación ni consultoría. Es el proceso de hacerlo tuyo  donde tus datos y tu operativa co-crean el estándar que el sector necesita.",
+      "description": "No es formación ni consultoría. Es el proceso de hacerlo tuyo, donde tus datos y tu operativa co-crean el estándar que el sector necesita.",
       "bootcampLead": "El Bootcamp Zero es el punto de entrada.",
       "ctaPrimary": "Únete al Bootcamp Zero",
       "ctaSecondary": "Explora OpenLab",
@@ -64,11 +64,11 @@
       },
       "col2": {
         "title": "Configuras Simulab a tu operativa",
-        "body": "Con OpenLab el simulador se convierte en tu agente IA operativo. Un salto tecnológico real  calibrado a tu tipología de edificación y alineando los objetivos del proyecto con los drivers de tu negocio."
+        "body": "Con OpenLab el simulador se convierte en tu agente IA operativo. Un salto tecnológico real, calibrado a tu tipología de edificación y alineando los objetivos del proyecto con los drivers de tu negocio."
       },
       "col3": {
         "title": "Calculas impacto en coste y sostenibilidad",
-        "body": "Simulab calcula el coste y las huellas de carbono, energética e hídrica de cada solución constructiva  desde el capítulo hasta la partida. Genera escenarios y compara. Tú decides."
+        "body": "Simulab calcula el coste y las huellas de carbono, energética e hídrica de cada solución constructiva, desde el capítulo hasta la partida. Genera escenarios y compara. Tú decides."
       },
       "col4": {
         "title": "El SmartCheck: tus objetivos alineados con los del proyecto",
@@ -397,7 +397,13 @@
       "description": "Canales de contacto para consultas comerciales o de producto."
     },
     "title": "Contacto",
-    "body": "Estamos actualizando esta sección con los canales de contacto y tiempos de respuesta para consultas comerciales, colaboraciones y soporte."
+    "body": "Estamos actualizando esta sección con los canales de contacto y tiempos de respuesta para consultas comerciales, colaboraciones y soporte.",
+    "leadSummaryTitle": "Solicitud recibida",
+    "leadSummaryBody": "Hemos recibido los datos de tu preinscripción al Bootcamp Zero. Nuestro equipo revisará la información y te contactará.",
+    "fieldName": "Nombre",
+    "fieldEmail": "Correo",
+    "fieldRole": "Cargo",
+    "fieldCompany": "Empresa"
   },
   "informationPage": {
     "metadata": {
@@ -687,7 +693,15 @@
       "fieldEmail": "Correo",
       "fieldRole": "Cargo",
       "fieldCompany": "Empresa",
-      "ctaCardCta": "Solicitar diagnóstico y reservar plaza"
+      "ctaCardCta": "Solicitar diagnóstico y reservar plaza",
+      "entryCard1Body": "El proceso empieza antes del programa: en una sesión inicial presentas tu caso y conoces el sistema. Después, se seleccionan las empresas que formarán parte del OpenLab.",
+      "entryCard2Body": "Cada partner pone uno o más participantes. Sin participación real el proceso no produce resultados.",
+      "entryCard3Body": "Un Excel, un ERP, un BIM o un GMAO. Los datos de tus proyectos reales — no de laboratorio.",
+      "entryCard4Body": "SmartCheck es el panel personalizado que conecta las decisiones de tu proyecto con tus drivers de negocio. Se construye contigo.",
+      "entryCard5Body": "En OpenLab no trabajas solo. Los SQUADS son grupos de empresas que comparten los mismos datos sobre un mismo proyecto, cada uno desde su caso de uso.",
+      "entryCard6Body": "12 meses de programa más 12 meses de Simulab operativo sin coste adicional. En total, 24 meses para que el sistema sea completamente tuyo.",
+      "entryCard7Body": "Bootcamps #1 y #2 en el Campus La Salle-URL. El resto, en remoto por Google Meet. Cada sesión tiene un entregable concreto.",
+      "entryCard8Body": "20.000€ + IVA. Activable como activo intangible I+D+i en un periodo bianual — la factura se desgrava y no impacta en tu cuenta de resultados."
     },
     "formadores": {
       "eyebrow": "QUIÉN LO IMPARTE",
@@ -729,6 +743,15 @@
     "partnersBanner": {
       "headline": "Buscamos partners que quieran definir cómo se tomarán decisiones en este sector.",
       "cta": "Únete al Bootcamp Zero"
+    },
+    "logosStrip": {
+      "ariaLabel": "Información destacada del programa",
+      "topBanner": "Inscripciones al Bootcamp Zero para julio de 2026 en Barcelona abiertas",
+      "topCta": "Saber más",
+      "leftLine1": "Si lo que buscas es una formación o una consultoría, hay mejores sitios.",
+      "leftLine2": "Esto es otra cosa.",
+      "rightLead": "Los primeros partners co-crean el sistema y salen antes.",
+      "rightBody": "Los que lleguen después encontrarán las reglas ya escritas y pagarán por usarlas."
     }
   },
   "footer": {

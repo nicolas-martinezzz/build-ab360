@@ -20,7 +20,7 @@ export const ClosingStandardCtaSection = async () => {
           <span className="mt-1.5 block">{t("titleLine2")}</span>
         </h2>
         <LinkButton
-          className="mx-auto mt-[2.25rem] h-[45px] w-full max-w-xs px-5 text-base font-medium leading-[1.4] focus-visible:ring-offset-green-600 sm:w-auto"
+          className="mx-auto mt-[2.25rem] w-full max-w-xs focus-visible:ring-offset-green-600 sm:w-auto"
           href={SITE_PATHS.contact}
           variant="dark"
         >

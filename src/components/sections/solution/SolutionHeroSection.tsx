@@ -6,7 +6,7 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
 import { SITE_PATHS } from "@/config/routes";
 
-export const SolutionRebuildHeroSection = async () => {
+export const SolutionHeroSection = async () => {
   const t = await getTranslations("solutionPage.hero");
 
   return (
@@ -30,7 +30,7 @@ export const SolutionRebuildHeroSection = async () => {
       <SectionContainer className="relative z-10">
         <div className="flex flex-wrap items-center gap-4">
           <p className="figma-text-l text-white">{t("eyebrow")}</p>
-          <span className="rounded-[5px] border border-[#c3e195] bg-white px-2.5 py-[3px] text-base leading-[1.44] text-[#359e52]">
+          <span className="figma-text-m rounded-[5px] border border-green-200 bg-white px-2.5 py-[3px] text-green-500">
             {t("badge")}
           </span>
         </div>
@@ -47,7 +47,7 @@ export const SolutionRebuildHeroSection = async () => {
         </p>
 
         <LinkButton
-          className="mt-8 h-12 px-5 text-base font-medium leading-[1.4]"
+          className="mt-8 w-full sm:w-auto"
           href={SITE_PATHS.contact}
           variant="primary"
         >
