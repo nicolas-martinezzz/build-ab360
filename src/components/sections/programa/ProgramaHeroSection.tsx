@@ -47,7 +47,7 @@ export const ProgramaHeroSection = async () => {
         </p>
 
         <LinkButton
-          className="mt-7 h-11 px-5 text-sm font-medium leading-[1.3] sm:h-12 sm:text-base"
+          className="mt-7 w-full sm:w-auto"
           href={SITE_PATHS.contact}
           variant="primary"
         >

@@ -21,7 +21,7 @@ type ActorCardProps = {
 
 const ActorCard = ({ avatar, title, description, quote }: ActorCardProps) => (
   <article className="flex w-full max-w-[35.375rem] items-center rounded-[5px] bg-white">
-    <div className="relative size-[9rem] shrink-0 overflow-hidden rounded-full md:size-[14.0625rem]">
+    <div className="relative size-[6rem] shrink-0 overflow-hidden rounded-full sm:size-[9rem] md:size-[14.0625rem]">
       <Image
         alt=""
         aria-hidden
@@ -34,8 +34,8 @@ const ActorCard = ({ avatar, title, description, quote }: ActorCardProps) => (
 
     <div className="flex flex-1 flex-col gap-4 p-5">
       <div className="flex flex-col gap-2.5">
-        <h3 className="text-[1.25rem] font-bold leading-6 text-surface-bg">{title}</h3>
-        <p className="text-base font-semibold leading-6 text-surface-bg">{description}</p>
+        <h3 className="figma-card-title text-surface-bg">{title}</h3>
+        <p className="figma-text-m font-semibold text-surface-bg">{description}</p>
       </div>
 
       <blockquote className="figma-text-l italic text-grey-dark">{quote}</blockquote>

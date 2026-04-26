@@ -12,7 +12,7 @@ export const SolutionHeroSection = async () => {
   return (
     <section
       aria-labelledby="solution-hero-heading"
-      className="relative flex min-h-[44.8125rem] items-start pt-24 pb-16 md:pt-32 md:pb-20 lg:pt-36"
+      className="relative flex min-h-[34rem] items-start pb-16 pt-24 sm:min-h-[44.8125rem] md:pt-32 md:pb-20 lg:pt-36"
     >
       <div className="absolute inset-0 overflow-hidden">
         <Image

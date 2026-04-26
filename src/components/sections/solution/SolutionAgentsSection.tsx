@@ -48,7 +48,7 @@ const AgentCard = ({
 
         <div className="flex flex-col gap-1">
           <p className="figma-text-l italic text-surface-bg">{role}</p>
-          <h3 className="text-[1.75rem] font-bold leading-[1.2] text-surface-bg md:text-[2rem]">{title}</h3>
+          <h3 className="figma-title-3 text-surface-bg">{title}</h3>
           <p className="figma-text-l text-surface-bg">{shortDesc}</p>
         </div>
 
@@ -68,7 +68,7 @@ const AgentCard = ({
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col gap-[30px]">
-        <div className="relative aspect-[2752/1536] min-h-[13rem] w-full overflow-hidden bg-green-100 md:min-h-[18rem]">
+        <div className="relative aspect-[2752/1536] min-h-[10rem] w-full overflow-hidden bg-green-100 sm:min-h-[13rem] md:min-h-[18rem]">
           <Image
             alt={title}
             className="object-cover"

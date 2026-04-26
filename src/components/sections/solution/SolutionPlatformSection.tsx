@@ -36,7 +36,7 @@ export const SolutionPlatformSection = async () => {
 
         <div className="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,23.8125rem)] lg:gap-14">
           <div>
-            <h3 className="text-[1.75rem] font-semibold leading-[1.25] text-surface-bg md:text-[1.875rem]">
+            <h3 className="text-[1.375rem] font-semibold leading-[1.25] text-surface-bg sm:text-[1.75rem] md:text-[1.875rem]">
               {t("twinTitle")}
             </h3>
             <p className="figma-text-l mt-4 max-w-[46.9375rem] text-surface-bg">
@@ -50,7 +50,7 @@ export const SolutionPlatformSection = async () => {
           </div>
 
           <div>
-            <h3 className="text-[1.75rem] font-semibold leading-[1.25] text-surface-bg md:text-[1.875rem]">
+            <h3 className="text-[1.375rem] font-semibold leading-[1.25] text-surface-bg sm:text-[1.75rem] md:text-[1.875rem]">
               {t("connectedTitle")}
             </h3>
             <p className="figma-text-l mt-4 max-w-[23.8125rem] text-surface-bg">

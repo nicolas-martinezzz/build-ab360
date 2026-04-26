@@ -34,7 +34,7 @@ export const ChallengeHeroSection = async () => {
 
       <SectionContainer className="relative z-10 text-left">
         <h1
-          className="figma-title-3 max-w-[54.5625rem] whitespace-pre-line text-white [overflow-wrap:anywhere]"
+          className="figma-title-1 max-w-[54.5625rem] whitespace-pre-line text-white [overflow-wrap:anywhere]"
           id="challenge-title"
         >
           {t("headline")}

@@ -14,7 +14,7 @@ export const TestimonialsSection = async () => {
       className="bg-green-100/40 py-14 md:min-h-[42.125rem] md:py-[4.3125rem]"
     >
       <SectionContainer>
-        <p className="text-base font-normal leading-[1.4] text-grey-dark">{t("label")}</p>
+        <p className="figma-text-m text-grey-dark">{t("label")}</p>
         <h2
           className="figma-title-2 mt-[1.6875rem] text-grey-dark [overflow-wrap:anywhere]"
           id="testimonials-title"
@@ -41,13 +41,13 @@ export const TestimonialsSection = async () => {
                       />
                       <div className="min-w-0 flex-1">
                         <p className="figma-text-l-bold text-grey-dark">{t(`${key}.name`)}</p>
-                        <p className="text-base font-medium leading-[1.4] text-black">{t(`${key}.company`)}</p>
+                        <p className="figma-text-m font-medium text-black">{t(`${key}.company`)}</p>
                         <p className="text-[0.9375rem] italic leading-[1.4] text-grey-dark">{t(`${key}.role`)}</p>
                       </div>
                     </div>
                   </div>
                   {highlight ? <p className="text-[1.125rem] font-bold leading-[1.4] text-green-600">{highlight}</p> : null}
-                  <blockquote className="border-l-0 pl-0 text-base font-normal leading-6 text-black">
+                  <blockquote className="figma-text-m border-l-0 pl-0 text-black">
                     <p className="[overflow-wrap:anywhere]">&ldquo;{t(`${key}.quote`)}&rdquo;</p>
                   </blockquote>
                 </article>

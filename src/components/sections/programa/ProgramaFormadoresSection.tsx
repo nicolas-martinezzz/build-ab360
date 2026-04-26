@@ -48,7 +48,7 @@ export const ProgramaFormadoresSection = async ({
                 aria-hidden
                 className="object-cover"
                 fill
-                sizes="72px"
+                sizes="(max-width: 768px) 64px, 72px"
                 src={avatar}
               />
             </div>

@@ -24,13 +24,13 @@ export const ProgramaLogosStrip = async () => {
 
     <div className="bg-green-50 py-12 md:py-16">
       <SectionContainer className="grid gap-10 md:grid-cols-2 md:gap-16">
-        <p className="max-w-[32rem] text-[2rem] leading-[1.25] text-surface-bg">
+        <p className="max-w-[32rem] text-[1.5rem] leading-[1.25] sm:text-[1.75rem] md:text-[2rem] text-surface-bg">
           {t("logosStrip.leftLine1")}
           <br />
           {t("logosStrip.leftLine2")}
         </p>
 
-        <p className="max-w-[32rem] justify-self-start text-[2rem] leading-[1.25] text-surface-bg md:justify-self-end">
+        <p className="max-w-[32rem] justify-self-start text-[1.5rem] leading-[1.25] sm:text-[1.75rem] md:text-[2rem] text-surface-bg md:justify-self-end">
           <span className="font-bold text-green-500">
             {t("logosStrip.rightLead")}
           </span>

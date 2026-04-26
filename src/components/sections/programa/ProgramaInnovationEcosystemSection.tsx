@@ -21,8 +21,8 @@ const LogoTile = ({
   <li
     className={
       wide
-        ? "relative col-span-2 flex h-[6.75rem] items-center justify-between px-6"
-        : "relative flex h-[6.75rem] items-center justify-center px-6"
+        ? "relative col-span-2 flex h-[5.5rem] sm:h-[6.75rem] items-center justify-between px-6"
+        : "relative flex h-[5.5rem] sm:h-[6.75rem] items-center justify-center px-6"
     }
   >
     <Image

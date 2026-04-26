@@ -36,7 +36,7 @@ export const ProgramaBootcampSection = async () => {
           <div className="max-w-[48rem]">
             <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
             <h2 className="figma-title-2-bold mt-3 text-surface-bg">{t("headline")}</h2>
-            <p className="mt-3 text-[2.25rem] leading-[1.2] text-green-500">{t("dateLine")}</p>
+            <p className="mt-3 text-[1.75rem] leading-[1.2] text-green-500 sm:text-[2rem] md:text-[2.25rem]">{t("dateLine")}</p>
             <p className="figma-text-l-bold mt-2 text-green-500">{t("venueLine1")}</p>
             <p className="figma-text-m text-green-500 underline">{t("venueLine2")}</p>
 
@@ -83,10 +83,10 @@ export const ProgramaBootcampSection = async () => {
             <div className="flex h-fit flex-col gap-[34px] rounded-[5px] bg-green-500 px-10 py-[30px] text-white">
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-[30px] font-bold leading-[1.44] text-white">{t("ctaCardHeadline")}</h3>
-                  <p className="mt-[5px] text-base font-bold leading-6 text-white">{t("ctaCardSubhead")}</p>
+                  <h3 className="figma-title-3 font-bold text-white">{t("ctaCardHeadline")}</h3>
+                  <p className="figma-text-l-bold mt-[5px] text-white">{t("ctaCardSubhead")}</p>
                 </div>
-                <p className="text-base leading-6 text-white">{t("ctaCardBody")}</p>
+                <p className="figma-text-m text-white">{t("ctaCardBody")}</p>
               </div>
 
               <form action={SITE_PATHS.contact} className="space-y-5" method="get">
@@ -94,7 +94,7 @@ export const ProgramaBootcampSection = async () => {
                   <span className="sr-only">{t("fieldName")}</span>
                   <input
                     autoComplete="name"
-                    className="h-[54px] w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                    className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
                     id="bootcamp-name"
                     name="name"
                     placeholder={t("fieldName")}
@@ -106,7 +106,7 @@ export const ProgramaBootcampSection = async () => {
                   <span className="sr-only">{t("fieldEmail")}</span>
                   <input
                     autoComplete="email"
-                    className="h-[54px] w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                    className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
                     id="bootcamp-email"
                     name="email"
                     placeholder={t("fieldEmail")}
@@ -118,7 +118,7 @@ export const ProgramaBootcampSection = async () => {
                   <span className="sr-only">{t("fieldRole")}</span>
                   <input
                     autoComplete="organization-title"
-                    className="h-[54px] w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                    className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
                     id="bootcamp-role"
                     name="role"
                     placeholder={t("fieldRole")}
@@ -130,7 +130,7 @@ export const ProgramaBootcampSection = async () => {
                   <span className="sr-only">{t("fieldCompany")}</span>
                   <input
                     autoComplete="organization"
-                    className="h-[54px] w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                    className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
                     id="bootcamp-company"
                     name="company"
                     placeholder={t("fieldCompany")}

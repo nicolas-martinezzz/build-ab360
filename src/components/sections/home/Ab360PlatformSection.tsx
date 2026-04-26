@@ -62,7 +62,7 @@ export const Ab360PlatformSection = async () => {
                   </span>
                 </div>
                 <p className="figma-text-m italic text-black">{t(`${key}.role`)}</p>
-                <h3 className="text-2xl font-bold leading-[1.44] text-black">{t(`${key}.title`)}</h3>
+                <h3 className="figma-card-title text-black">{t(`${key}.title`)}</h3>
                 <p className="figma-text-m text-surface-bg">{t(`${key}.body`)}</p>
                 <p className="figma-text-m mt-1.5 text-surface-bg">{t(`${key}.metricsLabel`)}</p>
                 <ul className="mt-[3px] flex flex-wrap gap-[7px]">

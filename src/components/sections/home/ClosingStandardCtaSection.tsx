@@ -13,7 +13,7 @@ export const ClosingStandardCtaSection = async () => {
     >
       <SectionContainer className="text-center">
         <h2
-          className="mx-auto max-w-[63.5625rem] text-[1.875rem] font-normal leading-[1.22] [overflow-wrap:anywhere] md:text-[2rem]"
+          className="mx-auto max-w-[63.5625rem] text-[1.5rem] font-normal leading-[1.22] [overflow-wrap:anywhere] sm:text-[1.875rem] md:text-[2rem]"
           id="closing-standard-cta-title"
         >
           <span className="block">{t("titleLine1")}</span>

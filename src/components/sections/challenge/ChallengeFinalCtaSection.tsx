@@ -11,7 +11,7 @@ export const ChallengeFinalCtaSection = async () => {
   return (
     <section
       aria-labelledby="challenge-final-cta-title"
-      className="relative isolate flex min-h-[35.5625rem] items-center justify-center overflow-hidden py-14 md:py-[4.8125rem]"
+      className="relative isolate flex min-h-[28rem] items-center justify-center overflow-hidden py-14 sm:min-h-[35.5625rem] md:py-[4.8125rem]"
     >
       <Image
         alt=""

@@ -41,28 +41,28 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
         <section className="bg-green-50 pb-16 pt-0 sm:pb-20 md:pb-24">
           <SectionContainer className="max-w-3xl">
             <div className="rounded-[10px] border border-green-500/20 bg-white p-6 text-surface-bg shadow-sm sm:p-8">
-              <h2 className="text-xl font-semibold leading-[1.3] text-surface-bg">
+              <h2 className="figma-text-l-bold text-surface-bg">
                 {contactLabels.leadSummaryTitle ?? t("leadSummaryTitle")}
               </h2>
-              <p className="mt-3 text-base leading-relaxed text-grey-dark">
+              <p className="figma-text-m mt-3 text-grey-dark">
                 {contactLabels.leadSummaryBody ?? t("leadSummaryBody")}
               </p>
               <dl className="mt-6 grid gap-3 sm:grid-cols-2">
                 <div>
-                  <dt className="text-sm font-semibold text-surface-bg">{contactLabels.fieldName ?? t("fieldName")}</dt>
-                  <dd className="text-base text-grey-dark">{leadData.name || "—"}</dd>
+                  <dt className="figma-text-m font-semibold text-surface-bg">{contactLabels.fieldName ?? t("fieldName")}</dt>
+                  <dd className="figma-text-m text-grey-dark">{leadData.name || "—"}</dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-semibold text-surface-bg">{contactLabels.fieldEmail ?? t("fieldEmail")}</dt>
-                  <dd className="text-base text-grey-dark">{leadData.email || "—"}</dd>
+                  <dt className="figma-text-m font-semibold text-surface-bg">{contactLabels.fieldEmail ?? t("fieldEmail")}</dt>
+                  <dd className="figma-text-m text-grey-dark">{leadData.email || "—"}</dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-semibold text-surface-bg">{contactLabels.fieldRole ?? t("fieldRole")}</dt>
-                  <dd className="text-base text-grey-dark">{leadData.role || "—"}</dd>
+                  <dt className="figma-text-m font-semibold text-surface-bg">{contactLabels.fieldRole ?? t("fieldRole")}</dt>
+                  <dd className="figma-text-m text-grey-dark">{leadData.role || "—"}</dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-semibold text-surface-bg">{contactLabels.fieldCompany ?? t("fieldCompany")}</dt>
-                  <dd className="text-base text-grey-dark">{leadData.company || "—"}</dd>
+                  <dt className="figma-text-m font-semibold text-surface-bg">{contactLabels.fieldCompany ?? t("fieldCompany")}</dt>
+                  <dd className="figma-text-m text-grey-dark">{leadData.company || "—"}</dd>
                 </div>
               </dl>
             </div>

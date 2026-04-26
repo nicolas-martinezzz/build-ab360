@@ -11,7 +11,7 @@ export const PartnersBootcampCtaSection = async () => {
   return (
     <section
       aria-labelledby="partners-bootcamp-cta-title"
-      className="relative isolate flex min-h-[35.5625rem] items-center justify-center overflow-hidden py-14 md:py-[4.625rem]"
+      className="relative isolate flex min-h-[28rem] items-center justify-center overflow-hidden py-14 sm:min-h-[35.5625rem] md:py-[4.625rem]"
     >
       <Image
         alt=""
@@ -25,7 +25,7 @@ export const PartnersBootcampCtaSection = async () => {
       <div aria-hidden className="absolute inset-0 bg-black/60" />
       <SectionContainer className="relative z-10 text-center">
         <h2
-          className="mx-auto max-w-[61.3125rem] text-[2.125rem] font-normal leading-[1.45] text-white [overflow-wrap:anywhere] md:text-[2.5rem]"
+          className="mx-auto max-w-[61.3125rem] text-[1.75rem] font-normal leading-[1.45] text-white [overflow-wrap:anywhere] sm:text-[2.125rem] md:text-[2.5rem]"
           id="partners-bootcamp-cta-title"
         >
           {t("headline")}

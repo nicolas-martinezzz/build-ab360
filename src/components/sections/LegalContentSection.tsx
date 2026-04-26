@@ -9,8 +9,8 @@ type LegalContentSectionProps = {
 export const LegalContentSection = ({ title, children }: LegalContentSectionProps) => (
   <section className="bg-white py-16 sm:py-20 md:py-24">
     <SectionContainer className="max-w-3xl">
-      <h1 className="text-2xl font-semibold text-surface-bg sm:text-3xl">{title}</h1>
-      <div className="mt-6 text-base leading-relaxed text-grey-dark">{children}</div>
+      <h1 className="figma-title-3 text-surface-bg">{title}</h1>
+      <div className="figma-text-l mt-6 text-grey-dark">{children}</div>
     </SectionContainer>
   </section>
 );

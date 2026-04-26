@@ -78,7 +78,7 @@ export const OpenlabSection = async () => {
             <li key={key} className="min-w-0">
               <div className="flex flex-col gap-[0.375rem]">
                 <OpenlabFeatureIcon />
-                <h3 className="pt-[1.5625rem] text-[1.25rem] font-bold leading-6 text-surface-bg">
+                <h3 className="figma-card-title pt-[1.5625rem] text-surface-bg">
                   {t(`${key}.title`)}
                 </h3>
                 <p className="figma-text-m text-grey-dark">{t(`${key}.body`)}</p>

@@ -54,7 +54,7 @@ export const ChallengeProblemSection = async () => {
               <img
                 alt=""
                 aria-hidden
-                className="mb-6 h-[51px] w-[51px] object-contain"
+                className="mb-6 h-10 w-10 object-contain sm:h-[51px] sm:w-[51px]"
                 height={51}
                 src={SITE_ASSETS.challenge.scanSearchIcon}
                 width={51}
