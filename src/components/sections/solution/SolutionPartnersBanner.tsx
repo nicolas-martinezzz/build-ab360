@@ -11,6 +11,8 @@ export const SolutionPartnersBanner = async () => {
       cta={t("cta")}
       ctaWrapperClassName="md:mt-16"
       headline={t("headline")}
+      taglineLine1={t("tagline1")}
+      taglineLine2={t("tagline2")}
     />
   );
 };

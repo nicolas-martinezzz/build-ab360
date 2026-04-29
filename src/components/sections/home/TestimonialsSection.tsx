@@ -39,14 +39,14 @@ export const TestimonialsSection = async () => {
                         src={TESTIMONIAL_AVATAR_URL}
                         width={53}
                       />
-                      <div className="min-w-0 flex-1">
+                      <div className="min-w-0 flex-1 space-y-1">
                         <p className="figma-text-l-bold text-grey-dark">{t(`${key}.name`)}</p>
                         <p className="figma-text-m font-medium text-black">{t(`${key}.company`)}</p>
-                        <p className="text-[0.9375rem] italic leading-[1.4] text-grey-dark">{t(`${key}.role`)}</p>
+                        <p className="figma-text-m italic text-grey-dark">{t(`${key}.role`)}</p>
                       </div>
                     </div>
                   </div>
-                  {highlight ? <p className="text-[1.125rem] font-bold leading-[1.4] text-green-600">{highlight}</p> : null}
+                  {highlight ? <p className="figma-text-l-bold text-green-600">{highlight}</p> : null}
                   <blockquote className="figma-text-m border-l-0 pl-0 text-black">
                     <p className="[overflow-wrap:anywhere]">&ldquo;{t(`${key}.quote`)}&rdquo;</p>
                   </blockquote>

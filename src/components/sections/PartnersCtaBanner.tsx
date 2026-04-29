@@ -9,6 +9,8 @@ type PartnersCtaBannerProps = {
   headline: string;
   cta: string;
   backgroundSrc: string;
+  taglineLine1?: string;
+  taglineLine2?: string;
   headlineClassName?: string;
   ctaWrapperClassName?: string;
 };
@@ -17,6 +19,8 @@ export const PartnersCtaBanner = ({
   headline,
   cta,
   backgroundSrc,
+  taglineLine1,
+  taglineLine2,
   headlineClassName,
   ctaWrapperClassName,
 }: PartnersCtaBannerProps) => (
@@ -51,6 +55,12 @@ export const PartnersCtaBanner = ({
           {cta}
         </LinkButton>
       </div>
+      {(taglineLine1 || taglineLine2) && (
+        <p className="mt-5 text-sm italic leading-[1.65] text-white/82">
+          {taglineLine1}
+          {taglineLine2 ? <><br />{taglineLine2}</> : null}
+        </p>
+      )}
     </SectionContainer>
   </section>
 );

@@ -5,12 +5,14 @@
 
 export const SITE_PATHS = {
   home: "/",
+  about: "/nosotros",
   challenge: "/challenge",
   solution: "/solution",
   programa: "/programa",
   privacy: "/privacy",
   cookies: "/cookies",
   contact: "/contact",
+  resources: "/resources",
   information: "/information",
 } as const;
 

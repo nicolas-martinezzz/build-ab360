@@ -5,6 +5,7 @@ import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
 import { SITE_PATHS } from "@/config/routes";
+import { ProgramaHeroBottomBanner } from "./ProgramaLogosStrip";
 
 export const ProgramaHeroSection = async () => {
   const t = await getTranslations("programaPage.hero");
@@ -12,7 +13,7 @@ export const ProgramaHeroSection = async () => {
   return (
     <section
       aria-labelledby="programa-hero-heading"
-      className="relative flex min-h-[38rem] items-end pb-14 pt-24 sm:min-h-[40rem] sm:pb-16 sm:pt-28 md:items-center md:pb-24"
+      className="relative flex min-h-screen min-h-dvh items-center overflow-hidden py-24 sm:py-28 md:py-32"
     >
       <div className="absolute inset-0 overflow-hidden">
         <div
@@ -54,6 +55,10 @@ export const ProgramaHeroSection = async () => {
           {t("cta")}
         </LinkButton>
       </SectionContainer>
+
+      <div className="absolute inset-x-0 bottom-0 z-20">
+        <ProgramaHeroBottomBanner />
+      </div>
     </section>
   );
 };

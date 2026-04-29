@@ -1,4 +1,4 @@
-import { homeSectionHref, SITE_PATHS } from "@/config/routes";
+import { SITE_PATHS } from "@/config/routes";
 import type { HeaderNavigationLink } from "@/components/sections/site-header/types";
 
 export const NAV_LINK_CLASS =
@@ -21,5 +21,5 @@ export const buildNavigationLinks = ({
   { key: "challenge", href: SITE_PATHS.challenge, label: challenge },
   { key: "solution", href: SITE_PATHS.solution, label: solution },
   { key: "program", href: SITE_PATHS.programa, label: program },
-  { key: "about", href: homeSectionHref("about"), label: about },
+  { key: "about", href: SITE_PATHS.about, label: about },
 ];

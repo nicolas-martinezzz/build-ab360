@@ -21,6 +21,9 @@ export const SolutionDiagnosticCta = async () => {
             {t("cta")}
           </LinkButton>
         </div>
+        <p className="mt-5 text-sm italic text-grey-dark/80">
+          {t("hint")}
+        </p>
       </SectionContainer>
     </section>
   );

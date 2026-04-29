@@ -1,0 +1,16 @@
+{
+  "codeConnect": {
+    "parser": "react",
+    "label": "Next.js",
+    "language": "typescript",
+    "include": [
+      "src/**/*.figma.tsx"
+    ],
+    "exclude": [
+      "node_modules/**",
+      ".next/**",
+      "**/*.test.*",
+      "**/*.spec.*"
+    ]
+  }
+}

@@ -12,7 +12,7 @@ export const ChallengeHeroSection = async () => {
   return (
     <section
       aria-labelledby="challenge-title"
-      className="relative flex min-h-[44.8125rem] items-end pb-16 pt-24 sm:pb-20 sm:pt-28 md:items-center md:pb-[6.875rem]"
+      className="relative flex min-h-screen min-h-dvh items-center py-24 sm:py-28 md:py-32"
     >
       <div className="absolute inset-0 overflow-hidden">
         <div
@@ -29,26 +29,29 @@ export const ChallengeHeroSection = async () => {
           sizes="100vw"
           src={SITE_ASSETS.challenge.rectangle1}
         />
-        <MediaBackdrop opacity={0.5} />
+        <MediaBackdrop opacity={0.62} />
       </div>
 
       <SectionContainer className="relative z-10 text-left">
         <h1
-          className="figma-title-1 max-w-[54.5625rem] whitespace-pre-line text-white [overflow-wrap:anywhere]"
+          className="figma-title-1 max-w-[58rem] whitespace-pre-line leading-[1.12] text-white [overflow-wrap:anywhere]"
           id="challenge-title"
         >
           {t("headline")}
         </h1>
-        <p className="figma-text-l mt-5 max-w-[44.75rem] text-white">
+        <p className="figma-text-l mt-8 max-w-[52rem] whitespace-pre-line text-white/88">
           {t("body")}
         </p>
         <LinkButton
-          className="mt-[2.375rem] w-full max-w-sm sm:w-auto"
+          className="mt-8 w-full max-w-sm sm:w-auto"
           href={SITE_PATHS.contact}
           variant="primary"
         >
           {t("cta")}
         </LinkButton>
+        <p className="figma-text-m mt-3 italic text-white/80">
+          {t("hint")}
+        </p>
       </SectionContainer>
     </section>
   );

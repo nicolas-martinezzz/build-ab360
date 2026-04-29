@@ -34,7 +34,12 @@ export const SiteHeaderBar = ({
   const wasMenuOpenRef = useRef(false);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
-  const navigationLinks = buildNavigationLinks({ challenge, solution, program, about });
+  const navigationLinks = buildNavigationLinks({
+    challenge,
+    solution,
+    program,
+    about,
+  });
 
   useHeaderCompact({ setIsCompact });
   useDesktopViewport({ setIsDesktopViewport });

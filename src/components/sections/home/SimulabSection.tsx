@@ -49,13 +49,16 @@ export const SimulabSection = async () => {
         </ul>
 
         <div className="mt-[2.875rem] flex justify-center px-1">
-          <LinkButton
-            className="w-full max-w-sm sm:w-auto"
-            href={SITE_PATHS.challenge}
-            variant="primary"
-          >
-            {t("cta")}
-          </LinkButton>
+          <div className="flex flex-col items-center">
+            <LinkButton
+              className="h-[45px] w-full max-w-sm border-green-500 px-5 text-green-500 hover:bg-green-100/50 sm:w-auto"
+              href={SITE_PATHS.challenge}
+              variant="outline"
+            >
+              {t("cta")}
+            </LinkButton>
+            <p className="figma-text-m mt-4 italic text-grey-dark">{t("ctaHint")}</p>
+          </div>
         </div>
 
         <div className="mx-auto mt-[6.5rem] max-w-[57.375rem] space-y-0.5">

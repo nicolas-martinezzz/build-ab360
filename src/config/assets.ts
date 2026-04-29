@@ -5,6 +5,7 @@ export const SITE_ASSETS = {
   home: {
     heroBackgroundGif: "/images/home/yutopias-hero-background.gif",
     partnersCtaLounge: "/images/home/partners-cta-lounge.jpg",
+    blogArticleCover: "/images/home/partners-cta-lounge.jpg",
     testimonialAvatar: "/images/home/testimonial-avatar.png",
     earlyAdopterLogos: [
       "/images/home/early-adopters/logos/cbre-group.png",
@@ -40,6 +41,23 @@ export const SITE_ASSETS = {
     avatarArquitecto: "/images/solution/avatar-arquitecto.webp",
     avatarGestor: "/images/solution/avatar-gestor.webp",
     platformBuilding: "/images/solution/platform-building.png",
+  },
+  about: {
+    founderJuanjoMoreno: "/images/about/founders/juanjo-moreno.png",
+    founderEduardoNunez: "/images/about/founders/eduardo-nunez.png",
+    founderIvanPerez: "/images/about/founders/ivan-perez.png",
+    teamEugeniaRossetti: "/images/about/team/eugenia-rossetti.png",
+    teamAlejandroGlejberman: "/images/about/team/alejandro-glejberman.png",
+    teamTereTrepat: "/images/about/team/tere-trepat.png",
+    teamAidaFreixanet: "/images/about/team/aida-freixanet.png",
+    teamLauraIglesias: "/images/about/team/laura-iglesias.png",
+    teamAndresMontanez: "/images/about/team/andres-montanez.png",
+    teamMiguelAngelZamora: "/images/about/team/miguel-angel-zamora.png",
+    teamPedroGonzalezAnta: "/images/about/team/pedro-gonzalez-anta.png",
+    teamMariCarmenSanchez: "/images/about/team/mari-carmen-sanchez.png",
+    ecosystemEurecat: "/images/about/ecosystem/eurecat.png",
+    ecosystemEoi: "/images/about/ecosystem/eoi.png",
+    ecosystemEsade: "/images/about/ecosystem/esade.png",
   },
   programa: {
     hero: "/images/programa/hero.png",

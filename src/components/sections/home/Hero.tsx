@@ -13,7 +13,7 @@ export const Hero = async () => {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative flex min-h-[44rem] items-end pb-16 pt-24 sm:min-h-[50.625rem] sm:pb-20 sm:pt-32 md:items-center md:pb-[8.375rem]"
+      className="relative flex min-h-screen min-h-dvh items-center py-24 sm:py-28 md:py-32"
       id={SITE_SECTION_IDS.challenge}
     >
       <div className="absolute inset-0 overflow-hidden">
@@ -32,7 +32,7 @@ export const Hero = async () => {
         />
         <MediaBackdrop opacity={0.8} />
       </div>
-      <SectionContainer className="relative z-10 text-left md:pt-[2.875rem]">
+      <SectionContainer className="relative z-10 text-left">
         {eyebrow ? (
           <p className="type-eyebrow mb-[0.875rem] text-green-200">
             {eyebrow}
@@ -56,6 +56,9 @@ export const Hero = async () => {
         >
           {t("cta")}
         </LinkButton>
+        <p className="figma-text-m mt-4 text-white/80">
+          {t("hint")}
+        </p>
       </SectionContainer>
     </section>
   );

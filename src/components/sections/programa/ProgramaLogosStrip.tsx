@@ -3,14 +3,13 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SITE_PATHS } from "@/config/routes";
 
-export const ProgramaLogosStrip = async () => {
+export const ProgramaHeroBottomBanner = async () => {
   const t = await getTranslations("programaPage");
 
   return (
-    <section aria-label={t("logosStrip.ariaLabel")}>
     <div className="bg-green-500 py-2.5">
       <SectionContainer className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-base font-semibold leading-[1.3] text-white">
+        <p className="figma-text-m text-white">
           {t("logosStrip.topBanner")}
         </p>
         <LinkButton
@@ -21,7 +20,14 @@ export const ProgramaLogosStrip = async () => {
         </LinkButton>
       </SectionContainer>
     </div>
+  );
+};
 
+export const ProgramaLogosStrip = async () => {
+  const t = await getTranslations("programaPage");
+
+  return (
+    <section aria-label={t("logosStrip.ariaLabel")}>
     <div className="bg-green-50 py-12 md:py-16">
       <SectionContainer className="grid gap-10 md:grid-cols-2 md:gap-16">
         <p className="max-w-[32rem] text-[1.5rem] leading-[1.25] sm:text-[1.75rem] md:text-[2rem] text-surface-bg">

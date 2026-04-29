@@ -15,6 +15,7 @@
     "solution": "La solución",
     "program": "El programa",
     "about": "Nosotros",
+    "resources": "Recursos",
     "joinBootcamp": "Únete al Bootcamp Zero"
   },
   "home": {
@@ -22,7 +23,8 @@
       "eyebrow": "",
       "headline": "¿Cómo decides el coste, la energía y el impacto de un edificio durante los próximos 50 años?",
       "subhead": "Esas tres variables siempre han estado conectadas.\nEl problema es que nadie los mide juntos antes de tomar decisiones.",
-      "cta": "Únete al Bootcamp Zero"
+      "cta": "Haz tu autodiagnóstico",
+      "hint": "10 minutos. Te vas sabiendo dónde estás."
     },
     "introStrip": {
       "regionAria": "Mensaje introductorio",
@@ -43,7 +45,8 @@
       "feature2Body": "Evalúa las decisiones según los criterios regulatorios, taxonomía europea y objetivos de sostenibilidad.",
       "feature3Title": "Basado en arquetipos",
       "feature3Body": "Utiliza modelos validados científicamente para simular con precisión cada tipología de edificio.",
-      "cta": "Descubre SimuLab",
+      "cta": "Ver la solución",
+      "ctaHint": "Ver el impacto antes de actuar. Eso es todo.",
       "closing1": "Simulab es tan bueno como los datos que estás dispuesto a poner sobre la mesa.",
       "closing2": "La herramienta no hace el trabajo por ti — hace posible que lo hagas mejor",
       "imageAlt": "Vista de SimuLab en AB360: comparativa de simulaciones de coste en un portátil."
@@ -57,7 +60,7 @@
       "description": "No es formación ni consultoría. Es el proceso de hacerlo tuyo, donde tus datos y tu operativa co-crean el estándar que el sector necesita.",
       "bootcampLead": "El Bootcamp Zero es el punto de entrada.",
       "ctaPrimary": "Únete al Bootcamp Zero",
-      "ctaSecondary": "Explora OpenLab",
+      "ctaSecondary": "Conoce OpenLab",
       "col1": {
         "title": "Trabajas con datos reales de tus proyectos",
         "body": "La información ya existe en tu empresa. En el OpenLab la conectamos con bases de datos de referencia del sector. Cada simulación alimenta el sistema. El resultado mejora con cada proyecto."
@@ -155,6 +158,28 @@
         "quote": "Con Simulab de AB360 pudimos estructurar decisiones complejas en objetivos claros, alineando equipos y tareas para una ejecución más ágil y con menos desviaciones."
       }
     },
+    "blogResources": {
+      "eyebrow": "Recursos",
+      "title": "Últimos artículos del blog",
+      "cta": "Ver más",
+      "ctaHref": "/resources",
+      "article1": {
+        "imageAlt": "Mujer revisando paneles de datos en oficina",
+        "meta": "22 septiembre 2025 | 5 min de lectura",
+        "title": "Adiós a los silos: La integración de datos que revoluciona el ciclo de vida de los edificios",
+        "tag1": "Datos",
+        "tag2": "Tecnología",
+        "author": "Eduardo Núñez · COO de yutopias systems"
+      },
+      "article2": {
+        "imageAlt": "Mujer revisando paneles de datos en oficina",
+        "meta": "22 septiembre 2025 | 5 min de lectura",
+        "title": "Adiós a los silos: La integración de datos que revoluciona el ciclo de vida de los edificios",
+        "tag1": "Datos",
+        "tag2": "Tecnología",
+        "author": "Eduardo Núñez · COO de yutopias systems"
+      }
+    },
     "yutopiasAbout": {
       "headlinePrefix": "Somos",
       "headlineBrand": "<y>yūtopias</y> <s>systems</s>",
@@ -175,7 +200,8 @@
     },
     "headline": "La edificación es un sistema complejo.\nMiles de decisiones.\nDécadas de consecuencias.\nPero se aborda sin una visión de conjunto.",
     "body": "La visión existe. Los datos, no. O llegan tarde. O están fragmentados o son inexistentes - dentro de cada organización y entre todas ellas. Y cuando llegan, las decisiones más importantes ya se han tomado - conscientemente o no.",
-    "cta": "¿Cuál es tu reto?",
+    "cta": "Haz tu autodiagnóstico",
+    "hint": "10 minutos. Te vas sabiendo dónde estás.",
     "nextSection": {
       "eyebrow": "Hasta ahora",
       "titleLine1": "Así funciona hoy.",
@@ -405,6 +431,12 @@
     "fieldRole": "Cargo",
     "fieldCompany": "Empresa"
   },
+  "resourcesPage": {
+    "metadata": {
+      "title": "Recursos",
+      "description": "Últimos artículos y recursos del ecosistema AB360."
+    }
+  },
   "informationPage": {
     "metadata": {
       "title": "Información",
@@ -412,6 +444,151 @@
     },
     "title": "Información",
     "body": "Estamos preparando esta sección con información corporativa y legal relevante para usuarios, partners y entidades colaboradoras."
+  },
+  "aboutPage": {
+    "metadata": {
+      "title": "Nosotros",
+      "description": "Conoce Yutopias Systems y nuestra visión para transformar la toma de decisiones en edificación."
+    },
+    "hero": {
+      "brandPrimary": "yūtopias",
+      "brandSecondary": "systems",
+      "title": "Construimos futuros mejores desde",
+      "titleAccent": "la edificación.",
+      "body": "Somos profesionales del sector que decidieron que el problema era demasiado grande para ignorarlo."
+    },
+    "intro": {
+      "col1Title": "Quiénes somos",
+      "col1Body": "Una empresa fundada en Barcelona que investiga, diseña y desarrolla sistemas para que la edificación y la infraestructura sean sostenibles — para construir un planeta habitable dentro de 50 años. La utopía no es naíf ni un destino. Es ingeniería de la vida cotidiana basada en sistemas empíricos.",
+      "col2Title": "A qué nos dedicamos",
+      "col2Body": "Co-diseñamos inteligencia artificial de origen europeo: agentes especializados para la industria de la construcción, sobre un gemelo digital de los procesos en cualquier momento del ciclo de vida.",
+      "col3Title": "Como trabajamos",
+      "col3Body": "Buscamos partners, no clientes. El rigor solo se construye con datos reales — los suyos, siempre suyos — y con metodología científica validada por La Salle R&D e ITeC. Quien entra antes, define el estándar."
+    },
+    "vision": {
+      "eyebrow": "NUESTRA VISIÓN",
+      "title": "De dónde venimos y a dónde vamos.",
+      "para1": "La construcción es responsable del 40% de las emisiones de CO₂ globales. No porque el sector no quiera mejorar — sino porque nadie ha puesto las herramientas correctas sobre la mesa en el momento correcto.",
+      "para2": "Yutopias nace de la convicción de que sostenibilidad y rentabilidad no son objetivos opuestos — son el mismo objetivo mal medido. Nuestra misión es crear los sistemas que los conectan antes de que las decisiones sean irreversibles."
+    },
+    "principles": {
+      "title": "Como pensamos",
+      "principle1": {
+        "title": "La evidencia antes que la intuición.",
+        "body": "El sector decide con la mitad de los datos sobre la mesa. Nuestros cálculos son auditables, nuestros arquetipos están validados científicamente — la confianza no se declara, se demuestra."
+      },
+      "principle2": {
+        "title": "La innovación abierta como única vía",
+        "body": "En un sector donde el producto vive 50 años y depende de demasiados actores como para que ninguno decida solo, innovar en un laboratorio cerrado no escala. El estándar emerge del ecosistema, no de la empresa."
+      },
+      "principle3": {
+        "title": "El largo plazo como brújula",
+        "body": "El edificio que se diseña hoy decide cuánto cuesta operarlo durante los próximos 50 años. Pensamos en la escala del activo, no en la del trimestre."
+      }
+    },
+    "founders": {
+      "eyebrow": "LOS FUNDADORES",
+      "title": "Las personas que decidieron que esto valía la pena.",
+      "linkedin": "Conecta en LinkedIn",
+      "founder1": {
+        "name": "Juanjo Moreno",
+        "role": "CEO & Cofounder",
+        "quote": "Me interesa cómo habitaremos el mundo en las próximas décadas. No como pregunta filosófica — como problema de diseño que tiene solución",
+        "bio": "Mediador en innovación abierta multi-actor formado en el IESE Entrepreneurship and Innovation Center y en la Cátedra UNESCO de Gestión de Conflictos de la UAB. Tres décadas en el sector de la edificación. Yutopias es donde esas dos disciplinas se cruzan: conocimiento sectorial y mediación entre actores que necesitan articularse.",
+        "linkedinUrl": "https://www.linkedin.com/in/juanjo-moreno-yutopias/"
+      },
+      "founder2": {
+        "name": "Eduardo Núñez",
+        "role": "Chief Operations Officer · Cofounder",
+        "quote": "La sostenibilidad no es solo impacto ambiental. Es también rentabilidad e impacto social positivo. Necesitábamos una herramienta que midiera las tres dimensiones a la vez.",
+        "bio": "Ingeniero de edificación formado en Países Bajos. Casi cuarenta años diseñando cómo operan los grandes activos inmobiliarios — CEPSA, EDS, hospitales, infraestructura aeroportuaria. Autor de referencia en Facility Management estratégico. Yutopias incorpora su disciplina al producto: el edificio que se diseña hoy es el edificio que se opera durante los próximos 50 años.",
+        "linkedinUrl": "https://www.linkedin.com/in/eduardonunez-yutopias/"
+      },
+      "founder3": {
+        "name": "Iván Pérez",
+        "role": "Chief Innovation Officer · Cofounder",
+        "quote": "El reto no es tener una visión — es convertirla en algo que funciona con datos reales, en proyectos reales, con personas reales.",
+        "bio": "Arquitecto y urbanista formado entre la ETSAB de Barcelona y Delft TU. Cofundador y director durante 18 años de Territori24, con obras reconocidas por FAD y la Bienal Europea del Paisaje. Co-responsable del primer equipamiento social certificado LEED Platinum de España. En Yutopias trae la mirada del proyectista — la persona que toma las decisiones que el sistema necesita anticipar.",
+        "linkedinUrl": "https://www.linkedin.com/in/ivan-perez-yutopias/"
+      }
+    },
+    "teamIntro": {
+      "left": "Un equipo no es un organigrama, es una tribu alrededor de un tótem. El tótem aquí es claro: el partner que va a habitar el sistema durante los próximos 50 años.",
+      "right": "Cada persona aporta una maestría — mediación, ingeniería, proyecto, arquitectura tecnológica, diseño, finanzas — y trabaja con autonomía sobre su terreno.",
+      "rightAccent": "La innovación abierta es lo que hace que el equipo y el ecosistema se hablen, y de ahí nace la magia."
+    },
+    "team": {
+      "eyebrow": "EL EQUIPO COMPLETO",
+      "title": "Las personas que lo hacen posible",
+      "linkedin": "LinkedIn",
+      "member1": {
+        "name": "Eugenia Rossetti",
+        "role": "Service Designer",
+        "bio": "Diseña cómo la visión sistémica de AB360 aterriza en tecnología y cómo cada partner la habita en su día a día.",
+        "linkedinUrl": ""
+      },
+      "member2": {
+        "name": "Alejandro Glejberman",
+        "role": "Tech Lead",
+        "bio": "El guardián del stack. Define la arquitectura tecnológica de AB360 y dirige al equipo que la construye.",
+        "linkedinUrl": ""
+      },
+      "member3": {
+        "name": "Tere Trepat",
+        "role": "UX Designer",
+        "bio": "Diseña cómo la visión sistémica de AB360 aterriza en tecnología y cómo cada partner la habita en su día a día.",
+        "linkedinUrl": ""
+      },
+      "member4": {
+        "name": "Aida Freixanet",
+        "role": "UI Designer",
+        "bio": "Hace fácil lo denso y complejo. Diseña experiencia e interfaces de AB360 a partir del trabajo directo de los fundadores con los early adopters.",
+        "linkedinUrl": ""
+      },
+      "member5": {
+        "name": "Laura Iglesias",
+        "role": "Project Manager Agile",
+        "bio": "Organiza los sprints y dirige los desarrollos integrando a todas las partes para que producto, diseño e ingeniería avancen al mismo ritmo.",
+        "linkedinUrl": ""
+      },
+      "member6": {
+        "name": "Andrés Montañez",
+        "role": "Solutions Architect",
+        "bio": "Diseña la arquitectura que conecta los agentes con el gemelo digital semántico. Trabaja codo a codo con el Tech Lead.",
+        "linkedinUrl": ""
+      },
+      "member7": {
+        "name": "Miguel Ángel Zamora",
+        "role": "Developer",
+        "bio": "Desarrolla AB360 con el Tech Lead. Convierte el stack en producto que funciona.",
+        "linkedinUrl": ""
+      },
+      "member8": {
+        "name": "Pedro González-Anta",
+        "role": "CFO",
+        "bio": "Dirige la estructura financiera, fiscal y contable de Yutopias. Su trabajo asegura a fundadores e inversores que el músculo y el flujo están a la altura de cada hito.",
+        "linkedinUrl": ""
+      },
+      "member9": {
+        "name": "Mari Carmen Sánchez",
+        "role": "Analista Contable",
+        "bio": "Lleva la contabilidad y los impuestos. El trabajo invisible que hace que las decisiones financieras se sostengan sobre datos exactos.",
+        "linkedinUrl": ""
+      }
+    },
+    "ecosystem": {
+      "eyebrow": "EL ECOSISTEMA",
+      "title": "El ecosistema de innovación abierta y continua",
+      "category1Label": "Base tecnológica y escalabilidad",
+      "category2Label": "I+D y Validación científica",
+      "category3Label": "Motor de evolución y adopción"
+    },
+    "partnersBanner": {
+      "headline": "Buscamos partners que quieran definir cómo se tomarán decisiones en este sector.",
+      "cta": "Únete al Bootcamp Zero",
+      "tagline1": "Los que lleguen después, lo usarán.",
+      "tagline2": "Los que entren ahora, lo moldean."
+    }
   },
   "solutionPage": {
     "metadata": {
@@ -423,7 +600,8 @@
       "badge": "Live",
       "headline": "El primer agente de IA para decidir mejor en edificación.",
       "body": "Simulab no es un software aislado. Es el primer agente operativo de AB360 — la plataforma que integra BIM, ERP, GMAO y PMS en un gemelo digital semántico. Introduces los datos de tu proyecto. El motor calcula simultáneamente el impacto en costes y en huellas — carbono, hídrica, energética.\nVes el resultado antes de actuar.",
-      "cta": "Pide una demo"
+      "cta": "Haz tu autodiagnóstico",
+      "hint": "10 minutos. Te vas sabiendo dónde estás."
     },
     "quoteBanner": {
       "line1": "Ves el resultado antes,",
@@ -549,11 +727,14 @@
     },
     "diagnosticCta": {
       "body": "Descubre cuáles son los retos de tu organización y cómo AB360 puede resolverlos.",
-      "cta": "Haz tu autodiagnóstico"
+      "cta": "Haz tu autodiagnóstico",
+      "hint": "10 minutos. Te vas sabiendo dónde estás."
     },
     "partnersBanner": {
       "headline": "Buscamos partners que quieran definir cómo se tomarán decisiones en este sector.",
-      "cta": "Únete al Bootcamp Zero"
+      "cta": "Únete al Bootcamp Zero",
+      "tagline1": "Los que lleguen después, lo usarán.",
+      "tagline2": "Los que entren ahora, lo moldean."
     }
   },
   "programaPage": {
@@ -590,7 +771,7 @@
       "introLead": "Tu empresa toma buenas decisiones. El problema es que las toma con la mitad de la información que debería tener.",
       "introBody": "OpenLab® desarrolla un caso de uso real alineado con los OKRs de tu empresa. Se estructura en seis tarjetas, cada una con un propósito claro y un entregable concreto. El proceso culmina con el SmartCheck.",
       "introFoot": "Si quieres más información o tienes dudas, escríbenos.",
-      "cta": "Quiero saber más sobre el OpenLab®",
+      "cta": "Quiero Reserva tu plaza sobre el OpenLab®",
       "block1Title": "DIAGNÓSTICO: Dónde estás",
       "t1Title": "Radiografía operativa",
       "t1Body": "Dónde se pierde margen, tiempo y calidad en tus procesos reales. Siempre desde la realidad — no desde lo que creemos que pasa.",
@@ -693,7 +874,7 @@
       "fieldEmail": "Correo",
       "fieldRole": "Cargo",
       "fieldCompany": "Empresa",
-      "ctaCardCta": "Solicitar diagnóstico y reservar plaza",
+      "ctaCardCta": "Reserva tu plaza",
       "entryCard1Body": "El proceso empieza antes del programa: en una sesión inicial presentas tu caso y conoces el sistema. Después, se seleccionan las empresas que formarán parte del OpenLab.",
       "entryCard2Body": "Cada partner pone uno o más participantes. Sin participación real el proceso no produce resultados.",
       "entryCard3Body": "Un Excel, un ERP, un BIM o un GMAO. Los datos de tus proyectos reales — no de laboratorio.",
@@ -747,7 +928,7 @@
     "logosStrip": {
       "ariaLabel": "Información destacada del programa",
       "topBanner": "Inscripciones al Bootcamp Zero para julio de 2026 en Barcelona abiertas",
-      "topCta": "Saber más",
+      "topCta": "Reserva tu plaza",
       "leftLine1": "Si lo que buscas es una formación o una consultoría, hay mejores sitios.",
       "leftLine2": "Esto es otra cosa.",
       "rightLead": "Los primeros partners co-crean el sistema y salen antes.",
@@ -781,7 +962,7 @@
     "cookies": "Política de cookies",
     "contact": "Contacto",
     "information": "Información",
-    "legalPagePlaceholder": "Esta pagina esta en construccion.",
+    "legalPagePlaceholder": "Esta página está en construcción.",
     "kitDigitalAlt": "Programa Kit Digital cofinanciado por fondos Next Generation EU",
     "linkedinAria": "Perfil de LinkedIn de Yutopias Systems",
     "linkedinUrl": "https://www.linkedin.com/company/yutopias/posts/?feedView=all",

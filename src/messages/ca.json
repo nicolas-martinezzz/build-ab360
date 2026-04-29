@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Yutopias Systems  Decisions amb impacte mesurable",
+    "title": "Yutopias Systems — Decisions amb impacte mesurable",
     "description": "Simula l'impacte de les teves decisions en cost i sostenibilitat abans d'executar-les."
   },
   "nav": {
@@ -15,6 +15,7 @@
     "solution": "La solució",
     "program": "El programa",
     "about": "Nosaltres",
+    "resources": "Recursos",
     "joinBootcamp": "Uneix-te al Bootcamp Zero"
   },
   "home": {
@@ -22,7 +23,8 @@
       "eyebrow": "",
       "headline": "Com decidis el cost, l'energia i l'impacte d'un edifici al llarg dels propers 50 anys?",
       "subhead": "Aquestes tres variables sempre han estat connectades. El problema és que ningú les mesura juntes abans de prendre decisions.",
-      "cta": "Uneix-te al Bootcamp Zero"
+      "cta": "Fes el teu autodiagnòstic",
+      "hint": "10 minuts. Te'n vas sabent on ets."
     },
     "introStrip": {
       "regionAria": "Missatge introductori",
@@ -33,7 +35,7 @@
       "leftLine5": "Cada actor optimitza la seva part.",
       "leftLine6": "Ningú optimitza el conjunt.",
       "rightLine1": "Una bona decisió ja no és una intuïció.",
-      "rightLine2": "s la simulació del seu impacte real."
+      "rightLine2": "És la simulació del seu impacte real."
     },
     "simulab": {
       "headline": "SimuLab projecta l'impacte de les teves decisions abans d'executar-les.",
@@ -43,18 +45,19 @@
       "feature2Body": "Avalua les decisions segons els criteris regulatoris, la taxonomia europea i els objectius de sostenibilitat.",
       "feature3Title": "Basat en arquetips",
       "feature3Body": "Utilitza models validats científicament per simular amb precisió cada tipologia d'edifici.",
-      "cta": "Descobreix SimuLab",
+      "cta": "Veure la solució",
+      "ctaHint": "Veure l'impacte abans d'actuar. Això és tot.",
       "closing1": "Simulab és tan bo com les dades que estàs disposat a posar sobre la taula.",
-      "closing2": "L'eina no fa la feina per tu  fa possible que la facis millor",
+      "closing2": "L'eina no fa la feina per tu — fa possible que la facis millor",
       "imageAlt": "SimuLab a AB360: comparativa de simulacions de cost en un portàtil."
     },
     "openlab": {
-      "quote": "Yutopias, La Salle R&D i ACCI han definit una forma distinta de desplegar Simulab: construir-lo juntament amb els primers partners. No venem un programari acabat  construïm junts l'estàndard. A aquest procés li diem <openlab>OpenLab</openlab>.",
+      "quote": "Yutopias, La Salle R&D i ACCIÓ han definit una forma diferent de desplegar Simulab: construir-lo juntament amb els primers partners. No venem un programari acabat — construïm junts l'estàndard. A aquest procés li diem <openlab>OpenLab</openlab>.",
       "pathLabel": "El camí",
       "headlineLine1": "OpenLab és el programa d'innovació oberta.",
       "headlineLine2": "Primer adaptar, després adoptar.",
       "headlineLine3": "No a la inversa.",
-      "description": "No és formació ni consultoria. s el procés de fer-ho teu  on les teves dades i la teva operativa co-creen l'estàndard que el sector necessita.",
+      "description": "No és formació ni consultoria. És el procés de fer-ho teu, on les teves dades i la teva operativa co-creen l'estàndard que el sector necessita.",
       "bootcampLead": "El Bootcamp Zero és el punt d'entrada.",
       "ctaPrimary": "Uneix-te al Bootcamp Zero",
       "ctaSecondary": "Explora OpenLab",
@@ -64,11 +67,11 @@
       },
       "col2": {
         "title": "Configures Simulab a la teva operativa",
-        "body": "Amb l'OpenLab el simulador es converteix en el teu agent d'IA operatiu. Un salt tecnològic real  calibrat a la teva tipologia d'edificació i alineant els objectius del projecte amb els drivers del teu negoci."
+        "body": "Amb l'OpenLab el simulador es converteix en el teu agent d'IA operatiu. Un salt tecnològic real, calibrat a la teva tipologia d'edificació i alineat amb els drivers del teu negoci."
       },
       "col3": {
         "title": "Calcules impacte en cost i sostenibilitat",
-        "body": "Simulab calcula el cost i les petjades de carboni, energètica i hídrica de cada solució constructiva  des del capítol fins a la partida. Genera escenaris i compara. Tu decideixes."
+        "body": "Simulab calcula el cost i les petjades de carboni, energètica i hídrica de cada solució constructiva, des del capítol fins a la partida. Genera escenaris i compara. Tu decideixes."
       },
       "col4": {
         "title": "El SmartCheck: els teus objectius alineats amb els del projecte",
@@ -79,7 +82,7 @@
     "simulationChoiceBanner": {
       "regionAria": "Missatge sobre decisions de projecte i simulació",
       "left": "Si continues prenent decisions de projecte sense simulació, ja no és per manca d'eines.",
-      "rightLine1": "s una elecció.",
+      "rightLine1": "És una elecció.",
       "rightLine2": "I té conseqüències."
     },
     "partnersBootcampCta": {
@@ -155,6 +158,28 @@
         "quote": "Amb Simulab d'AB360 vam poder estructurar decisions complexes en objectius clars, alineant equips i tasques per a una execució més àgil i amb menys desviacions."
       }
     },
+    "blogResources": {
+      "eyebrow": "Recursos",
+      "title": "Últims articles del blog",
+      "cta": "Veure més",
+      "ctaHref": "/resources",
+      "article1": {
+        "imageAlt": "Dona revisant quadres de dades en una oficina",
+        "meta": "22 setembre 2025 | 5 min de lectura",
+        "title": "Adeu als silos: La integració de dades que revoluciona el cicle de vida dels edificis",
+        "tag1": "Dades",
+        "tag2": "Tecnologia",
+        "author": "Eduardo Núñez · COO de yutopias systems"
+      },
+      "article2": {
+        "imageAlt": "Dona revisant quadres de dades en una oficina",
+        "meta": "22 setembre 2025 | 5 min de lectura",
+        "title": "Adeu als silos: La integració de dades que revoluciona el cicle de vida dels edificis",
+        "tag1": "Dades",
+        "tag2": "Tecnologia",
+        "author": "Eduardo Núñez · COO de yutopias systems"
+      }
+    },
     "yutopiasAbout": {
       "headlinePrefix": "Som",
       "headlineBrand": "<y>yūtopias</y> <s>systems</s>",
@@ -175,7 +200,8 @@
     },
     "headline": "L'edificació és un sistema complex.\nMilers de decisions.\nDècades de conseqüències.\nPerò s'aborda sense una visió de conjunt.",
     "body": "La visió existeix. Les dades, no. O arriben tard. O estan fragmentades o són inexistents - dins de cada organització i entre totes elles. I quan arriben, les decisions més importants ja s'han pres - conscientment o no.",
-    "cta": "Quin és el teu repte?",
+    "cta": "Fes el teu autodiagnòstic",
+    "hint": "10 minuts. Te'n vas sabent on ets.",
     "nextSection": {
       "eyebrow": "Fins ara",
       "titleLine1": "Així funciona avui.",
@@ -327,6 +353,12 @@
     "fieldRole": "Càrrec",
     "fieldCompany": "Empresa"
   },
+  "resourcesPage": {
+    "metadata": {
+      "title": "Recursos",
+      "description": "Últims articles i recursos de l'ecosistema AB360."
+    }
+  },
   "informationPage": {
     "metadata": {
       "title": "Informació",
@@ -334,6 +366,151 @@
     },
     "title": "Informació",
     "body": "Estem preparant aquesta secció amb informació corporativa i legal rellevant per a usuaris, partners i entitats col·laboradores."
+  },
+  "aboutPage": {
+    "metadata": {
+      "title": "Nosaltres",
+      "description": "Coneix Yutopias Systems i la nostra visió per transformar la presa de decisions en edificació."
+    },
+    "hero": {
+      "brandPrimary": "yūtopias",
+      "brandSecondary": "systems",
+      "title": "Construïm futurs millors des de",
+      "titleAccent": "l'edificació.",
+      "body": "Som professionals del sector que van decidir que el problema era massa gran per ignorar-lo."
+    },
+    "intro": {
+      "col1Title": "Qui som",
+      "col1Body": "Una empresa fundada a Barcelona que investiga, dissenya i desenvolupa sistemes perquè l'edificació i la infraestructura siguin sostenibles — per construir un planeta habitable dins de 50 anys. La utopia no és ingènua ni una destinació. És l'enginyeria de la vida quotidiana basada en sistemes empírics.",
+      "col2Title": "A què ens dediquem",
+      "col2Body": "Co-dissenyem intel·ligència artificial d'origen europeu: agents especialitzats per a la indústria de la construcció, sobre un bessó digital dels processos en qualsevol moment del cicle de vida.",
+      "col3Title": "Com treballem",
+      "col3Body": "Busquem partners, no clients. El rigor només es construeix amb dades reals — les seves, sempre seves — i amb metodologia científica validada per La Salle R&D i ITeC. Qui entra primer, defineix l'estàndard."
+    },
+    "vision": {
+      "eyebrow": "LA NOSTRA VISIÓ",
+      "title": "D'on venim i cap a on anem.",
+      "para1": "La construcció és responsable del 40% de les emissions de CO₂ globals. No perquè el sector no vulgui millorar — sinó perquè ningú ha posat les eines correctes sobre la taula en el moment correcte.",
+      "para2": "Yutopias neix de la convicció que sostenibilitat i rendibilitat no són objectius oposats — són el mateix objectiu mal mesurat. La nostra missió és crear els sistemes que els connecten abans que les decisions siguin irreversibles."
+    },
+    "principles": {
+      "title": "Com pensem",
+      "principle1": {
+        "title": "L'evidència abans que la intuïció.",
+        "body": "El sector decideix amb la meitat de les dades sobre la taula. Els nostres càlculs són auditables, els nostres arquetips estan validats científicament — la confiança no es declara, es demostra."
+      },
+      "principle2": {
+        "title": "La innovació oberta com a única via",
+        "body": "En un sector on el producte viu 50 anys i depèn de massa actors perquè cap decideixi sol, innovar en un laboratori tancat no escala. L'estàndard emergeix de l'ecosistema, no de l'empresa."
+      },
+      "principle3": {
+        "title": "El llarg termini com a brúixola",
+        "body": "L'edifici que es dissenya avui decideix quant costarà operar-lo durant els pròxims 50 anys. Pensem a l'escala de l'actiu, no a la del trimestre."
+      }
+    },
+    "founders": {
+      "eyebrow": "ELS FUNDADORS",
+      "title": "Les persones que van decidir que això valia la pena.",
+      "linkedin": "Connecta a LinkedIn",
+      "founder1": {
+        "name": "Juanjo Moreno",
+        "role": "CEO & Cofounder",
+        "quote": "M'interessa com habitarem el món en les pròximes dècades. No com a pregunta filosòfica — com a problema de disseny que té solució",
+        "bio": "Mediador en innovació oberta multi-actor format a l'IESE Entrepreneurship and Innovation Center i a la Càtedra UNESCO de Gestió de Conflictes de la UAB. Tres dècades al sector de l'edificació. Yutopias és on es creuen aquestes dues disciplines: coneixement sectorial i mediació entre actors que necessiten articular-se.",
+        "linkedinUrl": "https://www.linkedin.com/in/juanjo-moreno-yutopias/"
+      },
+      "founder2": {
+        "name": "Eduardo Núñez",
+        "role": "Chief Operations Officer · Cofounder",
+        "quote": "La sostenibilitat no és només impacte ambiental. És també rendibilitat i impacte social positiu. Necessitàvem una eina que mesurés les tres dimensions alhora.",
+        "bio": "Enginyer d'edificació format als Països Baixos. Gairebé quaranta anys dissenyant com operen els grans actius immobiliaris — CEPSA, EDS, hospitals, infraestructura aeroportuària. Autor de referència en Facility Management estratègic. Yutopias incorpora la seva disciplina al producte: l'edifici que es dissenya avui és l'edifici que s'opera durant els pròxims 50 anys.",
+        "linkedinUrl": "https://www.linkedin.com/in/eduardonunez-yutopias/"
+      },
+      "founder3": {
+        "name": "Iván Pérez",
+        "role": "Chief Innovation Officer · Cofounder",
+        "quote": "El repte no és tenir una visió — és convertir-la en alguna cosa que funciona amb dades reals, en projectes reals, amb persones reals.",
+        "bio": "Arquitecte i urbanista format entre l'ETSAB de Barcelona i Delft TU. Cofundador i director durant 18 anys de Territori24, amb obres reconegudes pel FAD i la Biennal Europea del Paisatge. Co-responsable del primer equipament social certificat LEED Platinum d'Espanya. A Yutopias aporta la mirada del projectista — la persona que pren les decisions que el sistema necessita anticipar.",
+        "linkedinUrl": "https://www.linkedin.com/in/ivan-perez-yutopias/"
+      }
+    },
+    "teamIntro": {
+      "left": "Un equip no és un organigrama, és una tribu al voltant d'un tòtem. El tòtem aquí és clar: el partner que habitarà el sistema durant els pròxims 50 anys.",
+      "right": "Cada persona aporta una mestria — mediació, enginyeria, projecte, arquitectura tecnològica, disseny, finances — i treballa amb autonomia sobre el seu terreny.",
+      "rightAccent": "La innovació oberta és el que fa que l'equip i l'ecosistema es parlin, i d'aquí neix la màgia."
+    },
+    "team": {
+      "eyebrow": "L'EQUIP COMPLET",
+      "title": "Les persones que ho fan possible",
+      "linkedin": "LinkedIn",
+      "member1": {
+        "name": "Eugenia Rossetti",
+        "role": "Service Designer",
+        "bio": "Dissenya com la visió sistèmica d'AB360 aterra en tecnologia i com cada partner l'habita en el seu dia a dia.",
+        "linkedinUrl": ""
+      },
+      "member2": {
+        "name": "Alejandro Glejberman",
+        "role": "Tech Lead",
+        "bio": "El guardià de l'stack. Defineix l'arquitectura tecnològica d'AB360 i dirigeix l'equip que la construeix.",
+        "linkedinUrl": ""
+      },
+      "member3": {
+        "name": "Tere Trepat",
+        "role": "UX Designer",
+        "bio": "Dissenya com la visió sistèmica d'AB360 aterra en tecnologia i com cada partner l'habita en el seu dia a dia.",
+        "linkedinUrl": ""
+      },
+      "member4": {
+        "name": "Aida Freixanet",
+        "role": "UI Designer",
+        "bio": "Fa fàcil el dens i complex. Dissenya l'experiència i les interfícies d'AB360 a partir del treball directe dels fundadors amb els early adopters.",
+        "linkedinUrl": ""
+      },
+      "member5": {
+        "name": "Laura Iglesias",
+        "role": "Project Manager Agile",
+        "bio": "Organitza els sprints i dirigeix els desenvolupaments integrant totes les parts perquè producte, disseny i enginyeria avancin al mateix ritme.",
+        "linkedinUrl": ""
+      },
+      "member6": {
+        "name": "Andrés Montañez",
+        "role": "Solutions Architect",
+        "bio": "Dissenya l'arquitectura que connecta els agents amb el bessó digital semàntic. Treballa colze a colze amb el Tech Lead.",
+        "linkedinUrl": ""
+      },
+      "member7": {
+        "name": "Miguel Ángel Zamora",
+        "role": "Developer",
+        "bio": "Desenvolupa AB360 amb el Tech Lead. Converteix l'stack en producte que funciona.",
+        "linkedinUrl": ""
+      },
+      "member8": {
+        "name": "Pedro González-Anta",
+        "role": "CFO",
+        "bio": "Dirigeix l'estructura financera, fiscal i comptable de Yutopias. El seu treball assegura fundadors i inversors que el múscul i el flux estan a l'alçada de cada fita.",
+        "linkedinUrl": ""
+      },
+      "member9": {
+        "name": "Mari Carmen Sánchez",
+        "role": "Analista Comptable",
+        "bio": "Porta la comptabilitat i els impostos. El treball invisible que fa que les decisions financeres se sostinguin sobre dades exactes.",
+        "linkedinUrl": ""
+      }
+    },
+    "ecosystem": {
+      "eyebrow": "L'ECOSISTEMA",
+      "title": "L'ecosistema d'innovació oberta i contínua",
+      "category1Label": "Base tecnològica i escalabilitat",
+      "category2Label": "R+D i Validació científica",
+      "category3Label": "Motor d'evolució i adopció"
+    },
+    "partnersBanner": {
+      "headline": "Busquem partners que vulguin definir com es prendran decisions en aquest sector.",
+      "cta": "Uneix-te al Bootcamp Zero",
+      "tagline1": "Els que arribin després, ho usaran.",
+      "tagline2": "Els que entrin ara, ho moldejaran."
+    }
   },
   "solutionPage": {
     "metadata": {
@@ -345,7 +522,8 @@
       "badge": "Live",
       "headline": "El primer agent d'IA per decidir millor en edificació.",
       "body": "Simulab no és un software aïllat. És el primer agent operatiu d'AB360 — la plataforma que integra BIM, ERP, GMAO i PMS en un bessó digital semàntic. Introdueixes les dades del teu projecte. El motor calcula simultàniament l'impacte en costos i en petjades — carboni, hídrica, energètica.\nVeus el resultat abans d'actuar.",
-      "cta": "Demana una demo"
+      "cta": "Fes el teu autodiagnòstic",
+      "hint": "10 minuts. Te'n vas sabent on ets."
     },
     "quoteBanner": {
       "line1": "Cada decisió sense simulació ja té un cost.",
@@ -471,11 +649,14 @@
     },
     "diagnosticCta": {
       "body": "Descobreix quins són els reptes de la teva organització i com AB360 pot resoldre'ls.",
-      "cta": "Fes el teu autodiagnòstic"
+      "cta": "Fes el teu autodiagnòstic",
+      "hint": "10 minuts. Te'n vas sabent on ets."
     },
     "partnersBanner": {
       "headline": "Busquem partners que vulguin definir com es prendran decisions en aquest sector.",
-      "cta": "Uneix-te al Bootcamp Zero"
+      "cta": "Uneix-te al Bootcamp Zero",
+      "tagline1": "Els que arribin després, ho usaran.",
+      "tagline2": "Els que entrin ara, ho modelaran."
     }
   },
   "programaPage": {
@@ -703,7 +884,7 @@
     "cookies": "Política de cookies",
     "contact": "Contacte",
     "information": "Informació",
-    "legalPagePlaceholder": "Aquesta pagina esta en construccio.",
+    "legalPagePlaceholder": "Aquesta pàgina està en construcció.",
     "kitDigitalAlt": "Programa Kit Digital cofinançat pels fons Next Generation EU",
     "linkedinAria": "Perfil de LinkedIn de Yutopias Systems",
     "linkedinUrl": "https://www.linkedin.com/company/yutopias/posts/?feedView=all",

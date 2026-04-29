@@ -44,7 +44,7 @@ export const PartnersBanner = async () => {
 
         <div
           aria-label={t("marqueeAria")}
-          className="partners-marquee mt-[2.375rem]"
+          className="partners-marquee mt-12"
           role="region"
         >
           <ul className="partners-marquee__track m-0 list-none p-0">

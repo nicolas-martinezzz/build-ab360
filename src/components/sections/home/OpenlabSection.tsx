@@ -40,7 +40,7 @@ export const OpenlabSection = async () => {
           </p>
         </blockquote>
 
-        <div className="mt-[10.8125rem] min-w-0">
+        <div className="mt-20 min-w-0 md:mt-24">
           <p className="figma-text-l uppercase text-grey-dark">{t("pathLabel")}</p>
           <h2
             className="figma-title-2-bold mt-7 text-surface-bg [overflow-wrap:anywhere]"
@@ -50,7 +50,7 @@ export const OpenlabSection = async () => {
             <span className="mt-1 block">{t("headlineLine2")}</span>
             <span className="mt-1 block">{t("headlineLine3")}</span>
           </h2>
-          <p className="figma-text-l mt-5 max-w-[42.75rem] text-surface-bg">
+          <p className="figma-text-l mt-5 max-w-[42.75rem] leading-relaxed text-surface-bg">
             {t("description")}
           </p>
           <p className="mt-[0.5625rem] figma-text-l-bold text-surface-bg">{t("bootcampLead")}</p>
@@ -73,15 +73,15 @@ export const OpenlabSection = async () => {
           </div>
         </div>
 
-        <ul className="mt-[4.25rem] grid list-none gap-10 p-0 md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:grid-cols-[repeat(4,minmax(0,17.0625rem))] lg:justify-between lg:gap-0">
+        <ul className="mt-[4.25rem] grid list-none gap-10 p-0 md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:auto-rows-fr lg:grid-cols-4 lg:items-start lg:gap-8">
           {featureKeys.map((key) => (
-            <li key={key} className="min-w-0">
-              <div className="flex flex-col gap-[0.375rem]">
+            <li key={key} className="min-w-0 lg:h-full">
+              <div className="flex flex-col gap-2 lg:h-full">
                 <OpenlabFeatureIcon />
-                <h3 className="figma-card-title pt-[1.5625rem] text-surface-bg">
+                <h3 className="pt-5 text-[1.18rem] font-bold leading-[1.22] text-surface-bg">
                   {t(`${key}.title`)}
                 </h3>
-                <p className="figma-text-m text-grey-dark">{t(`${key}.body`)}</p>
+                <p className="text-[0.96rem] leading-[1.45] text-grey-dark">{t(`${key}.body`)}</p>
               </div>
             </li>
           ))}

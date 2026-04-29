@@ -1,4 +1,5 @@
 import { Ab360PlatformSection } from "@/components/sections/home/Ab360PlatformSection";
+import { BlogResourcesSection } from "@/components/sections/home/BlogResourcesSection";
 import { ClosingStandardCtaSection } from "@/components/sections/home/ClosingStandardCtaSection";
 import { IntroStripSection } from "@/components/sections/home/IntroStripSection";
 import { OpenlabSection } from "@/components/sections/home/OpenlabSection";
@@ -23,6 +24,7 @@ export const HomePageSections = () => (
     <PartnersBootcampCtaSection />
     <Ab360PlatformSection />
     <TestimonialsSection />
+    <BlogResourcesSection />
     <YutopiasAboutSection />
     <ClosingStandardCtaSection />
   </>

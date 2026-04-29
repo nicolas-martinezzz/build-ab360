@@ -12,7 +12,7 @@ export const SolutionHeroSection = async () => {
   return (
     <section
       aria-labelledby="solution-hero-heading"
-      className="relative flex min-h-[34rem] items-start pb-16 pt-24 sm:min-h-[44.8125rem] md:pt-32 md:pb-20 lg:pt-36"
+      className="relative flex min-h-screen min-h-dvh items-center py-24 md:py-32 lg:py-36"
     >
       <div className="absolute inset-0 overflow-hidden">
         <Image
@@ -36,23 +36,26 @@ export const SolutionHeroSection = async () => {
         </div>
 
         <h1
-          className="figma-title-1 mt-4 max-w-[57.5rem] text-white"
+          className="figma-title-1 mt-4 max-w-[62.5625rem] text-white [overflow-wrap:anywhere]"
           id="solution-hero-heading"
         >
           {t("headline")}
         </h1>
 
-        <p className="figma-text-l mt-6 max-w-[55.8125rem] whitespace-pre-line text-white">
+        <p className="figma-text-l mt-[1.375rem] max-w-[52.5rem] whitespace-pre-line text-white">
           {t("body")}
         </p>
 
         <LinkButton
-          className="mt-8 w-full sm:w-auto"
+          className="mt-[1.375rem] w-full max-w-sm sm:w-auto"
           href={SITE_PATHS.contact}
           variant="primary"
         >
           {t("cta")}
         </LinkButton>
+        <p className="figma-text-m mt-4 text-white/80">
+          {t("hint")}
+        </p>
       </SectionContainer>
     </section>
   );

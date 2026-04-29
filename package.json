@@ -15,7 +15,11 @@
     "skills:install": "npx skills add vercel-labs/agent-skills -y -a cursor -s vercel-react-best-practices web-design-guidelines vercel-composition-patterns --copy && npx skills add vercel-labs/next-skills -y -a cursor -s next-best-practices --copy && npx skills add vercel-labs/skills -y -a cursor -s find-skills --copy && node scripts/sync-skills.mjs",
     "skills:sync": "node scripts/sync-skills.mjs",
     "skills:find": "npx skills find",
-    "skills:list-remote": "npx skills add vercel-labs/agent-skills -l -a cursor"
+    "skills:list-remote": "npx skills add vercel-labs/agent-skills -l -a cursor",
+    "figma:connect": "figma connect --config figma.config.json",
+    "figma:cc:parse": "figma connect parse --config figma.config.json",
+    "figma:cc:publish": "figma connect publish --config figma.config.json",
+    "figma:cc:create": "figma connect create"
   },
   "dependencies": {
     "next": "^15.5.0",
@@ -26,6 +30,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
+    "@figma/code-connect": "^1.4.4",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
