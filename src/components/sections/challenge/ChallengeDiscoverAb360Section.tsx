@@ -27,18 +27,27 @@ export const ChallengeDiscoverAb360Section = async () => {
   return (
     <section className="bg-white py-14 md:py-[4.0625rem]">
       <SectionContainer>
-        <p className="figma-text-l text-black">{t("eyebrow")}</p>
-        <h2 className="figma-title-2-bold mt-5 max-w-[49.375rem] text-black">
-          {t("headline")}
-        </h2>
-        <p className="figma-text-l-bold mt-10 max-w-[45.625rem] text-green-500">{t("highlight")}</p>
-        <p className="figma-text-l mt-8 max-w-[45.625rem] text-black">{t("paragraph1")}</p>
-        <p className="figma-text-l mt-0 max-w-[45.625rem] text-black">{t("paragraph2")}</p>
+        <div className="max-w-[50rem]">
+          <p className="type-eyebrow text-black">{t("eyebrow")}</p>
+          <h2 className="figma-title-2-bold mt-4 text-black">
+            {t("headline")}
+          </h2>
+          <p className="figma-text-l-bold mt-8 text-green-500">{t("highlight")}</p>
+          <p className="figma-text-l mt-5 max-w-[45.625rem] text-black">{t("paragraph1")}</p>
+          <p className="figma-text-l mt-4 max-w-[45.625rem] text-black">{t("paragraph2")}</p>
 
-        <ul className="mt-[2.625rem] grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 flex flex-col items-start">
+            <LinkButton className="h-[45px] w-full max-w-sm border-green-500 px-5 text-green-500 hover:bg-green-100/50 sm:w-auto" href={SITE_PATHS.solution} variant="outline">
+              {t("sectionCta")}
+            </LinkButton>
+            <p className="figma-text-m mt-3 italic text-grey-dark">{t("sectionCtaHint")}</p>
+          </div>
+        </div>
+
+        <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {DISCOVER_AGENT_CARDS.map((card) => (
             <li key={card.key} className="min-w-0">
-              <article className="flex h-full flex-col gap-1.5 p-5">
+              <article className="flex h-full flex-col gap-1.5 px-4 py-3">
                 <span
                   className={
                     card.isLive
@@ -59,21 +68,10 @@ export const ChallengeDiscoverAb360Section = async () => {
                     </span>
                   ))}
                 </div>
-                {card.key === "agent1" ? (
-                  <LinkButton className="mt-4 w-fit" href={SITE_PATHS.contact} variant="primary">
-                    {t("agent1Cta")}
-                  </LinkButton>
-                ) : null}
               </article>
             </li>
           ))}
         </ul>
-
-        <div className="mt-[0.9375rem] flex justify-center">
-          <LinkButton href={SITE_PATHS.information} variant="outline">
-            {t("finalCta")}
-          </LinkButton>
-        </div>
       </SectionContainer>
     </section>
   );

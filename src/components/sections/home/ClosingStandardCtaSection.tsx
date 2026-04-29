@@ -13,19 +13,20 @@ export const ClosingStandardCtaSection = async () => {
     >
       <SectionContainer className="text-center">
         <h2
-          className="mx-auto max-w-[63.5625rem] text-[1.5rem] font-normal leading-[1.22] [overflow-wrap:anywhere] sm:text-[1.875rem] md:text-[2rem]"
+          className="mx-auto max-w-[52rem] text-[1.625rem] font-normal leading-[1.24] [overflow-wrap:anywhere] sm:text-[2rem] md:text-[2.625rem]"
           id="closing-standard-cta-title"
         >
           <span className="block">{t("titleLine1")}</span>
-          <span className="mt-1.5 block">{t("titleLine2")}</span>
+          <span className="mt-1 block">{t("titleLine2")}</span>
         </h2>
         <LinkButton
-          className="mx-auto mt-[2.25rem] w-full max-w-xs focus-visible:ring-offset-green-600 sm:w-auto"
+          className="mx-auto mt-8 h-[45px] w-full max-w-xs border-white/60 bg-transparent px-6 text-base font-medium text-white hover:bg-white/10 focus-visible:ring-offset-green-600 sm:w-auto"
           href={SITE_PATHS.contact}
-          variant="dark"
+          variant="outlineInverse"
         >
           {t("cta")}
         </LinkButton>
+        <p className="figma-text-m mt-4 italic text-white/70">{t("hint")}</p>
       </SectionContainer>
     </section>
   );

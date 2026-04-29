@@ -190,7 +190,8 @@
     "closingStandardCta": {
       "titleLine1": "The standard for how decisions are made in construction",
       "titleLine2": "is being defined right now.",
-      "cta": "Shall we talk?"
+      "cta": "Let's talk investment",
+      "hint": "The sector standard is being written. Now."
     }
   },
   "challengePage": {
@@ -259,6 +260,8 @@
       "highlight": "Its first operational agent is Simulab - already available.",
       "paragraph1": "At the center of AB360 there is a semantic digital twin. It is not a representation of the building - it is understanding. It integrates object data and lifecycle management processes. It relates meaning from development to operation.",
       "paragraph2": "Three AI agents operate on top of that core. Each one in its own domain. All of them so you can make better decisions.",
+      "sectionCta": "See the Solution",
+      "sectionCtaHint": "See the impact before acting. That is all.",
       "metricsLabel": "Its language",
       "agent1Cta": "Discover SimuLab",
       "finalCta": "Discover AB360",
@@ -290,9 +293,11 @@
       }
     },
     "finalCtaSection": {
-      "line1": "The sector already knows it needs to change how decisions are made.",
-      "line2": "The question is not if - it is when and with whom.",
-      "cta": "Tell us your challenges"
+      "line1": "We are looking for partners who want to define how",
+      "line2": "decisions will be made in this sector.",
+      "cta": "Join the Zero Bootcamp",
+      "tagline1": "Those who arrive later will use it.",
+      "tagline2": "Those who join now will shape it."
     }
   },
   "privacyPage": {

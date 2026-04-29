@@ -39,6 +39,11 @@ export const ChallengeFinalCtaSection = async () => {
         >
           {t("cta")}
         </LinkButton>
+        <p className="figma-text-m mt-4 italic text-white/80">
+          {t("tagline1")}
+          <br />
+          {t("tagline2")}
+        </p>
       </SectionContainer>
     </section>
   );

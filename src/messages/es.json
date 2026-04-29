@@ -190,7 +190,8 @@
     "closingStandardCta": {
       "titleLine1": "El estándar de cómo se toman decisiones en el sector",
       "titleLine2": "de la construcción se está definiendo ahora.",
-      "cta": "¿Hablamos?"
+      "cta": "Hablemos de inversión",
+      "hint": "El estándar del sector se está escribiendo. Ahora."
     }
   },
   "challengePage": {
@@ -259,6 +260,8 @@
       "highlight": "Su primer agente operativo es Simulab - ya disponible.",
       "paragraph1": "En el centro de AB360 hay un gemelo digital semántico. No es una representación del edificio - es una comprensión. Integra los datos del objeto y los procesos de gestión de su ciclo de vida. Relaciona su significado. Desde la promoción hasta la explotación.",
       "paragraph2": "Sobre ese cerebro operan tres agentes de IA. Cada uno desde su área. Todos para que decidas mejor.",
+      "sectionCta": "Ver la Solución",
+      "sectionCtaHint": "Ver el impacto antes de actuar. Eso es todo.",
       "metricsLabel": "Su lenguaje",
       "agent1Cta": "Descubre SimuLab",
       "finalCta": "Descubre AB360",
@@ -290,9 +293,11 @@
       }
     },
     "finalCtaSection": {
-      "line1": "El sector ya sabe que tiene que cambiar la forma de tomar decisiones.",
-      "line2": "La pregunta no es si - es cuándo y con quién.",
-      "cta": "Cuéntanos tus retos"
+      "line1": "Buscamos partners que quieran definir cómo",
+      "line2": "se tomarán decisiones en este sector.",
+      "cta": "Únete al Bootcamp Zero",
+      "tagline1": "Los que lleguen después, lo usarán.",
+      "tagline2": "Los que entren ahora, lo moldean."
     }
   },
   "privacyPage": {

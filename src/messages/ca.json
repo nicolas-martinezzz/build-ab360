@@ -190,7 +190,8 @@
     "closingStandardCta": {
       "titleLine1": "L'estàndard de com es prenen decisions al sector",
       "titleLine2": "de la construcció s'està definint ara.",
-      "cta": "En parlem?"
+      "cta": "Parlem d'inversió",
+      "hint": "L'estàndard del sector s'està escrivint. Ara."
     }
   },
   "challengePage": {
@@ -259,6 +260,8 @@
       "highlight": "El seu primer agent operatiu és Simulab - ja disponible.",
       "paragraph1": "Al centre d'AB360 hi ha un bessó digital semàntic. No és una representació de l'edifici - és una comprensió. Integra les dades de l'objecte i els processos de gestió del seu cicle de vida. Relaciona el seu significat des de la promoció fins a l'explotació.",
       "paragraph2": "Sobre aquest nucli operen tres agents d'IA. Cadascun des de la seva àrea. Tots perquè prenguis millors decisions.",
+      "sectionCta": "Veure la Solució",
+      "sectionCtaHint": "Veure l'impacte abans d'actuar. Això és tot.",
       "metricsLabel": "El seu llenguatge",
       "agent1Cta": "Descobreix SimuLab",
       "finalCta": "Descobreix AB360",
@@ -290,9 +293,11 @@
       }
     },
     "finalCtaSection": {
-      "line1": "El sector ja sap que ha de canviar la manera de prendre decisions.",
-      "line2": "La pregunta no és si - és quan i amb qui.",
-      "cta": "Explica'ns els teus reptes"
+      "line1": "Busquem partners que vulguin definir com",
+      "line2": "es prendran decisions en aquest sector.",
+      "cta": "Uneix-te al Bootcamp Zero",
+      "tagline1": "Els que arribin després, ho faran servir.",
+      "tagline2": "Els que entrin ara, ho modelaran."
     }
   },
   "privacyPage": {
