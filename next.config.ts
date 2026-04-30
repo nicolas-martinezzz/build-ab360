@@ -8,7 +8,11 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
+  output: "export",
   outputFileTracingRoot: projectRoot,
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default withNextIntl(nextConfig);

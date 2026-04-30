@@ -28,6 +28,7 @@ export const FooterNewsletterForm = ({
   botBlockedMessage,
 }: FooterNewsletterFormProps) => {
   const locale = useLocale();
+  const newsletterEndpoint = process.env.NEXT_PUBLIC_NEWSLETTER_ENDPOINT ?? "/api/newsletter.php";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [accepted, setAccepted] = useState(false);
@@ -50,7 +51,7 @@ export const FooterNewsletterForm = ({
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/newsletter", {
+      const response = await fetch(newsletterEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
