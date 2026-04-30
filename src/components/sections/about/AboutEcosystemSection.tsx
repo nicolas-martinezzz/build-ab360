@@ -34,7 +34,7 @@ const LogoGrid = ({
     {logos.map((logo) => (
       <li
         key={logo.alt}
-        className="flex h-[5.875rem] items-center justify-center rounded-[2px] bg-green-100/40 px-3 py-2"
+        className="flex h-[5.875rem] items-center justify-center rounded-[2px] bg-white px-3 py-2"
       >
         <Image
           alt={logo.alt}
@@ -52,7 +52,7 @@ export const AboutEcosystemSection = async () => {
   const t = await getTranslations("aboutPage.ecosystem");
 
   return (
-    <section aria-labelledby="about-ecosystem-title" className="section-block bg-green-50">
+    <section aria-labelledby="about-ecosystem-title" className="section-block bg-grey-light/35">
       <SectionContainer>
         <p className="type-eyebrow text-grey-dark/85">{t("eyebrow")}</p>
         <h2

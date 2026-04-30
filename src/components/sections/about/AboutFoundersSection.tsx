@@ -16,7 +16,7 @@ export const AboutFoundersSection = async () => {
   const t = await getTranslations("aboutPage.founders");
 
   return (
-    <section aria-labelledby="about-founders-title" className="section-block bg-green-50">
+    <section aria-labelledby="about-founders-title" className="section-block bg-white">
       <SectionContainer>
         <p className="type-eyebrow text-grey-dark/90">{t("eyebrow")}</p>
         <h2
