@@ -49,7 +49,7 @@ export const Ab360PlatformSection = async () => {
         <ul className="mt-[58px] grid list-none grid-cols-1 gap-8 p-0 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-12">
           {AGENTS.map(({ key, live }) => (
             <li key={key} className="min-w-0">
-              <article className="flex flex-col gap-1.5 p-5">
+              <article className="flex h-full flex-col gap-1.5 p-5">
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                   <span
                     className={
@@ -61,10 +61,10 @@ export const Ab360PlatformSection = async () => {
                     {t(`${key}.badge`)}
                   </span>
                 </div>
-                <p className="figma-text-m italic text-black">{t(`${key}.role`)}</p>
-                <h3 className="figma-card-title text-black">{t(`${key}.title`)}</h3>
-                <p className="figma-text-m text-surface-bg">{t(`${key}.body`)}</p>
-                <p className="figma-text-m mt-1.5 text-surface-bg">{t(`${key}.metricsLabel`)}</p>
+                <p className="figma-text-m italic text-black md:min-h-[3rem]">{t(`${key}.role`)}</p>
+                <h3 className="figma-card-title text-black md:min-h-[3.5rem]">{t(`${key}.title`)}</h3>
+                <p className="figma-text-m text-surface-bg md:min-h-[6rem]">{t(`${key}.body`)}</p>
+                <p className="figma-text-m mt-auto pt-1.5 text-surface-bg">{t(`${key}.metricsLabel`)}</p>
                 <ul className="mt-[3px] flex flex-wrap gap-[7px]">
                   {PILL_KEYS[key].map((pillKey) => (
                     <li key={pillKey}>

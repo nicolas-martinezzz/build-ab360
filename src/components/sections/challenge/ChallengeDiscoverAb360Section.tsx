@@ -57,10 +57,10 @@ export const ChallengeDiscoverAb360Section = async () => {
                 >
                   {t(`${card.key}.badge`)}
                 </span>
-                <p className="figma-text-m italic text-black">{t(`${card.key}.role`)}</p>
-                <h3 className="figma-text-l-bold text-black">{t(`${card.key}.title`)}</h3>
-                <p className="figma-text-m text-surface-bg">{t(`${card.key}.body`)}</p>
-                <p className="figma-text-m mt-1.5 text-surface-bg">{t("metricsLabel")}</p>
+                <p className="figma-text-m italic text-black md:min-h-[3rem]">{t(`${card.key}.role`)}</p>
+                <h3 className="figma-text-l-bold text-black md:min-h-[3.5rem]">{t(`${card.key}.title`)}</h3>
+                <p className="figma-text-m text-surface-bg md:min-h-[5.5rem]">{t(`${card.key}.body`)}</p>
+                <p className="figma-text-m mt-auto pt-1.5 text-surface-bg">{t("metricsLabel")}</p>
                 <div className="mt-[3px] flex flex-wrap gap-[7px]">
                   {card.pills.map((pillKey) => (
                     <span className="rounded-[2px] bg-green-100 px-[5px] text-sm font-normal leading-6 text-green-400" key={pillKey}>

@@ -78,16 +78,16 @@ export const AboutTeamSection = async () => {
                       src={MEMBER_PHOTOS[key]}
                     />
                   </div>
-                  <div className="mt-4 flex flex-1 flex-col space-y-1">
-                    <p className="figma-text-l-bold">
+                  <div className="mt-4 flex flex-1 flex-col">
+                    <p className="figma-text-l-bold md:min-h-[3.5rem]">
                       {teamT(`${key}.name`)}
                     </p>
-                    <p className="figma-text-m text-white/60">{teamT(`${key}.role`)}</p>
-                    <p className="figma-text-m mt-2 leading-relaxed text-white/70">
+                    <p className="figma-text-m mt-1 text-white/60 md:min-h-[3rem]">{teamT(`${key}.role`)}</p>
+                    <p className="figma-text-m mt-2 leading-relaxed text-white/70 md:min-h-[8rem]">
                       {teamT(`${key}.bio`)}
                     </p>
                     <Link
-                      className="figma-text-m mt-3 text-green-300 underline-offset-2 hover:underline"
+                      className="figma-text-m mt-3 text-green-300 underline-offset-2 hover:underline sm:mt-auto"
                       href={linkedinUrl as never}
                       target="_blank"
                       rel="noopener noreferrer"

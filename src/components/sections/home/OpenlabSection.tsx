@@ -73,15 +73,15 @@ export const OpenlabSection = async () => {
           </div>
         </div>
 
-        <ul className="mt-[4.25rem] grid list-none gap-10 p-0 md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:auto-rows-fr lg:grid-cols-4 lg:items-start lg:gap-8">
+        <ul className="mt-[4.25rem] grid list-none gap-10 p-0 md:auto-rows-fr md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:grid-cols-4 lg:items-start lg:gap-8">
           {featureKeys.map((key) => (
             <li key={key} className="min-w-0 lg:h-full">
-              <div className="flex flex-col gap-2 lg:h-full">
+              <div className="flex flex-col gap-2 md:h-full">
                 <OpenlabFeatureIcon />
-                <h3 className="pt-5 text-[1.18rem] font-bold leading-[1.22] text-surface-bg">
+                <h3 className="pt-5 text-[1.18rem] font-bold leading-[1.22] text-surface-bg md:min-h-[4.5rem]">
                   {t(`${key}.title`)}
                 </h3>
-                <p className="text-[0.96rem] leading-[1.45] text-grey-dark">{t(`${key}.body`)}</p>
+                <p className="text-[0.96rem] leading-[1.45] text-grey-dark md:min-h-[7rem]">{t(`${key}.body`)}</p>
               </div>
             </li>
           ))}

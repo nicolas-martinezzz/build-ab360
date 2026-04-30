@@ -40,20 +40,20 @@ export const AboutFoundersSection = async () => {
                     src={FOUNDER_PHOTOS[key]}
                   />
                 </div>
-                <div className="mt-4 flex flex-1 flex-col">
-                  <p className="figma-title-3 text-surface-bg">
+                <div className="mt-4 flex flex-1 flex-col md:min-h-[34rem]">
+                  <p className="figma-title-3 text-surface-bg md:min-h-[4.5rem]">
                     {t(`${key}.name`)}
                   </p>
-                  <p className="figma-text-l mt-1 text-surface-bg/90">{t(`${key}.role`)}</p>
-                  <blockquote className="figma-text-l mt-4 border-l-2 border-green-500 pl-3 italic leading-relaxed text-green-700">
+                  <p className="figma-text-l mt-1 text-surface-bg/90 md:min-h-[3.5rem]">{t(`${key}.role`)}</p>
+                  <blockquote className="figma-text-l mt-4 border-l-2 border-green-500 pl-3 italic leading-relaxed text-green-700 md:min-h-[10rem]">
                     &ldquo;{t(`${key}.quote`)}&rdquo;
                   </blockquote>
-                  <p className="figma-text-m mt-4 max-w-[34ch] leading-relaxed text-grey-dark">
+                  <p className="figma-text-m mt-4 max-w-[34ch] leading-relaxed text-grey-dark md:min-h-[13rem]">
                     {t(`${key}.bio`)}
                   </p>
                   {linkedinUrl && (
                     <Link
-                      className="figma-text-m mt-4 inline-flex min-h-10 items-center gap-1.5 self-start rounded-[4px] border border-green-500/55 px-3.5 py-2 text-green-700 transition-colors hover:bg-green-100/30"
+                      className="figma-text-m mt-4 inline-flex min-h-10 items-center gap-1.5 self-start rounded-[4px] border border-green-500/55 px-3.5 py-2 text-green-700 transition-colors hover:bg-green-100/30 sm:mt-auto"
                       href={linkedinUrl as never}
                       target="_blank"
                       rel="noopener noreferrer"
