@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
 interface FooterNewsletterFormProps {
@@ -10,6 +11,9 @@ interface FooterNewsletterFormProps {
   privacyPolicyLabel: string;
   subscribeButton: string;
   privacyHref: string;
+  successMessage: string;
+  errorMessage: string;
+  botBlockedMessage: string;
 }
 
 export const FooterNewsletterForm = ({
@@ -19,24 +23,63 @@ export const FooterNewsletterForm = ({
   privacyPolicyLabel,
   subscribeButton,
   privacyHref,
+  successMessage,
+  errorMessage,
+  botBlockedMessage,
 }: FooterNewsletterFormProps) => {
+  const locale = useLocale();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [accepted, setAccepted] = useState(false);
+  const [website, setWebsite] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [startedAt] = useState<number>(() => Date.now());
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!accepted || !email) return;
-    setSubmitted(true);
+    if (!accepted || !email || isSubmitting) return;
+
+    if (website) {
+      setError(botBlockedMessage);
+      return;
+    }
+
+    setError(null);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          accepted,
+          locale,
+          website,
+          submittedAt: startedAt,
+        }),
+      });
+
+      if (!response.ok) {
+        setError(errorMessage);
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
-    return (
-      <p className="text-sm text-green-300">
-        ¡Gracias! Te hemos añadido a la lista.
-      </p>
-    );
+    return <p className="text-sm text-green-300">{successMessage}</p>;
   }
 
   return (
@@ -56,6 +99,14 @@ export const FooterNewsletterForm = ({
         type="email"
         value={email}
       />
+      <input
+        autoComplete="off"
+        className="pointer-events-none absolute -left-[9999px] top-auto h-px w-px opacity-0"
+        onChange={(e) => setWebsite(e.target.value)}
+        tabIndex={-1}
+        type="text"
+        value={website}
+      />
       <label className="flex cursor-pointer items-start gap-2.5 text-sm text-white/70">
         <input
           checked={accepted}
@@ -73,11 +124,12 @@ export const FooterNewsletterForm = ({
       </label>
       <button
         className="h-11 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-600 disabled:opacity-50"
-        disabled={!accepted}
+        disabled={!accepted || isSubmitting}
         type="submit"
       >
         {subscribeButton}
       </button>
+      {error ? <p className="text-sm text-red-300">{error}</p> : null}
     </form>
   );
 };

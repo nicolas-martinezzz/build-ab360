@@ -159,11 +159,14 @@ export const SiteFooter = async () => {
             </p>
             <p className="text-sm leading-relaxed text-white/70">{t("newsletterSubtitle")}</p>
             <FooterNewsletterForm
+              botBlockedMessage={t("newsletterBotBlockedMessage")}
               emailPlaceholder={t("emailPlaceholder")}
+              errorMessage={t("newsletterErrorMessage")}
               namePlaceholder={t("namePlaceholder")}
               privacyCheck={t("privacyCheck")}
               privacyHref={SITE_PATHS.privacy}
               privacyPolicyLabel={t("privacyLink")}
+              successMessage={t("newsletterSuccessMessage")}
               subscribeButton={t("subscribeButton")}
             />
           </div>
