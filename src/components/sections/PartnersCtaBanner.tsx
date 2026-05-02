@@ -49,7 +49,7 @@ export const PartnersCtaBanner = ({
 
       <div className={twMerge("mt-12 flex justify-center", ctaWrapperClassName ?? "")}>
         <LinkButton
-          href={SITE_PATHS.contact}
+          href={SITE_PATHS.reservaPlaza}
           variant="primary"
         >
           {cta}

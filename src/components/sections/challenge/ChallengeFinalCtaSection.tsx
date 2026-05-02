@@ -34,7 +34,7 @@ export const ChallengeFinalCtaSection = async () => {
         </h2>
         <LinkButton
           className="mx-auto mt-10 w-full max-w-xs justify-center sm:w-auto"
-          href={SITE_PATHS.contact}
+          href={SITE_PATHS.reservaPlaza}
           variant="primary"
         >
           {t("cta")}

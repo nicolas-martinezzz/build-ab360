@@ -49,7 +49,7 @@ export const ProgramaHeroSection = async () => {
 
         <LinkButton
           className="mt-7 w-full sm:w-auto"
-          href={SITE_PATHS.contact}
+          href={SITE_PATHS.reservaPlaza}
           variant="primary"
         >
           {t("cta")}

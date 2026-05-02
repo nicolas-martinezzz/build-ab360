@@ -21,7 +21,7 @@ export const SolutionOpenlabSection = async () => {
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <LinkButton
               className="w-full sm:w-auto"
-              href={SITE_PATHS.contact}
+              href={SITE_PATHS.reservaPlaza}
               variant="primary"
             >
               {t("ctaPrimary")}

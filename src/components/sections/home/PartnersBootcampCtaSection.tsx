@@ -32,7 +32,7 @@ export const PartnersBootcampCtaSection = async () => {
         </h2>
         <LinkButton
           className="mx-auto mt-[2.6875rem] w-full max-w-sm justify-center sm:w-auto"
-          href={SITE_PATHS.contact}
+          href={SITE_PATHS.reservaPlaza}
           variant="primary"
         >
           {t("cta")}

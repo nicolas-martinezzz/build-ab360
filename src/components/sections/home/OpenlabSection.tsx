@@ -58,7 +58,7 @@ export const OpenlabSection = async () => {
           <div className="mt-[1.1875rem] flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <LinkButton
               className="w-full justify-center sm:w-auto"
-              href={SITE_PATHS.contact}
+              href={SITE_PATHS.reservaPlaza}
               variant="primary"
             >
               {t("ctaPrimary")}

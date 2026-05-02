@@ -14,7 +14,7 @@ export const ProgramaHeroBottomBanner = async () => {
         </p>
         <LinkButton
           className="h-9 rounded-[6px] bg-white px-6 py-2 text-sm font-semibold text-surface-bg hover:bg-white/90"
-          href={SITE_PATHS.contact}
+          href={SITE_PATHS.reservaPlaza}
         >
           {t("logosStrip.topCta")}
         </LinkButton>

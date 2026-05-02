@@ -56,7 +56,7 @@ export const ProgramaJourneySection = async () => {
 
             <LinkButton
               className="mt-7 border-green-500 px-4"
-              href={SITE_PATHS.contact}
+              href={SITE_PATHS.reservaPlaza}
               variant="outline"
             >
               {t("cta")}
