@@ -7,6 +7,8 @@ export const SITE_PATHS = {
   home: "/",
   about: "/nosotros",
   challenge: "/challenge",
+  autodiagnostico: "/autodiagnostico",
+  reservaPlaza: "/reserva-plaza",
   solution: "/solution",
   programa: "/programa",
   privacy: "/privacy",
@@ -15,6 +17,16 @@ export const SITE_PATHS = {
   resources: "/resources",
   information: "/information",
 } as const;
+
+export const getDiagnosticPathByLocale = (locale: string): string => {
+  if (locale === "en") return "/self-assessment";
+  if (locale === "ca") return "/autodiagnostic";
+  return "/autodiagnostico";
+};
+
+export const getBootcampPathByLocale = (): string => {
+  return "/reserva-plaza";
+};
 
 export const SITE_SECTION_IDS = {
   challenge: "desafio",

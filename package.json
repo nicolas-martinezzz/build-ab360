@@ -11,7 +11,10 @@
     "lint:palette": "node scripts/check-color-palette.mjs",
     "check:json-bom": "node scripts/check-json-bom.mjs",
     "check:i18n-parity": "node scripts/check-i18n-parity.mjs",
-    "verify": "npm run lint && npm run lint:palette && npm run check:json-bom && npm run check:i18n-parity && npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "verify": "npm run lint && npm run lint:palette && npm run check:json-bom && npm run check:i18n-parity && npm run test && npm run build",
     "skills:install": "npx skills add vercel-labs/agent-skills -y -a cursor -s vercel-react-best-practices web-design-guidelines vercel-composition-patterns --copy && npx skills add vercel-labs/next-skills -y -a cursor -s next-best-practices --copy && npx skills add vercel-labs/skills -y -a cursor -s find-skills --copy && node scripts/sync-skills.mjs",
     "skills:sync": "node scripts/sync-skills.mjs",
     "skills:find": "npx skills find",
@@ -32,13 +35,19 @@
     "@eslint/eslintrc": "^3.2.0",
     "@figma/code-connect": "^1.4.4",
     "@tailwindcss/postcss": "^4.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@vitest/coverage-v8": "^4.1.5",
+    "basic-ftp": "^6.0.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.5.0",
+    "happy-dom": "^20.9.0",
     "postcss": "^8.0.0",
     "tailwindcss": "^4.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.5"
   }
 }

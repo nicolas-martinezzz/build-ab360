@@ -9,6 +9,7 @@ const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
   output: "export",
+  trailingSlash: true,
   outputFileTracingRoot: projectRoot,
   images: {
     unoptimized: true,
