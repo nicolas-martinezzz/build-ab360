@@ -1,12 +1,29 @@
 require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") });
 const ftp = require("basic-ftp");
 const path = require("path");
+const fs = require("fs");
+
+// Upload directory contents recursively, skipping the /api subfolder
+async function uploadDirExcludingApi(client, localDir) {
+    const entries = fs.readdirSync(localDir, { withFileTypes: true });
+    for (const entry of entries) {
+        if (entry.isDirectory()) {
+            if (entry.name === "api") continue;
+            await client.ensureDir(entry.name);
+            await client.cd(entry.name);
+            await uploadDirExcludingApi(client, path.join(localDir, entry.name));
+            await client.cd("..");
+        } else {
+            await client.uploadFrom(path.join(localDir, entry.name), entry.name);
+        }
+    }
+}
 
 async function deploy() {
     const client = new ftp.Client();
-    client.ftp.verbose = true;
+    client.ftp.verbose = false;
     try {
-        console.log("Conectando al servidor FTP...");
+        console.log("🚀 Conectando al servidor FTP (STAGING)...");
         await client.access({
             host: process.env.DEPLOY_HOST,
             user: process.env.DEPLOY_USER,
@@ -16,23 +33,28 @@ async function deploy() {
             // TLS is active and traffic is encrypted — only the hostname validation fails.
             secureOptions: { rejectUnauthorized: false },
         });
-        console.log("Conexión exitosa. Subiendo archivos a staging.yutopias.com/httpdocs...");
-        
-        // Asegurarse de que el directorio remoto exista
+        console.log("✓ Conectado\n");
+
+        console.log("📦 Subiendo build estático (sin api/)...");
         await client.ensureDir("staging.yutopias.com/httpdocs");
-        
-        // Limpiar el directorio remoto antes de subir (opcional, pero recomendado para builds limpios)
-        console.log("Limpiando directorio remoto (esto puede tardar unos segundos)...");
+        await client.cd("staging.yutopias.com/httpdocs");
         await client.clearWorkingDir();
-        
-        // Subir la carpeta out
-        console.log("Subiendo la carpeta out/ ...");
-        await client.uploadFromDir(path.join(__dirname, "../out"));
-        
-        console.log("¡Despliegue finalizado con éxito!");
-    }
-    catch(err) {
-        console.error("Error durante el despliegue:", err);
+        await uploadDirExcludingApi(client, path.join(__dirname, "../out"));
+        console.log("  ✓ build estático subido\n");
+
+        console.log("🔌 Subiendo API PHP...");
+        await client.ensureDir("api");
+        await client.cd("api");
+        const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php"];
+        for (const f of phpFiles) {
+            await client.uploadFrom(path.join(__dirname, "../public/api", f), f);
+            console.log("  ✓ api/" + f);
+        }
+
+        console.log("\n✅ ¡Despliegue a STAGING finalizado con éxito!");
+        console.log("   🌐 https://staging.yutopias.com");
+    } catch (err) {
+        console.error("\n❌ Error durante el despliegue:", err.message);
     }
     client.close();
 }
