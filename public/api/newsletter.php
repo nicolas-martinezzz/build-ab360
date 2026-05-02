@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") { http_response_code(204); exit; }
 $requestOrigin = $_SERVER["HTTP_ORIGIN"] ?? $_SERVER["HTTP_REFERER"] ?? "";
 $validOrigin = false;
 foreach ($allowedOrigins as $o) {
-    if (str_starts_with($requestOrigin, $o)) { $validOrigin = true; break; }
+    if (strpos($requestOrigin, $o) === 0) { $validOrigin = true; break; }
 }
 if (!$validOrigin) {
     http_response_code(403);
