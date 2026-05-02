@@ -1,6 +1,30 @@
 <?php
 declare(strict_types=1);
 
+// ─── CORS ─────────────────────────────────────────────────────────────────────
+$allowedOrigins = ["https://yutopias.com", "https://staging.yutopias.com"];
+$origin = $_SERVER["HTTP_ORIGIN"] ?? "";
+if (in_array($origin, $allowedOrigins, true)) {
+    header("Access-Control-Allow-Origin: " . $origin);
+} else {
+    header("Access-Control-Allow-Origin: https://yutopias.com");
+}
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") { http_response_code(204); exit; }
+
+// ─── Origin validation ────────────────────────────────────────────────────────
+$requestOrigin = $_SERVER["HTTP_ORIGIN"] ?? $_SERVER["HTTP_REFERER"] ?? "";
+$validOrigin = false;
+foreach ($allowedOrigins as $o) {
+    if (str_starts_with($requestOrigin, $o)) { $validOrigin = true; break; }
+}
+if (!$validOrigin) {
+    http_response_code(403);
+    echo json_encode(["message" => "Forbidden"]);
+    exit;
+}
+
 header("Content-Type: application/json; charset=utf-8");
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -66,7 +90,12 @@ $dbPort     = (int)   ($config["db_port"]     ?? getenv("NEWSLETTER_DB_PORT")   
 $dbName     = (string)($config["db_name"]     ?? getenv("NEWSLETTER_DB_NAME")     ?? "");
 $dbUser     = (string)($config["db_user"]     ?? getenv("NEWSLETTER_DB_USER")     ?? "");
 $dbPassword = (string)($config["db_password"] ?? getenv("NEWSLETTER_DB_PASSWORD") ?? "");
-$ipSalt     = (string)($config["ip_salt"]     ?? getenv("NEWSLETTER_IP_SALT")     ?? "bootcamp-default-salt");
+$ipSalt     = (string)($config["ip_salt"]     ?? getenv("NEWSLETTER_IP_SALT")     ?? "");
+if ($ipSalt === "") {
+    http_response_code(500);
+    echo json_encode(["message" => "Server misconfiguration"]);
+    exit;
+}
 $notifyTo   = (string)($config["notify_to"]   ?? getenv("NEWSLETTER_NOTIFY_TO")   ?? "jjm@yutopias.com");
 $mailFrom   = (string)($config["mail_from"]   ?? getenv("NEWSLETTER_MAIL_FROM")   ?? "no-reply@yutopias.com");
 
@@ -81,6 +110,9 @@ $ipFirst   = trim(explode(",", (string)$ip)[0]);
 $ipHash    = $ipFirst !== "" ? hash("sha256", $ipFirst . ":" . $ipSalt) : null;
 $userAgent = substr((string)($_SERVER["HTTP_USER_AGENT"] ?? ""), 0, 255);
 
+const RATE_LIMIT_MAX    = 10;
+const RATE_LIMIT_WINDOW = 60;
+
 try {
     $dsn = sprintf("mysql:host=%s;port=%d;dbname=%s;charset=utf8mb4", $dbHost, $dbPort, $dbName);
     $pdo = new PDO($dsn, $dbUser, $dbPassword, [
@@ -88,6 +120,24 @@ try {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES   => false,
     ]);
+
+    if ($ipHash !== null) {
+        try {
+            $rlStmt = $pdo->prepare("
+                SELECT COUNT(*) AS cnt
+                FROM bootcamp_leads
+                WHERE ip_hash = :ip_hash
+                  AND created_at >= DATE_SUB(NOW(), INTERVAL :window SECOND)
+            ");
+            $rlStmt->execute([":ip_hash" => $ipHash, ":window" => RATE_LIMIT_WINDOW]);
+            $rlRow = $rlStmt->fetch();
+            if ((int)($rlRow["cnt"] ?? 0) >= RATE_LIMIT_MAX) {
+                http_response_code(429);
+                echo json_encode(["message" => "Too many requests"]);
+                exit;
+            }
+        } catch (Throwable $ignored) {}
+    }
 
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS bootcamp_leads (
@@ -137,10 +187,13 @@ try {
         . "Empresa: " . $company . "\n"
         . "Idioma: "  . $locale  . "\n"
         . "Fecha: "   . gmdate("Y-m-d H:i:s") . " UTC\n";
-    $headers = "From: "         . $mailFrom . "\r\n"
-             . "Reply-To: "     . $email    . "\r\n"
+    $safeEmail = filter_var($email, FILTER_VALIDATE_EMAIL) ? preg_replace('/[\r\n]/', '', $email) : $mailFrom;
+    $headers = "From: "     . $mailFrom  . "\r\n"
+             . "Reply-To: " . $safeEmail . "\r\n"
              . "Content-Type: text/plain; charset=UTF-8\r\n";
-    @mail($notifyTo, $subject, $message, $headers);
+    if (!mail($notifyTo, $subject, $message, $headers)) {
+        error_log("[bootcamp-lead] Failed to send notification to " . $notifyTo);
+    }
 
     echo json_encode(["ok" => true]);
 } catch (Throwable $exception) {

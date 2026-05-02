@@ -1,6 +1,30 @@
 <?php
 declare(strict_types=1);
 
+// ─── CORS ─────────────────────────────────────────────────────────────────────
+$allowedOrigins = ["https://yutopias.com", "https://staging.yutopias.com"];
+$origin = $_SERVER["HTTP_ORIGIN"] ?? "";
+if (in_array($origin, $allowedOrigins, true)) {
+    header("Access-Control-Allow-Origin: " . $origin);
+} else {
+    header("Access-Control-Allow-Origin: https://yutopias.com");
+}
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") { http_response_code(204); exit; }
+
+// ─── Origin validation ────────────────────────────────────────────────────────
+$requestOrigin = $_SERVER["HTTP_ORIGIN"] ?? $_SERVER["HTTP_REFERER"] ?? "";
+$validOrigin = false;
+foreach ($allowedOrigins as $o) {
+    if (str_starts_with($requestOrigin, $o)) { $validOrigin = true; break; }
+}
+if (!$validOrigin) {
+    http_response_code(403);
+    echo json_encode(["message" => "Forbidden"]);
+    exit;
+}
+
 header("Content-Type: application/json; charset=utf-8");
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -39,7 +63,12 @@ $dbPort     = (int)   ($config["db_port"]     ?? getenv("NEWSLETTER_DB_PORT")   
 $dbName     = (string)($config["db_name"]     ?? getenv("NEWSLETTER_DB_NAME")     ?? "");
 $dbUser     = (string)($config["db_user"]     ?? getenv("NEWSLETTER_DB_USER")     ?? "");
 $dbPassword = (string)($config["db_password"] ?? getenv("NEWSLETTER_DB_PASSWORD") ?? "");
-$ipSalt     = (string)($config["ip_salt"]     ?? getenv("NEWSLETTER_IP_SALT")     ?? "diagnostic-default-salt");
+$ipSalt     = (string)($config["ip_salt"]     ?? getenv("NEWSLETTER_IP_SALT")     ?? "");
+if ($ipSalt === "") {
+    http_response_code(500);
+    echo json_encode(["message" => "Server misconfiguration"]);
+    exit;
+}
 
 if ($dbHost === "" || $dbName === "" || $dbUser === "" || $dbPassword === "") {
     http_response_code(500);

@@ -33,8 +33,9 @@ function persistLocally(payload: Record<string, unknown>): void {
 }
 
 function generateLocalSessionId(): string {
-  const randomPart = Math.random().toString(36).slice(2, 12);
-  return `diag-${Date.now().toString(36)}-${randomPart}`;
+  const bytes = new Uint8Array(12);
+  crypto.getRandomValues(bytes);
+  return `diag-${Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("")}`;
 }
 
 async function post(payload: Record<string, unknown>): Promise<void> {
