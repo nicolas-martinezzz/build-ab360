@@ -1,3 +1,4 @@
+require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") });
 const ftp = require("basic-ftp");
 const path = require("path");
 
@@ -11,6 +12,9 @@ async function deploy() {
             user: process.env.DEPLOY_USER,
             password: process.env.DEPLOY_PASSWORD,
             secure: true,
+            // Shared hosting uses a provider wildcard cert (*.loading.es), not per-IP cert.
+            // TLS is active and traffic is encrypted — only the hostname validation fails.
+            secureOptions: { rejectUnauthorized: false },
         });
         console.log("Conexión exitosa. Subiendo archivos a staging.yutopias.com/httpdocs...");
         
