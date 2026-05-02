@@ -302,63 +302,66 @@ function BridgeSection({
   const hookReto2 = topRetos[1]?.reto.name ?? "";
 
   return (
-    <div className="bg-[#1C1E2E] rounded-[10px] overflow-hidden">
-      {/* Reflection */}
-      <div className="px-6 sm:px-8 pt-8 pb-5 border-b border-white/10">
-        <p className="text-[17px] text-white/80 italic leading-[1.6] text-center max-w-[600px] mx-auto">
-          {t("bridgeReflection")}
-        </p>
-      </div>
-
-      {/* Hook */}
-      <div className="px-6 sm:px-8 py-6 border-b border-white/10">
-        <p className="text-[10px] font-bold tracking-[0.14em] uppercase text-[#359E52] mb-1">{t("bridgeEyebrow")}</p>
-        <h3 className="text-[18px] font-semibold text-white mb-3">
-          {t("bridgeHeading")}
-        </h3>
-        <p className="text-[14px] text-white/70 leading-[1.65]">
-          {t("bridgeBodyPrefix")}{" "}
-          <strong className="text-white">{t("bridgeBodyDate")}</strong>
-          {t("bridgeBodyConnector")}{" "}
-          <strong className="text-white">{hookReto1}</strong>
-          {hookReto2 && <> {t("and")} <strong className="text-white">{hookReto2}</strong></>}
-          {t("bridgeBodySuffix")}
-        </p>
-        <div className="flex flex-wrap gap-2 mt-3">
-          {topRetos.map((item) => (
-            <span key={item.reto.code} className="text-[11px] font-semibold text-[#359E52] border border-[#359E52]/40 rounded-full px-3 py-1">
-              {item.reto.code} · {item.reto.name}
-            </span>
-          ))}
+    <div className="space-y-0">
+      {/* Dark block — reflection + hook + event card */}
+      <div className="bg-[#1C1E2E] rounded-t-[10px] overflow-hidden">
+        {/* Reflection */}
+        <div className="px-6 sm:px-8 pt-8 pb-5 border-b border-white/10">
+          <p className="text-[17px] text-white/80 italic leading-[1.6] text-center max-w-[600px] mx-auto">
+            {t("bridgeReflection")}
+          </p>
         </div>
-      </div>
 
-      {/* Event card */}
-      <div className="px-6 sm:px-8 py-5 border-b border-white/10 flex gap-4 justify-between items-start">
-        <div>
-          <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-[#359E52] mb-1">{t("eventLabel")}</p>
-          <p className="text-[18px] font-semibold text-white">{t("eventName")}</p>
-          <p className="text-[13px] text-white/60 mb-3">{t("eventSub")}</p>
-          <div className="flex flex-wrap gap-2">
-            {([t("eventBadge1"), t("eventBadge2"), t("eventBadge3")] as string[]).map((m) => (
-              <span key={m} className="text-[11px] text-white/60 border border-white/20 rounded-full px-2.5 py-0.5">{m}</span>
+        {/* Hook */}
+        <div className="px-6 sm:px-8 py-6 border-b border-white/10">
+          <p className="text-[10px] font-bold tracking-[0.14em] uppercase text-[#359E52] mb-1">{t("bridgeEyebrow")}</p>
+          <h3 className="text-[18px] font-semibold text-white mb-3">
+            {t("bridgeHeading")}
+          </h3>
+          <p className="text-[14px] text-white/70 leading-[1.65]">
+            {t("bridgeBodyPrefix")}{" "}
+            <strong className="text-white">{t("bridgeBodyDate")}</strong>
+            {t("bridgeBodyConnector")}{" "}
+            <strong className="text-white">{hookReto1}</strong>
+            {hookReto2 && <> {t("and")} <strong className="text-white">{hookReto2}</strong></>}
+            {t("bridgeBodySuffix")}
+          </p>
+          <div className="flex flex-wrap gap-2 mt-3">
+            {topRetos.map((item) => (
+              <span key={item.reto.code} className="text-[11px] font-semibold text-[#359E52] border border-[#359E52]/40 rounded-full px-3 py-1">
+                {item.reto.code} · {item.reto.name}
+              </span>
             ))}
           </div>
         </div>
-        <div className="text-center flex-shrink-0">
-          <p className="text-[36px] font-bold text-white leading-none">16</p>
-          <p className="text-[13px] font-semibold text-[#359E52]">Jun</p>
-          <p className="text-[11px] text-white/50">2026</p>
+
+        {/* Event card */}
+        <div className="px-6 sm:px-8 py-5 flex gap-4 justify-between items-start">
+          <div>
+            <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-[#359E52] mb-1">{t("eventLabel")}</p>
+            <p className="text-[18px] font-semibold text-white">{t("eventName")}</p>
+            <p className="text-[13px] text-white/60 mb-3">{t("eventSub")}</p>
+            <div className="flex flex-wrap gap-2">
+              {([t("eventBadge1"), t("eventBadge2"), t("eventBadge3")] as string[]).map((m) => (
+                <span key={m} className="text-[11px] text-white/60 border border-white/20 rounded-full px-2.5 py-0.5">{m}</span>
+              ))}
+            </div>
+          </div>
+          <div className="text-center flex-shrink-0 bg-[#1C1E2E] border border-white/20 rounded-[8px] px-4 py-3">
+            <p className="text-[36px] font-bold text-white leading-none">16</p>
+            <p className="text-[13px] font-semibold text-[#359E52] uppercase">Jun</p>
+            <p className="text-[11px] text-white/50">2026</p>
+          </div>
         </div>
       </div>
 
-      {/* Bridge form */}
-      <div className="px-6 sm:px-8 py-6">
+      {/* White block — form */}
+      <div className="bg-white rounded-b-[10px] border border-t-0 border-[#D7D7D7] shadow-[0_8px_24px_rgba(20,27,46,0.08)] px-6 sm:px-8 py-6">
         {submitted ? (
           <div className="text-center py-6">
             <div className="w-10 h-10 rounded-full bg-[#359E52] flex items-center justify-center text-white text-lg font-bold mx-auto mb-3">✓</div>
-            <p className="text-[17px] font-semibold text-white mb-2">{t("formSuccessHeading")}</p>
-            <p className="text-[14px] text-white/70 leading-[1.6]">
+            <p className="text-[17px] font-semibold text-[#1C1E2E] mb-2">{t("formSuccessHeading")}</p>
+            <p className="text-[14px] text-[#7B7C82] leading-[1.6]">
               {t("formSuccessBody").split("\n\n")[0]}
               <br /><br />
               {t("formSuccessBody").split("\n\n")[1]}
@@ -366,20 +369,20 @@ function BridgeSection({
           </div>
         ) : (
           <>
-            <p className="text-[16px] font-semibold text-white mb-1">{t("formHeading")}</p>
-            <p className="text-[13px] text-white/60 mb-5">
+            <p className="text-[16px] font-semibold text-[#1C1E2E] mb-1">{t("formHeading")}</p>
+            <p className="text-[13px] text-[#7B7C82] mb-5">
               {t("formSubheading")}
             </p>
             <form onSubmit={handleBridge} noValidate className="grid sm:grid-cols-2 gap-3">
-              <BridgeInput label={t("formFieldFirstName")} value={nombre} onChange={setNombre} placeholder={t("formFieldFirstName")} autoComplete="given-name" />
-              <BridgeInput label={t("formFieldLastName")} value={apellidos} onChange={setApellidos} placeholder={t("formFieldLastName")} autoComplete="family-name" />
-              <BridgeInput label={t("formFieldCompany")} value={empresa} onChange={setEmpresa} placeholder={t("formFieldCompany")} autoComplete="organization" />
-              <BridgeInput label={t("formFieldRole")} value={cargo} onChange={setCargo} placeholder={t("formFieldRole")} autoComplete="organization-title" />
+              <LightInput label={t("formFieldFirstName")} value={nombre} onChange={setNombre} placeholder={t("formFieldFirstName")} autoComplete="given-name" />
+              <LightInput label={t("formFieldLastName")} value={apellidos} onChange={setApellidos} placeholder={t("formFieldLastName")} autoComplete="family-name" />
+              <LightInput label={t("formFieldCompany")} value={empresa} onChange={setEmpresa} placeholder={t("formFieldCompany")} autoComplete="organization" />
+              <LightInput label={t("formFieldRole")} value={cargo} onChange={setCargo} placeholder={t("formFieldRole")} autoComplete="organization-title" />
               <div className="sm:col-span-2">
-                <BridgeInput label={t("formFieldEmail")} value={email} onChange={setEmail} placeholder="email@empresa.com" type="email" autoComplete="email" />
+                <LightInput label={t("formFieldEmail")} value={email} onChange={setEmail} placeholder="email@empresa.com" type="email" autoComplete="email" />
               </div>
               <div className="sm:col-span-2">
-                <label className="block text-[12px] font-semibold text-white/70 mb-1">
+                <label className="block text-[11px] font-semibold text-[#7B7C82] uppercase tracking-[0.08em] mb-1">
                   {t("formFieldChallenge")}
                 </label>
                 <textarea
@@ -387,18 +390,18 @@ function BridgeSection({
                   onChange={(e) => setReto(e.target.value)}
                   placeholder={t("formFieldChallengePlaceholder")}
                   rows={3}
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-[14px] text-white placeholder:text-white/30 focus:outline-none focus:border-[#359E52] resize-none"
+                  className="w-full bg-white border border-[#D7D7D7] rounded-lg px-3 py-2 text-[14px] text-[#1C1E2E] placeholder:text-[#B0B1B8] focus:outline-none focus:border-[#359E52] resize-none"
                 />
               </div>
               <div className="sm:col-span-2">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#359E52] hover:bg-[#359E52] disabled:opacity-60 text-white font-semibold text-[15px] px-6 py-3 rounded-lg transition-colors"
+                  className="w-full bg-[#1C1E2E] hover:bg-[#2a2d42] disabled:opacity-60 text-white font-semibold text-[15px] px-6 py-3 rounded-lg transition-colors"
                 >
                   {loading ? t("formSubmitting") : t("formSubmit")}
                 </button>
-                <p className="text-[11px] text-white/30 text-center mt-2">
+                <p className="text-[11px] text-[#B0B1B8] text-center mt-2">
                   {t("formDisclaimer")}
                 </p>
               </div>
@@ -410,7 +413,7 @@ function BridgeSection({
   );
 }
 
-function BridgeInput({
+function LightInput({
   label, value, onChange, placeholder, type = "text", autoComplete,
 }: {
   label: string;
@@ -422,14 +425,14 @@ function BridgeInput({
 }) {
   return (
     <div>
-      <label className="block text-[12px] font-semibold text-white/70 mb-1">{label}</label>
+      <label className="block text-[11px] font-semibold text-[#7B7C82] uppercase tracking-[0.08em] mb-1">{label}</label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-[14px] text-white placeholder:text-white/30 focus:outline-none focus:border-[#359E52]"
+        className="w-full bg-white border border-[#D7D7D7] rounded-lg px-3 py-2 text-[14px] text-[#1C1E2E] placeholder:text-[#B0B1B8] focus:outline-none focus:border-[#359E52]"
       />
     </div>
   );

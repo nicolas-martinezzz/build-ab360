@@ -3,6 +3,8 @@
 /out/
 /build
 .env*.local
+.env
+.env.*
 npm-debug.log*
 .DS_Store
 *.tsbuildinfo

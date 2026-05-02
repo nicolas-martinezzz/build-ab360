@@ -28,9 +28,9 @@ export const ProgramaHeroSection = async () => {
           fill
           priority
           sizes="100vw"
-          src={SITE_ASSETS.challenge.rectangle1}
+          src={SITE_ASSETS.programa.heroBackground}
         />
-        <MediaBackdrop opacity={0.55} />
+        <MediaBackdrop opacity={0.72} />
       </div>
 
       <SectionContainer className="relative z-10">

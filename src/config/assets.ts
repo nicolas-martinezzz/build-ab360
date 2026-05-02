@@ -43,6 +43,7 @@ export const SITE_ASSETS = {
     platformBuilding: "/images/solution/platform-building.png",
   },
   about: {
+    heroBackgroundVideo: "/videos/about-hero-background.mp4",
     founderJuanjoMoreno: "/images/about/founders/juanjo-moreno.png",
     founderEduardoNunez: "/images/about/founders/eduardo-nunez.png",
     founderIvanPerez: "/images/about/founders/ivan-perez.png",
@@ -61,6 +62,7 @@ export const SITE_ASSETS = {
   },
   programa: {
     hero: "/images/programa/hero.png",
+    heroBackground: "/images/programa/hero-background.jpg",
     ecosystemRectSmall: "/images/programa/ecosystem/rect-small.png",
     ecosystemRectWide: "/images/programa/ecosystem/rect-wide.png",
     ecosystemLasalleRd: "/images/programa/ecosystem/lasalle-rd.png",

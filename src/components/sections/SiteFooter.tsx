@@ -61,7 +61,7 @@ export const SiteFooter = async () => {
             </div>
 
             <Link
-              className="inline-flex h-10 w-fit items-center rounded-[5px] bg-green-500 px-5 text-sm font-semibold text-white transition hover:bg-green-600"
+              className="hidden h-10 w-fit items-center rounded-[5px] bg-green-500 px-5 text-sm font-semibold text-white transition hover:bg-green-600"
               href={SITE_PATHS.contact}
             >
               {t("hablamos")}

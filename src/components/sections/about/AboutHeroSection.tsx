@@ -1,5 +1,7 @@
 import { getTranslations } from "next-intl/server";
+import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { SectionContainer } from "@/components/ui/SectionContainer";
+import { SITE_ASSETS } from "@/config/assets";
 
 export const AboutHeroSection = async () => {
   const t = await getTranslations("aboutPage.hero");
@@ -7,9 +9,26 @@ export const AboutHeroSection = async () => {
   return (
     <section
       aria-labelledby="about-hero-title"
-      className="flex min-h-screen min-h-dvh items-center bg-surface-bg py-24 text-white sm:py-28 md:py-32"
+      className="relative flex min-h-screen min-h-dvh items-center py-24 text-white sm:py-28 md:py-32"
     >
-      <SectionContainer>
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 hidden bg-gradient-to-br from-surface-bg via-surface-bg to-green-900/40 motion-reduce:block"
+        />
+        <video
+          aria-hidden
+          autoPlay
+          className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+          loop
+          muted
+          playsInline
+          src={SITE_ASSETS.about.heroBackgroundVideo}
+        />
+        <MediaBackdrop opacity={0.72} />
+      </div>
+
+      <SectionContainer className="relative z-10">
         <p className="type-eyebrow text-white/75" aria-hidden>
           <span className="text-green-300">{t("brandPrimary")}</span>{" "}
           <span className="font-normal text-white/70">{t("brandSecondary")}</span>

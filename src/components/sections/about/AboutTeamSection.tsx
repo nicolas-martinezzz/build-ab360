@@ -72,7 +72,7 @@ export const AboutTeamSection = async () => {
                   <div className="relative h-[14rem] w-full overflow-hidden rounded-[8px] bg-white/10 grayscale">
                     <Image
                       alt={teamT(`${key}.name`)}
-                      className="object-cover object-top"
+                      className="object-cover object-center"
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       src={MEMBER_PHOTOS[key]}
