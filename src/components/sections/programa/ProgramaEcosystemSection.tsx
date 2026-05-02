@@ -25,12 +25,15 @@ const Benefit = ({ number, titlePrefix, titleSuffix, body }: BenefitProps) => (
 export const ProgramaEcosystemSection = async () => {
   const tBootcamp = await getTranslations("programaPage.bootcamp");
 
-  const benefits: BenefitProps[] = ITEM_KEYS.map((key, index) => ({
-    number: `${index + 1}`.padStart(2, "0"),
-    titlePrefix: `${tBootcamp("headline")}:`,
-    titleSuffix: tBootcamp("entryTitle"),
-    body: tBootcamp(key),
-  }));
+  const benefits: BenefitProps[] = ITEM_KEYS.map((key, index) => {
+    const cardNum = index + 1;
+    return {
+      number: `${cardNum}`.padStart(2, "0"),
+      titlePrefix: tBootcamp(`entryCard${cardNum}Title`),
+      titleSuffix: "",
+      body: tBootcamp(key),
+    };
+  });
 
   return (
     <section className="bg-white py-16 md:py-20">

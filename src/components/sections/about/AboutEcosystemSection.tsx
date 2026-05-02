@@ -38,7 +38,7 @@ const LogoGrid = ({
       >
         <Image
           alt={logo.alt}
-          className="h-10 w-full object-contain"
+          className="h-10 w-auto object-contain"
           height={40}
           src={logo.src}
           width={120}

@@ -4,8 +4,6 @@ import { getButtonClassName } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 import { DRAWER_LINK_CLASS } from "@/components/sections/site-header/navigation";
 import type { HeaderNavigationLink } from "@/components/sections/site-header/types";
-import { SITE_PATHS } from "@/config/routes";
-
 type MobileDrawerProps = {
   menuOpen: boolean;
   menuId: string;
@@ -17,6 +15,7 @@ type MobileDrawerProps = {
   lastDrawerActionRef: RefObject<HTMLAnchorElement | null>;
   links: HeaderNavigationLink[];
   joinBootcamp: string;
+  bootcampPath: string;
 };
 
 export const MobileDrawer = ({
@@ -30,6 +29,7 @@ export const MobileDrawer = ({
   lastDrawerActionRef,
   links,
   joinBootcamp,
+  bootcampPath,
 }: MobileDrawerProps) => (
   <>
     <div
@@ -83,7 +83,7 @@ export const MobileDrawer = ({
         <Link
           ref={lastDrawerActionRef}
           className={getButtonClassName("primary", "mt-4 w-full min-h-12 justify-center sm:max-w-sm")}
-          href={SITE_PATHS.contact}
+          href={bootcampPath}
           onClick={closeMenu}
         >
           {joinBootcamp}

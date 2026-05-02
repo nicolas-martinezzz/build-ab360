@@ -23,6 +23,7 @@ export const SiteHeaderBar = ({
   program,
   about,
   joinBootcamp,
+  bootcampPath,
 }: SiteHeaderBarProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
@@ -120,7 +121,7 @@ export const SiteHeaderBar = ({
                   "min-h-10 whitespace-nowrap text-sm transition-all duration-500 ease-out md:min-h-10",
                   isCompact ? "px-3.5" : "px-4 md:px-5",
                 )}
-                href={SITE_PATHS.contact}
+                href={bootcampPath}
                 variant="primary"
               >
                 {joinBootcamp}
@@ -154,6 +155,7 @@ export const SiteHeaderBar = ({
       </div>
 
       <MobileDrawer
+        bootcampPath={bootcampPath}
         closeMenu={closeMenu}
         closeMenuLabel={closeMenuLabel}
         drawerLinksNavAria={drawerLinksNavAria}

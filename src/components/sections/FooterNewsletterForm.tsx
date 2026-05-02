@@ -28,6 +28,9 @@ export const FooterNewsletterForm = ({
   botBlockedMessage,
 }: FooterNewsletterFormProps) => {
   const locale = useLocale();
+  const isLocalDev =
+    typeof window !== "undefined" &&
+    (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
   const newsletterEndpoint = process.env.NEXT_PUBLIC_NEWSLETTER_ENDPOINT ?? "/api/newsletter.php";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -51,6 +54,22 @@ export const FooterNewsletterForm = ({
     setIsSubmitting(true);
 
     try {
+      if (isLocalDev) {
+        const storageKey = "ab360_local_newsletter_subscribers";
+        const existingRaw = window.localStorage.getItem(storageKey);
+        const existing = existingRaw ? JSON.parse(existingRaw) : [];
+        existing.push({
+          name,
+          email,
+          accepted,
+          locale,
+          submittedAt: Date.now(),
+        });
+        window.localStorage.setItem(storageKey, JSON.stringify(existing));
+        setSubmitted(true);
+        return;
+      }
+
       const response = await fetch(newsletterEndpoint, {
         method: "POST",
         headers: {

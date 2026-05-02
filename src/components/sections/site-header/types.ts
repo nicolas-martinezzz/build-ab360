@@ -10,6 +10,7 @@ export type SiteHeaderBarProps = {
   program: string;
   about: string;
   joinBootcamp: string;
+  bootcampPath: string;
 };
 
 export type HeaderNavigationLink = {

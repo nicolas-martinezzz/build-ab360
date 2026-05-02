@@ -1,8 +1,7 @@
 import { getTranslations } from "next-intl/server";
-import { Button } from "@/components/ui/Button";
 import { ProgramaFormadoresSection } from "./ProgramaFormadoresSection";
+import { BootcampLeadForm } from "./BootcampLeadForm";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { SITE_PATHS } from "@/config/routes";
 
 const VALUE_KEYS = [
   "value1Title", "value1Body",
@@ -89,60 +88,15 @@ export const ProgramaBootcampSection = async () => {
                 <p className="figma-text-m text-white">{t("ctaCardBody")}</p>
               </div>
 
-              <form action={SITE_PATHS.contact} className="space-y-5" method="get">
-                <label className="block" htmlFor="bootcamp-name">
-                  <span className="sr-only">{t("fieldName")}</span>
-                  <input
-                    autoComplete="name"
-                    className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
-                    id="bootcamp-name"
-                    name="name"
-                    placeholder={t("fieldName")}
-                    required
-                    type="text"
-                  />
-                </label>
-                <label className="block" htmlFor="bootcamp-email">
-                  <span className="sr-only">{t("fieldEmail")}</span>
-                  <input
-                    autoComplete="email"
-                    className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
-                    id="bootcamp-email"
-                    name="email"
-                    placeholder={t("fieldEmail")}
-                    required
-                    type="email"
-                  />
-                </label>
-                <label className="block" htmlFor="bootcamp-role">
-                  <span className="sr-only">{t("fieldRole")}</span>
-                  <input
-                    autoComplete="organization-title"
-                    className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
-                    id="bootcamp-role"
-                    name="role"
-                    placeholder={t("fieldRole")}
-                    required
-                    type="text"
-                  />
-                </label>
-                <label className="block" htmlFor="bootcamp-company">
-                  <span className="sr-only">{t("fieldCompany")}</span>
-                  <input
-                    autoComplete="organization"
-                    className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
-                    id="bootcamp-company"
-                    name="company"
-                    placeholder={t("fieldCompany")}
-                    required
-                    type="text"
-                  />
-                </label>
-
-                <Button className="mt-[14px] w-full" type="submit" variant="dark">
-                  {t("ctaCardCta")}
-                </Button>
-              </form>
+              <BootcampLeadForm
+                errorMessage={t("formError")}
+                fieldCompany={t("fieldCompany")}
+                fieldEmail={t("fieldEmail")}
+                fieldName={t("fieldName")}
+                fieldRole={t("fieldRole")}
+                submitLabel={t("ctaCardCta")}
+                successMessage={t("formSuccess")}
+              />
             </div>
           </div>
         </div>

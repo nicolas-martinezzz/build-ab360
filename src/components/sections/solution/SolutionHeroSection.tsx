@@ -1,13 +1,15 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { SITE_PATHS } from "@/config/routes";
+import { getDiagnosticPathByLocale } from "@/config/routes";
 
 export const SolutionHeroSection = async () => {
+  const locale = await getLocale();
   const t = await getTranslations("solutionPage.hero");
+  const diagnosticPath = getDiagnosticPathByLocale(locale);
 
   return (
     <section
@@ -48,7 +50,7 @@ export const SolutionHeroSection = async () => {
 
         <LinkButton
           className="mt-[1.375rem] w-full max-w-sm sm:w-auto"
-          href={SITE_PATHS.contact}
+          href={diagnosticPath}
           variant="primary"
         >
           {t("cta")}

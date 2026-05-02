@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LegalContentSection } from "@/components/sections/LegalContentSection";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 
-export async function generateMetadata(): Promise<Metadata> {
+type ContactPageProps = {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("contactPage.metadata");
   return {
     title: t("title"),
@@ -11,15 +18,11 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type ContactPageProps = {
-  params: Promise<{ locale: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-};
-
 const getFirst = (value: string | string[] | undefined) => (Array.isArray(value) ? value[0] : value)?.trim() ?? "";
 
 export default async function ContactPage({ params, searchParams }: ContactPageProps) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("contactPage");
   const rawMessages = (await import(`@/messages/${locale}.json`)).default as {
     contactPage?: Record<string, string>;

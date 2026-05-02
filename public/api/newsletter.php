@@ -49,12 +49,29 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$dbHost = getenv("NEWSLETTER_DB_HOST") ?: "yutopias.com";
-$dbPort = (int)(getenv("NEWSLETTER_DB_PORT") ?: "3306");
-$dbName = getenv("NEWSLETTER_DB_NAME") ?: "yutopias_wp_nico";
-$dbUser = getenv("NEWSLETTER_DB_USER") ?: "nicolas";
-$dbPassword = getenv("NEWSLETTER_DB_PASSWORD") ?: "yutopias";
-$ipSalt = getenv("NEWSLETTER_IP_SALT") ?: "newsletter-default-salt";
+$configPath = getenv("NEWSLETTER_CONFIG_FILE") ?: dirname(dirname(__DIR__)) . "/private/newsletter-config.php";
+$config = [];
+if (is_file($configPath)) {
+    $loaded = require $configPath;
+    if (is_array($loaded)) {
+        $config = $loaded;
+    }
+}
+
+$dbHost = (string)($config["db_host"] ?? getenv("NEWSLETTER_DB_HOST") ?? "");
+$dbPort = (int)($config["db_port"] ?? getenv("NEWSLETTER_DB_PORT") ?? 3306);
+$dbName = (string)($config["db_name"] ?? getenv("NEWSLETTER_DB_NAME") ?? "");
+$dbUser = (string)($config["db_user"] ?? getenv("NEWSLETTER_DB_USER") ?? "");
+$dbPassword = (string)($config["db_password"] ?? getenv("NEWSLETTER_DB_PASSWORD") ?? "");
+$ipSalt = (string)($config["ip_salt"] ?? getenv("NEWSLETTER_IP_SALT") ?? "newsletter-default-salt");
+$notifyTo = (string)($config["notify_to"] ?? getenv("NEWSLETTER_NOTIFY_TO") ?? "jjm@yutopias.com");
+$mailFrom = (string)($config["mail_from"] ?? getenv("NEWSLETTER_MAIL_FROM") ?? "no-reply@yutopias.com");
+
+if ($dbHost === "" || $dbName === "" || $dbUser === "" || $dbPassword === "") {
+    http_response_code(500);
+    echo json_encode(["message" => "Newsletter database is not configured"]);
+    exit;
+}
 
 $ip = $_SERVER["HTTP_X_FORWARDED_FOR"] ?? ($_SERVER["REMOTE_ADDR"] ?? "");
 $ipFirst = trim(explode(",", $ip)[0]);
@@ -105,6 +122,18 @@ try {
         ":ip_hash" => $ipHash,
         ":user_agent" => $userAgent !== "" ? $userAgent : null,
     ]);
+
+    $displayName = $nameValue ?? "(sin nombre)";
+    $subject = "Nueva suscripción newsletter";
+    $message = "Se ha recibido una nueva suscripción desde el footer.\n\n"
+        . "Nombre: " . $displayName . "\n"
+        . "Email: " . $email . "\n"
+        . "Idioma: " . $locale . "\n"
+        . "Fecha: " . gmdate("Y-m-d H:i:s") . " UTC\n";
+    $headers = "From: " . $mailFrom . "\r\n"
+        . "Reply-To: " . $email . "\r\n"
+        . "Content-Type: text/plain; charset=UTF-8\r\n";
+    @mail($notifyTo, $subject, $message, $headers);
 
     echo json_encode(["ok" => true]);
 } catch (Throwable $exception) {

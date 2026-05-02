@@ -1,14 +1,17 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { SITE_PATHS } from "@/config/routes";
+import { SITE_PATHS, getDiagnosticPathByLocale, getBootcampPathByLocale } from "@/config/routes";
 import { Link } from "@/i18n/navigation";
 import { FooterNewsletterForm } from "@/components/sections/FooterNewsletterForm";
 import { FooterLocaleSwitcher } from "@/components/sections/FooterLocaleSwitcher";
 
 export const SiteFooter = async () => {
+  const locale = await getLocale();
   const t = await getTranslations("footer");
+  const diagnosticPath = getDiagnosticPathByLocale(locale);
+  const bootcampPath = getBootcampPathByLocale();
 
   return (
     <footer
@@ -129,10 +132,10 @@ export const SiteFooter = async () => {
                 {t("actionTitle")}
               </p>
               <div className="flex flex-col gap-2 text-sm">
-                <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.programa}>
+                <Link className="text-white/75 transition hover:text-white" href={bootcampPath}>
                   {t("joinBootcamp")}
                 </Link>
-                <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.challenge}>
+                <Link className="text-white/75 transition hover:text-white" href={diagnosticPath}>
                   {t("selfDiagnostic")}
                 </Link>
               </div>
@@ -185,7 +188,7 @@ export const SiteFooter = async () => {
       <SectionContainer className="mt-5 border-t border-white/10 pt-5 pb-6 sm:mt-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <p className="text-sm text-white/50">
-            {t("copyright", { year: new Date().getFullYear() })}
+            {t("copyright")}
           </p>
           <div className="flex flex-col items-start gap-2 sm:items-end">
             <nav aria-label="Enlaces legales" className="flex flex-wrap gap-x-1 gap-y-1 text-sm text-white/50">
