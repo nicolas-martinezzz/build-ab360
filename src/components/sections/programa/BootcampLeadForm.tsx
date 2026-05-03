@@ -75,6 +75,8 @@ export const BootcampLeadForm = ({
           role,
           company,
           website,
+          accepted: true,
+          locale: document.documentElement.lang || "es",
           submittedAt: startedAt,
         }),
       });

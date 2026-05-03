@@ -19,7 +19,7 @@ describe("initSession", () => {
   it("en localhost devuelve un ID local con formato diag-*", async () => {
     setHostname("localhost");
     const id = await initSession("es");
-    expect(id).toMatch(/^diag-[a-z0-9]+-[a-z0-9]+$/);
+    expect(id).toMatch(/^diag-[a-f0-9]{24}$/);
   });
 
   it("en localhost genera IDs únicos en llamadas sucesivas", async () => {
