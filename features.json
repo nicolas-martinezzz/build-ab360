@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-05-01",
+  "features": [
+    {
+      "id": "feat-001",
+      "title": "Autodiagnóstico / Self-Assessment Flow",
+      "description": "Implementar el flujo completo de autodiagnóstico con las rutas /autodiagnostico y /self-assessment. Incluye componentes en src/components/diagnostic/, páginas en src/app/[locale]/(site)/autodiagnostic/ y el endpoint public/api/diagnostic.php.",
+      "acceptance_criteria": [
+        "Las rutas /es/autodiagnostico y /en/self-assessment renderizan correctamente",
+        "El formulario de diagnóstico envía datos al endpoint diagnostic.php",
+        "El endpoint valida input y devuelve respuesta estructurada",
+        "Todos los strings visibles están en los 3 archivos de mensajes con paridad",
+        "npm run verify pasa sin errores"
+      ],
+      "files_affected": [
+        "src/app/[locale]/(site)/autodiagnostic/",
+        "src/app/[locale]/(site)/autodiagnostico/",
+        "src/components/diagnostic/",
+        "public/api/diagnostic.php",
+        "src/messages/es.json",
+        "src/messages/en.json",
+        "src/messages/ca.json"
+      ],
+      "status": "done",
+      "priority": 1,
+      "created": "2026-05-01",
+      "started": "2026-05-01",
+      "completed": "2026-05-01",
+      "assigned_to": null
+    },
+    {
+      "id": "feat-002",
+      "title": "Reserva de Plaza / Bootcamp Lead Form",
+      "description": "Implementar la página de reserva de plaza del bootcamp con el formulario BootcampLeadForm, la ruta /reserva-plaza y el endpoint public/api/bootcamp-lead.php.",
+      "acceptance_criteria": [
+        "La ruta /es/reserva-plaza renderiza el formulario de reserva",
+        "El formulario envía datos al endpoint bootcamp-lead.php con validación",
+        "El endpoint tiene protección anti-bot (honeypot + rate limiting básico)",
+        "Todos los strings están en los 3 locales con paridad",
+        "BootcampLeadForm tiene tests unitarios en src/lib/",
+        "npm run verify pasa sin errores"
+      ],
+      "files_affected": [
+        "src/app/[locale]/(site)/reserva-plaza/",
+        "src/components/sections/programa/BootcampLeadForm.tsx",
+        "public/api/bootcamp-lead.php",
+        "src/messages/es.json",
+        "src/messages/en.json",
+        "src/messages/ca.json"
+      ],
+      "status": "pending",
+      "priority": 2,
+      "created": "2026-05-01",
+      "started": null,
+      "completed": null,
+      "assigned_to": null
+    },
+    {
+      "id": "feat-003",
+      "title": "Cobertura de Tests — Lógica Diagnóstico",
+      "description": "Alcanzar 100% de cobertura en src/lib/diagnostic/** con tests unitarios usando Vitest. El vitest.config.ts ya apunta a esa carpeta como objetivo de coverage.",
+      "acceptance_criteria": [
+        "npm run test:coverage reporta 100% en src/lib/diagnostic/**",
+        "Tests cubren happy path, edge cases y errores de validación",
+        "No hay mocks de módulos internos sin justificación documentada",
+        "npm run verify pasa sin errores"
+      ],
+      "files_affected": [
+        "src/lib/diagnostic/",
+        "src/**/*.test.ts"
+      ],
+      "status": "pending",
+      "priority": 3,
+      "created": "2026-05-01",
+      "started": null,
+      "completed": null,
+      "assigned_to": null
+    },
+    {
+      "id": "feat-004",
+      "title": "Paridad i18n Completa",
+      "description": "Asegurar que los 3 archivos de mensajes (es, en, ca) tienen exactamente las mismas claves. El script check:i18n-parity debe pasar sin warnings.",
+      "acceptance_criteria": [
+        "npm run check:i18n-parity termina con exit code 0",
+        "No hay claves presentes en es.json que falten en en.json o ca.json",
+        "No hay claves huérfanas en ningún archivo",
+        "npm run verify pasa sin errores"
+      ],
+      "files_affected": [
+        "src/messages/es.json",
+        "src/messages/en.json",
+        "src/messages/ca.json"
+      ],
+      "status": "pending",
+      "priority": 4,
+      "created": "2026-05-01",
+      "started": null,
+      "completed": null,
+      "assigned_to": null
+    }
+  ]
+}
