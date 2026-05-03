@@ -18,10 +18,13 @@ next-env.d.ts
 # Claude Code local config
 /.claude/
 
-# Harness Engineering / agent orchestration files (not project code)
+# Harness Engineering / agent orchestration files (develop only, never staging/main)
 /agents.md
 /history.md
 /progress/
+/conventions.md
+/features.json
+/init.sh
 
 # Static HTML prototypes (implemented in Next.js)
 /autodiagnostico.html
