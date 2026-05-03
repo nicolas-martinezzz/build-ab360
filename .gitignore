@@ -21,7 +21,6 @@ next-env.d.ts
 # Harness Engineering / agent orchestration files (not project code)
 /agents.md
 /history.md
-/init.sh
 /progress/
 
 # Static HTML prototypes (implemented in Next.js)
