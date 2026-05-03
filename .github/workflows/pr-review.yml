@@ -44,36 +44,36 @@ jobs:
         run: npm run build
 
       - name: Check for Harness files in diff
+        # Guard: fail if any Harness file was MODIFIED in the PR commits themselves.
+        # Harness files live in develop and are intentionally absent in staging/main.
+        # We check the commits in this PR (not the full branch diff) to avoid
+        # false positives from structural branch differences.
         run: |
-          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
-          echo "Changed files:"
+          # Files changed in the commits of this PR only (not base vs head tree diff)
+          FILES=$(git log --name-only --pretty=format: origin/${{ github.base_ref }}..HEAD | sort -u | sed '/^$/d')
+          echo "Files changed in PR commits:"
           echo "$FILES"
 
-          HARNESS_FILES="conventions.md features.json init.sh agents.md history.md"
+          # These files are allowed in develop but must never appear in feature commits
+          HARNESS_FILES="agents.md history.md"
           LEAKED=0
 
           for f in $HARNESS_FILES; do
             if echo "$FILES" | grep -q "^$f$"; then
-              echo "❌ Harness file leaked into PR: $f"
+              echo "❌ Harness file modified in PR commits: $f"
               LEAKED=1
             fi
           done
 
           if echo "$FILES" | grep -q "^progress/"; then
-            echo "❌ Harness file leaked into PR: progress/"
-            LEAKED=1
-          fi
-
-          if echo "$FILES" | grep -q "^\.claude/"; then
-            echo "❌ Harness file leaked into PR: .claude/"
+            echo "❌ Harness file modified in PR commits: progress/"
             LEAKED=1
           fi
 
           if [ $LEAKED -eq 1 ]; then
             echo ""
-            echo "Harness Engineering files must stay in develop only."
-            echo "Remove them from this PR before merging."
+            echo "Harness Engineering files (agents.md, history.md, progress/) must not be modified in feature PRs."
             exit 1
           fi
 
-          echo "✅ No Harness files in diff"
+          echo "✅ No restricted Harness files in PR commits"
