@@ -1,0 +1,77 @@
+name: PR Review
+
+on:
+  pull_request:
+    branches: [staging, main]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate:
+    name: Automated PR Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Color palette check
+        run: npm run lint:palette
+
+      - name: JSON BOM check
+        run: npm run check:json-bom
+
+      - name: i18n parity check
+        run: npm run check:i18n-parity
+
+      - name: Tests
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Check for Harness files in diff
+        run: |
+          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          echo "Changed files:"
+          echo "$FILES"
+
+          HARNESS_FILES="conventions.md features.json init.sh agents.md history.md"
+          LEAKED=0
+
+          for f in $HARNESS_FILES; do
+            if echo "$FILES" | grep -q "^$f$"; then
+              echo "❌ Harness file leaked into PR: $f"
+              LEAKED=1
+            fi
+          done
+
+          if echo "$FILES" | grep -q "^progress/"; then
+            echo "❌ Harness file leaked into PR: progress/"
+            LEAKED=1
+          fi
+
+          if echo "$FILES" | grep -q "^\.claude/"; then
+            echo "❌ Harness file leaked into PR: .claude/"
+            LEAKED=1
+          fi
+
+          if [ $LEAKED -eq 1 ]; then
+            echo ""
+            echo "Harness Engineering files must stay in develop only."
+            echo "Remove them from this PR before merging."
+            exit 1
+          fi
+
+          echo "✅ No Harness files in diff"

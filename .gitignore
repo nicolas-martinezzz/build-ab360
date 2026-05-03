@@ -15,14 +15,16 @@ next-env.d.ts
 /skills-lock.json
 /.cursor/
 
-# Claude Code local config
-/.claude/
-
-# Harness Engineering — tracked in develop, ignored here to avoid polluting staging/main
-# Do NOT add conventions.md, features.json, init.sh here — they are committed in develop
+# Harness Engineering — tracked in develop only, never staging/main
+# conventions.md, features.json, init.sh, .claude/agents/ are committed in develop
+# agents.md, history.md, progress/ are local-only (never committed)
 /agents.md
 /history.md
 /progress/
+
+# Claude Code personal settings (local only, never committed)
+/.claude/settings.local.json
+/.claude/worktrees/
 
 # Static HTML prototypes (implemented in Next.js)
 /autodiagnostico.html
