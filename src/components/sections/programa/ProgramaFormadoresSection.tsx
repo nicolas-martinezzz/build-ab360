@@ -77,13 +77,13 @@ export const ProgramaFormadoresSection = async ({
       org: t("formador8Org"),
       linkedin: "https://www.linkedin.com/in/xavier-ba%C3%B1o-2948ba355/?locale=es",
     },
-    {
-      avatar: SITE_ASSETS.solution.avatarArquitecto,
-      name: "",
-      role: "",
-      org: "",
-      pending: true,
-    },
+    // {
+    //   avatar: SITE_ASSETS.solution.avatarArquitecto,
+    //   name: "",
+    //   role: "",
+    //   org: "",
+    //   pending: true,
+    // },
   ];
 
   return (
