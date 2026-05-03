@@ -390,18 +390,18 @@ function BridgeSection({
                   onChange={(e) => setReto(e.target.value)}
                   placeholder={t("formFieldChallengePlaceholder")}
                   rows={3}
-                  className="w-full bg-white border border-[#D7D7D7] rounded-lg px-3 py-2 text-[14px] text-[#1C1E2E] placeholder:text-[#B0B1B8] focus:outline-none focus:border-[#359E52] resize-none"
+                  className="w-full bg-white border border-[#D7D7D7] rounded-lg px-3 py-2 text-[14px] text-[#1C1E2E] placeholder:text-[#7B7C82] focus:outline-none focus:border-[#359E52] resize-none"
                 />
               </div>
               <div className="sm:col-span-2">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#1C1E2E] hover:bg-[#2a2d42] disabled:opacity-60 text-white font-semibold text-[15px] px-6 py-3 rounded-lg transition-colors"
+                  className="w-full bg-[#1C1E2E] hover:bg-[#1C1E2E]/80 disabled:opacity-60 text-white font-semibold text-[15px] px-6 py-3 rounded-lg transition-colors"
                 >
                   {loading ? t("formSubmitting") : t("formSubmit")}
                 </button>
-                <p className="text-[11px] text-[#B0B1B8] text-center mt-2">
+                <p className="text-[11px] text-[#7B7C82] text-center mt-2">
                   {t("formDisclaimer")}
                 </p>
               </div>
@@ -432,7 +432,7 @@ function LightInput({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="w-full bg-white border border-[#D7D7D7] rounded-lg px-3 py-2 text-[14px] text-[#1C1E2E] placeholder:text-[#B0B1B8] focus:outline-none focus:border-[#359E52]"
+        className="w-full bg-white border border-[#D7D7D7] rounded-lg px-3 py-2 text-[14px] text-[#1C1E2E] placeholder:text-[#7B7C82] focus:outline-none focus:border-[#359E52]"
       />
     </div>
   );

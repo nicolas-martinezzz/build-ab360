@@ -76,7 +76,7 @@ export const BootcampLeadForm = ({
           company,
           website,
           accepted: true,
-          locale: document.documentElement.lang ?? "es",
+          locale: document.documentElement.lang || "es",
           submittedAt: startedAt,
         }),
       });
