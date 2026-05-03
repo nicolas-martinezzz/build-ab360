@@ -63,24 +63,23 @@ async function deploy() {
         console.log("✓ Conectado\n");
 
         // 1. Upload PHP config outside webroot
+        // FTP root IS yutopias.com docroot parent — config goes at /private/ (one level above /httpdocs/)
         console.log("📁 Subiendo config PHP fuera del webroot...");
         await client.cd("/");
-        await safeEnsureDir(client, "yutopias.com");
         await safeEnsureDir(client, "private");
         await client.uploadFrom(tmpConfig, "newsletter-config.php");
-        console.log("  ✓ private/newsletter-config.php\n");
+        console.log("  ✓ /private/newsletter-config.php\n");
 
         // 2. Upload static build (skip api/ — uploaded separately as real PHP)
         console.log("📦 Subiendo build estático...");
         await client.cd("/");
-        await safeEnsureDir(client, "yutopias.com");
         await safeEnsureDir(client, "httpdocs");
         await uploadDir(client, path.join(__dirname, "../out"), new Set(["api"]));
         console.log("  ✓ build estático subido\n");
 
         // 3. Upload real PHP API files
         console.log("🔌 Subiendo API PHP...");
-        await client.cd("/yutopias.com/httpdocs");
+        await client.cd("/httpdocs");
         await safeEnsureDir(client, "api");
         const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php"];
         for (const f of phpFiles) {

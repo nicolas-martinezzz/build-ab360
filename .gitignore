@@ -14,3 +14,19 @@ next-env.d.ts
 /.agents/
 /skills-lock.json
 /.cursor/
+
+# Claude Code local config
+/.claude/
+
+# Harness Engineering / agent orchestration files (not project code)
+/agents.md
+/history.md
+/init.sh
+/progress/
+
+# Static HTML prototypes (implemented in Next.js)
+/autodiagnostico.html
+/self-assessment.html
+
+# Deploy helper scripts (local only)
+/scripts/deploy-staging.ps1
