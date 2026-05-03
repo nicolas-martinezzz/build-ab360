@@ -3,7 +3,12 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
 
 const CARD_KEYS = ["card1", "card2", "card3"] as const;
-const TESTIMONIAL_AVATAR_URL = SITE_ASSETS.home.testimonialAvatar;
+
+const TESTIMONIAL_AVATARS: Record<typeof CARD_KEYS[number], string> = {
+  card1: SITE_ASSETS.home.testimonialAvatar,
+  card2: SITE_ASSETS.home.testimonialTeresaBatlle,
+  card3: SITE_ASSETS.home.testimonialHowardPierce,
+};
 
 export const TestimonialsSection = async () => {
   const t = await getTranslations("home.testimonials");
@@ -36,7 +41,7 @@ export const TestimonialsSection = async () => {
                         aria-hidden
                         className="size-[3.3125rem] shrink-0 rounded-[3.5rem] object-cover"
                         height={53}
-                        src={TESTIMONIAL_AVATAR_URL}
+                        src={TESTIMONIAL_AVATARS[key]}
                         width={53}
                       />
                       <div className="min-w-0 flex-1 space-y-1 md:min-h-[5.5rem]">

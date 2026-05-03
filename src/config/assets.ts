@@ -7,6 +7,8 @@ export const SITE_ASSETS = {
     partnersCtaLounge: "/images/home/partners-cta-lounge.jpg",
     blogArticleCover: "/images/home/partners-cta-lounge.jpg",
     testimonialAvatar: "/images/home/testimonial-avatar.png",
+    testimonialTeresaBatlle: "/images/home/testimonials/teresa-batlle.jpg",
+    testimonialHowardPierce: "/images/home/testimonials/howard-pierce.jpg",
     earlyAdopterLogos: [
       "/images/home/early-adopters/logos/cbre-group.png",
       "/images/home/early-adopters/logos/construcia.png",
