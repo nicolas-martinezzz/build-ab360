@@ -85,7 +85,7 @@ async function deploy() {
         console.log("🔌 Subiendo API PHP...");
         await client.cd("/httpdocs");
         await safeEnsureDir(client, "api");
-        const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php"];
+        const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "reserva-plaza.php"];
         for (const f of phpFiles) {
             await client.uploadFrom(path.join(__dirname, "../public/api", f), f);
             console.log("  ✓ api/" + f);

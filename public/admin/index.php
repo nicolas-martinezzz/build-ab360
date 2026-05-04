@@ -435,10 +435,6 @@ $csrf      = csrfToken();
           <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           <input class="search-input" type="text" id="rp-search" placeholder="Buscar...">
         </div>
-        <select class="toolbar-select" id="rp-status">
-          <option value="all">Todos los estados</option>
-          <option value="completed">Completados</option>
-        </select>
         <a id="export-rp-csv"   class="btn-export" href="#">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           CSV
@@ -628,11 +624,7 @@ async function loadPage(key, action, extraParams = {}) {
   const containerId = "grid-" + key;
   setRows(containerId, data);
 
-  const qf = document.getElementById(key.replace("leads","ld").replace("newsletter","nl").replace("bootcamp","bc").replace("diagnosticos","diag") + "-search")?.value
-    || document.getElementById("ld-search")?.value; // fallback
-  // apply per-section search
-  const searchMap = { diagnosticos:"diag", leads:"ld", newsletter:"nl", bootcamp:"bc" };
-  const prefix = searchMap[key] || key;
+  const prefix = prefixMap[key];
   const searchVal = document.getElementById(prefix + "-search")?.value ?? "";
   if (searchVal) setFilter(containerId, searchVal);
 
@@ -670,7 +662,15 @@ const diagCols = [
 
 const cols = {
   diagnosticos: diagCols,
-  reservaplaza: diagCols,
+  reservaplaza: [
+    { field: "id",               headerName: "ID",         maxWidth: 70 },
+    { field: "name",             headerName: "Nombre",     minWidth: 160 },
+    { field: "company",          headerName: "Empresa",    minWidth: 160 },
+    { field: "email",            headerName: "Email",      minWidth: 220 },
+    { field: "locale",           headerName: "Idioma",     maxWidth: 80 },
+    { field: "privacy_accepted", headerName: "Privacidad", maxWidth: 100 },
+    { field: "created_at",       headerName: "Fecha",      minWidth: 148 },
+  ],
   leads: [
     { field: "session_id",     headerName: "ID",          maxWidth: 80 },
     { field: "created_at",     headerName: "Fecha",       minWidth: 148 },
@@ -711,12 +711,14 @@ const cols = {
     { field: "session_id",     headerName: "Sesión",      minWidth: 220 },
   ],
   newsletter: [
-    { field: "id",             headerName: "ID",          maxWidth: 70 },
-    { field: "email",          headerName: "Email",       minWidth: 240 },
-    { field: "locale",         headerName: "Idioma",      maxWidth: 80 },
-    { field: "status",         headerName: "Estado",      maxWidth: 110 },
-    { field: "created_at",     headerName: "Fecha",       minWidth: 148 },
-    { field: "ip_hash",        headerName: "IP hash",     minWidth: 200 },
+    { field: "id",               headerName: "ID",          maxWidth: 70 },
+    { field: "email",            headerName: "Email",       minWidth: 240 },
+    { field: "name",             headerName: "Nombre",      minWidth: 150 },
+    { field: "locale",           headerName: "Idioma",      maxWidth: 80 },
+    { field: "source",           headerName: "Fuente",      minWidth: 140 },
+    { field: "privacy_accepted", headerName: "Privacidad",  maxWidth: 100 },
+    { field: "created_at",       headerName: "Fecha",       minWidth: 148 },
+    { field: "ip_hash",          headerName: "IP hash",     minWidth: 200 },
   ],
   bootcamp: [
     { field: "id",             headerName: "ID",          maxWidth: 70 },
@@ -756,7 +758,7 @@ function initGrid(key) {
 
   const load = (extraParams = {}) => loadPage(key, action, extraParams);
 
-  const hasStatusFilter = key === "diagnosticos" || key === "reservaplaza";
+  const hasStatusFilter = key === "diagnosticos";
   const statusSelectId = prefix + "-status";
 
   // Initial load

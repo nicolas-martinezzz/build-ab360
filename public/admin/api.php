@@ -120,29 +120,22 @@ switch ($action) {
         ")->fetchAll();
         jsonOut(["ok" => true, "data" => $rows]);
 
-    // ─── AG Grid: diagnostic full table ──────────────────────────────────────
+    // ─── AG Grid: autodiagnostico sessions ───────────────────────────────────
     case "table_diagnostics":
-    case "table_reservaplaza":
         $page   = max(0, (int)($_GET["page"] ?? 0));
         $limit  = min(500, max(1, (int)($_GET["limit"] ?? 100)));
         $offset = $page * $limit;
 
-        $source = $action === "table_reservaplaza" ? "reserva-plaza" : "autodiagnostico";
         $status = ($_GET["status"] ?? "all") === "completed" ? "completed" : "all";
-
-        $conditions = ["s.source = :source"];
+        $conditions = ["s.source = 'autodiagnostico'"];
         if ($status === "completed") $conditions[] = "s.status = 'completed'";
         $where = "WHERE " . implode(" AND ", $conditions);
 
-        $countStmt = $pdo->prepare("SELECT COUNT(*) FROM diagnostic_sessions s $where");
-        $countStmt->bindValue(":source", $source);
-        $countStmt->execute();
-        $total = (int)$countStmt->fetchColumn();
+        $total = (int)$pdo->query("SELECT COUNT(*) FROM diagnostic_sessions s $where")->fetchColumn();
 
         $stmt = $pdo->prepare("
             SELECT
                 s.id              AS session_id,
-                s.source,
                 s.locale,
                 s.profile,
                 s.status,
@@ -170,7 +163,27 @@ switch ($action) {
             ORDER BY s.created_at DESC
             LIMIT :lim OFFSET :off
         ");
-        $stmt->bindValue(":source", $source);
+        $stmt->bindValue(":lim", $limit, PDO::PARAM_INT);
+        $stmt->bindValue(":off", $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
+
+        jsonOut(["ok" => true, "total" => $total, "page" => $page, "limit" => $limit, "data" => $rows]);
+
+    // ─── AG Grid: reserva-plaza leads ────────────────────────────────────────
+    case "table_reservaplaza":
+        $page   = max(0, (int)($_GET["page"] ?? 0));
+        $limit  = min(500, max(1, (int)($_GET["limit"] ?? 100)));
+        $offset = $page * $limit;
+
+        $total = (int)$pdo->query("SELECT COUNT(*) FROM reserva_plaza_leads")->fetchColumn();
+
+        $stmt = $pdo->prepare("
+            SELECT id, name, company, email, locale, privacy_accepted, created_at
+            FROM reserva_plaza_leads
+            ORDER BY created_at DESC
+            LIMIT :lim OFFSET :off
+        ");
         $stmt->bindValue(":lim", $limit, PDO::PARAM_INT);
         $stmt->bindValue(":off", $offset, PDO::PARAM_INT);
         $stmt->execute();
@@ -187,7 +200,7 @@ switch ($action) {
         $total = (int)$pdo->query("SELECT COUNT(*) FROM newsletter_subscribers")->fetchColumn();
 
         $stmt = $pdo->prepare("
-            SELECT id, email, locale, status, created_at, ip_hash
+            SELECT id, email, name, locale, privacy_accepted, source, created_at, ip_hash
             FROM newsletter_subscribers
             ORDER BY created_at DESC
             LIMIT :lim OFFSET :off

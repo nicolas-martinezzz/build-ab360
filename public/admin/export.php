@@ -52,37 +52,12 @@ $queries = [
         ORDER BY s.created_at DESC
     ",
     "reservaplaza" => "
-        SELECT
-            s.id              AS session_id,
-            s.source,
-            s.locale,
-            s.profile,
-            s.status,
-            s.created_at,
-            s.completed_at,
-            l.first_name,
-            l.last_name,
-            l.company,
-            l.role_name,
-            l.email,
-            l.challenge_text,
-            r.weighted_score,
-            r.score_over_10,
-            r.score_a,
-            r.score_b,
-            r.score_c,
-            r.score_d,
-            r.top_reto_1,
-            r.top_reto_2,
-            r.top_reto_3
-        FROM diagnostic_sessions s
-        LEFT JOIN diagnostic_leads   l ON l.session_id = s.id
-        LEFT JOIN diagnostic_results r ON r.session_id = s.id
-        WHERE s.source = 'reserva-plaza'
-        ORDER BY s.created_at DESC
+        SELECT id, name, company, email, locale, privacy_accepted, created_at
+        FROM reserva_plaza_leads
+        ORDER BY created_at DESC
     ",
     "newsletter" => "
-        SELECT id, email, locale, status, created_at, ip_hash
+        SELECT id, email, name, locale, privacy_accepted, source, created_at, ip_hash
         FROM newsletter_subscribers
         ORDER BY created_at DESC
     ",
