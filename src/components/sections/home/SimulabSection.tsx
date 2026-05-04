@@ -27,7 +27,6 @@ export const SimulabSection = async () => {
             alt={t("imageAlt")}
             className="object-contain"
             fill
-            priority
             sizes="(max-width: 1024px) 100vw, 1024px"
             src={SITE_ASSETS.simulab.dashboardMockup}
           />
