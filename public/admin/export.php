@@ -11,6 +11,7 @@ if (!verifyCsrf($csrf)) {
 
 $table  = (string)($_GET["table"] ?? "diagnostics");
 $format = in_array($_GET["format"] ?? "csv", ["csv", "excel"], true) ? $_GET["format"] : "csv";
+$sourceMap = ["diagnostics" => "autodiagnostico", "reservaplaza" => "reserva-plaza"];
 
 try {
     $pdo = getDb($config);
@@ -23,6 +24,7 @@ $queries = [
     "diagnostics" => "
         SELECT
             s.id              AS session_id,
+            s.source,
             s.locale,
             s.profile,
             s.status,
@@ -46,6 +48,37 @@ $queries = [
         FROM diagnostic_sessions s
         LEFT JOIN diagnostic_leads   l ON l.session_id = s.id
         LEFT JOIN diagnostic_results r ON r.session_id = s.id
+        WHERE s.source = 'autodiagnostico'
+        ORDER BY s.created_at DESC
+    ",
+    "reservaplaza" => "
+        SELECT
+            s.id              AS session_id,
+            s.source,
+            s.locale,
+            s.profile,
+            s.status,
+            s.created_at,
+            s.completed_at,
+            l.first_name,
+            l.last_name,
+            l.company,
+            l.role_name,
+            l.email,
+            l.challenge_text,
+            r.weighted_score,
+            r.score_over_10,
+            r.score_a,
+            r.score_b,
+            r.score_c,
+            r.score_d,
+            r.top_reto_1,
+            r.top_reto_2,
+            r.top_reto_3
+        FROM diagnostic_sessions s
+        LEFT JOIN diagnostic_leads   l ON l.session_id = s.id
+        LEFT JOIN diagnostic_results r ON r.session_id = s.id
+        WHERE s.source = 'reserva-plaza'
         ORDER BY s.created_at DESC
     ",
     "newsletter" => "

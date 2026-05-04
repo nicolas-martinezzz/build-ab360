@@ -233,14 +233,18 @@ try {
     // Must be the first call before any other action.
     if ($action === "init") {
         $locale = substr(trim((string)($payload["locale"] ?? "es")), 0, 8);
+        $rawSource = trim((string)($payload["source"] ?? "autodiagnostico"));
+        $source = in_array($rawSource, ["autodiagnostico", "reserva-plaza"], true)
+            ? $rawSource : "autodiagnostico";
         $sessionId = generateSessionId();
 
         $pdo->prepare("
             INSERT INTO diagnostic_sessions (id, locale, profile, source, ip_hash, user_agent, status)
-            VALUES (:id, :locale, 'pending', 'autodiagnostico', :ip_hash, :user_agent, 'started')
+            VALUES (:id, :locale, 'pending', :source, :ip_hash, :user_agent, 'started')
         ")->execute([
             ":id"         => $sessionId,
             ":locale"     => $locale,
+            ":source"     => $source,
             ":ip_hash"    => $ipHash,
             ":user_agent" => $userAgent !== "" ? $userAgent : null,
         ]);

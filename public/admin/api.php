@@ -122,20 +122,27 @@ switch ($action) {
 
     // ─── AG Grid: diagnostic full table ──────────────────────────────────────
     case "table_diagnostics":
-        $page  = max(0, (int)($_GET["page"] ?? 0));
-        $limit = min(500, max(1, (int)($_GET["limit"] ?? 100)));
+    case "table_reservaplaza":
+        $page   = max(0, (int)($_GET["page"] ?? 0));
+        $limit  = min(500, max(1, (int)($_GET["limit"] ?? 100)));
         $offset = $page * $limit;
 
+        $source = $action === "table_reservaplaza" ? "reserva-plaza" : "autodiagnostico";
         $status = ($_GET["status"] ?? "all") === "completed" ? "completed" : "all";
-        $where  = $status === "completed" ? "WHERE s.status = 'completed'" : "";
 
-        $total = (int)$pdo->query(
-            "SELECT COUNT(*) FROM diagnostic_sessions s $where"
-        )->fetchColumn();
+        $conditions = ["s.source = :source"];
+        if ($status === "completed") $conditions[] = "s.status = 'completed'";
+        $where = "WHERE " . implode(" AND ", $conditions);
+
+        $countStmt = $pdo->prepare("SELECT COUNT(*) FROM diagnostic_sessions s $where");
+        $countStmt->bindValue(":source", $source);
+        $countStmt->execute();
+        $total = (int)$countStmt->fetchColumn();
 
         $stmt = $pdo->prepare("
             SELECT
                 s.id              AS session_id,
+                s.source,
                 s.locale,
                 s.profile,
                 s.status,
@@ -163,6 +170,7 @@ switch ($action) {
             ORDER BY s.created_at DESC
             LIMIT :lim OFFSET :off
         ");
+        $stmt->bindValue(":source", $source);
         $stmt->bindValue(":lim", $limit, PDO::PARAM_INT);
         $stmt->bindValue(":off", $offset, PDO::PARAM_INT);
         $stmt->execute();

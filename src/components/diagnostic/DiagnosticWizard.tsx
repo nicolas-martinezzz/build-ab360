@@ -106,7 +106,7 @@ export function DiagnosticWizard({ locale, mode = "diagnostic" }: Props) {
 
   /* Prelead submit — server generates the session ID */
   const handlePreleadDone = useCallback(async (lead: LeadData) => {
-    const sessionId = await initSession(locale);
+    const sessionId = await initSession(locale, mode === "bootcamp" ? "reserva-plaza" : "autodiagnostico");
     await savePrelead(sessionId, locale, lead);
     dispatch({ type: "PRELEAD_DONE", lead, sessionId });
   }, [locale]);

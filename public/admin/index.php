@@ -331,7 +331,10 @@ $csrf      = csrfToken();
     <div class="sidebar-section">
       <div class="sidebar-label">Datos</div>
       <div class="nav-item" data-section="diagnosticos">
-        <span class="nav-dot"></span> Diagnósticos
+        <span class="nav-dot"></span> Autodiagnóstico
+      </div>
+      <div class="nav-item" data-section="reservaplaza">
+        <span class="nav-dot"></span> Reserva-Plaza
       </div>
       <div class="nav-item" data-section="leads">
         <span class="nav-dot"></span> Leads diagnóstico
@@ -418,6 +421,39 @@ $csrf      = csrfToken();
         <button class="page-btn" id="diag-prev" disabled>Anterior</button>
         <span class="page-info" id="diag-page">1</span>
         <button class="page-btn" id="diag-next">Siguiente</button>
+      </div>
+    </section>
+
+    <!-- Reserva-Plaza -->
+    <section id="section-reservaplaza" class="section">
+      <div class="page-header">
+        <div class="page-title">Reserva-Plaza</div>
+        <div class="page-subtitle">Solicitudes del formulario de Bootcamp Zero</div>
+      </div>
+      <div class="table-toolbar">
+        <div class="search-wrap">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input class="search-input" type="text" id="rp-search" placeholder="Buscar...">
+        </div>
+        <select class="toolbar-select" id="rp-status">
+          <option value="all">Todos los estados</option>
+          <option value="completed">Completados</option>
+        </select>
+        <a id="export-rp-csv"   class="btn-export" href="#">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          CSV
+        </a>
+        <a id="export-rp-excel" class="btn-export" href="#">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Excel
+        </a>
+        <span class="table-info" id="rp-info"></span>
+      </div>
+      <div class="ag-wrap ag-theme-alpine-dark" id="grid-reservaplaza"></div>
+      <div class="pagination">
+        <button class="page-btn" id="rp-prev" disabled>Anterior</button>
+        <span class="page-info" id="rp-page">1</span>
+        <button class="page-btn" id="rp-next">Siguiente</button>
       </div>
     </section>
 
@@ -537,10 +573,11 @@ document.querySelectorAll(".nav-item").forEach(el => {
     document.getElementById("section-" + sec).classList.add("active");
     if (!gridsInited[sec]) {
       gridsInited[sec] = true;
-      if (sec === "diagnosticos") initGrid("diagnosticos");
-      if (sec === "leads")        initGrid("leads");
-      if (sec === "newsletter")   initGrid("newsletter");
-      if (sec === "bootcamp")     initGrid("bootcamp");
+      if (sec === "diagnosticos")  initGrid("diagnosticos");
+      if (sec === "reservaplaza")  initGrid("reservaplaza");
+      if (sec === "leads")         initGrid("leads");
+      if (sec === "newsletter")    initGrid("newsletter");
+      if (sec === "bootcamp")      initGrid("bootcamp");
     }
   });
 });
@@ -607,8 +644,34 @@ async function loadPage(key, action, extraParams = {}) {
 }
 
 // ─── Column definitions ───────────────────────────────────────────────────────
+const diagCols = [
+    { field: "session_id",     headerName: "ID",          maxWidth: 80 },
+    { field: "created_at",     headerName: "Fecha",       minWidth: 148 },
+    { field: "status",         headerName: "Estado",      maxWidth: 110 },
+    { field: "locale",         headerName: "Idioma",      maxWidth: 80 },
+    { field: "profile",        headerName: "Perfil",      maxWidth: 100 },
+    { field: "first_name",     headerName: "Nombre",      minWidth: 110 },
+    { field: "last_name",      headerName: "Apellido",    minWidth: 110 },
+    { field: "email",          headerName: "Email",       minWidth: 200 },
+    { field: "company",        headerName: "Empresa",     minWidth: 130 },
+    { field: "role_name",      headerName: "Rol",         minWidth: 130 },
+    { field: "score_over_10",  headerName: "Score",       maxWidth: 80 },
+    { field: "weighted_score", headerName: "Ponderado",   maxWidth: 100 },
+    { field: "score_a",        headerName: "A",           maxWidth: 60 },
+    { field: "score_b",        headerName: "B",           maxWidth: 60 },
+    { field: "score_c",        headerName: "C",           maxWidth: 60 },
+    { field: "score_d",        headerName: "D",           maxWidth: 60 },
+    { field: "top_reto_1",     headerName: "Reto 1",      minWidth: 160 },
+    { field: "top_reto_2",     headerName: "Reto 2",      minWidth: 160 },
+    { field: "top_reto_3",     headerName: "Reto 3",      minWidth: 160 },
+    { field: "challenge_text", headerName: "Desafío",     minWidth: 200 },
+    { field: "completed_at",   headerName: "Completado",  minWidth: 148 },
+];
+
 const cols = {
-  diagnosticos: [
+  diagnosticos: diagCols,
+  reservaplaza: diagCols,
+  leads: [
     { field: "session_id",     headerName: "ID",          maxWidth: 80 },
     { field: "created_at",     headerName: "Fecha",       minWidth: 148 },
     { field: "status",         headerName: "Estado",      maxWidth: 110 },
@@ -668,6 +731,7 @@ const cols = {
 
 const actionMap = {
   diagnosticos: "table_diagnostics",
+  reservaplaza: "table_reservaplaza",
   leads:        "table_leads",
   newsletter:   "table_newsletter",
   bootcamp:     "table_bootcamp",
@@ -675,12 +739,13 @@ const actionMap = {
 
 const exportTableMap = {
   diagnosticos: "diagnostics",
+  reservaplaza: "reservaplaza",
   leads:        "leads",
   newsletter:   "newsletter",
   bootcamp:     "bootcamp",
 };
 
-const prefixMap = { diagnosticos: "diag", leads: "ld", newsletter: "nl", bootcamp: "bc" };
+const prefixMap = { diagnosticos: "diag", reservaplaza: "rp", leads: "ld", newsletter: "nl", bootcamp: "bc" };
 
 function initGrid(key) {
   createGrid("grid-" + key, cols[key]);
@@ -691,12 +756,15 @@ function initGrid(key) {
 
   const load = (extraParams = {}) => loadPage(key, action, extraParams);
 
+  const hasStatusFilter = key === "diagnosticos" || key === "reservaplaza";
+  const statusSelectId = prefix + "-status";
+
   // Initial load
-  if (key === "diagnosticos") {
-    load({ status: document.getElementById("diag-status").value });
-    document.getElementById("diag-status").addEventListener("change", () => {
+  if (hasStatusFilter) {
+    load({ status: document.getElementById(statusSelectId).value });
+    document.getElementById(statusSelectId).addEventListener("change", () => {
       pageState[key] = 0;
-      load({ status: document.getElementById("diag-status").value });
+      load({ status: document.getElementById(statusSelectId).value });
     });
   } else {
     load();
@@ -705,11 +773,11 @@ function initGrid(key) {
   // Pagination
   document.getElementById(prefix + "-prev").addEventListener("click", () => {
     pageState[key]--;
-    key === "diagnosticos" ? load({ status: document.getElementById("diag-status").value }) : load();
+    hasStatusFilter ? load({ status: document.getElementById(statusSelectId).value }) : load();
   });
   document.getElementById(prefix + "-next").addEventListener("click", () => {
     pageState[key]++;
-    key === "diagnosticos" ? load({ status: document.getElementById("diag-status").value }) : load();
+    hasStatusFilter ? load({ status: document.getElementById(statusSelectId).value }) : load();
   });
 
   // Search
@@ -855,8 +923,10 @@ setInterval(() => {
     const activeSection = document.querySelector(".section.active")?.id?.replace("section-", "");
     if (activeSection && activeSection !== "dashboard" && gridsInited[activeSection]) {
       const key = activeSection;
-      if (key === "diagnosticos") {
-        loadPage(key, actionMap[key], { status: document.getElementById("diag-status").value });
+      const pfx = prefixMap[key];
+      const hasStatus = key === "diagnosticos" || key === "reservaplaza";
+      if (hasStatus) {
+        loadPage(key, actionMap[key], { status: document.getElementById(pfx + "-status").value });
       } else {
         loadPage(key, actionMap[key]);
       }
