@@ -497,6 +497,193 @@ try {
             WHERE id = :id
         ")->execute([":id" => $sessionId]);
 
+        // ── Notification email ────────────────────────────────────────────────
+        $appEnv   = strtolower(trim((string)($config["app_env"] ?? getenv("APP_ENV") ?? "staging")));
+        $mailFrom = (string)($config["mail_from"] ?? getenv("NEWSLETTER_MAIL_FROM") ?? "no-reply@yutopias.com");
+
+        $notifyRaw = $appEnv === "production"
+            ? (string)($config["notify_to_prod"]    ?? getenv("NOTIFY_TO_PROD")    ?? "")
+            : (string)($config["notify_to_staging"] ?? getenv("NOTIFY_TO_STAGING") ?? "");
+
+        // Build recipient list — filter empty strings, validate each address.
+        $recipients = array_filter(
+            array_map("trim", explode(",", $notifyRaw)),
+            fn($addr) => filter_var($addr, FILTER_VALIDATE_EMAIL) !== false
+        );
+
+        if (!empty($recipients)) {
+            // Fetch all available lead data for this session.
+            $leadRow = $pdo->prepare("
+                SELECT first_name, last_name, company, role_name, email, challenge_text, privacy_accepted
+                FROM diagnostic_leads WHERE session_id = :sid
+            ");
+            $leadRow->execute([":sid" => $sessionId]);
+            $leadData = $leadRow->fetch() ?: [];
+
+            // Fetch session metadata (locale, created_at, ip_hash).
+            $sessRow = $pdo->prepare("
+                SELECT locale, created_at, user_agent
+                FROM diagnostic_sessions WHERE id = :sid
+            ");
+            $sessRow->execute([":sid" => $sessionId]);
+            $sessData = $sessRow->fetch() ?: [];
+
+            $leadFirstName    = $leadData["first_name"]  ?? "";
+            $leadLastName     = $leadData["last_name"]   ?? "";
+            $leadFullName     = trim("$leadFirstName $leadLastName") ?: "—";
+            $leadCompany      = $leadData["company"]     ?? "—";
+            $leadEmail        = $leadData["email"]       ?? "—";
+            $leadRole         = $leadData["role_name"]   ?? "—";
+            $leadChallenge    = $leadData["challenge_text"] ?? "";
+            $sessLocale       = $sessData["locale"]      ?? "—";
+            $sessCreatedAt    = $sessData["created_at"]  ?? "—";
+            $sessUserAgent    = $sessData["user_agent"]  ?? "—";
+
+            $dimensionLabels = ["A" => "Estrategia", "B" => "Procesos", "C" => "Personas", "D" => "Tecnología"];
+            $dimensionColors = ["A" => "#127334", "B" => "#0e5fa3", "C" => "#7c3aed", "D" => "#b45309"];
+
+            // Build dimension rows HTML
+            $dimRowsHtml = "";
+            foreach (["A" => $scoreA, "B" => $scoreB, "C" => $scoreC, "D" => $scoreD] as $dim => $val) {
+                if ($val === null) continue;
+                $label    = $dimensionLabels[$dim];
+                $color    = $dimensionColors[$dim];
+                $barWidth = (int)$val;
+                $dimRowsHtml .= "
+                <tr>
+                  <td style='padding:8px 0;border-bottom:1px solid #f0f0f0;'>
+                    <table width='100%' cellpadding='0' cellspacing='0' border='0'>
+                      <tr>
+                        <td style='width:130px;vertical-align:middle;'>
+                          <span style='display:inline-block;background:{$color}1a;color:{$color};font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:0.05em;'>{$dim} · {$label}</span>
+                        </td>
+                        <td style='vertical-align:middle;padding:0 12px;'>
+                          <div style='background:#e8e8e8;border-radius:4px;height:8px;overflow:hidden;'>
+                            <div style='background:{$color};height:8px;width:{$barWidth}%;border-radius:4px;'></div>
+                          </div>
+                        </td>
+                        <td style='width:40px;text-align:right;vertical-align:middle;'>
+                          <span style='font-size:13px;font-weight:700;color:{$color};'>{$val}%</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>";
+            }
+
+            // Build top retos HTML
+            $retosHtml = "";
+            foreach (array_filter([$reto1, $reto2, $reto3]) as $i => $reto) {
+                $num = $i + 1;
+                $retosHtml .= "
+                <tr>
+                  <td style='padding:8px 0;border-bottom:1px solid #f0f0f0;'>
+                    <span style='display:inline-flex;align-items:center;gap:10px;'>
+                      <span style='display:inline-block;background:#127334;color:#fff;font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;text-align:center;line-height:20px;flex-shrink:0;'>{$num}</span>
+                      <span style='font-size:14px;color:#1c1e2e;'>" . htmlspecialchars($reto) . "</span>
+                    </span>
+                  </td>
+                </tr>";
+            }
+
+            $e    = fn(string $s): string => htmlspecialchars($s, ENT_QUOTES, "UTF-8");
+            $scoreFormatted = number_format($scoreOver10, 1);
+            $challengeBlock = $leadChallenge !== ""
+                ? "<tr><td style='padding:6px 0;font-size:13px;color:#555;'><strong style='color:#1c1e2e;'>Reto declarado:</strong> " . $e($leadChallenge) . "</td></tr>"
+                : "";
+
+            $subject = "[Yutopias] Nuevo diagnóstico — " . $e($leadFullName) . " · " . $e($leadCompany);
+
+            $body = '<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f4f6f4;font-family:Arial,Helvetica,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f4f6f4;padding:32px 16px;">
+  <tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+
+      <!-- Header -->
+      <tr>
+        <td style="background:linear-gradient(135deg,#1c1e2e 0%,#127334 100%);padding:32px 40px;">
+          <p style="margin:0 0 4px 0;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#7ed99a;">YŪTOPIAS SYSTEMS</p>
+          <h1 style="margin:0;font-size:22px;font-weight:700;color:#ffffff;line-height:1.3;">Nuevo diagnóstico completado</h1>
+          <p style="margin:8px 0 0 0;font-size:13px;color:rgba(255,255,255,0.65);">' . $e($sessCreatedAt) . ' · Sesión ' . $e($sessionId) . '</p>
+        </td>
+      </tr>
+
+      <!-- Score banner -->
+      <tr>
+        <td style="background:#f0f7ec;padding:20px 40px;border-bottom:1px solid #d8ecd8;">
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td>
+                <p style="margin:0 0 2px 0;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#127334;">Puntuación global</p>
+                <p style="margin:0;font-size:32px;font-weight:700;color:#1c1e2e;line-height:1;">' . $weightedScore . '<span style="font-size:16px;font-weight:400;color:#666;">/100</span> &nbsp;<span style="font-size:20px;color:#127334;">' . $scoreFormatted . '<span style="font-size:13px;font-weight:400;color:#666;">/10</span></span></p>
+              </td>
+              <td align="right" style="vertical-align:middle;">
+                <span style="display:inline-block;background:#127334;color:#fff;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;letter-spacing:0.05em;">' . strtoupper($e($profile)) . '</span>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr><td style="padding:32px 40px 0;">
+
+        <!-- Contact -->
+        <p style="margin:0 0 12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#127334;border-bottom:2px solid #127334;padding-bottom:6px;">Datos de contacto</p>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+          <tr><td style="padding:5px 0;font-size:13px;color:#555;width:100px;"><strong style="color:#1c1e2e;">Nombre</strong></td><td style="padding:5px 0;font-size:13px;color:#1c1e2e;">' . $e($leadFullName) . '</td></tr>
+          <tr><td style="padding:5px 0;font-size:13px;"><strong style="color:#1c1e2e;">Empresa</strong></td><td style="padding:5px 0;font-size:13px;color:#1c1e2e;">' . $e($leadCompany) . '</td></tr>
+          <tr><td style="padding:5px 0;font-size:13px;"><strong style="color:#1c1e2e;">Email</strong></td><td style="padding:5px 0;font-size:13px;"><a href="mailto:' . $e($leadEmail) . '" style="color:#127334;text-decoration:none;">' . $e($leadEmail) . '</a></td></tr>
+          <tr><td style="padding:5px 0;font-size:13px;"><strong style="color:#1c1e2e;">Cargo</strong></td><td style="padding:5px 0;font-size:13px;color:#1c1e2e;">' . $e($leadRole) . '</td></tr>
+          ' . $challengeBlock . '
+        </table>
+
+        <!-- Dimensions -->
+        <p style="margin:0 0 12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#127334;border-bottom:2px solid #127334;padding-bottom:6px;">Rendimiento por dimensión</p>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+          ' . $dimRowsHtml . '
+        </table>
+
+        <!-- Top retos -->
+        <p style="margin:0 0 12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#127334;border-bottom:2px solid #127334;padding-bottom:6px;">Top 3 prioridades de mejora</p>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+          ' . $retosHtml . '
+        </table>
+
+      </td></tr>
+
+      <!-- Footer -->
+      <tr>
+        <td style="background:#1c1e2e;padding:20px 40px;">
+          <p style="margin:0;font-size:11px;color:rgba(255,255,255,0.45);text-align:center;">
+            yūtopias systems · <a href="https://yutopias.com" style="color:#7ed99a;text-decoration:none;">yutopias.com</a> · Sesión: ' . $e($sessionId) . '
+          </p>
+        </td>
+      </tr>
+
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>';
+
+            // Send one mail() call per recipient — some servers reject multi-address To headers.
+            // Subject: encode UTF-8 words so special chars don't break the header.
+            $subjectEncoded = "=?UTF-8?B?" . base64_encode($subject) . "?=";
+            foreach ($recipients as $recipient) {
+                $headers = implode("\r\n", [
+                    "From: =?UTF-8?B?" . base64_encode("Yutopias") . "?= <" . $mailFrom . ">",
+                    "Reply-To: " . $mailFrom,
+                    "MIME-Version: 1.0",
+                    "Content-Type: text/html; charset=UTF-8",
+                    "X-Mailer: Yutopias-Diagnostic/1.0",
+                ]);
+                mail($recipient, $subjectEncoded, $body, $headers);
+            }
+        }
+
         echo json_encode(["ok" => true]);
         exit;
     }

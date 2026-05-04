@@ -19,12 +19,13 @@
     "skills:sync": "node scripts/sync-skills.mjs",
     "skills:find": "npx skills find",
     "skills:list-remote": "npx skills add vercel-labs/agent-skills -l -a cursor",
-    "deploy:staging": "node scripts/deploy-ftp.js",
-    "deploy:production": "node scripts/deploy-production.js",
+    "deploy": "node scripts/deploy-production.js",
     "figma:connect": "figma connect --config figma.config.json",
     "figma:cc:parse": "figma connect parse --config figma.config.json",
     "figma:cc:publish": "figma connect publish --config figma.config.json",
-    "figma:cc:create": "figma connect create"
+    "figma:cc:create": "figma connect create",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "next": "^15.5.0",
@@ -36,6 +37,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@figma/code-connect": "^1.4.4",
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4.0.0",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
