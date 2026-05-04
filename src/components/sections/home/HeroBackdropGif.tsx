@@ -1,19 +1,21 @@
 "use client";
 
-type Props = { src: string };
+type Props = { webm: string; mp4: string };
 
-export function HeroBackdropGif({ src }: Props) {
+export function HeroBackdropGif({ webm, mp4 }: Props) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- animated GIF hero backdrop
-    <img
-      alt=""
+    <video
       aria-hidden
+      autoPlay
       className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 motion-reduce:hidden [&.loaded]:opacity-100"
-      decoding="async"
-      fetchPriority="low"
-      loading="lazy"
-      onLoad={(e) => (e.currentTarget as HTMLImageElement).classList.add("loaded")}
-      src={src}
-    />
+      loop
+      muted
+      onCanPlay={(e) => (e.currentTarget as HTMLVideoElement).classList.add("loaded")}
+      playsInline
+      preload="none"
+    >
+      <source src={webm} type="video/webm" />
+      <source src={mp4} type="video/mp4" />
+    </video>
   );
 }

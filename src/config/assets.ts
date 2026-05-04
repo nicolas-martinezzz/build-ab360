@@ -4,6 +4,8 @@ export const SITE_ASSETS = {
   },
   home: {
     heroBackgroundGif: "/images/home/yutopias-hero-background.gif",
+    heroBackgroundWebm: "/videos/hero-background.webm",
+    heroBackgroundMp4: "/videos/hero-background.mp4",
     partnersCtaLounge: "/images/home/partners-cta-lounge.jpg",
     blogArticleCover: "/images/home/partners-cta-lounge.jpg",
     testimonialAvatar: "/images/home/testimonial-avatar.png",

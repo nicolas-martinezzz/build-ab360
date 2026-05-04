@@ -28,7 +28,7 @@ export const Hero = async ({ locale }: HeroProps) => {
           aria-hidden
           className="absolute inset-0 bg-gradient-to-br from-surface-bg via-surface-bg to-green-900/40"
         />
-        <HeroBackdropGif src={SITE_ASSETS.home.heroBackgroundGif} />
+        <HeroBackdropGif mp4={SITE_ASSETS.home.heroBackgroundMp4} webm={SITE_ASSETS.home.heroBackgroundWebm} />
         <MediaBackdrop opacity={0.8} />
       </div>
       <SectionContainer className="relative z-10 text-left">
