@@ -64,57 +64,88 @@ async function deploy() {
             secure: true,
             secureOptions: { rejectUnauthorized: false },
         });
+        // Use unencrypted data channel (PROT C) — some shared hosts reject TLS on data socket
         console.log("✓ Conectado\n");
 
+        // Helper: reconnect fresh client for each upload phase to avoid TLS data channel reuse issues
+        async function freshClient() {
+            const c = new ftp.Client();
+            c.ftp.verbose = false;
+            await c.access({
+                host: process.env.DEPLOY_HOST,
+                user: process.env.DEPLOY_USER,
+                password: process.env.DEPLOY_PASSWORD,
+                secure: true,
+                secureOptions: { rejectUnauthorized: false },
+            });
+            return c;
+        }
+
         // 1. Upload PHP config outside webroot
-        // FTP root IS yutopias.com docroot parent — config goes at /private/ (one level above /httpdocs/)
         console.log("📁 Subiendo config PHP fuera del webroot...");
-        await client.cd("/");
-        await safeEnsureDir(client, "private");
-        await client.uploadFrom(tmpConfig, "newsletter-config.php");
+        {
+            const c = await freshClient();
+            await c.cd("/");
+            await safeEnsureDir(c, "private");
+            await c.uploadFrom(tmpConfig, "newsletter-config.php");
+            c.close();
+        }
         console.log("  ✓ /private/newsletter-config.php\n");
 
         // 2. Upload static build (skip api/ — uploaded separately as real PHP)
         console.log("📦 Subiendo build estático...");
-        await client.cd("/");
-        await safeEnsureDir(client, "httpdocs");
-        await uploadDir(client, path.join(__dirname, "../out"), new Set(["api"]));
+        {
+            const c = await freshClient();
+            await c.cd("/httpdocs");
+            await uploadDir(c, path.join(__dirname, "../out"), new Set(["api"]));
+            c.close();
+        }
         console.log("  ✓ build estático subido\n");
 
         // 3. Upload real PHP API files
         console.log("🔌 Subiendo API PHP...");
-        await client.cd("/httpdocs");
-        await safeEnsureDir(client, "api");
-        const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "reserva-plaza.php", "ebook-lead.php"];
-        for (const f of phpFiles) {
-            await client.uploadFrom(path.join(__dirname, "../public/api", f), f);
-            console.log("  ✓ api/" + f);
+        {
+            const c = await freshClient();
+            await c.cd("/httpdocs");
+            await safeEnsureDir(c, "api");
+            const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "reserva-plaza.php", "ebook-lead.php"];
+            for (const f of phpFiles) {
+                await c.uploadFrom(path.join(__dirname, "../public/api", f), f);
+                console.log("  ✓ api/" + f);
+            }
+            c.close();
         }
 
-        // 4. Upload PDFs (ebook and other downloadable assets)
+        // 4. Upload PDFs
         const pdfsLocalDir = path.join(__dirname, "../public/pdfs");
         if (fs.existsSync(pdfsLocalDir)) {
             console.log("\n📄 Subiendo PDFs...");
-            await client.cd("/httpdocs");
-            await safeEnsureDir(client, "pdfs");
+            const c = await freshClient();
+            await c.cd("/httpdocs");
+            await safeEnsureDir(c, "pdfs");
             const pdfEntries = fs.readdirSync(pdfsLocalDir, { withFileTypes: true });
             for (const entry of pdfEntries) {
-                if (!entry.isDirectory()) {
-                    await client.uploadFrom(path.join(pdfsLocalDir, entry.name), entry.name);
+                if (!entry.isDirectory() && entry.name !== ".gitkeep") {
+                    await c.uploadFrom(path.join(pdfsLocalDir, entry.name), entry.name);
                     console.log("  ✓ pdfs/" + entry.name);
                 }
             }
+            c.close();
         }
 
-        // 5. Upload admin panel to admin.yutopias.com/httpdocs/
+        // 5. Upload admin panel
         console.log("\n🔐 Subiendo panel de admin...");
-        await client.cd("/");
-        await safeEnsureDir(client, "admin.yutopias.com");
-        await safeEnsureDir(client, "httpdocs");
-        const adminFiles = ["index.php", "login.php", "logout.php", "api.php", "export.php", "auth.php", ".htaccess"];
-        for (const f of adminFiles) {
-            await client.uploadFrom(path.join(__dirname, "../public/admin", f), f);
-            console.log("  ✓ admin/" + f);
+        {
+            const c = await freshClient();
+            await c.cd("/");
+            await safeEnsureDir(c, "admin.yutopias.com");
+            await safeEnsureDir(c, "httpdocs");
+            const adminFiles = ["index.php", "login.php", "logout.php", "api.php", "export.php", "auth.php", ".htaccess"];
+            for (const f of adminFiles) {
+                await c.uploadFrom(path.join(__dirname, "../public/admin", f), f);
+                console.log("  ✓ admin/" + f);
+            }
+            c.close();
         }
 
         console.log("\n✅ ¡Despliegue a PRODUCCIÓN finalizado con éxito!");
@@ -126,7 +157,7 @@ async function deploy() {
         console.error(err);
     } finally {
         fs.unlinkSync(tmpConfig);
-        client.close();
+        client.close(); // initial client (used only for connection test)
     }
 }
 
