@@ -438,8 +438,55 @@
   },
   "resourcesPage": {
     "metadata": {
-      "title": "Recursos",
-      "description": "Últimos artículos y recursos del ecosistema AB360."
+      "title": "Recursos | AB360",
+      "description": "Artículos, análisis y recursos sobre edificación, datos y sostenibilidad. El blog del ecosistema AB360."
+    },
+    "hero": {
+      "eyebrow": "Recursos",
+      "title": "Conocimiento para decidir mejor",
+      "subtitle": "Artículos, análisis y perspectivas sobre edificación, datos y sostenibilidad del ciclo de vida."
+    },
+    "grid": {
+      "featured": "Destacado",
+      "readMore": "Leer artículo",
+      "minRead": "min de lectura",
+      "allArticles": "Todos los artículos",
+      "noResults": "No hay artículos en esta categoría."
+    },
+    "categories": {
+      "all": "Todos",
+      "datos": "Datos",
+      "sostenibilidad": "Sostenibilidad",
+      "tecnologia": "Tecnología",
+      "estrategia": "Estrategia"
+    },
+    "ebook": {
+      "eyebrow": "Ebook gratuito",
+      "title": "La guía práctica para escalar el Inbound Marketing en tu empresa",
+      "subtitle": "Descarga gratis nuestra guía y descubre cómo estructurar una estrategia de contenidos que genere oportunidades de negocio reales.",
+      "emailPlaceholder": "Tu email",
+      "consentLabel": "He leído y acepto la",
+      "consentLinkLabel": "política de privacidad",
+      "ctaButton": "Descargar ebook gratis",
+      "submitButton": "Descargar gratis",
+      "successTitle": "¡Listo!",
+      "downloadButton": "Descargar ebook",
+      "errorMessage": "No hemos podido procesar tu solicitud. Inténtalo de nuevo.",
+      "botBlockedMessage": "No hemos podido validar el envío.",
+      "privacyNote": "Sin spam. Tus datos están seguros con nosotros."
+    },
+    "ebookBanner": {
+      "eyebrow": "Ebook gratuito",
+      "title": "La guía práctica para escalar el Inbound Marketing",
+      "button": "Descargar"
+    },
+    "articlePage": {
+      "backToResources": "Volver a Recursos",
+      "relatedTitle": "Artículos relacionados",
+      "shareTitle": "Compartir artículo",
+      "authorBy": "Por",
+      "publishedOn": "Publicado el",
+      "minRead": "min de lectura"
     }
   },
   "informationPage": {
@@ -1108,6 +1155,7 @@
     "resourcesNavAria": "Navegación de recursos",
     "blog": "Blog",
     "ebooks": "e-books",
+    "resources": "Recursos",
     "newsletterTitle": "Sigue el viaje",
     "newsletterSubtitle": "Inscríbete a nuestra newsletter y recibe las últimas noticias y actualizaciones",
     "namePlaceholder": "Tu nombre",
@@ -1119,6 +1167,7 @@
     "newsletterBotBlockedMessage": "No hemos podido validar el envío.",
     "creditLine": "Diseño web y desarrollo",
     "creditAuthor": "YUTOPIAS SYSTEMS S.L.",
+    "creditAnd": "y",
     "informationLink": "Información Legal",
     "privacyLink": "Política de Privacidad",
     "cookiesLink": "Política de Cookies",

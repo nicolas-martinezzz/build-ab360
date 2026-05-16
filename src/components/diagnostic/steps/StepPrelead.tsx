@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import type { LeadData } from "@/lib/diagnostic/types";
 
 type Props = {
@@ -12,9 +13,10 @@ type Props = {
 
 export function StepPrelead({ locale, mode = "diagnostic", onDone }: Props) {
   const t = useTranslations("diagnosticPage.prelead");
-  const [name, setName] = useState("");
-  const [company, setCompany] = useState("");
-  const [email, setEmail] = useState("");
+  const searchParams = useSearchParams();
+  const [name, setName] = useState(searchParams.get("name") ?? "");
+  const [company, setCompany] = useState(searchParams.get("company") ?? "");
+  const [email, setEmail] = useState(searchParams.get("email") ?? "");
   const [privacy, setPrivacy] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);

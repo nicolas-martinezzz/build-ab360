@@ -4,6 +4,7 @@ import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
 import { SITE_SECTION_IDS, getDiagnosticPathByLocale } from "@/config/routes";
+import { HeroBackdropGif } from "./HeroBackdropGif";
 
 type HeroProps = {
   locale: string;
@@ -21,20 +22,13 @@ export const Hero = async ({ locale }: HeroProps) => {
       className="relative flex min-h-screen min-h-dvh items-center py-24 sm:py-28 md:py-32"
       id={SITE_SECTION_IDS.challenge}
     >
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden bg-surface-bg">
+        {/* Solid fallback — visible immediately, before GIF loads */}
         <div
           aria-hidden
-          className="absolute inset-0 hidden bg-gradient-to-br from-surface-bg via-surface-bg to-green-900/40 motion-reduce:block"
+          className="absolute inset-0 bg-gradient-to-br from-surface-bg via-surface-bg to-green-900/40"
         />
-        {/* eslint-disable-next-line @next/next/no-img-element -- animated GIF hero backdrop */}
-        <img
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
-          decoding="async"
-          fetchPriority="high"
-          src={SITE_ASSETS.home.heroBackgroundGif}
-        />
+        <HeroBackdropGif mp4={SITE_ASSETS.home.heroBackgroundMp4} webm={SITE_ASSETS.home.heroBackgroundWebm} />
         <MediaBackdrop opacity={0.8} />
       </div>
       <SectionContainer className="relative z-10 text-left">

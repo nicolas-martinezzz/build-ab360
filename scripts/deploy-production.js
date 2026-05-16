@@ -17,6 +17,10 @@ return [
     "ip_salt"     => "${process.env.PROD_IP_SALT}",
     "notify_to"   => "${process.env.NEWSLETTER_NOTIFY_TO}",
     "mail_from"   => "${process.env.NEWSLETTER_MAIL_FROM}",
+    "app_env"     => "production",
+    "notify_to_prod"    => "${process.env.NOTIFY_TO_PROD}",
+    "notify_to_staging" => "${process.env.NOTIFY_TO_STAGING}",
+    "export_api_key"    => "${process.env.EXPORT_API_KEY}",
 ];
 `;
 }
@@ -81,14 +85,41 @@ async function deploy() {
         console.log("🔌 Subiendo API PHP...");
         await client.cd("/httpdocs");
         await safeEnsureDir(client, "api");
-        const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php"];
+        const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "reserva-plaza.php", "ebook-lead.php"];
         for (const f of phpFiles) {
             await client.uploadFrom(path.join(__dirname, "../public/api", f), f);
             console.log("  ✓ api/" + f);
         }
 
+        // 4. Upload PDFs (ebook and other downloadable assets)
+        const pdfsLocalDir = path.join(__dirname, "../public/pdfs");
+        if (fs.existsSync(pdfsLocalDir)) {
+            console.log("\n📄 Subiendo PDFs...");
+            await client.cd("/httpdocs");
+            await safeEnsureDir(client, "pdfs");
+            const pdfEntries = fs.readdirSync(pdfsLocalDir, { withFileTypes: true });
+            for (const entry of pdfEntries) {
+                if (!entry.isDirectory()) {
+                    await client.uploadFrom(path.join(pdfsLocalDir, entry.name), entry.name);
+                    console.log("  ✓ pdfs/" + entry.name);
+                }
+            }
+        }
+
+        // 5. Upload admin panel to admin.yutopias.com/httpdocs/
+        console.log("\n🔐 Subiendo panel de admin...");
+        await client.cd("/");
+        await safeEnsureDir(client, "admin.yutopias.com");
+        await safeEnsureDir(client, "httpdocs");
+        const adminFiles = ["index.php", "login.php", "logout.php", "api.php", "export.php", "auth.php", ".htaccess"];
+        for (const f of adminFiles) {
+            await client.uploadFrom(path.join(__dirname, "../public/admin", f), f);
+            console.log("  ✓ admin/" + f);
+        }
+
         console.log("\n✅ ¡Despliegue a PRODUCCIÓN finalizado con éxito!");
         console.log("   🌐 https://yutopias.com");
+        console.log("   🔐 https://admin.yutopias.com");
 
     } catch (err) {
         console.error("\n❌ Error:", err.message);

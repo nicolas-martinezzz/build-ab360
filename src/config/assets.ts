@@ -4,6 +4,8 @@ export const SITE_ASSETS = {
   },
   home: {
     heroBackgroundGif: "/images/home/yutopias-hero-background.gif",
+    heroBackgroundWebm: "/videos/hero-background.webm",
+    heroBackgroundMp4: "/videos/hero-background.mp4",
     partnersCtaLounge: "/images/home/partners-cta-lounge.jpg",
     blogArticleCover: "/images/home/partners-cta-lounge.jpg",
     testimonialAvatar: "/images/home/testimonial-avatar.png",
@@ -61,6 +63,10 @@ export const SITE_ASSETS = {
     ecosystemEurecat: "/images/about/ecosystem/eurecat.png",
     ecosystemEoi: "/images/about/ecosystem/eoi.png",
     ecosystemEsade: "/images/about/ecosystem/esade.png",
+  },
+  resources: {
+    ebookCover: "/images/resources/ebook-cover.jpg",
+    articleFallback: "/images/home/partners-cta-lounge.jpg",
   },
   programa: {
     hero: "/images/programa/hero.png",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
-import { DiagnosticWizard } from "@/components/diagnostic/DiagnosticWizard";
+import { ReservaPlazaForm } from "@/components/reserva-plaza/ReservaPlazaForm";
 
 export const metadata: Metadata = {
   title: "Reserva tu plaza — Bootcamp Zero",
@@ -14,6 +14,5 @@ export default async function ReservaPlazaPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-
-  return <DiagnosticWizard locale={locale} mode="bootcamp" />;
+  return <ReservaPlazaForm locale={locale} />;
 }

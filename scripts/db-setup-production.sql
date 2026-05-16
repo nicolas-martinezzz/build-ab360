@@ -102,6 +102,23 @@ CREATE TABLE IF NOT EXISTS diagnostic_results (
         ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- ── reserva_plaza_leads ──────────────────────────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS reserva_plaza_leads (
+    id               BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name             VARCHAR(120)    NOT NULL,
+    company          VARCHAR(180)    NOT NULL,
+    email            VARCHAR(255)    NOT NULL,
+    locale           VARCHAR(8)      NULL,
+    privacy_accepted TINYINT(1)      NOT NULL DEFAULT 1,
+    ip_hash          VARCHAR(64)     NULL,
+    user_agent       VARCHAR(255)    NULL,
+    created_at       TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    KEY idx_rp_email (email),
+    KEY idx_rp_created (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- ── diagnostic_leads ─────────────────────────────────────────────────────────
 
 CREATE TABLE IF NOT EXISTS diagnostic_leads (
