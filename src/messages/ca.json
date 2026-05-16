@@ -360,8 +360,55 @@
   },
   "resourcesPage": {
     "metadata": {
-      "title": "Recursos",
-      "description": "Últims articles i recursos de l'ecosistema AB360."
+      "title": "Recursos | AB360",
+      "description": "Articles, anàlisis i recursos sobre edificació, dades i sostenibilitat. El blog de l'ecosistema AB360."
+    },
+    "hero": {
+      "eyebrow": "Recursos",
+      "title": "Coneixement per decidir millor",
+      "subtitle": "Articles, anàlisis i perspectives sobre edificació, dades i sostenibilitat del cicle de vida."
+    },
+    "grid": {
+      "featured": "Destacat",
+      "readMore": "Llegir article",
+      "minRead": "min de lectura",
+      "allArticles": "Tots els articles",
+      "noResults": "No hi ha articles en aquesta categoria."
+    },
+    "categories": {
+      "all": "Tots",
+      "datos": "Dades",
+      "sostenibilidad": "Sostenibilitat",
+      "tecnologia": "Tecnologia",
+      "estrategia": "Estratègia"
+    },
+    "ebook": {
+      "eyebrow": "Ebook gratuït",
+      "title": "La guia pràctica per escalar l'Inbound Marketing a la teva empresa",
+      "subtitle": "Descarrega gratis la nostra guia i descobreix com estructurar una estratègia de continguts que generi oportunitats de negoci reals.",
+      "emailPlaceholder": "El teu email",
+      "consentLabel": "He llegit i accepto la",
+      "consentLinkLabel": "política de privacitat",
+      "ctaButton": "Descarregar ebook gratis",
+      "submitButton": "Descarregar gratis",
+      "successTitle": "Llest!",
+      "downloadButton": "Descarregar ebook",
+      "errorMessage": "No hem pogut processar la teva sol·licitud. Torna-ho a intentar.",
+      "botBlockedMessage": "No hem pogut validar l'enviament.",
+      "privacyNote": "Sense spam. Les teves dades estan segures amb nosaltres."
+    },
+    "ebookBanner": {
+      "eyebrow": "Ebook gratuït",
+      "title": "La guia pràctica per escalar l'Inbound Marketing",
+      "button": "Descarregar"
+    },
+    "articlePage": {
+      "backToResources": "Tornar a Recursos",
+      "relatedTitle": "Articles relacionats",
+      "shareTitle": "Compartir article",
+      "authorBy": "Per",
+      "publishedOn": "Publicat el",
+      "minRead": "min de lectura"
     }
   },
   "informationPage": {
@@ -1030,6 +1077,7 @@
     "resourcesNavAria": "Navegació de recursos",
     "blog": "Blog",
     "ebooks": "e-books",
+    "resources": "Recursos",
     "newsletterTitle": "Segueix el viatge",
     "newsletterSubtitle": "Subscriu-te a la nostra newsletter i rep les últimes notícies i actualitzacions",
     "namePlaceholder": "El teu nom",

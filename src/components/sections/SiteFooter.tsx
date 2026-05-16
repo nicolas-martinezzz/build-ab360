@@ -118,19 +118,12 @@ export const SiteFooter = async () => {
                 </Link>
               </div>
             </nav>
-            <nav aria-label={t("resourcesNavAria")} className="flex flex-col gap-3">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white/50">
-                {t("resourcesTitle")}
-              </p>
-              <div className="flex flex-col gap-2 text-sm">
-                <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.resources}>
-                  {t("blog")}
-                </Link>
-                <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.resources}>
-                  {t("ebooks")}
-                </Link>
-              </div>
-            </nav>
+            <Link
+              className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white/50 transition hover:text-white"
+              href={SITE_PATHS.resources}
+            >
+              {t("resourcesTitle")}
+            </Link>
           </div>
 
           {/* Col 4: Newsletter */}

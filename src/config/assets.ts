@@ -64,6 +64,10 @@ export const SITE_ASSETS = {
     ecosystemEoi: "/images/about/ecosystem/eoi.png",
     ecosystemEsade: "/images/about/ecosystem/esade.png",
   },
+  resources: {
+    ebookCover: "/images/resources/ebook-cover.jpg",
+    articleFallback: "/images/home/partners-cta-lounge.jpg",
+  },
   programa: {
     hero: "/images/programa/hero.png",
     heroBackground: "/images/programa/hero-background.jpg",

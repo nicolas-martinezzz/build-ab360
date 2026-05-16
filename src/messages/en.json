@@ -360,8 +360,55 @@
   },
   "resourcesPage": {
     "metadata": {
-      "title": "Resources",
-      "description": "Latest articles and resources from the AB360 ecosystem."
+      "title": "Resources | AB360",
+      "description": "Articles, analysis and resources on construction, data and sustainability. The AB360 ecosystem blog."
+    },
+    "hero": {
+      "eyebrow": "Resources",
+      "title": "Knowledge to decide better",
+      "subtitle": "Articles, analysis and perspectives on construction, data and lifecycle sustainability."
+    },
+    "grid": {
+      "featured": "Featured",
+      "readMore": "Read article",
+      "minRead": "min read",
+      "allArticles": "All articles",
+      "noResults": "No articles in this category."
+    },
+    "categories": {
+      "all": "All",
+      "datos": "Data",
+      "sostenibilidad": "Sustainability",
+      "tecnologia": "Technology",
+      "estrategia": "Strategy"
+    },
+    "ebook": {
+      "eyebrow": "Free ebook",
+      "title": "The practical guide to scaling Inbound Marketing in your company",
+      "subtitle": "Download our free guide and discover how to structure a content strategy that generates real business opportunities.",
+      "emailPlaceholder": "Your email",
+      "consentLabel": "I have read and accept the",
+      "consentLinkLabel": "privacy policy",
+      "ctaButton": "Download free ebook",
+      "submitButton": "Download free",
+      "successTitle": "Done!",
+      "downloadButton": "Download ebook",
+      "errorMessage": "We could not process your request. Please try again.",
+      "botBlockedMessage": "We could not validate the submission.",
+      "privacyNote": "No spam. Your data is safe with us."
+    },
+    "ebookBanner": {
+      "eyebrow": "Free ebook",
+      "title": "The practical guide to scaling Inbound Marketing",
+      "button": "Download"
+    },
+    "articlePage": {
+      "backToResources": "Back to Resources",
+      "relatedTitle": "Related articles",
+      "shareTitle": "Share article",
+      "authorBy": "By",
+      "publishedOn": "Published on",
+      "minRead": "min read"
     }
   },
   "informationPage": {
@@ -1030,6 +1077,7 @@
     "resourcesNavAria": "Resources navigation",
     "blog": "Blog",
     "ebooks": "e-books",
+    "resources": "Resources",
     "newsletterTitle": "Follow the journey",
     "newsletterSubtitle": "Subscribe to our newsletter and receive the latest news and updates",
     "namePlaceholder": "Your name",

@@ -20,6 +20,7 @@
     "skills:find": "npx skills find",
     "skills:list-remote": "npx skills add vercel-labs/agent-skills -l -a cursor",
     "deploy": "node scripts/deploy-production.js",
+    "ship": "node scripts/ship.js",
     "figma:connect": "figma connect --config figma.config.json",
     "figma:cc:parse": "figma connect parse --config figma.config.json",
     "figma:cc:publish": "figma connect publish --config figma.config.json",
