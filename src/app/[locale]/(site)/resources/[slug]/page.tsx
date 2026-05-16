@@ -127,7 +127,6 @@ export default async function ArticleDetailPage({ params }: Props) {
     downloadButton: t("ebook.downloadButton"),
     errorMessage: t("ebook.errorMessage"),
     botBlockedMessage: t("ebook.botBlockedMessage"),
-    privacyNote: t("ebook.privacyNote"),
   };
 
   const categoryLabels: Record<string, string> = {

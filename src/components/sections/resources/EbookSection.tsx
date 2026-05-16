@@ -17,7 +17,6 @@ interface EbookSectionProps {
     downloadButton: string;
     errorMessage: string;
     botBlockedMessage: string;
-    privacyNote: string;
   };
   sourceArticle?: string;
 }
@@ -51,7 +50,6 @@ export const EbookSection = ({ t, sourceArticle }: EbookSectionProps) => {
                 downloadButton={t.downloadButton}
                 emailPlaceholder={t.emailPlaceholder}
                 errorMessage={t.errorMessage}
-                privacyNote={t.privacyNote}
                 sourceArticle={sourceArticle}
                 submitButton={t.submitButton}
                 successTitle={t.successTitle}
