@@ -56,8 +56,8 @@ if ($website !== "") {
     exit;
 }
 
-// Timing check — must have spent at least 1.5s on the page
-if ($submittedAt <= 0 || ($nowMs - $submittedAt) < 1500) {
+// Timing check — must have spent at least 800ms filling the form
+if ($submittedAt <= 0 || ($nowMs - $submittedAt) < 800) {
     http_response_code(400);
     echo json_encode(["message" => "Suspicious submit timing"]);
     exit;

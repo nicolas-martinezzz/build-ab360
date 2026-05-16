@@ -51,7 +51,6 @@ export default async function ResourcesPage({ params }: Props) {
     downloadButton: t("ebook.downloadButton"),
     errorMessage: t("ebook.errorMessage"),
     botBlockedMessage: t("ebook.botBlockedMessage"),
-    privacyNote: t("ebook.privacyNote"),
   };
 
   return (

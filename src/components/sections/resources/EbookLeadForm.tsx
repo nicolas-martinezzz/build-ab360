@@ -15,7 +15,6 @@ interface EbookLeadFormProps {
   downloadButton: string;
   errorMessage: string;
   botBlockedMessage: string;
-  privacyNote: string;
   sourceArticle?: string;
 }
 
@@ -32,7 +31,6 @@ export const EbookLeadForm = ({
   downloadButton,
   errorMessage,
   botBlockedMessage,
-  privacyNote,
   sourceArticle = "resources",
 }: EbookLeadFormProps) => {
   const locale = useLocale();
@@ -68,7 +66,7 @@ export const EbookLeadForm = ({
     }
 
     const elapsed = Date.now() - startedAt;
-    if (elapsed < 1500) {
+    if (elapsed < 800) {
       setError(botBlockedMessage);
       return;
     }
@@ -186,7 +184,6 @@ export const EbookLeadForm = ({
         {isSubmitting ? "..." : submitButton}
       </button>
       {error ? <p className="text-sm text-red-300">{error}</p> : null}
-      <p className="text-xs text-white/40">{privacyNote}</p>
     </form>
   );
 };
