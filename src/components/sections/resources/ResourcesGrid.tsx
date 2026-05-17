@@ -32,7 +32,7 @@ export const ResourcesGrid = ({ articles, locale, labels, allCategories }: Resou
       <div aria-label="Filtrar por categoría" className="flex flex-wrap gap-2" role="group">
         <button
           aria-pressed={activeCategory === "all"}
-          className={`rounded-full px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 ${
+          className={`rounded-full px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-[#f4f6f3] ${
             activeCategory === "all"
               ? "bg-surface-bg text-white"
               : "bg-white text-surface-bg hover:bg-green-50"
@@ -45,7 +45,7 @@ export const ResourcesGrid = ({ articles, locale, labels, allCategories }: Resou
         {allCategories.map((cat) => (
           <button
             aria-pressed={activeCategory === cat}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 ${
+            className={`rounded-full px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-[#f4f6f3] ${
               activeCategory === cat
                 ? "bg-surface-bg text-white"
                 : "bg-white text-surface-bg hover:bg-green-50"

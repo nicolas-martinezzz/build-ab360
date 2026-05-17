@@ -40,3 +40,8 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Admin local dev (never deploy to prod)
+/public/admin/.local
+/public/admin/auth.local.php
+/public/admin/seed.local.php
