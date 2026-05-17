@@ -17,7 +17,7 @@ export const ArticleEbookBanner = ({ eyebrow, title, buttonLabel }: ArticleEbook
         <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-green-700">
           {eyebrow}
         </p>
-        <p className="truncate text-sm font-semibold text-surface-bg">{title}</p>
+        <p className="line-clamp-2 text-sm font-semibold text-surface-bg">{title}</p>
       </div>
       <button
         className="shrink-0 rounded-[5px] bg-green-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-600"

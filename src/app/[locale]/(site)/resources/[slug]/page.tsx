@@ -178,13 +178,13 @@ export default async function ArticleDetailPage({ params }: Props) {
               <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
                 {translation.excerpt}
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-white/50">
+              <div className="mt-6 flex flex-col gap-1 text-sm text-white/50 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1">
                 <span>
                   {t("articlePage.authorBy")} {article.author} · {article.authorRole}
                 </span>
                 <span aria-hidden className="hidden sm:inline">·</span>
                 <span>
-                  {t("articlePage.publishedOn")} {date}
+                  {t("articlePage.publishedOn")} <time dateTime={article.publishedAt}>{date}</time>
                 </span>
                 <span aria-hidden className="hidden sm:inline">·</span>
                 <span>

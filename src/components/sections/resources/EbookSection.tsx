@@ -57,8 +57,8 @@ export const EbookSection = ({ t, sourceArticle }: EbookSectionProps) => {
             </div>
           </div>
 
-          {/* Ebook cover image — hidden on mobile, shown lg+ */}
-          <div className="hidden items-center justify-center lg:flex">
+          {/* Ebook cover image — hidden on mobile, shown md+ */}
+          <div className="hidden items-center justify-center md:flex">
             <div className="relative aspect-[3/4] w-full max-w-[320px] overflow-hidden rounded-[10px] shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
               <Image
                 alt="AB360 Ebook - Guía práctica para escalar el Inbound Marketing"

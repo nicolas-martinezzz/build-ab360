@@ -27,9 +27,9 @@ export const ArticleCard = ({
   );
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[0_4px_14px_rgba(28,30,46,0.08)] transition hover:shadow-[0_8px_24px_rgba(28,30,46,0.14)]">
+    <article className="group flex h-full w-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[0_4px_14px_rgba(28,30,46,0.08)] transition hover:shadow-[0_8px_24px_rgba(28,30,46,0.14)]">
       <Link className="flex flex-1 flex-col" href={`/resources/${article.slug}`}>
-        <div className="relative h-[11rem] w-full shrink-0 overflow-hidden sm:h-[13rem] md:h-[14rem]">
+        <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden">
           <Image
             alt={article.coverImageAlt}
             className="object-cover transition duration-300 group-hover:scale-[1.02]"
@@ -45,7 +45,7 @@ export const ArticleCard = ({
         </div>
         <div className="flex flex-1 flex-col px-5 pb-5 pt-4">
           <p className="text-[0.75rem] leading-[1.4] text-grey-dark">
-            {date} · {article.readingTimeMin} {minReadLabel}
+            <time dateTime={article.publishedAt}>{date}</time> · {article.readingTimeMin} {minReadLabel}
           </p>
           <h3 className="mt-2 text-[1.25rem] font-bold leading-[1.3] text-surface-bg transition group-hover:text-green-600">
             {translation.title}
