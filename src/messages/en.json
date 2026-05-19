@@ -160,24 +160,18 @@
     },
     "blogResources": {
       "eyebrow": "Resources",
-      "title": "Latest blog posts",
+      "title": "Latest Articles / eBooks",
       "cta": "View more",
       "ctaHref": "/resources",
-      "article1": {
-        "imageAlt": "Woman reviewing data dashboards in an office",
-        "meta": "22 September 2025 | 5 min read",
-        "title": "Goodbye to silos: Data integration reshaping the building lifecycle",
-        "tag1": "Data",
-        "tag2": "Technology",
-        "author": "Eduardo Núñez · COO at yutopias systems"
-      },
-      "article2": {
-        "imageAlt": "Woman reviewing data dashboards in an office",
-        "meta": "22 September 2025 | 5 min read",
-        "title": "Goodbye to silos: Data integration reshaping the building lifecycle",
-        "tag1": "Data",
-        "tag2": "Technology",
-        "author": "Eduardo Núñez · COO at yutopias systems"
+      "minRead": "min read",
+      "articleBadge": "Article",
+      "ebookBadge": "eBook",
+      "viewEbook": "View eBook",
+      "categories": {
+        "datos": "Data",
+        "sostenibilidad": "Sustainability",
+        "tecnologia": "Technology",
+        "estrategia": "Strategy"
       }
     },
     "yutopiasAbout": {
@@ -371,9 +365,14 @@
     "grid": {
       "featured": "Featured",
       "readMore": "Read article",
+      "viewEbook": "View eBook",
       "minRead": "min read",
       "allArticles": "All articles",
-      "noResults": "No articles in this category."
+      "noResults": "No content in this category.",
+      "tabArticles": "Articles",
+      "tabEbooks": "eBooks",
+      "badgeArticle": "Article",
+      "badgeEbook": "eBook"
     },
     "categories": {
       "all": "All",
@@ -386,7 +385,11 @@
       "eyebrow": "Free ebook",
       "title": "The practical guide to scaling Inbound Marketing in your company",
       "subtitle": "Download our free guide and discover how to structure a content strategy that generates real business opportunities.",
-      "emailPlaceholder": "Your email",
+      "firstNamePlaceholder": "First name",
+      "lastNamePlaceholder": "Last name",
+      "companyPlaceholder": "Company",
+      "emailPlaceholder": "Email",
+      "requiredNote": "All fields are required",
       "consentLabel": "I have read and accept the",
       "consentLinkLabel": "privacy policy",
       "ctaButton": "Download free ebook",

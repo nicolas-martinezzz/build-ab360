@@ -488,6 +488,286 @@ switch ($action) {
             ["label" => "Bootcamp",                "value" => $bootcamp,  "pct" => null],
         ]]);
 
+    // ─── Articles: CREATE TABLE IF NOT EXISTS (MySQL compat) ─────────────────
+    case "articles_init":
+        if (!$isSqlite) {
+            $pdo->exec("
+                CREATE TABLE IF NOT EXISTS articles (
+                    id               BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+                    slug             VARCHAR(160) NOT NULL,
+                    type             ENUM('article','ebook') NOT NULL DEFAULT 'article',
+                    published_at     DATE NOT NULL,
+                    reading_time_min SMALLINT UNSIGNED NOT NULL DEFAULT 5,
+                    author           VARCHAR(120) NOT NULL DEFAULT '',
+                    author_role      VARCHAR(120) NOT NULL DEFAULT '',
+                    categories       JSON NOT NULL,
+                    cover_image      VARCHAR(255) NOT NULL DEFAULT '',
+                    cover_image_alt  VARCHAR(255) NOT NULL DEFAULT '',
+                    featured         TINYINT(1) NOT NULL DEFAULT 0,
+                    sort_order       SMALLINT NOT NULL DEFAULT 0,
+                    created_at       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    updated_at       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    PRIMARY KEY (id),
+                    UNIQUE KEY uq_slug (slug)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+            ");
+            $pdo->exec("
+                CREATE TABLE IF NOT EXISTS article_translations (
+                    id          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+                    article_id  BIGINT UNSIGNED NOT NULL,
+                    locale      ENUM('es','en','ca') NOT NULL,
+                    title       TEXT NOT NULL,
+                    excerpt     TEXT NOT NULL,
+                    seo_title   VARCHAR(255) NOT NULL DEFAULT '',
+                    seo_desc    VARCHAR(512) NOT NULL DEFAULT '',
+                    content     LONGTEXT NOT NULL,
+                    PRIMARY KEY (id),
+                    UNIQUE KEY uq_article_locale (article_id, locale),
+                    CONSTRAINT fk_at_article FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+            ");
+        }
+        jsonOut(["ok" => true]);
+
+    // ─── Articles: list ───────────────────────────────────────────────────────
+    case "list_articles":
+        // Auto-init on MySQL
+        if (!$isSqlite) {
+            $action = "articles_init";
+            // re-run init inline
+            include __FILE__;
+        }
+        $page   = max(0, (int)($_GET["page"] ?? 0));
+        $limit  = min(200, max(1, (int)($_GET["limit"] ?? 50)));
+        $offset = $page * $limit;
+        $type   = $_GET["type"] ?? "all";
+
+        $where = $type !== "all" ? "WHERE a.type = " . $pdo->quote($type) : "";
+        $total = (int)$pdo->query("SELECT COUNT(*) FROM articles a $where")->fetchColumn();
+
+        $stmt = $pdo->prepare("
+            SELECT
+                a.id, a.slug, a.type, a.published_at, a.reading_time_min,
+                a.author, a.author_role, a.categories, a.cover_image, a.cover_image_alt,
+                a.featured, a.sort_order, a.created_at, a.updated_at,
+                t.title, t.excerpt
+            FROM articles a
+            LEFT JOIN article_translations t ON t.article_id = a.id AND t.locale = 'es'
+            $where
+            ORDER BY a.sort_order DESC, a.published_at DESC
+            LIMIT :lim OFFSET :off
+        ");
+        $stmt->bindValue(":lim", $limit, PDO::PARAM_INT);
+        $stmt->bindValue(":off", $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
+        jsonOut(["ok" => true, "total" => $total, "page" => $page, "data" => $rows]);
+
+    // ─── Articles: get single (with all translations) ─────────────────────────
+    case "get_article":
+        $id = (int)($_GET["id"] ?? 0);
+        if ($id <= 0) { http_response_code(400); echo json_encode(["error" => "id required"]); exit; }
+
+        $article = $pdo->prepare("SELECT * FROM articles WHERE id = ?");
+        $article->execute([$id]);
+        $row = $article->fetch();
+        if (!$row) { http_response_code(404); echo json_encode(["error" => "Not found"]); exit; }
+
+        $tStmt = $pdo->prepare("SELECT locale, title, excerpt, seo_title, seo_desc, content FROM article_translations WHERE article_id = ?");
+        $tStmt->execute([$id]);
+        $translations = [];
+        foreach ($tStmt->fetchAll() as $t) {
+            $translations[$t["locale"]] = [
+                "title"     => $t["title"],
+                "excerpt"   => $t["excerpt"],
+                "seo_title" => $t["seo_title"],
+                "seo_desc"  => $t["seo_desc"],
+                "content"   => $t["content"],
+            ];
+        }
+        $row["translations"] = $translations;
+        jsonOut(["ok" => true, "data" => $row]);
+
+    // ─── Articles: save (insert or update) ────────────────────────────────────
+    case "save_article":
+        if ($_SERVER["REQUEST_METHOD"] !== "POST") { http_response_code(405); echo json_encode(["error" => "POST required"]); exit; }
+        $body = json_decode(file_get_contents("php://input"), true) ?? [];
+
+        $id           = isset($body["id"]) ? (int)$body["id"] : 0;
+        $slug         = trim((string)($body["slug"] ?? ""));
+        $type         = in_array($body["type"] ?? "", ["article","ebook"]) ? $body["type"] : "article";
+        $publishedAt  = trim((string)($body["published_at"] ?? date("Y-m-d")));
+        $readingTime  = max(0, (int)($body["reading_time_min"] ?? 5));
+        $author       = trim((string)($body["author"] ?? ""));
+        $authorRole   = trim((string)($body["author_role"] ?? ""));
+        $categories   = json_encode(array_values((array)($body["categories"] ?? [])));
+        $coverImage   = trim((string)($body["cover_image"] ?? ""));
+        $coverAlt     = trim((string)($body["cover_image_alt"] ?? ""));
+        $featured     = (int)(bool)($body["featured"] ?? false);
+        $sortOrder    = (int)($body["sort_order"] ?? 0);
+        $translations = (array)($body["translations"] ?? []);
+
+        if ($slug === "") { http_response_code(400); echo json_encode(["error" => "slug required"]); exit; }
+
+        if ($id > 0) {
+            $upd = $pdo->prepare("
+                UPDATE articles SET
+                    slug=?, type=?, published_at=?, reading_time_min=?,
+                    author=?, author_role=?, categories=?, cover_image=?,
+                    cover_image_alt=?, featured=?, sort_order=?,
+                    updated_at=CURRENT_TIMESTAMP
+                WHERE id=?
+            ");
+            $upd->execute([$slug,$type,$publishedAt,$readingTime,$author,$authorRole,
+                           $categories,$coverImage,$coverAlt,$featured,$sortOrder,$id]);
+        } else {
+            $ins = $pdo->prepare("
+                INSERT INTO articles (slug,type,published_at,reading_time_min,author,author_role,categories,cover_image,cover_image_alt,featured,sort_order)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?)
+            ");
+            $ins->execute([$slug,$type,$publishedAt,$readingTime,$author,$authorRole,
+                           $categories,$coverImage,$coverAlt,$featured,$sortOrder]);
+            $id = (int)$pdo->lastInsertId();
+        }
+
+        foreach (["es","en","ca"] as $locale) {
+            $tr = $translations[$locale] ?? [];
+            $title   = trim((string)($tr["title"] ?? ""));
+            $excerpt = trim((string)($tr["excerpt"] ?? ""));
+            $seoT    = trim((string)($tr["seo_title"] ?? ""));
+            $seoD    = trim((string)($tr["seo_desc"] ?? ""));
+            $content = is_string($tr["content"] ?? null) ? $tr["content"] : json_encode($tr["content"] ?? []);
+
+            if ($isSqlite) {
+                $pdo->prepare("INSERT OR REPLACE INTO article_translations (article_id,locale,title,excerpt,seo_title,seo_desc,content) VALUES (?,?,?,?,?,?,?)")
+                    ->execute([$id,$locale,$title,$excerpt,$seoT,$seoD,$content]);
+            } else {
+                $pdo->prepare("INSERT INTO article_translations (article_id,locale,title,excerpt,seo_title,seo_desc,content)
+                    VALUES (?,?,?,?,?,?,?)
+                    ON DUPLICATE KEY UPDATE title=VALUES(title), excerpt=VALUES(excerpt),
+                        seo_title=VALUES(seo_title), seo_desc=VALUES(seo_desc), content=VALUES(content)")
+                    ->execute([$id,$locale,$title,$excerpt,$seoT,$seoD,$content]);
+            }
+        }
+
+        jsonOut(["ok" => true, "id" => $id]);
+
+    // ─── Articles: delete ─────────────────────────────────────────────────────
+    case "delete_article":
+        if ($_SERVER["REQUEST_METHOD"] !== "POST") { http_response_code(405); echo json_encode(["error" => "POST required"]); exit; }
+        $body = json_decode(file_get_contents("php://input"), true) ?? [];
+        $id = (int)($body["id"] ?? 0);
+        if ($id <= 0) { http_response_code(400); echo json_encode(["error" => "id required"]); exit; }
+        $pdo->prepare("DELETE FROM articles WHERE id = ?")->execute([$id]);
+        jsonOut(["ok" => true]);
+
+    // ─── Articles: export as TypeScript ──────────────────────────────────────
+    case "export_articles_ts":
+        $rows = $pdo->query("
+            SELECT a.*, t_es.title AS es_title, t_es.excerpt AS es_excerpt, t_es.seo_title AS es_seo_title, t_es.seo_desc AS es_seo_desc, t_es.content AS es_content,
+                   t_en.title AS en_title, t_en.excerpt AS en_excerpt, t_en.seo_title AS en_seo_title, t_en.seo_desc AS en_seo_desc, t_en.content AS en_content,
+                   t_ca.title AS ca_title, t_ca.excerpt AS ca_excerpt, t_ca.seo_title AS ca_seo_title, t_ca.seo_desc AS ca_seo_desc, t_ca.content AS ca_content
+            FROM articles a
+            LEFT JOIN article_translations t_es ON t_es.article_id = a.id AND t_es.locale = 'es'
+            LEFT JOIN article_translations t_en ON t_en.article_id = a.id AND t_en.locale = 'en'
+            LEFT JOIN article_translations t_ca ON t_ca.article_id = a.id AND t_ca.locale = 'ca'
+            ORDER BY a.type ASC, a.sort_order DESC, a.published_at DESC
+        ")->fetchAll();
+
+        header("Content-Type: text/plain; charset=utf-8");
+        header("Content-Disposition: attachment; filename=\"articles-export.ts\"");
+
+        echo "// AUTO-GENERATED — do not edit manually. Use admin panel to update.\n";
+        echo "import type { Article } from \"./types\";\n\n";
+
+        $articleVars = [];
+        $ebookVars   = [];
+
+        foreach ($rows as $r) {
+            $varName = str_replace(["-"," "], "_", $r["slug"]);
+            $cats    = json_decode($r["categories"] ?? "[]", true) ?: [];
+            $catsStr = "[" . implode(", ", array_map(function($c) { return "\"$c\""; }, $cats)) . "]";
+
+            $buildTranslation = function(string $prefix) use ($r): string {
+                $content = json_decode($r["{$prefix}_content"] ?? "[]", true) ?: [];
+                $sections = [];
+                foreach ($content as $s) {
+                    $type = $s["type"] ?? "paragraph";
+                    if ($type === "paragraph") {
+                        $t = addslashes($s["text"] ?? "");
+                        $sections[] = "        { type: \"paragraph\", text: \"$t\" }";
+                    } elseif ($type === "heading") {
+                        $t = addslashes($s["text"] ?? "");
+                        $sections[] = "        { type: \"heading\", level: " . (int)($s["level"] ?? 2) . ", text: \"$t\" }";
+                    } elseif ($type === "list") {
+                        $items = array_map(function($i) { return "\"" . addslashes($i) . "\""; }, (array)($s["items"] ?? []));
+                        $sections[] = "        { type: \"list\", items: [" . implode(", ", $items) . "] }";
+                    } elseif ($type === "quote") {
+                        $t = addslashes($s["text"] ?? "");
+                        $attr = isset($s["attribution"]) ? ", attribution: \"" . addslashes($s["attribution"]) . "\"" : "";
+                        $sections[] = "        { type: \"quote\", text: \"$t\"$attr }";
+                    } elseif ($type === "callout") {
+                        $t = addslashes($s["text"] ?? "");
+                        $sections[] = "        { type: \"callout\", text: \"$t\" }";
+                    }
+                }
+                $title   = addslashes($r["{$prefix}_title"]     ?? "");
+                $excerpt = addslashes($r["{$prefix}_excerpt"]    ?? "");
+                $seoT    = addslashes($r["{$prefix}_seo_title"]  ?? "");
+                $seoD    = addslashes($r["{$prefix}_seo_desc"]   ?? "");
+                $contentStr = empty($sections) ? "" : "\n" . implode(",\n", $sections) . "\n      ";
+                return "    {
+      title: \"$title\",
+      excerpt: \"$excerpt\",
+      seoTitle: \"$seoT\",
+      seoDescription: \"$seoD\",
+      content: [$contentStr],
+    }";
+            };
+
+            $featured    = $r["featured"] ? "true" : "false";
+            $type        = $r["type"] === "ebook" ? "\n  type: \"ebook\"," : "";
+            $typeComment = $r["type"] === "ebook" ? " (ebook)" : "";
+            $readTime    = (int)$r["reading_time_min"];
+            $slug        = $r["slug"];
+            $publishedAt = $r["published_at"];
+            $author      = addslashes($r["author"]);
+            $authorRole  = addslashes($r["author_role"]);
+            $coverImg    = $r["cover_image"];
+            $coverAlt    = addslashes($r["cover_image_alt"]);
+
+            $es = $buildTranslation("es");
+            $en = $buildTranslation("en");
+            $ca = $buildTranslation("ca");
+
+            $commentStr = $typeComment !== "" ? " // $typeComment" : "";
+            echo "export const {$varName}: Article ={$commentStr}\n";
+            echo "  slug: \"$slug\",$type\n";
+            echo "  publishedAt: \"$publishedAt\",\n";
+            echo "  readingTimeMin: $readTime,\n";
+            echo "  author: \"$author\",\n";
+            echo "  authorRole: \"$authorRole\",\n";
+            echo "  categories: $catsStr,\n";
+            echo "  coverImage: \"$coverImg\",\n";
+            echo "  coverImageAlt: \"$coverAlt\",\n";
+            if ($r["featured"]) echo "  featured: true,\n";
+            echo "  translations: {\n    es:\n$es,\n    en:\n$en,\n    ca:\n$ca,\n  },\n};\n\n";
+
+            if ($r["type"] === "ebook") {
+                $ebookVars[] = $varName;
+            } else {
+                $articleVars[] = $varName;
+            }
+        }
+
+        echo "export const ALL_ARTICLES: Article[] = [" . implode(", ", $articleVars) . "];\n";
+        echo "export const ALL_EBOOKS: Article[]   = [" . implode(", ", $ebookVars) . "];\n";
+        echo "export const ALL_CONTENT: Article[]  = [...ALL_EBOOKS, ...ALL_ARTICLES];\n\n";
+        echo "export const getArticleBySlug = (slug: string) => ALL_CONTENT.find((a) => a.slug === slug);\n";
+        echo "export const getRelatedArticles = (slug: string, limit = 3): Article[] =>\n";
+        echo "  ALL_ARTICLES.filter((a) => a.slug !== slug).slice(0, limit);\n";
+        exit;
+
     default:
         http_response_code(400);
         echo json_encode(["error" => "Unknown action"]);

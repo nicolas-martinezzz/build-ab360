@@ -4,19 +4,19 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { Link } from "@/i18n/navigation";
-import { EbookSection } from "@/components/sections/resources/EbookSection";
-import { ArticleEbookBanner } from "@/components/sections/resources/ArticleEbookBanner";
 import { ArticleCard } from "@/components/sections/resources/ArticleCard";
-import { ALL_ARTICLES, getArticleBySlug, getRelatedArticles } from "@/content/articles";
+import { EbookLeadForm } from "@/components/sections/resources/EbookLeadForm";
+import { ALL_CONTENT, ALL_ARTICLES, getArticleBySlug, getRelatedArticles } from "@/content/articles";
 import type { ArticleSection } from "@/content/articles";
 import { SITE_PATHS } from "@/config/routes";
+import { formatArticleDate } from "@/lib/dateFormat";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateStaticParams() {
   const locales = ["es", "en", "ca"];
   return locales.flatMap((locale) =>
-    ALL_ARTICLES.map((article) => ({ locale, slug: article.slug }))
+    ALL_CONTENT.map((item) => ({ locale, slug: item.slug }))
   );
 }
 
@@ -108,26 +108,12 @@ export default async function ArticleDetailPage({ params }: Props) {
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
+  const isEbook = article.type === "ebook";
   const lang = locale as "es" | "en" | "ca";
   const translation = article.translations[lang] ?? article.translations.es;
-  const related = getRelatedArticles(slug, 2);
+  const related = isEbook ? ALL_ARTICLES.slice(0, 2) : getRelatedArticles(slug, 2);
 
   const t = await getTranslations("resourcesPage");
-
-  const ebookT = {
-    eyebrow: t("ebook.eyebrow"),
-    title: t("ebook.title"),
-    subtitle: t("ebook.subtitle"),
-    emailPlaceholder: t("ebook.emailPlaceholder"),
-    consentLabel: t("ebook.consentLabel"),
-    consentLinkLabel: t("ebook.consentLinkLabel"),
-    ctaButton: t("ebook.ctaButton"),
-    submitButton: t("ebook.submitButton"),
-    successTitle: t("ebook.successTitle"),
-    downloadButton: t("ebook.downloadButton"),
-    errorMessage: t("ebook.errorMessage"),
-    botBlockedMessage: t("ebook.botBlockedMessage"),
-  };
 
   const categoryLabels: Record<string, string> = {
     all: t("categories.all"),
@@ -137,10 +123,7 @@ export default async function ArticleDetailPage({ params }: Props) {
     estrategia: t("categories.estrategia"),
   };
 
-  const date = new Date(article.publishedAt).toLocaleDateString(
-    locale === "ca" ? "ca-ES" : locale === "en" ? "en-GB" : "es-ES",
-    { day: "numeric", month: "long", year: "numeric" }
-  );
+  const date = formatArticleDate(article.publishedAt, locale);
 
   return (
     <>
@@ -157,65 +140,101 @@ export default async function ArticleDetailPage({ params }: Props) {
         </SectionContainer>
       </div>
 
-      {/* Article hero */}
+      {/* Hero */}
       <article>
         <header className="bg-surface-bg pb-10 pt-12 md:pb-14 md:pt-20">
           <SectionContainer>
             <div className="mx-auto max-w-3xl">
-              <div className="flex flex-wrap gap-2">
-                {article.categories.map((cat) => (
-                  <span
-                    className="rounded-[5px] bg-white/10 px-2.5 py-1 text-[0.8125rem] leading-none text-white/70"
-                    key={cat}
-                  >
-                    {categoryLabels[cat] ?? cat}
-                  </span>
-                ))}
-              </div>
+              {isEbook ? (
+                <span className="inline-block rounded-[5px] bg-green-500/20 px-2.5 py-1 text-[0.8125rem] font-semibold leading-none text-green-400">
+                  {t("grid.tabEbooks")}
+                </span>
+              ) : (
+                <div className="flex flex-wrap gap-2">
+                  {article.categories.map((cat) => (
+                    <span
+                      className="rounded-[5px] bg-white/10 px-2.5 py-1 text-[0.8125rem] leading-none text-white/70"
+                      key={cat}
+                    >
+                      {categoryLabels[cat] ?? cat}
+                    </span>
+                  ))}
+                </div>
+              )}
               <h1 className="mt-4 text-[1.75rem] font-bold leading-[1.2] text-white sm:text-[2.25rem] md:text-[2.75rem]">
                 {translation.title}
               </h1>
               <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
                 {translation.excerpt}
               </p>
-              <div className="mt-6 flex flex-col gap-1 text-sm text-white/50 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1">
-                <span>
-                  {t("articlePage.authorBy")} {article.author} · {article.authorRole}
-                </span>
-                <span aria-hidden className="hidden sm:inline">·</span>
-                <span>
-                  {t("articlePage.publishedOn")} <time dateTime={article.publishedAt}>{date}</time>
-                </span>
-                <span aria-hidden className="hidden sm:inline">·</span>
-                <span>
-                  {article.readingTimeMin} {t("articlePage.minRead")}
-                </span>
-              </div>
+              {!isEbook && (
+                <div className="mt-6 flex flex-col gap-1 text-sm text-white/50 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1">
+                  <span>
+                    {t("articlePage.authorBy")} {article.author} · {article.authorRole}
+                  </span>
+                  <span aria-hidden className="hidden sm:inline">·</span>
+                  <span>
+                    {t("articlePage.publishedOn")} <time dateTime={article.publishedAt}>{date}</time>
+                  </span>
+                  <span aria-hidden className="hidden sm:inline">·</span>
+                  <span>
+                    {article.readingTimeMin} {t("articlePage.minRead")}
+                  </span>
+                </div>
+              )}
             </div>
           </SectionContainer>
         </header>
 
-        {/* Article body */}
+        {/* Body */}
         <div className="bg-white py-12 md:py-16">
           <SectionContainer>
             <div className="mx-auto flex max-w-3xl flex-col gap-6">
-              {/* Cover image — constrained to article width */}
-              <div className="relative h-[14rem] w-full overflow-hidden rounded-[10px] sm:h-[18rem] md:h-[24rem]">
+              {/* Cover image */}
+              <div className={`relative w-full overflow-hidden rounded-[10px] ${isEbook ? "aspect-[3/4] max-w-[320px]" : "h-[14rem] sm:h-[18rem] md:h-[24rem]"}`}>
                 <Image
                   alt={article.coverImageAlt}
                   className="object-cover"
                   fill
                   priority
-                  sizes="(max-width: 768px) 100vw, 768px"
+                  sizes={isEbook ? "320px" : "(max-width: 768px) 100vw, 768px"}
                   src={article.coverImage}
                 />
               </div>
-              <ArticleEbookBanner
-                buttonLabel={t("ebookBanner.button")}
-                eyebrow={t("ebookBanner.eyebrow")}
-                title={t("ebookBanner.title")}
-              />
+
+              {/* Article content */}
               {translation.content.map((section, i) => renderSection(section, i))}
+
+              {/* Ebook lead form — inline, below content */}
+              {isEbook && (
+                <div className="mt-4 rounded-[10px] bg-surface-bg px-6 py-8 sm:px-10">
+                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-green-400">
+                    {t("ebook.eyebrow")}
+                  </p>
+                  <p className="mt-2 text-lg font-bold text-white">
+                    {t("ebook.ctaButton")}
+                  </p>
+                  <div className="mt-5 max-w-sm">
+                    <EbookLeadForm
+                      botBlockedMessage={t("ebook.botBlockedMessage")}
+                      companyPlaceholder={t("ebook.companyPlaceholder")}
+                      consentLabel={t("ebook.consentLabel")}
+                      consentLinkLabel={t("ebook.consentLinkLabel")}
+                      ctaButton={t("ebook.ctaButton")}
+                      downloadButton={t("ebook.downloadButton")}
+                      emailPlaceholder={t("ebook.emailPlaceholder")}
+                      errorMessage={t("ebook.errorMessage")}
+                      firstNamePlaceholder={t("ebook.firstNamePlaceholder")}
+                      initiallyExpanded
+                      lastNamePlaceholder={t("ebook.lastNamePlaceholder")}
+                      requiredNote={t("ebook.requiredNote")}
+                      sourceArticle={slug}
+                      submitButton={t("ebook.submitButton")}
+                      successTitle={t("ebook.successTitle")}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </SectionContainer>
         </div>
@@ -240,7 +259,8 @@ export default async function ArticleDetailPage({ params }: Props) {
                     featuredLabel={t("grid.featured")}
                     locale={locale}
                     minReadLabel={t("grid.minRead")}
-                    readMoreLabel={t("grid.readMore")}
+                    readMoreLabel={rel.type === "ebook" ? t("grid.viewEbook") : t("grid.readMore")}
+                    typeLabel={rel.type === "ebook" ? t("grid.badgeEbook") : t("grid.badgeArticle")}
                   />
                 </li>
               ))}
@@ -248,9 +268,6 @@ export default async function ArticleDetailPage({ params }: Props) {
           </SectionContainer>
         </section>
       ) : null}
-
-      {/* Ebook CTA */}
-      <EbookSection sourceArticle={slug} t={ebookT} />
     </>
   );
 }

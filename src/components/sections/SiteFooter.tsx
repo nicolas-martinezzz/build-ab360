@@ -26,11 +26,11 @@ export const SiteFooter = async () => {
           <div className="flex flex-col gap-5">
             <Link
               aria-label="yūtopias systems — inicio"
-              className="inline-block text-lg font-medium"
+              className="inline-block text-[1.0625rem] font-bold"
               href={SITE_PATHS.home}
             >
               <span className="text-green-300">yūtopias</span>{" "}
-              <span className="font-medium text-white/90">systems</span>
+              <span className="font-light text-white/90">systems</span>
             </Link>
 
             <div className="flex flex-col gap-5 sm:flex-row lg:flex-col">
@@ -100,6 +100,9 @@ export const SiteFooter = async () => {
               <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.about}>
                 {t("about")}
               </Link>
+              <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.resources}>
+                {t("resources")}
+              </Link>
             </div>
           </nav>
 
@@ -118,12 +121,6 @@ export const SiteFooter = async () => {
                 </Link>
               </div>
             </nav>
-            <Link
-              className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white/50 transition hover:text-white"
-              href={SITE_PATHS.resources}
-            >
-              {t("resourcesTitle")}
-            </Link>
           </div>
 
           {/* Col 4: Newsletter */}

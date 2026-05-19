@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import type { Article } from "@/content/articles";
+import { formatArticleDate } from "@/lib/dateFormat";
 
 interface ArticleCardProps {
   article: Article;
@@ -9,6 +10,7 @@ interface ArticleCardProps {
   readMoreLabel: string;
   minReadLabel: string;
   categoryLabels: Record<string, string>;
+  typeLabel?: string;
 }
 
 export const ArticleCard = ({
@@ -18,13 +20,11 @@ export const ArticleCard = ({
   readMoreLabel,
   minReadLabel,
   categoryLabels,
+  typeLabel,
 }: ArticleCardProps) => {
   const lang = locale as "es" | "en" | "ca";
   const translation = article.translations[lang] ?? article.translations.es;
-  const date = new Date(article.publishedAt).toLocaleDateString(
-    locale === "ca" ? "ca-ES" : locale === "en" ? "en-GB" : "es-ES",
-    { day: "numeric", month: "long", year: "numeric" }
-  );
+  const date = formatArticleDate(article.publishedAt, locale);
 
   return (
     <article className="group flex h-full w-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[0_4px_14px_rgba(28,30,46,0.08)] transition hover:shadow-[0_8px_24px_rgba(28,30,46,0.14)]">
@@ -37,9 +37,9 @@ export const ArticleCard = ({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             src={article.coverImage}
           />
-          {article.featured ? (
-            <span className="absolute left-3 top-3 rounded-[5px] bg-green-500 px-2.5 py-1 text-[0.75rem] font-semibold text-white">
-              {featuredLabel}
+          {(typeLabel ?? (article.featured ? featuredLabel : null)) ? (
+            <span className="absolute left-3 top-3 rounded-[5px] bg-green-500 px-4 py-1.5 text-[0.9375rem] font-semibold text-white shadow-[0_2px_8px_rgba(0,0,0,0.25)]">
+              {typeLabel ?? featuredLabel}
             </span>
           ) : null}
         </div>

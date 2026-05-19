@@ -160,24 +160,18 @@
     },
     "blogResources": {
       "eyebrow": "Recursos",
-      "title": "Últims articles del blog",
+      "title": "Últims Articles / eBooks",
       "cta": "Veure més",
       "ctaHref": "/resources",
-      "article1": {
-        "imageAlt": "Dona revisant quadres de dades en una oficina",
-        "meta": "22 setembre 2025 | 5 min de lectura",
-        "title": "Adeu als silos: La integració de dades que revoluciona el cicle de vida dels edificis",
-        "tag1": "Dades",
-        "tag2": "Tecnologia",
-        "author": "Eduardo Núñez · COO de yutopias systems"
-      },
-      "article2": {
-        "imageAlt": "Dona revisant quadres de dades en una oficina",
-        "meta": "22 setembre 2025 | 5 min de lectura",
-        "title": "Adeu als silos: La integració de dades que revoluciona el cicle de vida dels edificis",
-        "tag1": "Dades",
-        "tag2": "Tecnologia",
-        "author": "Eduardo Núñez · COO de yutopias systems"
+      "minRead": "min de lectura",
+      "articleBadge": "Article",
+      "ebookBadge": "eBook",
+      "viewEbook": "Veure eBook",
+      "categories": {
+        "datos": "Dades",
+        "sostenibilidad": "Sostenibilitat",
+        "tecnologia": "Tecnologia",
+        "estrategia": "Estratègia"
       }
     },
     "yutopiasAbout": {
@@ -371,9 +365,14 @@
     "grid": {
       "featured": "Destacat",
       "readMore": "Llegir article",
+      "viewEbook": "Veure eBook",
       "minRead": "min de lectura",
       "allArticles": "Tots els articles",
-      "noResults": "No hi ha articles en aquesta categoria."
+      "noResults": "No hi ha contingut en aquesta categoria.",
+      "tabArticles": "Articles",
+      "tabEbooks": "eBooks",
+      "badgeArticle": "Article",
+      "badgeEbook": "eBook"
     },
     "categories": {
       "all": "Tots",
@@ -386,7 +385,11 @@
       "eyebrow": "Ebook gratuït",
       "title": "La guia pràctica per escalar l'Inbound Marketing a la teva empresa",
       "subtitle": "Descarrega gratis la nostra guia i descobreix com estructurar una estratègia de continguts que generi oportunitats de negoci reals.",
-      "emailPlaceholder": "El teu email",
+      "firstNamePlaceholder": "Nom",
+      "lastNamePlaceholder": "Cognom",
+      "companyPlaceholder": "Empresa",
+      "emailPlaceholder": "Email",
+      "requiredNote": "Tots els camps són obligatoris",
       "consentLabel": "He llegit i accepto la",
       "consentLinkLabel": "política de privacitat",
       "ctaButton": "Descarregar ebook gratis",

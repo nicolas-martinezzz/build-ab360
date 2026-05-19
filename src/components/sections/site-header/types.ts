@@ -9,12 +9,13 @@ export type SiteHeaderBarProps = {
   solution: string;
   program: string;
   about: string;
+  resources: string;
   joinBootcamp: string;
   bootcampPath: string;
 };
 
 export type HeaderNavigationLink = {
-  key: "challenge" | "solution" | "program" | "about";
+  key: "challenge" | "solution" | "program" | "about" | "resources";
   href: string;
   label: string;
 };

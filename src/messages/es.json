@@ -160,24 +160,18 @@
     },
     "blogResources": {
       "eyebrow": "Recursos",
-      "title": "Últimos artículos del blog",
+      "title": "Últimos Artículos / eBooks",
       "cta": "Ver más",
       "ctaHref": "/resources",
-      "article1": {
-        "imageAlt": "Mujer revisando paneles de datos en oficina",
-        "meta": "22 septiembre 2025 | 5 min de lectura",
-        "title": "Adiós a los silos: La integración de datos que revoluciona el ciclo de vida de los edificios",
-        "tag1": "Datos",
-        "tag2": "Tecnología",
-        "author": "Eduardo Núñez · COO de yutopias systems"
-      },
-      "article2": {
-        "imageAlt": "Mujer revisando paneles de datos en oficina",
-        "meta": "22 septiembre 2025 | 5 min de lectura",
-        "title": "Adiós a los silos: La integración de datos que revoluciona el ciclo de vida de los edificios",
-        "tag1": "Datos",
-        "tag2": "Tecnología",
-        "author": "Eduardo Núñez · COO de yutopias systems"
+      "minRead": "min de lectura",
+      "articleBadge": "Artículo",
+      "ebookBadge": "eBook",
+      "viewEbook": "Ver eBook",
+      "categories": {
+        "datos": "Datos",
+        "sostenibilidad": "Sostenibilidad",
+        "tecnologia": "Tecnología",
+        "estrategia": "Estrategia"
       }
     },
     "yutopiasAbout": {
@@ -449,9 +443,14 @@
     "grid": {
       "featured": "Destacado",
       "readMore": "Leer artículo",
+      "viewEbook": "Ver eBook",
       "minRead": "min de lectura",
       "allArticles": "Todos los artículos",
-      "noResults": "No hay artículos en esta categoría."
+      "noResults": "No hay contenido en esta categoría.",
+      "tabArticles": "Artículos",
+      "tabEbooks": "eBooks",
+      "badgeArticle": "Artículo",
+      "badgeEbook": "eBook"
     },
     "categories": {
       "all": "Todos",
@@ -464,7 +463,11 @@
       "eyebrow": "Ebook gratuito",
       "title": "La guía práctica para escalar el Inbound Marketing en tu empresa",
       "subtitle": "Descarga gratis nuestra guía y descubre cómo estructurar una estrategia de contenidos que genere oportunidades de negocio reales.",
-      "emailPlaceholder": "Tu email",
+      "firstNamePlaceholder": "Nombre",
+      "lastNamePlaceholder": "Apellido",
+      "companyPlaceholder": "Empresa",
+      "emailPlaceholder": "Email",
+      "requiredNote": "Todos los campos son obligatorios",
       "consentLabel": "He leído y acepto la",
       "consentLinkLabel": "política de privacidad",
       "ctaButton": "Descargar ebook gratis",
