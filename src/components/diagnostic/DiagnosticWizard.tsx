@@ -163,7 +163,7 @@ export function DiagnosticWizard({ locale, mode = "diagnostic" }: Props) {
       : null;
 
   return (
-    <div style={{ background: "#E4F1CF" }} className="min-h-screen pb-16">
+    <div className="min-h-screen pb-16 bg-green-100">
       {/* Step progress dots */}
       <div className="flex items-center justify-center gap-0 py-6 max-w-xs mx-auto">
         {(t.raw("stepDots") as string[]).map((label, i) => (
@@ -171,10 +171,10 @@ export function DiagnosticWizard({ locale, mode = "diagnostic" }: Props) {
             <span
               className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all border-[1.5px] ${
                 i < stepIdx
-                  ? "bg-[#1C1E2E] border-[#1C1E2E] text-white"
+                  ? "bg-surface-bg border-surface-bg text-white"
                   : i === stepIdx
-                  ? "bg-[#359E52] border-[#359E52] text-white"
-                  : "bg-white border-[#D7D7D7] text-[#7B7C82]"
+                  ? "bg-green-500 border-green-500 text-white"
+                  : "bg-white border-grey-light text-grey-dark"
               }`}
               title={label}
             >
@@ -183,7 +183,7 @@ export function DiagnosticWizard({ locale, mode = "diagnostic" }: Props) {
             {i < 3 && (
               <span
                 className={`h-[1.5px] w-12 sm:w-16 transition-colors ${
-                  i < stepIdx ? "bg-[#1C1E2E]" : "bg-[#D7D7D7]"
+                  i < stepIdx ? "bg-surface-bg" : "bg-grey-light"
                 }`}
               />
             )}

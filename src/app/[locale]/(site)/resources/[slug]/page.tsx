@@ -128,7 +128,7 @@ export default async function ArticleDetailPage({ params }: Props) {
   return (
     <>
       {/* Back navigation */}
-      <div className="border-b border-surface-bg/10 bg-[#f4f6f3]">
+      <div className="border-b border-surface-bg/10 bg-surface-light">
         <SectionContainer className="py-3">
           <Link
             className="flex w-fit items-center gap-1.5 text-sm text-surface-bg/60 transition hover:text-surface-bg"
@@ -244,7 +244,7 @@ export default async function ArticleDetailPage({ params }: Props) {
       {related.length > 0 ? (
         <section
           aria-label={t("articlePage.relatedTitle")}
-          className="bg-[#f4f6f3] py-14 md:py-20"
+          className="bg-surface-light py-14 md:py-20"
         >
           <SectionContainer>
             <h2 className="mb-8 text-[1.5rem] font-bold text-surface-bg">

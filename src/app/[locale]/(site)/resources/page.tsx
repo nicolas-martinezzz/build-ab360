@@ -69,7 +69,7 @@ export default async function ResourcesPage({ params }: Props) {
       {/* Content grid with tab filter */}
       <section
         aria-label={t("grid.allArticles")}
-        className="bg-[#f4f6f3] py-14 md:py-20"
+        className="bg-surface-light py-14 md:py-20"
       >
         <SectionContainer>
           <ResourcesGrid

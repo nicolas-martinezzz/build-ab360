@@ -28,9 +28,9 @@ export function StepQuestion({
 
   return (
     <div className="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="bg-white rounded-[10px] border border-[#D7D7D7] shadow-[0_8px_24px_rgba(20,27,46,0.08)] p-8 lg:p-10">
+      <div className="bg-white rounded-[10px] border border-grey-light shadow-[0_8px_24px_rgba(20,27,46,0.08)] p-8 lg:p-10">
         {/* Progress bar */}
-        <div className="h-1 bg-[#D7D7D7] rounded-full mb-6 overflow-hidden">
+        <div className="h-1 bg-grey-light rounded-full mb-6 overflow-hidden">
           <div
             className="h-full rounded-full transition-all duration-300"
             style={{ width: `${progress}%`, background: dim.color }}
@@ -45,16 +45,16 @@ export function StepQuestion({
           >
             {dim.short} · {dim.name}
           </span>
-          <span className="text-xs text-[#7B7C82] font-medium">
+          <span className="text-xs text-grey-dark font-medium">
             {questionIndex + 1} / {TOTAL_QUESTIONS}
           </span>
         </div>
 
         {/* Question */}
-        <p className="text-base sm:text-lg font-semibold text-[#1C1E2E] leading-[1.35] mb-2">
+        <p className="text-base sm:text-lg font-semibold text-surface-bg leading-[1.35] mb-2">
           {question.text}
         </p>
-        <p className="text-sm text-[#7B7C82] italic mb-6">{question.sub}</p>
+        <p className="text-sm text-grey-dark italic mb-6">{question.sub}</p>
 
         {/* Options */}
         <div className="space-y-2.5 mb-8">
@@ -67,18 +67,18 @@ export function StepQuestion({
                 onClick={() => onSelect(i)}
                 className={`w-full text-left flex gap-3 items-start px-4 py-3.5 rounded-lg border-2 transition-all ${
                   isSelected
-                    ? "border-[#127334] bg-[#E4F1CF]"
-                    : "border-[#D7D7D7] bg-white hover:border-[#359E52]"
+                    ? "border-green-600 bg-green-100"
+                    : "border-grey-light bg-white hover:border-green-500"
                 }`}
               >
                 <span
                   className={`w-4 h-4 mt-0.5 rounded-full border-2 flex-shrink-0 transition-colors ${
                     isSelected
-                      ? "border-[#127334] bg-[#127334]"
-                      : "border-[#7B7C82] bg-white"
+                      ? "border-green-600 bg-green-600"
+                      : "border-grey-dark bg-white"
                   }`}
                 />
-                <span className="text-sm text-[#1C1E2E] leading-[1.5]">{opt.t}</span>
+                <span className="text-sm text-surface-bg leading-[1.5]">{opt.t}</span>
               </button>
             );
           })}
@@ -89,7 +89,7 @@ export function StepQuestion({
           <button
             type="button"
             onClick={onBack}
-            className="text-sm font-medium text-[#7B7C82] hover:text-[#1C1E2E] transition-colors"
+            className="text-sm font-medium text-grey-dark hover:text-surface-bg transition-colors"
           >
             {t("back")}
           </button>
@@ -97,7 +97,7 @@ export function StepQuestion({
             type="button"
             disabled={selectedOption === null}
             onClick={onNext}
-            className="bg-[#127334] hover:bg-[#127334] disabled:opacity-40 text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors"
+            className="bg-green-600 hover:bg-green-600 disabled:opacity-40 text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors"
           >
             {isLast ? t("finish") : t("next")}
           </button>
