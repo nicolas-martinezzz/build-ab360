@@ -40,15 +40,15 @@ export const OpenlabSection = async () => {
           </p>
         </blockquote>
 
-        <div className="mt-20 min-w-0 md:mt-24">
+        <div className="mt-14 min-w-0 md:mt-16">
           <p className="figma-text-l uppercase text-grey-dark">{t("pathLabel")}</p>
           <h2
             className="figma-title-2-bold mt-7 text-surface-bg [overflow-wrap:anywhere]"
             id="openlab-title"
           >
             <span className="block">{t("headlineLine1")}</span>
-            <span className="mt-1 block">{t("headlineLine2")}</span>
-            <span className="mt-1 block">{t("headlineLine3")}</span>
+            <span className="block">{t("headlineLine2")}</span>
+            <span className="mt-2 block text-green-500">{t("headlineLine3")}</span>
           </h2>
           <p className="figma-text-l mt-5 max-w-[42.75rem] leading-relaxed text-surface-bg">
             {t("description")}

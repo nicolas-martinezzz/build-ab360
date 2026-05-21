@@ -21,7 +21,7 @@ export const TestimonialsSection = async () => {
       <SectionContainer>
         <p className="figma-text-m text-grey-dark">{t("label")}</p>
         <h2
-          className="figma-title-2 mt-[1.6875rem] text-grey-dark [overflow-wrap:anywhere]"
+          className="figma-title-2 mt-3 text-grey-dark [overflow-wrap:anywhere]"
           id="testimonials-title"
         >
           {t("title")}

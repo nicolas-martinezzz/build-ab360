@@ -32,7 +32,7 @@ export const SimulabSection = async () => {
           />
         </div>
 
-        <ul className="mt-[5.75rem] grid gap-10 text-center sm:grid-cols-3">
+        <ul className="mt-10 grid gap-8 text-center sm:mt-[4rem] sm:grid-cols-3">
           <li className="min-w-0 px-1">
             <h3 className="figma-text-l-bold text-surface-bg">{t("feature1Title")}</h3>
             <p className="mt-1 figma-text-l text-grey-dark">{t("feature1Body")}</p>

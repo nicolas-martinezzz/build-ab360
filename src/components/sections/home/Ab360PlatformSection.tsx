@@ -30,7 +30,7 @@ export const Ab360PlatformSection = async () => {
         <header className="max-w-3xl">
           <p className="figma-text-l text-grey-dark">{t("label")}</p>
           <h2
-            className="figma-title-2-bold mt-8 text-surface-bg [overflow-wrap:anywhere]"
+            className="figma-title-2-bold mt-4 text-surface-bg [overflow-wrap:anywhere]"
             id="ab360-title"
           >
             <span className="block">{t("headlineLine1")}</span>
@@ -46,7 +46,7 @@ export const Ab360PlatformSection = async () => {
           </LinkButton>
         </header>
 
-        <ul className="mt-[58px] grid list-none grid-cols-1 gap-8 p-0 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-12">
+        <ul className="mt-10 grid list-none grid-cols-1 gap-8 p-0 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-10">
           {AGENTS.map(({ key, live }) => (
             <li key={key} className="min-w-0">
               <article className="flex h-full flex-col gap-1.5 p-5">

@@ -27,6 +27,17 @@
   --color-hero-overlay: rgb(28 30 46 / 72%);
   --radius-button: 0.3125rem;
 
+  /* Shadow tokens */
+  --shadow-card: 0 4px 14px rgba(28, 30, 46, 0.08);
+  --shadow-card-hover: 0 8px 24px rgba(28, 30, 46, 0.14);
+  --shadow-card-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-panel: 0 2px 8px rgba(28, 30, 46, 0.06);
+  --shadow-panel-lg: 0 4px 14px rgba(28, 30, 46, 0.08);
+  --shadow-step: 0 8px 24px rgba(20, 27, 46, 0.08);
+  --shadow-step-sm: 0 4px 12px rgba(20, 27, 46, 0.06);
+  --shadow-header: 0 8px 28px rgba(0, 0, 0, 0.18);
+  --shadow-header-compact: 0 14px 45px rgba(0, 0, 0, 0.28);
+
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-cta: var(--font-inter), var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
@@ -205,7 +216,7 @@ section {
 
 .figma-title-1 {
   font-size: 2.25rem;
-  line-height: 1.19;
+  line-height: 1.08;
   font-weight: 400;
 }
 
@@ -223,7 +234,7 @@ section {
 
 .figma-title-2 {
   font-size: 2rem;
-  line-height: 1.22;
+  line-height: 1.1;
   font-weight: 500;
 }
 
@@ -241,7 +252,7 @@ section {
 
 .figma-title-2-bold {
   font-size: 2rem;
-  line-height: 1.44;
+  line-height: 1.15;
   font-weight: 700;
 }
 
@@ -259,7 +270,7 @@ section {
 
 .figma-title-3 {
   font-size: 1.75rem;
-  line-height: 1.38;
+  line-height: 1.2;
   font-weight: 400;
 }
 
