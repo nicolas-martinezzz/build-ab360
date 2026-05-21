@@ -148,7 +148,7 @@ export const EbookLeadForm = ({
           <p className="text-base font-semibold text-white">{successTitle}</p>
         </div>
         <a
-          className="inline-flex h-11 items-center gap-2 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-600"
+          className="inline-flex h-11 items-center gap-2 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-400"
           download
           href={EBOOK_PDF_PATH}
         >
@@ -164,7 +164,7 @@ export const EbookLeadForm = ({
   if (!showForm) {
     return (
       <button
-        className="h-11 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-600"
+        className="h-11 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-400"
         onClick={handleShowForm}
         type="button"
       >
@@ -258,7 +258,7 @@ export const EbookLeadForm = ({
       </label>
 
       <button
-        className="mt-1 flex h-12 items-center justify-center gap-2 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-600 disabled:cursor-not-allowed disabled:opacity-40"
+        className="mt-1 flex h-12 items-center justify-center gap-2 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-400 disabled:cursor-not-allowed disabled:opacity-40"
         disabled={!accepted || isSubmitting}
         type="submit"
       >

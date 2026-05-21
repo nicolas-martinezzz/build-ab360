@@ -31,7 +31,7 @@ export function StepProfile({ onBack, onDone }: Props) {
 
   return (
     <div className="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="bg-white rounded-[10px] border border-grey-light shadow-[0_8px_24px_rgba(20,27,46,0.08)] p-8 lg:p-10">
+      <div className="bg-white rounded-[10px] border border-grey-light shadow-[var(--shadow-step)] p-8 lg:p-10">
         <p className="text-xs font-bold tracking-[0.14em] uppercase text-green-500 mb-2">{t("eyebrow")}</p>
         <h2 className="text-[22px] font-semibold text-surface-bg leading-[1.2] mb-1">{t("heading")}</h2>
         <p className="text-[15px] text-grey-dark mb-6">{t("subheading")}</p>
@@ -78,7 +78,7 @@ export function StepProfile({ onBack, onDone }: Props) {
             type="button"
             disabled={!selected}
             onClick={() => selected && onDone(selected)}
-            className="bg-green-600 hover:bg-green-600 disabled:opacity-40 text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors"
+            className="bg-green-500 hover:bg-green-400 disabled:opacity-40 text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors"
           >
             {t("continue")}
           </button>

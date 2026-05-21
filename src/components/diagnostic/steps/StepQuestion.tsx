@@ -28,7 +28,7 @@ export function StepQuestion({
 
   return (
     <div className="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="bg-white rounded-[10px] border border-grey-light shadow-[0_8px_24px_rgba(20,27,46,0.08)] p-8 lg:p-10">
+      <div className="bg-white rounded-[10px] border border-grey-light shadow-[var(--shadow-step)] p-8 lg:p-10">
         {/* Progress bar */}
         <div className="h-1 bg-grey-light rounded-full mb-6 overflow-hidden">
           <div
@@ -97,7 +97,7 @@ export function StepQuestion({
             type="button"
             disabled={selectedOption === null}
             onClick={onNext}
-            className="bg-green-600 hover:bg-green-600 disabled:opacity-40 text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors"
+            className="bg-green-500 hover:bg-green-400 disabled:opacity-40 text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors"
           >
             {isLast ? t("finish") : t("next")}
           </button>

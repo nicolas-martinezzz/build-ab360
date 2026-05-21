@@ -52,7 +52,7 @@ export function StepPrelead({ locale, mode = "diagnostic", onDone }: Props) {
 
   return (
     <div className="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="bg-white rounded-[10px] border border-grey-light shadow-[0_8px_24px_rgba(20,27,46,0.08)] overflow-hidden">
+      <div className="bg-white rounded-[10px] border border-grey-light shadow-[var(--shadow-step)] overflow-hidden">
         <div className="grid md:grid-cols-2 gap-0">
 
           {/* Left panel — changes per mode */}
@@ -138,7 +138,7 @@ export function StepPrelead({ locale, mode = "diagnostic", onDone }: Props) {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full mt-2 bg-green-600 hover:bg-green-600 disabled:opacity-60 text-white font-semibold text-[15px] px-6 py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="w-full mt-2 bg-green-500 hover:bg-green-400 disabled:opacity-60 text-white font-semibold text-[15px] px-6 py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
               >
                 {loading
                   ? t("submitting")

@@ -143,7 +143,7 @@ export const FooterNewsletterForm = ({
         </span>
       </label>
       <button
-        className="h-11 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-600 disabled:opacity-50"
+        className="h-11 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-400 disabled:opacity-50"
         disabled={!accepted || isSubmitting}
         type="submit"
       >

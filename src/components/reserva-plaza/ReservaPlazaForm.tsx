@@ -148,7 +148,7 @@ export function ReservaPlazaForm({ locale }: Props) {
       <button
         type="submit"
         disabled={loading}
-        className="mt-1 flex w-full items-center justify-center gap-2 rounded-[6px] bg-green-600 px-6 py-3 text-[0.9375rem] font-semibold text-white transition hover:bg-green-700 disabled:opacity-60"
+        className="mt-1 flex w-full items-center justify-center gap-2 rounded-[6px] bg-green-500 px-6 py-3 text-[0.9375rem] font-semibold text-white transition hover:bg-green-400 disabled:opacity-60"
       >
         {loading ? "Guardando..." : <>Continuar al diagnóstico <span aria-hidden>→</span></>}
       </button>

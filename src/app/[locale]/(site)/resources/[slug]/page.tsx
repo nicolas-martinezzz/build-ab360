@@ -146,7 +146,7 @@ export default async function ArticleDetailPage({ params }: Props) {
           <SectionContainer>
             <div className="mx-auto max-w-3xl">
               {isEbook ? (
-                <span className="inline-block rounded-[5px] bg-green-500/20 px-2.5 py-1 text-[0.8125rem] font-semibold leading-none text-green-400">
+                <span className="inline-block rounded-[5px] bg-green-100 px-2.5 py-1 text-[0.8125rem] font-semibold leading-none text-green-400">
                   {t("grid.tabEbooks")}
                 </span>
               ) : (
