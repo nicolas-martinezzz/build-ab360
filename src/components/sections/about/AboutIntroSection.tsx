@@ -7,12 +7,12 @@ export const AboutIntroSection = async () => {
   const t = await getTranslations("aboutPage.intro");
 
   return (
-    <section className="section-block bg-white">
+    <section aria-labelledby="about-intro-title" className="section-block bg-white">
       <SectionContainer>
         <div className="grid gap-8 md:grid-cols-3 md:gap-10">
-          {COLS.map((col) => (
+          {COLS.map((col, i) => (
             <div key={col}>
-              <h2 className="figma-text-l-bold text-surface-bg">
+              <h2 className="figma-text-l-bold text-surface-bg" id={i === 0 ? "about-intro-title" : undefined}>
                 {t(`${col}Title`)}
               </h2>
               <p className="figma-text-m mt-2.5 text-grey-dark">

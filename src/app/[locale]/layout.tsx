@@ -51,9 +51,33 @@ export async function generateMetadata({
   const messages: { metadata?: { title?: string; description?: string } } =
     (await import(`@/messages/${locale}.json`)).default;
 
+  const localeMap: Record<string, string> = { es: "es_ES", en: "en_US", ca: "ca_ES" };
+
   return {
-    title: messages.metadata?.title,
+    metadataBase: new URL("https://yutopias.com"),
+    title: {
+      default: messages.metadata?.title ?? "Yūtopias Systems",
+      template: "%s | Yūtopias Systems",
+    },
     description: messages.metadata?.description,
+    alternates: {
+      canonical: `https://yutopias.com/${locale}`,
+      languages: {
+        es: "/es",
+        en: "/en",
+        ca: "/ca",
+        "x-default": "/es",
+      },
+    },
+    openGraph: {
+      siteName: "Yūtopias Systems",
+      locale: localeMap[locale] ?? "es_ES",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@yutopias",
+    },
   };
 }
 

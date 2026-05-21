@@ -25,11 +25,11 @@ export const ChallengeDiscoverAb360Section = async () => {
   const t = await getTranslations("challengePage.discoverAb360");
 
   return (
-    <section className="bg-white py-14 md:py-[4.0625rem]">
+    <section aria-labelledby="challenge-discover-title" className="bg-white py-14 md:py-[4.0625rem]">
       <SectionContainer>
         <div className="max-w-[50rem]">
           <p className="type-eyebrow text-black">{t("eyebrow")}</p>
-          <h2 className="figma-title-2-bold mt-4 text-black">
+          <h2 className="figma-title-2-bold mt-4 text-black" id="challenge-discover-title">
             {t("headline")}
           </h2>
           <p className="figma-text-l-bold mt-8 text-green-500">{t("highlight")}</p>

@@ -14,7 +14,7 @@ export const SolutionSimulabSection = async () => {
   const t = await getTranslations("solutionPage.simulab");
 
   return (
-    <section className="section-block bg-white">
+    <section aria-label="SimuLab" className="section-block bg-white">
       <SectionContainer>
         <div className="relative mx-auto aspect-[1200/498] w-full max-w-[75rem] overflow-hidden rounded-[10px]">
           <Image

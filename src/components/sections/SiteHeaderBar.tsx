@@ -73,8 +73,8 @@ export const SiteHeaderBar = ({
         className={twMerge(
           "relative z-[60] overflow-hidden backdrop-blur-xl supports-[backdrop-filter]:backdrop-saturate-150 transition-all duration-500 ease-out",
           isCompact
-            ? "bg-surface-bg/70 ring-1 ring-inset ring-white/15 shadow-[0_14px_45px_rgba(0,0,0,0.28)]"
-            : "bg-surface-bg/52 ring-1 ring-inset ring-white/10 shadow-[0_8px_28px_rgba(0,0,0,0.18)]",
+            ? "bg-surface-bg/70 ring-1 ring-inset ring-white/15 shadow-[var(--shadow-header-compact)]"
+            : "bg-surface-bg/52 ring-1 ring-inset ring-white/10 shadow-[var(--shadow-header)]",
         )}
       >
         <div

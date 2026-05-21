@@ -44,10 +44,11 @@ export const ResourcesGrid = ({
   return (
     <div className="flex flex-col gap-8">
       {/* Top-level tabs: Artículos / Ebooks */}
-      <div className="flex gap-2 border-b border-surface-bg/10" role="tablist">
+      <div aria-label="Tipo de contenido" className="flex gap-2 border-b border-surface-bg/10" role="tablist">
         <button
+          aria-controls="resources-tabpanel"
           aria-selected={activeTab === "articles"}
-          className={`border-b-2 px-5 py-2.5 text-sm font-semibold transition focus:outline-none ${
+          className={`border-b-2 px-5 py-2.5 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-green-500 focus-visible:outline-offset-2 ${
             activeTab === "articles"
               ? "border-green-500 text-surface-bg"
               : "border-transparent text-surface-bg/50 hover:text-surface-bg/80"
@@ -59,8 +60,9 @@ export const ResourcesGrid = ({
           {labels.tabArticles}
         </button>
         <button
+          aria-controls="resources-tabpanel"
           aria-selected={activeTab === "ebooks"}
-          className={`border-b-2 px-5 py-2.5 text-sm font-semibold transition focus:outline-none ${
+          className={`border-b-2 px-5 py-2.5 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-green-500 focus-visible:outline-offset-2 ${
             activeTab === "ebooks"
               ? "border-green-500 text-surface-bg"
               : "border-transparent text-surface-bg/50 hover:text-surface-bg/80"
@@ -77,7 +79,7 @@ export const ResourcesGrid = ({
       <div aria-label="Filtrar por categoría" className="flex flex-wrap gap-2" role="group">
           <button
             aria-pressed={activeCategory === "all"}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-surface-light ${
+            className={`rounded-full px-4 py-2 text-sm font-medium transition focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-light ${
               activeCategory === "all"
                 ? "bg-surface-bg text-white"
                 : "bg-white text-surface-bg hover:bg-green-50"
@@ -90,7 +92,7 @@ export const ResourcesGrid = ({
           {allCategories.map((cat) => (
             <button
               aria-pressed={activeCategory === cat}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-surface-light ${
+              className={`rounded-full px-4 py-2 text-sm font-medium transition focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-light ${
                 activeCategory === cat
                   ? "bg-surface-bg text-white"
                   : "bg-white text-surface-bg hover:bg-green-50"
@@ -105,25 +107,27 @@ export const ResourcesGrid = ({
       </div>
 
       {/* Grid */}
-      {activeItems.length === 0 ? (
-        <p className="py-12 text-center text-surface-bg/60">{labels.noResults}</p>
-      ) : (
-        <ul className="grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3">
-          {activeItems.map((item) => (
-            <li className="flex" key={item.slug}>
-              <ArticleCard
-                article={item}
-                categoryLabels={labels.categories}
-                featuredLabel={labels.featured}
-                locale={locale}
-                minReadLabel={labels.minRead}
-                readMoreLabel={item.type === "ebook" ? labels.viewEbook : labels.readMore}
-                typeLabel={item.type === "ebook" ? labels.badgeEbook : labels.badgeArticle}
-              />
-            </li>
-          ))}
-        </ul>
-      )}
+      <div id="resources-tabpanel" role="tabpanel">
+        {activeItems.length === 0 ? (
+          <p className="py-12 text-center text-surface-bg/60">{labels.noResults}</p>
+        ) : (
+          <ul className="grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3">
+            {activeItems.map((item) => (
+              <li className="flex" key={item.slug}>
+                <ArticleCard
+                  article={item}
+                  categoryLabels={labels.categories}
+                  featuredLabel={labels.featured}
+                  locale={locale}
+                  minReadLabel={labels.minRead}
+                  readMoreLabel={item.type === "ebook" ? labels.viewEbook : labels.readMore}
+                  typeLabel={item.type === "ebook" ? labels.badgeEbook : labels.badgeArticle}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Yutopias Systems — Decisions with measurable impact",
-    "description": "Simulate how your choices affect cost and sustainability before you commit."
+    "title": "Yūtopias Systems — Decisions with measurable impact",
+    "description": "Simulate how your choices affect cost, energy, and sustainability before you commit. AB360 connects all building data in a single model."
   },
   "nav": {
     "brandAria": "Yutopias systems, home",
@@ -190,8 +190,8 @@
   },
   "challengePage": {
     "metadata": {
-      "title": "The challenge",
-      "description": "How AB360 transforms decision-making in buildings through simulation and connected data."
+      "title": "The challenge — Decision-making in construction",
+      "description": "Cost, energy, and impact have always been connected in a building. The problem is nobody measured them together. AB360 changes that with simulation and connected data."
     },
     "headline": "Building is a complex system.\nThousands of decisions.\nDecades of consequences.\nYet it is approached without a holistic view.",
     "body": "The vision exists. The data does not. Or it arrives late. Or it is fragmented or non-existent - within each organization and across all of them. And when it does arrive, the most important decisions have already been made - consciously or not.",
@@ -424,8 +424,8 @@
   },
   "aboutPage": {
     "metadata": {
-      "title": "About us",
-      "description": "Learn about Yutopias Systems and our vision to transform decision-making in construction."
+      "title": "About us — Yūtopias Systems",
+      "description": "We are Yūtopias Systems, the team behind AB360. Our mission is to transform how decisions are made in construction using simulation and connected data."
     },
     "hero": {
       "brandPrimary": "yūtopias",
@@ -569,8 +569,8 @@
   },
   "solutionPage": {
     "metadata": {
-      "title": "The solution",
-      "description": "AB360 is the platform that connects building data across its entire lifecycle."
+      "title": "The solution — AB360, building data platform",
+      "description": "AB360 connects cost, energy, and environmental impact in a single model. Simulate decisions before committing and measure real impact at every stage of the building lifecycle."
     },
     "hero": {
       "eyebrow": "AI SIMULATION AGENT",
@@ -716,8 +716,8 @@
   },
   "programaPage": {
     "metadata": {
-      "title": "The program",
-      "description": "OpenLab is the 12-month open innovation program to adapt SimuLab to your real operations."
+      "title": "OpenLab — 12-month open innovation program",
+      "description": "Join OpenLab and adapt SimuLab to your real operations. 12 months of open innovation for construction companies ready to make data-driven decisions."
     },
     "hero": {
       "eyebrow": "THE PROGRAM",
@@ -744,11 +744,11 @@
     },
     "journey": {
       "eyebrow": "THE CARDS",
-      "headline": "The OpenLab� journey",
+      "headline": "The OpenLab® journey",
       "introLead": "Your company makes good decisions. The problem is that it makes them with only half of the information it should have.",
-      "introBody": "OpenLab� develops a real use case aligned with your company OKRs. It is structured into six cards, each with a clear purpose and a concrete deliverable. The process culminates with SmartCheck.",
+      "introBody": "OpenLab® develops a real use case aligned with your company OKRs. It is structured into six cards, each with a clear purpose and a concrete deliverable. The process culminates with SmartCheck.",
       "introFoot": "If you want more information or have questions, write to us.",
-      "cta": "I want to know more about OpenLab�",
+      "cta": "I want to know more about OpenLab®",
       "block1Title": "DIAGNOSIS: Where you are",
       "t1Title": "Operational X-ray",
       "t1Body": "Where margin, time and quality are lost in your real processes. Always from reality — not from what we think is happening.",
@@ -768,7 +768,7 @@
       "t4Pill1": "Defined use case",
       "t4Pill2": "Agreed OKRs",
       "block3Title": "VALIDATION: Real evidence",
-      "t5Title": "Simulab� with your data",
+      "t5Title": "Simulab® with your data",
       "t5Body": "We activate Simulab on your real use case. Costs, footprints, decisions. Results are verifiable from day one.",
       "t5Pill1": "Validation report",
       "t5Pill2": "Operational certification",
@@ -827,7 +827,7 @@
       "agenda6Title": "Insights and action",
       "agenda6Meta": "",
       "agenda7Time": "11:25",
-      "agenda7Title": "The OpenLab� journey",
+      "agenda7Title": "The OpenLab® journey",
       "agenda7Meta": "",
       "agenda8Time": "11:45",
       "agenda8Title": "High-performance SQUAD teams",
@@ -1007,7 +1007,7 @@
       "bridgeBodyDate": "16 June in Barcelona",
       "bridgeBodyConnector": ", a room with La Salle R&D, ACCIÓ and BStartup from Banc Sabadell will work on challenges like",
       "bridgeBodySuffix": ". This is not a webinar or a demo — it is where your team builds its first SmartCheck: challenge → objective → data → decision.",
-      "eventLabel": "Yūtopias Systems · OpenLab�",
+      "eventLabel": "Yūtopias Systems · OpenLab®",
       "eventName": "Bootcamp Zero",
       "eventSub": "Strategic dialogues and SQUAD activation",
       "eventBadge1": "📍 Hub BStartup · Barcelona",

@@ -68,12 +68,18 @@ export function StepResults({ results, answers, onComplete, onRestart }: Props) 
       </div>
 
       {/* Score + dimensions */}
-      <div className="bg-white rounded-[10px] border border-grey-light shadow-[0_8px_24px_rgba(20,27,46,0.08)] p-6 sm:p-8">
+      <div className="bg-white rounded-[10px] border border-grey-light shadow-[var(--shadow-step)] p-6 sm:p-8">
         <div className="grid sm:grid-cols-[auto_1fr] gap-8 items-start">
           {/* Ring */}
           <div className="flex flex-col items-center gap-3">
             <div className="relative">
-              <svg width="110" height="110" viewBox="0 0 110 110">
+              <svg
+                aria-label={`${t("scoreLabel")}: ${scoreDisplay}/10`}
+                height="110"
+                role="img"
+                viewBox="0 0 110 110"
+                width="110"
+              >
                 <circle cx="55" cy="55" r="46" fill="none" stroke="var(--color-grey-light)" strokeWidth="10" />
                 <circle
                   cx="55" cy="55" r="46" fill="none"
@@ -85,7 +91,7 @@ export function StepResults({ results, answers, onComplete, onRestart }: Props) 
                   transform="rotate(-90 55 55)"
                 />
               </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <div aria-hidden className="absolute inset-0 flex flex-col items-center justify-center">
                 <span className="text-[26px] font-bold leading-none" style={{ color: band.color }}>
                   {scoreDisplay}
                 </span>
@@ -106,7 +112,14 @@ export function StepResults({ results, answers, onComplete, onRestart }: Props) 
               <Pill label={t("pillLack")} value={`${100 - weightedScore}/100`} />
             </div>
 
-            <div className="w-full max-w-[200px] h-1.5 bg-grey-light rounded-full overflow-hidden">
+            <div
+              aria-label={`${t("scoreLabel")}: ${weightedScore}/100`}
+              aria-valuemax={100}
+              aria-valuemin={0}
+              aria-valuenow={weightedScore}
+              className="w-full max-w-[200px] h-1.5 bg-grey-light rounded-full overflow-hidden"
+              role="progressbar"
+            >
               <div
                 className="h-full rounded-full transition-all"
                 style={{ width: `${weightedScore}%`, background: band.color }}
@@ -137,7 +150,14 @@ export function StepResults({ results, answers, onComplete, onRestart }: Props) 
                     </div>
                     <span className="text-[18px] font-bold" style={{ color: d.color }}>{value}%</span>
                   </div>
-                  <div className="h-1.5 bg-grey-light rounded-full overflow-hidden mb-2">
+                  <div
+                    aria-label={`${name}: ${value}%`}
+                    aria-valuemax={100}
+                    aria-valuemin={0}
+                    aria-valuenow={value}
+                    className="h-1.5 bg-grey-light rounded-full overflow-hidden mb-2"
+                    role="progressbar"
+                  >
                     <div
                       className="h-full rounded-full"
                       style={{ width: `${value}%`, background: d.color }}
@@ -160,7 +180,7 @@ export function StepResults({ results, answers, onComplete, onRestart }: Props) 
       </div>
 
       {/* Dynamic conclusion */}
-      <div className="bg-white rounded-[10px] border border-grey-light shadow-[0_8px_24px_rgba(20,27,46,0.08)] p-6 sm:p-8">
+      <div className="bg-white rounded-[10px] border border-grey-light shadow-[var(--shadow-step)] p-6 sm:p-8">
         <h3 className="text-[17px] font-semibold text-surface-bg mb-3">
           {t("conclusionHeading")}
         </h3>
@@ -223,7 +243,7 @@ function RetoCard({ item, rank, t }: { item: ComputedReto; rank: number; t: Resu
 
   return (
     <div
-      className={`bg-white rounded-[10px] border-l-4 border border-grey-light shadow-[0_4px_12px_rgba(20,27,46,0.06)] p-5 ${
+      className={`bg-white rounded-[10px] border-l-4 border border-grey-light shadow-[var(--shadow-step-sm)] p-5 ${
         isHigh ? "border-l-green-600" : isMed ? "border-l-green-500" : "border-l-grey-dark"
       }`}
     >
@@ -302,7 +322,7 @@ function BridgeSection({
   const hookReto2 = topRetos[1]?.reto.name ?? "";
 
   return (
-    <div className="rounded-[10px] border border-grey-light shadow-[0_8px_24px_rgba(20,27,46,0.08)] overflow-hidden">
+    <div className="rounded-[10px] border border-grey-light shadow-[var(--shadow-step)] overflow-hidden">
       {/* Reflection — light green tint */}
       <div className="bg-green-50 px-6 sm:px-8 pt-8 pb-5 border-b border-grey-light">
         <p className="text-[17px] text-surface-bg/75 italic leading-[1.6] text-center max-w-[600px] mx-auto">
@@ -387,7 +407,7 @@ function BridgeSection({
                   onChange={(e) => setReto(e.target.value)}
                   placeholder={t("formFieldChallengePlaceholder")}
                   rows={3}
-                  className="w-full bg-white border border-grey-light rounded-lg px-3 py-2 text-[14px] text-surface-bg placeholder:text-grey-dark focus:outline-none focus:border-green-500 resize-none"
+                  className="w-full bg-white border border-grey-light rounded-lg px-3 py-2 text-[14px] text-surface-bg placeholder:text-grey-dark focus:outline-none focus:border-green-500 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-1 resize-none"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -429,7 +449,7 @@ function LightInput({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="w-full bg-white border border-grey-light rounded-lg px-3 py-2 text-[14px] text-surface-bg placeholder:text-grey-dark focus:outline-none focus:border-green-500"
+        className="w-full bg-white border border-grey-light rounded-lg px-3 py-2 text-[14px] text-surface-bg placeholder:text-grey-dark focus:outline-none focus:border-green-500 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-1"
       />
     </div>
   );

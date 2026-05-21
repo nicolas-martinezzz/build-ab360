@@ -113,25 +113,25 @@ export function getScoreLevelMeta(score: number) {
 
 export function getScoreBandMeta(weightedPct: number) {
   if (weightedPct >= 0.85) return {
-    color: "#127334", bandBg: "#E4F1CF",
+    color: "var(--color-green-600)", bandBg: "var(--color-green-100)",
     title: "Tienes las bases. Falta conectarlas.",
     sub: "Tu organización ya funciona con prácticas sólidas en casi todas las áreas. Los retos que siguen no son urgencias: son oportunidades de integrar lo que ya hace bien para que el conjunto opere como un sistema.",
     introText: "Con esta base, estos retos son el siguiente paso — conectar lo que ya funciona por separado.",
   };
   if (weightedPct >= 0.70) return {
-    color: "#127334", bandBg: "#E4F1CF",
+    color: "var(--color-green-600)", bandBg: "var(--color-green-100)",
     title: "Buena base. Pero pierdes dinero por los huecos.",
     sub: "Hay cosas que funcionan bien. Otras dependen de trabajo manual o de personas concretas. Esos huecos tienen un coste que no se ve hasta que hay un problema.",
     introText: "Estos son los retos donde hoy pierdes más margen, plazo o criterio técnico de forma sistemática.",
   };
   if (weightedPct >= 0.45) return {
-    color: "#127334", bandBg: "#E4F1CF",
+    color: "var(--color-green-600)", bandBg: "var(--color-green-100)",
     title: "Funciona. Pero la coordinación te cuesta dinero.",
     sub: "La información no fluye bien entre fases, herramientas y equipos. El retrabajo, los desvíos que aparecen tarde y las decisiones tomadas a ciegas tienen aquí su origen habitual.",
     introText: "Estos retos explican buena parte de las fricciones del día a día. Resolverlos es ganar margen y plazo, no solo mejorar procesos.",
   };
   return {
-    color: "#127334", bandBg: "#E4F1CF",
+    color: "var(--color-green-600)", bandBg: "var(--color-green-100)",
     title: "Todo depende del equipo. Si alguien se va, se va contigo.",
     sub: "Tu organización funciona por el criterio y la experiencia de las personas — lo cual es valioso. Pero esa dependencia limita tu capacidad de escalar, anticipar problemas y mantener la calidad cuando el equipo cambia.",
     introText: "Estos son los retos que más impacto tienen en tu estabilidad y capacidad de crecer a corto plazo.",
@@ -139,10 +139,10 @@ export function getScoreBandMeta(weightedPct: number) {
 }
 
 export function getDashboardMeta(pct: number) {
-  if (pct >= 85) return { label: "Bien asentado",         copy: "Este bloque ya opera con buenas prácticas. El foco es mantener la consistencia y conectarlo con los otros bloques.", tone: "rgba(27,107,58,0.12)" };
-  if (pct >= 70) return { label: "Funciona con huecos",   copy: "Hay procesos establecidos, pero dependen de trabajo manual o de personas concretas. Eso erosiona fiabilidad y escalabilidad.", tone: "rgba(46,157,78,0.12)" };
-  if (pct >= 45) return { label: "Hay base, falta conectar", copy: "Existen herramientas parciales, pero la información no fluye entre ellas. De ahí el retrabajo y los errores de coordinación.", tone: "rgba(58,167,109,0.14)" };
-  return { label: "Requiere atención prioritaria", copy: "Este bloque opera reactivamente y depende de personas. Es el origen más probable de desvíos y pérdida de conocimiento.", tone: "rgba(107,195,140,0.12)" };
+  if (pct >= 85) return { label: "Bien asentado",            copy: "Este bloque ya opera con buenas prácticas. El foco es mantener la consistencia y conectarlo con los otros bloques.", tone: "rgb(from var(--color-green-600) r g b / 0.12)" };
+  if (pct >= 70) return { label: "Funciona con huecos",      copy: "Hay procesos establecidos, pero dependen de trabajo manual o de personas concretas. Eso erosiona fiabilidad y escalabilidad.", tone: "rgb(from var(--color-green-500) r g b / 0.12)" };
+  if (pct >= 45) return { label: "Hay base, falta conectar", copy: "Existen herramientas parciales, pero la información no fluye entre ellas. De ahí el retrabajo y los errores de coordinación.", tone: "rgb(from var(--color-green-400) r g b / 0.14)" };
+  return { label: "Requiere atención prioritaria",            copy: "Este bloque opera reactivamente y depende de personas. Es el origen más probable de desvíos y pérdida de conocimiento.", tone: "rgb(from var(--color-green-300) r g b / 0.12)" };
 }
 
 export function getDynamicConclusion(

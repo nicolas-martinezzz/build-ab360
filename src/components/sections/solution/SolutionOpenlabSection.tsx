@@ -7,12 +7,12 @@ export const SolutionOpenlabSection = async () => {
   const t = await getTranslations("solutionPage.openlab");
 
   return (
-    <section className="section-block-spacious bg-white">
+    <section aria-labelledby="solution-openlab-title" className="section-block-spacious bg-white">
       <SectionContainer>
         <div className="flex max-w-[53.8125rem] flex-col gap-4">
-          <p className="figma-text-l text-grey-dark">{t("eyebrow")}</p>
+          <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
 
-          <h2 className="figma-title-2 text-surface-bg">{t("headline")}</h2>
+          <h2 className="figma-title-2 text-surface-bg" id="solution-openlab-title">{t("headline")}</h2>
 
           <p className="figma-text-l whitespace-pre-line text-surface-bg">{t("body")}</p>
 

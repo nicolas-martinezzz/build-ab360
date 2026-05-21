@@ -41,7 +41,7 @@ export const OpenlabSection = async () => {
         </blockquote>
 
         <div className="mt-14 min-w-0 md:mt-16">
-          <p className="figma-text-l uppercase text-grey-dark">{t("pathLabel")}</p>
+          <p className="type-eyebrow text-grey-dark">{t("pathLabel")}</p>
           <h2
             className="figma-title-2-bold mt-7 text-surface-bg [overflow-wrap:anywhere]"
             id="openlab-title"

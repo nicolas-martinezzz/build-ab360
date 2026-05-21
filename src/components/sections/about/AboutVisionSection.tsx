@@ -5,14 +5,14 @@ export const AboutVisionSection = async () => {
   const t = await getTranslations("aboutPage.vision");
 
   return (
-    <section className="section-block bg-green-100/40">
+    <section aria-labelledby="about-vision-title" className="section-block bg-green-100/40">
       <SectionContainer>
         <div className="grid gap-9 md:grid-cols-2 md:gap-14">
           <div>
             <p className="type-eyebrow text-grey-dark">
               {t("eyebrow")}
             </p>
-            <h2 className="figma-title-2 mt-3 text-surface-bg">
+            <h2 className="figma-title-2 mt-3 text-surface-bg" id="about-vision-title">
               {t("title")}
             </h2>
           </div>

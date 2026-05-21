@@ -44,12 +44,12 @@ export const ProgramaJourneySection = async () => {
   const t = await getTranslations("programaPage.journey");
 
   return (
-    <section className="section-block-spacious bg-journey-surface">
+    <section aria-labelledby="programa-journey-title" className="section-block-spacious bg-journey-surface">
       <SectionContainer>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] lg:gap-12">
           <div className="lg:sticky lg:top-24 lg:h-fit">
             <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
-            <h2 className="figma-title-2-bold mt-3 text-surface-bg">{t("headline")}</h2>
+            <h2 className="figma-title-2-bold mt-3 text-surface-bg" id="programa-journey-title">{t("headline")}</h2>
             <p className="figma-text-l mt-6 text-surface-bg">{t("introLead")}</p>
             <p className="figma-text-m mt-6 text-grey-dark">{t("introBody")}</p>
             <p className="figma-text-m mt-5 text-surface-bg">{t("introFoot")}</p>
@@ -64,7 +64,7 @@ export const ProgramaJourneySection = async () => {
           </div>
 
           <div className="space-y-8">
-            <section className="space-y-4">
+            <div className="space-y-4">
               <h3 className="figma-card-title text-surface-bg">{t("block1Title")}</h3>
               <div className="space-y-4">
                 <JourneyCard
@@ -86,9 +86,9 @@ export const ProgramaJourneySection = async () => {
                   token="T2"
                 />
               </div>
-            </section>
+            </div>
 
-            <section className="space-y-4">
+            <div className="space-y-4">
               <h3 className="figma-card-title text-surface-bg">{t("block2Title")}</h3>
               <div className="space-y-4">
                 <JourneyCard
@@ -110,9 +110,9 @@ export const ProgramaJourneySection = async () => {
                   token="T4"
                 />
               </div>
-            </section>
+            </div>
 
-            <section className="space-y-4">
+            <div className="space-y-4">
               <h3 className="figma-card-title text-surface-bg">{t("block3Title")}</h3>
               <div className="space-y-4">
                 <JourneyCard
@@ -131,7 +131,7 @@ export const ProgramaJourneySection = async () => {
                   token="T6"
                 />
               </div>
-            </section>
+            </div>
           </div>
         </div>
       </SectionContainer>

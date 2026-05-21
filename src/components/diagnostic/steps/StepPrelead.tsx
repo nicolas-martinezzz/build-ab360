@@ -243,4 +243,4 @@ function Field({ label, htmlFor, children }: { label: string; htmlFor: string; c
 }
 
 const inputCls =
-  "w-full border border-grey-light rounded-lg px-3 py-2.5 text-sm text-surface-bg placeholder:text-grey-dark focus:outline-none focus:ring-2 focus:ring-green-500/40 focus:border-green-500 transition-colors";
+  "w-full border border-grey-light rounded-lg px-3 py-2.5 text-sm text-surface-bg placeholder:text-grey-dark focus:outline-none focus:ring-2 focus:ring-green-500/40 focus:border-green-500 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-1 transition-colors";

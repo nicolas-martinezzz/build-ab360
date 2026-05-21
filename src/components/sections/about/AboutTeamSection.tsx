@@ -37,7 +37,7 @@ export const AboutTeamSection = async () => {
   return (
     <>
       {/* Team intro — cream bg */}
-      <section className="section-block bg-green-100/40">
+      <section aria-label={teamT("eyebrow")} className="section-block bg-green-100/40">
         <SectionContainer>
           <div className="grid gap-8 md:grid-cols-2 md:gap-16">
             <p className="figma-text-l text-surface-bg">{introT("left")}</p>
@@ -78,16 +78,16 @@ export const AboutTeamSection = async () => {
                       src={MEMBER_PHOTOS[key]}
                     />
                   </div>
-                  <div className="mt-4 flex flex-1 flex-col">
-                    <p className="figma-text-l-bold md:min-h-[3.5rem]">
+                  <div className="mt-3 flex flex-1 flex-col">
+                    <p className="figma-text-l-bold md:min-h-[2.5rem]">
                       {teamT(`${key}.name`)}
                     </p>
-                    <p className="figma-text-m mt-1 text-white/60 md:min-h-[3rem]">{teamT(`${key}.role`)}</p>
-                    <p className="figma-text-m mt-2 leading-relaxed text-white/70 md:min-h-[8rem]">
+                    <p className="figma-text-m mt-0.5 text-white/60 md:min-h-[1.5rem]">{teamT(`${key}.role`)}</p>
+                    <p className="figma-text-m mt-1.5 leading-relaxed text-white/70 md:min-h-[6rem]">
                       {teamT(`${key}.bio`)}
                     </p>
                     <Link
-                      className="figma-text-m mt-3 text-green-300 underline-offset-2 hover:underline sm:mt-auto"
+                      className="figma-text-m mt-2 text-green-300 underline-offset-2 hover:underline sm:mt-auto"
                       href={linkedinUrl as never}
                       target="_blank"
                       rel="noopener noreferrer"

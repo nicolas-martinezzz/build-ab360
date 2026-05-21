@@ -15,15 +15,13 @@ export const BlogResourcesSection = async () => {
   const ebooks = ALL_EBOOKS.slice(0, 2);
 
   return (
-    <section aria-labelledby="blog-resources-title" className="bg-green-100/40 py-16 md:py-20">
+    <section aria-labelledby="blog-resources-title" className="section-block bg-green-100/40">
       <SectionContainer>
 
         {/* Header */}
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-grey-dark">
-              {t("eyebrow")}
-            </p>
+            <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
             <h2 className="mt-2 text-[2rem] font-normal leading-[1.15] text-surface-bg sm:text-[2.25rem]" id="blog-resources-title">
               {t("title")}
             </h2>

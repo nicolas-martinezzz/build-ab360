@@ -9,7 +9,7 @@ export const SolutionDiagnosticCta = async () => {
   const diagnosticPath = getDiagnosticPathByLocale(locale);
 
   return (
-    <section className="section-block bg-white">
+    <section aria-label={t("cta")} className="section-block bg-white">
       <SectionContainer className="text-center">
         <p className="figma-text-l mx-auto max-w-[74.75rem] text-surface-bg">
           {t("body")}

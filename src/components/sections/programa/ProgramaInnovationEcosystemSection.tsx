@@ -60,12 +60,12 @@ export const ProgramaInnovationEcosystemSection = async () => {
   const t = await getTranslations("programaPage.ecosystem");
 
   return (
-    <section className="section-block-spacious bg-white">
+    <section aria-labelledby="programa-innovation-title" className="section-block-spacious bg-white">
       <SectionContainer>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,26.25rem)] lg:gap-16">
           <div className="max-w-[40rem]">
             <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
-            <h2 className="figma-title-2-bold mt-4 text-surface-bg">{t("headline")}</h2>
+            <h2 className="figma-title-2-bold mt-4 text-surface-bg" id="programa-innovation-title">{t("headline")}</h2>
 
             <div className="mt-8 space-y-6">
               <p className="figma-text-l text-surface-bg">{t("paragraph1")}</p>

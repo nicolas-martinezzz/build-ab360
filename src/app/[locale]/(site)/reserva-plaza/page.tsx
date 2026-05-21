@@ -59,7 +59,7 @@ export default async function ReservaPlazaPage({
               </p>
               <ol className="mt-8 flex flex-col gap-4">
                 {steps.map(({ n, title, body }) => (
-                  <li key={n} className="flex gap-4 rounded-[10px] border border-surface-bg/10 bg-white px-5 py-4 shadow-[0_2px_8px_rgba(28,30,46,0.06)]">
+                  <li key={n} className="flex gap-4 rounded-[10px] border border-surface-bg/10 bg-white px-5 py-4 shadow-[var(--shadow-panel)]">
                     <span className="text-[1.125rem] font-bold leading-[1.4] text-green-600 shrink-0 w-7">{n}.</span>
                     <div>
                       <p className="text-sm font-bold text-surface-bg">{title}</p>
@@ -71,7 +71,7 @@ export default async function ReservaPlazaPage({
             </div>
 
             {/* Form — right */}
-            <div className="rounded-[10px] border border-surface-bg/10 bg-white p-6 shadow-[0_4px_14px_rgba(28,30,46,0.08)] sm:p-8 lg:sticky lg:top-24">
+            <div className="rounded-[10px] border border-surface-bg/10 bg-white p-6 shadow-[var(--shadow-panel-lg)] sm:p-8 lg:sticky lg:top-24">
               <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-surface-bg/40">
                 Paso 1 de 2
               </p>

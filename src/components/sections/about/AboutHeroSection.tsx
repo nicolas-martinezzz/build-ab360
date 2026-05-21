@@ -29,7 +29,7 @@ export const AboutHeroSection = async () => {
       </div>
 
       <SectionContainer className="relative z-10">
-        <p className="type-eyebrow text-white/75" aria-hidden>
+        <p className="type-eyebrow text-white/75">
           <span className="text-green-300">{t("brandPrimary")}</span>{" "}
           <span className="font-normal text-white/70">{t("brandSecondary")}</span>
         </p>

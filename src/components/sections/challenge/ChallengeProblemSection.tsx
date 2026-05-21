@@ -35,10 +35,10 @@ export const ChallengeProblemSection = async () => {
   ] as const;
 
   return (
-    <section className="section-block-spacious bg-white">
+    <section aria-labelledby="challenge-problem-title" className="section-block-spacious bg-white">
       <SectionContainer>
-        <p className="figma-text-l text-grey-dark">{t("eyebrow")}</p>
-        <h2 className="figma-title-2-bold mt-2 text-black">
+        <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
+        <h2 className="figma-title-2-bold mt-2 text-black" id="challenge-problem-title">
           {t("titleLine1")}
         </h2>
         <p className="figma-title-2-bold text-black">

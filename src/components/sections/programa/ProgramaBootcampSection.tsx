@@ -29,12 +29,12 @@ export const ProgramaBootcampSection = async () => {
   ];
 
   return (
-    <section className="bg-green-50 py-16 md:py-20">
+    <section aria-labelledby="programa-bootcamp-title" className="bg-green-50 py-16 md:py-20">
       <SectionContainer>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,28.5rem)] lg:gap-14">
           <div className="max-w-[48rem]">
             <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
-            <h2 className="figma-title-2-bold mt-3 text-surface-bg">{t("headline")}</h2>
+            <h2 className="figma-title-2-bold mt-3 text-surface-bg" id="programa-bootcamp-title">{t("headline")}</h2>
             <p className="mt-3 text-[1.75rem] leading-[1.2] text-green-500 sm:text-[2rem] md:text-[2.25rem]">{t("dateLine")}</p>
             <p className="figma-text-l-bold mt-2 text-green-500">{t("venueLine1")}</p>
             <p className="figma-text-m text-green-500 underline">{t("venueLine2")}</p>

@@ -11,7 +11,7 @@ export const PartnersBootcampCtaSection = async () => {
   return (
     <section
       aria-labelledby="partners-bootcamp-cta-title"
-      className="relative isolate flex min-h-[28rem] items-center justify-center overflow-hidden py-14 sm:min-h-[35.5625rem] md:py-[4.625rem]"
+      className="section-band relative isolate flex min-h-[28rem] items-center justify-center overflow-hidden sm:min-h-[35.5625rem]"
     >
       <Image
         alt=""

@@ -7,7 +7,7 @@ type Props = { locale: string };
 
 const API_ENDPOINT = "/api/reserva-plaza.php";
 
-const inputCls = "w-full rounded-[6px] border border-surface-bg/15 bg-surface-light px-3 py-2.5 text-sm text-surface-bg placeholder:text-surface-bg/40 focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors";
+const inputCls = "w-full rounded-[6px] border border-surface-bg/15 bg-surface-light px-3 py-2.5 text-sm text-surface-bg placeholder:text-surface-bg/40 focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-1 transition-colors";
 
 export function ReservaPlazaForm({ locale }: Props) {
   const router = useRouter();
@@ -75,7 +75,7 @@ export function ReservaPlazaForm({ locale }: Props) {
   return (
     <form onSubmit={handleSubmit} noValidate className="mt-5 flex flex-col gap-4">
       {/* Honeypot */}
-      <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" readOnly />
+      <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" readOnly aria-hidden="true" />
 
       <div>
         <label htmlFor="rp-name" className="block text-sm font-semibold text-surface-bg mb-1.5">

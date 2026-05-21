@@ -285,7 +285,7 @@ export const EbookLeadForm = ({
 };
 
 const inputClass =
-  "h-11 w-full rounded-[5px] border border-white/15 bg-white/5 px-3.5 text-sm text-white placeholder:text-white/30 transition focus:border-green-500/60 focus:bg-white/8 focus:outline-none focus:ring-2 focus:ring-green-500/20";
+  "h-11 w-full rounded-[5px] border border-white/15 bg-white/5 px-3.5 text-sm text-white placeholder:text-white/30 transition focus:border-green-500/60 focus:bg-white/8 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-bg";
 
 function Field({ htmlFor, label, children }: { htmlFor: string; label: string; children: React.ReactNode }) {
   return (

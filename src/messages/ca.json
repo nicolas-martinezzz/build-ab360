@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Yutopias Systems — Decisions amb impacte mesurable",
-    "description": "Simula l'impacte de les teves decisions en cost i sostenibilitat abans d'executar-les."
+    "title": "Yūtopias Systems — Decisions amb impacte mesurable",
+    "description": "Simula l'impacte de les teves decisions en cost, energia i sostenibilitat abans d'executar-les. AB360 connecta totes les dades de l'edifici en un sol model."
   },
   "nav": {
     "brandAria": "Yutopias systems, inici",
@@ -190,8 +190,8 @@
   },
   "challengePage": {
     "metadata": {
-      "title": "El repte",
-      "description": "Com AB360 transforma la presa de decisions en edificació amb simulació i dades connectades."
+      "title": "El repte — Presa de decisions en edificació",
+      "description": "Cost, energia i impacte sempre han estat connectats en un edifici. El problema és que ningú els mesurava junts. AB360 ho canvia amb simulació i dades connectades."
     },
     "headline": "L'edificació és un sistema complex.\nMilers de decisions.\nDècades de conseqüències.\nPerò s'aborda sense una visió de conjunt.",
     "body": "La visió existeix. Les dades, no. O arriben tard. O estan fragmentades o són inexistents - dins de cada organització i entre totes elles. I quan arriben, les decisions més importants ja s'han pres - conscientment o no.",
@@ -424,8 +424,8 @@
   },
   "aboutPage": {
     "metadata": {
-      "title": "Nosaltres",
-      "description": "Coneix Yutopias Systems i la nostra visió per transformar la presa de decisions en edificació."
+      "title": "Qui som — Yūtopias Systems",
+      "description": "Som Yūtopias Systems, l'equip darrere d'AB360. La nostra missió és transformar com es prenen les decisions en edificació usant simulació i dades connectades."
     },
     "hero": {
       "brandPrimary": "yūtopias",
@@ -569,8 +569,8 @@
   },
   "solutionPage": {
     "metadata": {
-      "title": "La solució",
-      "description": "AB360 és la plataforma que connecta les dades de l'edifici en tot el seu cicle de vida."
+      "title": "La solució — AB360, plataforma de dades d'edifici",
+      "description": "AB360 connecta cost, energia i impacte ambiental en un sol model. Simula decisions abans d'executar-les i mesura l'impacte real en cada fase del cicle de vida."
     },
     "hero": {
       "eyebrow": "AGENT IA DE SIMULACIÓ",
@@ -716,8 +716,8 @@
   },
   "programaPage": {
     "metadata": {
-      "title": "El programa",
-      "description": "OpenLab és el programa d'innovació oberta de 12 mesos per adaptar SimuLab a la teva operativa real."
+      "title": "OpenLab — Programa d'innovació oberta de 12 mesos",
+      "description": "Entra a OpenLab i adapta SimuLab a la teva operativa real. 12 mesos d'innovació oberta per a empreses d'edificació que volen prendre decisions amb dades."
     },
     "hero": {
       "eyebrow": "EL PROGRAMA",
@@ -744,11 +744,11 @@
     },
     "journey": {
       "eyebrow": "LES TARGETES",
-      "headline": "El viatge a OpenLab�",
+      "headline": "El viatge a OpenLab®",
       "introLead": "La teva empresa pren bones decisions. El problema és que les pren amb la meitat de la informació que hauria de tenir.",
-      "introBody": "OpenLab� desenvolupa un cas d'ús real alineat amb els OKRs de la teva empresa. S'estructura en sis targetes, cadascuna amb un propòsit clar i un lliurable concret. El procés culmina amb l'SmartCheck.",
+      "introBody": "OpenLab® desenvolupa un cas d'ús real alineat amb els OKRs de la teva empresa. S'estructura en sis targetes, cadascuna amb un propòsit clar i un lliurable concret. El procés culmina amb l'SmartCheck.",
       "introFoot": "Si vols més informació o tens dubtes, escriu-nos.",
-      "cta": "Vull saber més sobre l'OpenLab�",
+      "cta": "Vull saber més sobre l'OpenLab®",
       "block1Title": "DIAGNÒSTIC: On ets",
       "t1Title": "Radiografia operativa",
       "t1Body": "On es perd marge, temps i qualitat en els teus processos reals. Sempre des de la realitat — no des del que creiem que passa.",
@@ -768,7 +768,7 @@
       "t4Pill1": "Cas d'ús definit",
       "t4Pill2": "OKRs acordats",
       "block3Title": "VALIDACIÓ: Evidència real",
-      "t5Title": "Simulab� amb les teves dades",
+      "t5Title": "Simulab® amb les teves dades",
       "t5Body": "Activem Simulab sobre el teu cas d'ús real. Costos, petjades, decisions. Els resultats són verificables des del primer dia.",
       "t5Pill1": "Informe de validació",
       "t5Pill2": "Certificació operativa",
@@ -827,7 +827,7 @@
       "agenda6Title": "Insights i pas a l'acció",
       "agenda6Meta": "",
       "agenda7Time": "11:25",
-      "agenda7Title": "El viatge a OpenLab�",
+      "agenda7Title": "El viatge a OpenLab®",
       "agenda7Meta": "",
       "agenda8Time": "11:45",
       "agenda8Title": "Equips SQUAD d'alt rendiment",
@@ -1007,7 +1007,7 @@
       "bridgeBodyDate": "16 de juny a Barcelona",
       "bridgeBodyConnector": ", una sala amb La Salle R&D, ACCIÓ i BStartup del Banc Sabadell treballarà sobre reptes com",
       "bridgeBodySuffix": ". No és un webinar ni una demo — és on el teu equip construeix el seu primer SmartCheck: repte → objectiu → dades → decisió.",
-      "eventLabel": "Yūtopias Systems · OpenLab�",
+      "eventLabel": "Yūtopias Systems · OpenLab®",
       "eventName": "Bootcamp Zero",
       "eventSub": "Diàlegs estratègics i activació de SQUADS",
       "eventBadge1": "📍 Hub BStartup · Barcelona",

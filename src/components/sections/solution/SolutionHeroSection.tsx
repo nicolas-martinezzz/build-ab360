@@ -34,7 +34,7 @@ export const SolutionHeroSection = async () => {
 
       <SectionContainer className="relative z-10">
         <div className="flex flex-wrap items-center gap-4">
-          <p className="figma-text-l text-white">{t("eyebrow")}</p>
+          <p className="type-eyebrow text-white">{t("eyebrow")}</p>
           <span className="figma-text-m rounded-[5px] border border-green-200 bg-white px-2.5 py-[3px] text-green-500">
             {t("badge")}
           </span>

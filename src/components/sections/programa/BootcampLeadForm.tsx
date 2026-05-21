@@ -104,7 +104,7 @@ export const BootcampLeadForm = ({
         <span className="sr-only">{fieldName}</span>
         <input
           autoComplete="name"
-          className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
+          className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-1 sm:h-[54px]"
           id="bootcamp-name"
           name="name"
           onChange={(event) => setName(event.target.value)}
@@ -118,7 +118,7 @@ export const BootcampLeadForm = ({
         <span className="sr-only">{fieldEmail}</span>
         <input
           autoComplete="email"
-          className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
+          className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-1 sm:h-[54px]"
           id="bootcamp-email"
           name="email"
           onChange={(event) => setEmail(event.target.value)}
@@ -132,7 +132,7 @@ export const BootcampLeadForm = ({
         <span className="sr-only">{fieldRole}</span>
         <input
           autoComplete="organization-title"
-          className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
+          className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-1 sm:h-[54px]"
           id="bootcamp-role"
           name="role"
           onChange={(event) => setRole(event.target.value)}
@@ -146,7 +146,7 @@ export const BootcampLeadForm = ({
         <span className="sr-only">{fieldCompany}</span>
         <input
           autoComplete="organization"
-          className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black outline-none placeholder:text-black focus:border-green-600 focus:ring-2 focus:ring-green-100 sm:h-[54px]"
+          className="h-12 w-full rounded-[3px] border border-grey-light bg-white px-4 py-2.5 text-base leading-6 text-black focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-1 sm:h-[54px]"
           id="bootcamp-company"
           name="company"
           onChange={(event) => setCompany(event.target.value)}

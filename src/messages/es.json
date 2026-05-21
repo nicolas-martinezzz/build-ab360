@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Yutopias Systems — Decisiones con impacto medible",
-    "description": "Simula el impacto de tus decisiones en coste y sostenibilidad antes de ejecutarlas."
+    "title": "Yūtopias Systems — Decisiones con impacto medible",
+    "description": "Simula el impacto de tus decisiones en coste, energía y sostenibilidad antes de ejecutarlas. AB360 conecta todos los datos del edificio en un solo modelo."
   },
   "nav": {
     "brandAria": "Yutopias systems, inicio",
@@ -74,8 +74,8 @@
         "body": "Simulab calcula el coste y las huellas de carbono, energética e hídrica de cada solución constructiva, desde el capítulo hasta la partida. Genera escenarios y compara. Tú decides."
       },
       "col4": {
-        "title": "El SmartCheck: tus objetivos alineados con los del proyecto",
-        "body": "Los objetivos del proyecto marcan el norte. El SmartCheck valida que los tuyos y tus drivers de negocio están alineados con él. Y cuando quieras, lo mismo para todos los actores."
+        "title": "El SmartCheck valida cada caso de uso.",
+        "body": "Defines qué medir. Defines cuándo salta la alarma. El sistema avisa antes de que la decisión sea irreversible. Valida que el proyecto está alineado con tu negocio."
       },
       "footerTagline": "Los primeros no siguen el estándar. Lo construyen."
     },
@@ -95,7 +95,7 @@
       "marqueeAria": "Logos de instituciones colaboradoras"
     },
     "ab360": {
-      "label": "La plataforma",
+      "label": "LA PLATAFORMA",
       "headlineLine1": "Esto no es todo.",
       "headlineLine2": "Detrás está creciendo algo más: AB360.",
       "body": "Estamos construyendo una plataforma que conecta los datos del edificio para tomar mejores decisiones en todo su ciclo de vida, con la ayuda de tres agentes de IA.",
@@ -131,7 +131,7 @@
       }
     },
     "testimonials": {
-      "label": "Experiencia",
+      "label": "EXPERIENCIA",
       "title": "Qué dicen nuestros clientes",
       "card1": {
         "initials": "MN",
@@ -159,7 +159,7 @@
       }
     },
     "blogResources": {
-      "eyebrow": "Recursos",
+      "eyebrow": "RECURSOS",
       "title": "Últimos Artículos / eBooks",
       "cta": "Ver más",
       "ctaHref": "/resources",
@@ -190,15 +190,15 @@
   },
   "challengePage": {
     "metadata": {
-      "title": "El desafío",
-      "description": "Cómo AB360 transforma la toma de decisiones en edificación con simulación y datos conectados."
+      "title": "El desafío — Toma de decisiones en edificación",
+      "description": "Coste, energía e impacto siempre han estado conectados en un edificio. El problema es que nadie los medía juntos. AB360 cambia eso con simulación y datos conectados."
     },
     "headline": "La edificación es un sistema complejo.\nMiles de decisiones.\nDécadas de consecuencias.\nPero se aborda sin una visión de conjunto.",
     "body": "La visión existe. Los datos, no. O llegan tarde. O están fragmentados o son inexistentes - dentro de cada organización y entre todas ellas. Y cuando llegan, las decisiones más importantes ya se han tomado - conscientemente o no.",
     "cta": "Haz tu autodiagnóstico",
     "hint": "10 minutos. Te vas sabiendo dónde estás.",
     "nextSection": {
-      "eyebrow": "Hasta ahora",
+      "eyebrow": "HASTA AHORA",
       "titleLine1": "Así funciona hoy.",
       "titleLine2Prefix": "Y así se acumulan",
       "titleLine2Costes": "costes",
@@ -237,7 +237,7 @@
       "closingLine2": "Y eso ya tiene solución."
     },
     "todaySection": {
-      "eyebrow": "Hoy",
+      "eyebrow": "HOY",
       "headline": "Durante años, la intuición y la experiencia eran suficientes.\nHoy ya no lo son.",
       "paragraph1": "La regulación ya no permite estimarlo. Los márgenes ya no permiten ignorarlo. Y las decisiones tienen consecuencias económicas que antes no existían.",
       "paragraph2": "El camino ya está trazado. Lean, datos compartidos, decisiones basadas en evidencia. Lo que falta es la tecnología que lo haga operativo.",
@@ -436,7 +436,7 @@
       "description": "Artículos, análisis y recursos sobre edificación, datos y sostenibilidad. El blog del ecosistema AB360."
     },
     "hero": {
-      "eyebrow": "Recursos",
+      "eyebrow": "RECURSOS",
       "title": "Conocimiento para decidir mejor",
       "subtitle": "Artículos, análisis y perspectivas sobre edificación, datos y sostenibilidad del ciclo de vida."
     },
@@ -460,7 +460,7 @@
       "estrategia": "Estrategia"
     },
     "ebook": {
-      "eyebrow": "Ebook gratuito",
+      "eyebrow": "EBOOK GRATUITO",
       "title": "La guía práctica para escalar el Inbound Marketing en tu empresa",
       "subtitle": "Descarga gratis nuestra guía y descubre cómo estructurar una estrategia de contenidos que genere oportunidades de negocio reales.",
       "firstNamePlaceholder": "Nombre",
@@ -479,7 +479,7 @@
       "privacyNote": "Sin spam. Tus datos están seguros con nosotros."
     },
     "ebookBanner": {
-      "eyebrow": "Ebook gratuito",
+      "eyebrow": "EBOOK GRATUITO",
       "title": "La guía práctica para escalar el Inbound Marketing",
       "button": "Descargar"
     },
@@ -502,8 +502,8 @@
   },
   "aboutPage": {
     "metadata": {
-      "title": "Nosotros",
-      "description": "Conoce Yutopias Systems y nuestra visión para transformar la toma de decisiones en edificación."
+      "title": "Quiénes somos — Yūtopias Systems",
+      "description": "Somos Yūtopias Systems, el equipo detrás de AB360. Nuestra misión es transformar cómo se toman las decisiones en edificación usando simulación y datos conectados."
     },
     "hero": {
       "brandPrimary": "yūtopias",
@@ -647,8 +647,8 @@
   },
   "solutionPage": {
     "metadata": {
-      "title": "La solución",
-      "description": "AB360 es la plataforma que conecta los datos del edificio en todo su ciclo de vida."
+      "title": "La solución — AB360, plataforma de datos de edificio",
+      "description": "AB360 conecta costes, energía e impacto ambiental en un solo modelo. Simula decisiones antes de ejecutarlas y mide el impacto real en cada fase del ciclo de vida."
     },
     "hero": {
       "eyebrow": "AGENTE IA DE SIMULACIÓN",
@@ -794,8 +794,8 @@
   },
   "programaPage": {
     "metadata": {
-      "title": "El programa",
-      "description": "OpenLab es el programa de innovación abierta de 12 meses para adaptar SimuLab a tu operativa real."
+      "title": "OpenLab — Programa de innovación abierta de 12 meses",
+      "description": "Entra en OpenLab y adapta SimuLab a tu operativa real. 12 meses de innovación abierta para empresas de edificación que quieren tomar decisiones con datos."
     },
     "hero": {
       "eyebrow": "EL PROGRAMA",
@@ -822,11 +822,11 @@
     },
     "journey": {
       "eyebrow": "LAS TARJETAS",
-      "headline": "El viaje en OpenLab�",
+      "headline": "El viaje en OpenLab®",
       "introLead": "Tu empresa toma buenas decisiones. El problema es que las toma con la mitad de la información que debería tener.",
-      "introBody": "OpenLab� desarrolla un caso de uso real alineado con los OKRs de tu empresa. Se estructura en seis tarjetas, cada una con un propósito claro y un entregable concreto. El proceso culmina con el SmartCheck.",
+      "introBody": "OpenLab® desarrolla un caso de uso real alineado con los OKRs de tu empresa. Se estructura en seis tarjetas, cada una con un propósito claro y un entregable concreto. El proceso culmina con el SmartCheck.",
       "introFoot": "Si quieres más información o tienes dudas, escríbenos.",
-      "cta": "Quiero Reserva tu plaza sobre el OpenLab�",
+      "cta": "Conoce OpenLab®",
       "block1Title": "DIAGNÓSTICO: Dónde estás",
       "t1Title": "Radiografía operativa",
       "t1Body": "Dónde se pierde margen, tiempo y calidad en tus procesos reales. Siempre desde la realidad — no desde lo que creemos que pasa.",
@@ -846,7 +846,7 @@
       "t4Pill1": "Caso de uso definido",
       "t4Pill2": "OKRs acordados",
       "block3Title": "VALIDACIÓN: Evidencia real",
-      "t5Title": "Simulab� con tus datos",
+      "t5Title": "Simulab® con tus datos",
       "t5Body": "Activamos Simulab sobre tu caso de uso real. Costes, huellas, decisiones. Los resultados son verificables desde el primer día.",
       "t5Pill1": "Informe de validación",
       "t5Pill2": "Certificación operativa",
@@ -905,7 +905,7 @@
       "agenda6Title": "Reformulando · Insights y paso a la acción",
       "agenda6Meta": "Juanjo Moreno · yūtopias systems",
       "agenda7Time": "11:25",
-      "agenda7Title": "El viaje en OpenLab�",
+      "agenda7Title": "El viaje en OpenLab®",
       "agenda7Meta": "Edu Núñez · yūtopias systems",
       "agenda8Time": "11:45",
       "agenda8Title": "Equipos SQUAD de alto rendimiento",
@@ -1085,7 +1085,7 @@
       "bridgeBodyDate": "16 de junio en Barcelona",
       "bridgeBodyConnector": ", una sala con La Salle R&D, ACCIÓ y BStartup del Banc Sabadell va a trabajar sobre retos como",
       "bridgeBodySuffix": ". No es un webinar ni una demo — es donde tu equipo construye su primer SmartCheck: reto → objetivo → datos → decisión.",
-      "eventLabel": "Yūtopias Systems · OpenLab�",
+      "eventLabel": "Yūtopias Systems · OpenLab®",
       "eventName": "Bootcamp Zero",
       "eventSub": "Diálogos estratégicos y activación de SQUADS",
       "eventBadge1": "📍 Hub BStartup · Barcelona",

@@ -28,16 +28,43 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const lang = locale as "es" | "en" | "ca";
   const translation = article.translations[lang] ?? article.translations.es;
+  const localeMap: Record<string, string> = { es: "es_ES", en: "en_US", ca: "ca_ES" };
+  const canonicalUrl = `https://yutopias.com/${locale}/resources/${slug}`;
 
   return {
     title: translation.seoTitle,
     description: translation.seoDescription,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        es: `https://yutopias.com/es/resources/${slug}`,
+        en: `https://yutopias.com/en/resources/${slug}`,
+        ca: `https://yutopias.com/ca/resources/${slug}`,
+        "x-default": `https://yutopias.com/es/resources/${slug}`,
+      },
+    },
     openGraph: {
       title: translation.seoTitle,
       description: translation.seoDescription,
-      images: [article.coverImage],
+      url: canonicalUrl,
+      siteName: "Yūtopias Systems",
+      locale: localeMap[locale] ?? "es_ES",
       type: "article",
       publishedTime: article.publishedAt,
+      images: [
+        {
+          url: article.coverImage,
+          width: 1200,
+          height: 630,
+          alt: article.coverImageAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: translation.seoTitle,
+      description: translation.seoDescription,
+      images: [article.coverImage],
     },
   };
 }
@@ -108,9 +135,39 @@ export default async function ArticleDetailPage({ params }: Props) {
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
-  const isEbook = article.type === "ebook";
   const lang = locale as "es" | "en" | "ca";
-  const translation = article.translations[lang] ?? article.translations.es;
+  const articleTranslation = article.translations[lang] ?? article.translations.es;
+  const articleJsonLd = article.type === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: articleTranslation.title,
+        description: articleTranslation.excerpt,
+        image: article.coverImage,
+        datePublished: article.publishedAt,
+        author: {
+          "@type": "Person",
+          name: article.author,
+          jobTitle: article.authorRole,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Yūtopias Systems",
+          url: "https://yutopias.com",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://yutopias.com/icon.png",
+          },
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `https://yutopias.com/${locale}/resources/${slug}`,
+        },
+      }
+    : null;
+
+  const isEbook = article.type === "ebook";
+  const translation = articleTranslation;
   const related = isEbook ? ALL_ARTICLES.slice(0, 2) : getRelatedArticles(slug, 2);
 
   const t = await getTranslations("resourcesPage");
@@ -127,6 +184,12 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   return (
     <>
+      {articleJsonLd && (
+        <script
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+          type="application/ld+json"
+        />
+      )}
       {/* Back navigation */}
       <div className="border-b border-surface-bg/10 bg-surface-light">
         <SectionContainer className="py-3">
