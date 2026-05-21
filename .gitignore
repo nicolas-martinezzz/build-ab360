@@ -45,3 +45,10 @@ node_modules/
 /public/admin/.local
 /public/admin/auth.local.php
 /public/admin/seed.local.php
+
+# Office temp files and documents
+*.docx
+*.xlsx
+*.xls
+*.doc
+~$*

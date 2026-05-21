@@ -24,7 +24,7 @@ export const PartnersCtaBanner = ({
   headlineClassName,
   ctaWrapperClassName,
 }: PartnersCtaBannerProps) => (
-  <section className="relative flex min-h-[28rem] items-center justify-center py-16 sm:min-h-[35.5625rem]">
+  <section aria-labelledby="partners-cta-banner-title" className="relative flex min-h-[28rem] items-center justify-center py-16 sm:min-h-[35.5625rem]">
     <div className="absolute inset-0 overflow-hidden">
       <Image
         alt=""
@@ -43,6 +43,7 @@ export const PartnersCtaBanner = ({
           "mx-auto max-w-[61.3125rem] text-[1.75rem] font-normal leading-[1.35] text-white sm:text-[2rem] md:text-[2.5rem] md:leading-[1.45] lg:text-[3rem]",
           headlineClassName ?? "",
         )}
+        id="partners-cta-banner-title"
       >
         {headline}
       </h2>

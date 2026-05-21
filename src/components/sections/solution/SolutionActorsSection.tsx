@@ -47,11 +47,11 @@ export const SolutionActorsSection = async () => {
   const t = await getTranslations("solutionPage.actors");
 
   return (
-    <section className="section-block-spacious bg-white">
+    <section aria-labelledby="solution-actors-title" className="section-block-spacious bg-white">
       <SectionContainer>
-        <p className="figma-text-l text-grey-dark">{t("eyebrow")}</p>
+        <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
 
-        <h2 className="figma-title-2-bold mt-3 max-w-[53.5rem] text-surface-bg">
+        <h2 className="figma-title-2-bold mt-3 max-w-[53.5rem] text-surface-bg" id="solution-actors-title">
           {t("headline")}
         </h2>
 

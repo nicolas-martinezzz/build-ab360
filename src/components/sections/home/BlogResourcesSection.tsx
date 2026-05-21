@@ -1,26 +1,33 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { Link } from "@/i18n/navigation";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { SITE_ASSETS } from "@/config/assets";
-
-const ARTICLE_KEYS = ["article1", "article2"] as const;
+import { ALL_ARTICLES, ALL_EBOOKS } from "@/content/articles";
+import { formatArticleDate } from "@/lib/dateFormat";
 
 export const BlogResourcesSection = async () => {
   const t = await getTranslations("home.blogResources");
+  const locale = await getLocale();
+  const lang = locale as "es" | "en" | "ca";
+
+  const latestArticles = ALL_ARTICLES.slice(0, 2);
+  const ebooks = ALL_EBOOKS.slice(0, 2);
 
   return (
-    <section aria-labelledby="blog-resources-title" className="bg-green-100/40 py-14 md:py-[4.3125rem]">
+    <section aria-labelledby="blog-resources-title" className="section-block bg-green-100/40">
       <SectionContainer>
-        <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+
+        {/* Header */}
+        <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.08em] text-grey-dark">{t("eyebrow")}</p>
-            <h2 className="mt-1 text-[2.5rem] font-normal leading-[1.2] text-surface-bg" id="blog-resources-title">
+            <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
+            <h2 className="mt-2 text-[2rem] font-normal leading-[1.15] text-surface-bg sm:text-[2.25rem]" id="blog-resources-title">
               {t("title")}
             </h2>
           </div>
           <LinkButton
-            className="h-9 self-start rounded-[5px] border border-green-500 bg-transparent px-4 py-2 text-sm font-medium text-green-500 hover:bg-green-100/50"
+            className="h-9 self-start rounded-[5px] border border-green-500 bg-transparent px-4 text-sm font-medium text-green-500 hover:bg-green-100/50 md:self-auto"
             href={t("ctaHref")}
             variant="text"
           >
@@ -28,36 +35,85 @@ export const BlogResourcesSection = async () => {
           </LinkButton>
         </div>
 
-        <ul className="mt-9 grid list-none grid-cols-1 gap-5 p-0 md:grid-cols-2">
-          {ARTICLE_KEYS.map((key) => (
-            <li key={key}>
-              <article className="overflow-hidden rounded-[10px] bg-white shadow-[0_4px_14px_rgba(28,30,46,0.08)]">
-                <div className="relative h-[16rem] w-full">
-                  <Image
-                    alt={t(`${key}.imageAlt`)}
-                    className="object-cover"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    src={SITE_ASSETS.home.blogArticleCover}
-                  />
-                </div>
-                <div className="px-5 pb-4 pt-3">
-                  <p className="text-[0.75rem] leading-[1.4] text-grey-dark">{t(`${key}.meta`)}</p>
-                  <h3 className="mt-3 text-[2.0625rem] font-bold leading-[1.25] text-black">{t(`${key}.title`)}</h3>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <span className="rounded-[5px] bg-green-100 px-2.5 py-1 text-[0.8125rem] leading-none text-surface-bg">
-                      {t(`${key}.tag1`)}
-                    </span>
-                    <span className="rounded-[5px] bg-green-100 px-2.5 py-1 text-[0.8125rem] leading-none text-surface-bg">
-                      {t(`${key}.tag2`)}
-                    </span>
-                  </div>
-                  <p className="mt-3 text-[0.9375rem] leading-[1.4] text-surface-bg">{t(`${key}.author`)}</p>
-                </div>
-              </article>
-            </li>
-          ))}
+        {/* Unified grid: articles + ebooks together */}
+        <ul className="grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3">
+          {latestArticles.map((article) => {
+            const tr = article.translations[lang] ?? article.translations.es;
+            return (
+              <li key={article.slug}>
+                <Link className="group block h-full" href={`/resources/${article.slug}`}>
+                  <article className="flex h-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-card-hover)]">
+                    <div className="relative h-[13rem] w-full shrink-0 overflow-hidden sm:h-[15rem]">
+                      <Image
+                        alt={article.coverImageAlt}
+                        className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        src={article.coverImage}
+                      />
+                      <span className="absolute left-3 top-3 rounded-[5px] bg-green-500 px-4 py-1.5 text-[0.9375rem] font-semibold text-white shadow-[var(--shadow-card-sm)]">
+                        {t("articleBadge")}
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col gap-3 px-5 py-5">
+                      <p className="text-[0.75rem] leading-none text-grey-dark">
+                        {formatArticleDate(article.publishedAt, locale)} · {article.readingTimeMin} {t("minRead")}
+                      </p>
+                      <h3 className="text-[1.25rem] font-bold leading-[1.3] text-surface-bg transition group-hover:text-green-700">
+                        {tr.title}
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {article.categories.slice(0, 2).map((cat) => (
+                          <span
+                            className="rounded-[5px] bg-green-100 px-2.5 py-1 text-[0.8125rem] leading-none text-surface-bg"
+                            key={cat}
+                          >
+                            {t(`categories.${cat}`)}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="mt-auto text-sm text-surface-bg/60">
+                        {article.author} · {article.authorRole}
+                      </p>
+                    </div>
+                  </article>
+                </Link>
+              </li>
+            );
+          })}
+          {ebooks.slice(0, 1).map((ebook) => {
+            const tr = ebook.translations[lang] ?? ebook.translations.es;
+            return (
+              <li key={ebook.slug}>
+                <Link className="group block h-full" href={`/resources/${ebook.slug}`}>
+                  <article className="flex h-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-card-hover)]">
+                    <div className="relative h-[13rem] w-full shrink-0 overflow-hidden sm:h-[15rem]">
+                      <Image
+                        alt={ebook.coverImageAlt}
+                        className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        src={ebook.coverImage}
+                      />
+                      <span className="absolute left-3 top-3 rounded-[5px] bg-green-500 px-4 py-1.5 text-[0.9375rem] font-semibold text-white shadow-[var(--shadow-card-sm)]">
+                        {t("ebookBadge")}
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col gap-3 px-5 py-5">
+                      <h3 className="text-[1.25rem] font-bold leading-[1.3] text-surface-bg transition group-hover:text-green-700">
+                        {tr.title}
+                      </h3>
+                      <p className="mt-auto text-sm font-medium text-green-600">
+                        {t("viewEbook")} →
+                      </p>
+                    </div>
+                  </article>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
+
       </SectionContainer>
     </section>
   );

@@ -1,7 +1,9 @@
 export type ArticleCategory = "datos" | "sostenibilidad" | "tecnologia" | "estrategia";
+export type ContentType = "article" | "ebook";
 
 export interface Article {
   slug: string;
+  type?: ContentType;
   publishedAt: string; // ISO date string
   readingTimeMin: number;
   author: string;

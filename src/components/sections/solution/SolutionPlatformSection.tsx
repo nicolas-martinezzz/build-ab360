@@ -7,13 +7,11 @@ export const SolutionPlatformSection = async () => {
   const t = await getTranslations("solutionPage.platform");
 
   return (
-    <section className="section-block-spacious relative overflow-hidden bg-agent-surface">
+    <section aria-labelledby="solution-platform-title" className="section-block-spacious relative overflow-hidden bg-agent-surface">
       <SectionContainer className="relative z-10">
-        <p className="figma-text-l uppercase tracking-[0.1em] text-grey-dark">
-          {t("eyebrow")}
-        </p>
+        <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
 
-        <h2 className="mt-4 max-w-[56rem] text-[2rem] font-bold leading-[1.2] text-surface-bg sm:text-[2.25rem] md:text-[3rem]">
+        <h2 className="mt-4 max-w-[56rem] text-[2rem] font-bold leading-[1.2] text-surface-bg sm:text-[2.25rem] md:text-[3rem]" id="solution-platform-title">
           {t("headline1")}
           <br />
           {t("headline2")}

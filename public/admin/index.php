@@ -402,6 +402,132 @@ $csrf      = csrfToken();
     .q-opt.sel-100 .q-opt-marker { border-color: #EF4444; background: #EF4444; }
     .drawer-loading { padding: 40px 0; text-align: center; color: var(--text-3); font-size: 13px; }
     .click-hint { font-size: 11px; color: var(--text-3); }
+
+    /* ── Content section ─────────────────────────────────────────────────────── */
+    .content-toolbar {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 7px 14px; background: var(--accent);
+      border: 1px solid var(--accent); border-radius: var(--radius);
+      color: #fff; font-size: 12px; font-family: inherit;
+      cursor: pointer; transition: opacity .15s; white-space: nowrap;
+    }
+    .btn-primary:hover { opacity: .85; }
+    .btn-danger {
+      padding: 5px 10px; background: transparent;
+      border: 1px solid #EF4444; border-radius: var(--radius);
+      color: #EF4444; font-size: 11px; font-family: inherit;
+      cursor: pointer; transition: opacity .15s;
+    }
+    .btn-danger:hover { opacity: .7; }
+    .btn-edit {
+      padding: 5px 10px; background: transparent;
+      border: 1px solid var(--border-2); border-radius: var(--radius);
+      color: var(--text-2); font-size: 11px; font-family: inherit;
+      cursor: pointer; transition: all .12s;
+    }
+    .btn-edit:hover { color: var(--text); border-color: var(--text-3); }
+    .type-badge {
+      display: inline-block; padding: 2px 7px; border-radius: 3px;
+      font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
+    }
+    .type-badge.article { background: rgba(34,197,94,.15); color: #22C55E; }
+    .type-badge.ebook   { background: rgba(129,140,248,.15); color: #818CF8; }
+
+    /* ── Modal ───────────────────────────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.6);
+      z-index: 60; opacity: 0; pointer-events: none; transition: opacity .2s;
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 40px 16px; overflow-y: auto;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; width: 100%; max-width: 860px;
+      display: flex; flex-direction: column;
+      transform: translateY(-16px); transition: transform .25s cubic-bezier(.4,0,.2,1);
+      flex-shrink: 0;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+    }
+    .modal-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .modal-body { padding: 20px; overflow-y: auto; }
+    .modal-footer {
+      display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+      padding: 14px 20px; border-top: 1px solid var(--border);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-row.full { grid-template-columns: 1fr; }
+    .form-row.three { grid-template-columns: 1fr 1fr 1fr; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-label { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; }
+    .form-input, .form-select, .form-textarea {
+      padding: 7px 10px; background: var(--surface-2);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--text); font-size: 12px; font-family: inherit;
+      outline: none; transition: border-color .15s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--border-2); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-checkbox-row { display: flex; align-items: center; gap: 8px; }
+    .form-checkbox-row input { accent-color: var(--accent-lt); width: 14px; height: 14px; cursor: pointer; }
+    .form-checkbox-row label { font-size: 12px; color: var(--text-2); cursor: pointer; }
+
+    /* ── Locale tabs ─────────────────────────────────────────────────────────── */
+    .locale-tabs { display: flex; gap: 4px; margin-bottom: 14px; border-bottom: 1px solid var(--border); }
+    .locale-tab {
+      padding: 7px 14px; font-size: 12px; font-weight: 500;
+      color: var(--text-3); cursor: pointer; border-bottom: 2px solid transparent;
+      margin-bottom: -1px; transition: all .12s;
+    }
+    .locale-tab:hover { color: var(--text); }
+    .locale-tab.active { color: var(--accent-lt); border-bottom-color: var(--accent-lt); }
+    .locale-panel { display: none; }
+    .locale-panel.active { display: block; }
+
+    /* ── Content JSON editor ─────────────────────────────────────────────────── */
+    .content-editor {
+      font-family: "Consolas", "Monaco", monospace; font-size: 11px;
+      min-height: 180px; line-height: 1.5;
+    }
+    .sections-builder { display: flex; flex-direction: column; gap: 8px; }
+    .section-item {
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 10px 12px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .section-item-header { display: flex; align-items: center; gap: 8px; }
+    .section-item-type {
+      font-size: 10px; font-weight: 600; color: var(--text-3);
+      background: var(--border); border-radius: 3px; padding: 2px 6px;
+    }
+    .section-item-actions { margin-left: auto; display: flex; gap: 4px; }
+    .btn-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 4px;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-3); cursor: pointer; font-size: 13px; line-height: 1;
+      transition: all .12s;
+    }
+    .btn-icon:hover { color: var(--text); border-color: var(--border-2); }
+    .btn-icon.danger:hover { color: #EF4444; border-color: #EF4444; }
+    .add-section-bar {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;
+    }
+    .btn-add-section {
+      padding: 4px 10px; background: transparent;
+      border: 1px dashed var(--border-2); border-radius: var(--radius);
+      color: var(--text-3); font-size: 11px; font-family: inherit;
+      cursor: pointer; transition: all .12s;
+    }
+    .btn-add-section:hover { color: var(--text); border-color: var(--text-3); }
   </style>
 </head>
 <body>
@@ -439,6 +565,13 @@ $csrf      = csrfToken();
       <div class="sidebar-label">General</div>
       <div class="nav-item active" data-section="dashboard">
         <span class="nav-dot"></span> Dashboard
+      </div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Contenido</div>
+      <div class="nav-item" data-section="contenido">
+        <span class="nav-dot"></span> Artículos &amp; eBooks
       </div>
     </div>
     <div class="sidebar-divider"></div>
@@ -696,7 +829,163 @@ $csrf      = csrfToken();
       </div>
     </section>
 
+    <!-- Contenido -->
+    <section id="section-contenido" class="section">
+      <div class="page-header">
+        <div class="page-title">Artículos &amp; eBooks</div>
+        <div class="page-subtitle">Gestión de contenido del blog y recursos</div>
+      </div>
+      <div class="content-toolbar">
+        <div class="search-wrap">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input class="search-input" type="text" id="ct-search" placeholder="Buscar por título...">
+        </div>
+        <select class="toolbar-select" id="ct-type-filter">
+          <option value="all">Todos los tipos</option>
+          <option value="article">Solo artículos</option>
+          <option value="ebook">Solo eBooks</option>
+        </select>
+        <button class="btn-primary" id="btn-new-article" onclick="openArticleModal(null)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nuevo
+        </button>
+        <a id="btn-export-ts" class="btn-export" href="#" onclick="exportTs(event)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar .ts
+        </a>
+        <span class="table-info" id="ct-info"></span>
+      </div>
+      <div id="ct-list"></div>
+    </section>
+
   </main>
+</div>
+
+<!-- Article modal -->
+<div class="modal-overlay" id="article-modal-overlay" onclick="closeArticleModal(event)">
+  <div class="modal" id="article-modal">
+    <div class="modal-header">
+      <span class="modal-title" id="article-modal-title">Nuevo artículo</span>
+      <button class="btn-close" onclick="closeArticleModalDirect()" title="Cerrar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Meta fields -->
+      <div class="form-row three">
+        <div class="form-group">
+          <label class="form-label">Slug *</label>
+          <input class="form-input" type="text" id="f-slug" placeholder="mi-articulo">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo *</label>
+          <select class="form-select" id="f-type">
+            <option value="article">Artículo</option>
+            <option value="ebook">eBook</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Publicado</label>
+          <input class="form-input" type="date" id="f-published-at">
+        </div>
+      </div>
+      <div class="form-row three">
+        <div class="form-group">
+          <label class="form-label">Autor</label>
+          <input class="form-input" type="text" id="f-author" placeholder="Nombre Apellido">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Rol del autor</label>
+          <input class="form-input" type="text" id="f-author-role" placeholder="COO de yutopias systems">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tiempo lectura (min)</label>
+          <input class="form-input" type="number" id="f-reading-time" min="0" value="5">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Imagen portada (ruta)</label>
+          <input class="form-input" type="text" id="f-cover-image" placeholder="/images/articles/mi-articulo.jpg">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Alt imagen</label>
+          <input class="form-input" type="text" id="f-cover-alt">
+        </div>
+      </div>
+      <div class="form-row three">
+        <div class="form-group">
+          <label class="form-label">Categorías</label>
+          <div style="display:flex;flex-direction:column;gap:4px;margin-top:2px">
+            <label class="form-checkbox-row"><input type="checkbox" class="f-cat" value="datos"> <span>Datos</span></label>
+            <label class="form-checkbox-row"><input type="checkbox" class="f-cat" value="sostenibilidad"> <span>Sostenibilidad</span></label>
+            <label class="form-checkbox-row"><input type="checkbox" class="f-cat" value="tecnologia"> <span>Tecnología</span></label>
+            <label class="form-checkbox-row"><input type="checkbox" class="f-cat" value="estrategia"> <span>Estrategia</span></label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Orden (mayor = primero)</label>
+          <input class="form-input" type="number" id="f-sort-order" value="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Opciones</label>
+          <label class="form-checkbox-row" style="margin-top:6px"><input type="checkbox" id="f-featured"> <span>Destacado</span></label>
+        </div>
+      </div>
+
+      <!-- Translations -->
+      <div style="margin-top:16px;margin-bottom:8px;font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em">Traducciones</div>
+      <div class="locale-tabs">
+        <div class="locale-tab active" data-locale="es">ES</div>
+        <div class="locale-tab" data-locale="en">EN</div>
+        <div class="locale-tab" data-locale="ca">CA</div>
+      </div>
+      <?php foreach (["es","en","ca"] as $loc): ?>
+      <div class="locale-panel <?= $loc === "es" ? "active" : "" ?>" id="locale-panel-<?= $loc ?>">
+        <div class="form-row full" style="margin-bottom:10px">
+          <div class="form-group">
+            <label class="form-label">Título</label>
+            <input class="form-input" type="text" id="f-title-<?= $loc ?>">
+          </div>
+        </div>
+        <div class="form-row full" style="margin-bottom:10px">
+          <div class="form-group">
+            <label class="form-label">Extracto</label>
+            <textarea class="form-textarea" id="f-excerpt-<?= $loc ?>" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="form-row" style="margin-bottom:10px">
+          <div class="form-group">
+            <label class="form-label">SEO Title</label>
+            <input class="form-input" type="text" id="f-seo-title-<?= $loc ?>">
+          </div>
+          <div class="form-group">
+            <label class="form-label">SEO Description</label>
+            <input class="form-input" type="text" id="f-seo-desc-<?= $loc ?>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contenido</label>
+          <div class="sections-builder" id="sections-<?= $loc ?>"></div>
+          <div class="add-section-bar">
+            <button class="btn-add-section" onclick="addSection('<?= $loc ?>','paragraph')">+ Párrafo</button>
+            <button class="btn-add-section" onclick="addSection('<?= $loc ?>','heading')">+ Título</button>
+            <button class="btn-add-section" onclick="addSection('<?= $loc ?>','list')">+ Lista</button>
+            <button class="btn-add-section" onclick="addSection('<?= $loc ?>','quote')">+ Cita</button>
+            <button class="btn-add-section" onclick="addSection('<?= $loc ?>','callout')">+ Callout</button>
+          </div>
+        </div>
+      </div>
+      <?php endforeach; ?>
+
+    </div>
+    <div class="modal-footer">
+      <input type="hidden" id="f-article-id" value="">
+      <button class="btn-export" onclick="closeArticleModalDirect()">Cancelar</button>
+      <button class="btn-primary" onclick="saveArticle()">Guardar</button>
+    </div>
+  </div>
 </div>
 
 <!-- Drawer overlay + panel -->
@@ -1446,6 +1735,302 @@ async function loadDashboard() {
       options: { ...NO_SCALES },
     });
   }
+}
+
+// ─── Navigation: wire up "contenido" section ─────────────────────────────────
+document.querySelectorAll(".nav-item").forEach(el => {
+  el.addEventListener("click", () => {
+    const sec = el.dataset.section;
+    if (sec === "contenido" && !gridsInited["contenido"]) {
+      gridsInited["contenido"] = true;
+      loadContentList();
+    }
+  });
+});
+
+// ─── Content list ─────────────────────────────────────────────────────────────
+let contentItems = [];
+
+async function loadContentList() {
+  const type = document.getElementById("ct-type-filter").value;
+  const res = await api({ action: "list_articles", limit: 200, type });
+  contentItems = res.data || [];
+  renderContentList();
+  document.getElementById("ct-info").textContent = `${res.total} registros`;
+}
+
+function renderContentList() {
+  const search = (document.getElementById("ct-search").value || "").toLowerCase();
+  const filtered = search
+    ? contentItems.filter(r => (r.title || "").toLowerCase().includes(search) || (r.slug || "").toLowerCase().includes(search))
+    : contentItems;
+
+  const list = document.getElementById("ct-list");
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty">Sin resultados</div>';
+    return;
+  }
+
+  list.innerHTML = `
+    <table style="width:100%;border-collapse:collapse">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border)">
+          <th style="padding:8px 12px;text-align:left;font-size:11px;color:var(--text-3);font-weight:500;white-space:nowrap">Tipo</th>
+          <th style="padding:8px 12px;text-align:left;font-size:11px;color:var(--text-3);font-weight:500">Slug</th>
+          <th style="padding:8px 12px;text-align:left;font-size:11px;color:var(--text-3);font-weight:500">Título (ES)</th>
+          <th style="padding:8px 12px;text-align:left;font-size:11px;color:var(--text-3);font-weight:500;white-space:nowrap">Publicado</th>
+          <th style="padding:8px 12px;text-align:left;font-size:11px;color:var(--text-3);font-weight:500">Autor</th>
+          <th style="padding:8px 12px;text-align:right;font-size:11px;color:var(--text-3);font-weight:500">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${filtered.map(r => `
+          <tr style="border-bottom:1px solid var(--border);transition:background .1s" onmouseenter="this.style.background='var(--surface-2)'" onmouseleave="this.style.background=''">
+            <td style="padding:10px 12px"><span class="type-badge ${r.type}">${r.type === "ebook" ? "eBook" : "Artículo"}</span></td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text-2);font-family:monospace">${esc(r.slug)}</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text);max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.title || "—")}</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text-3);white-space:nowrap">${esc(r.published_at)}</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text-3)">${esc(r.author)}</td>
+            <td style="padding:10px 12px;text-align:right;white-space:nowrap;display:flex;justify-content:flex-end;gap:6px">
+              <button class="btn-edit" onclick="openArticleModal(${r.id})">Editar</button>
+              <button class="btn-danger" onclick="deleteArticle(${r.id}, '${esc(r.slug)}')">Eliminar</button>
+            </td>
+          </tr>`).join("")}
+      </tbody>
+    </table>`;
+}
+
+document.getElementById("ct-search").addEventListener("input", renderContentList);
+document.getElementById("ct-type-filter").addEventListener("change", () => {
+  if (gridsInited["contenido"]) loadContentList();
+});
+
+// ─── Export TS ────────────────────────────────────────────────────────────────
+function exportTs(e) {
+  e.preventDefault();
+  window.open("api.php?action=export_articles_ts&_csrf=" + encodeURIComponent(CSRF), "_blank");
+}
+
+// ─── Delete article ───────────────────────────────────────────────────────────
+async function deleteArticle(id, slug) {
+  if (!confirm(`¿Eliminar "${slug}"? Esta acción no se puede deshacer.`)) return;
+  await fetch("api.php?_csrf=" + encodeURIComponent(CSRF), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "delete_article", id, _csrf: CSRF }),
+  });
+  loadContentList();
+}
+
+// ─── Article modal ────────────────────────────────────────────────────────────
+let _sections = { es: [], en: [], ca: [] };
+
+function openArticleModal(id) {
+  _sections = { es: [], en: [], ca: [] };
+  clearModalForm();
+  document.getElementById("article-modal-title").textContent = id ? "Editar artículo" : "Nuevo artículo";
+  document.getElementById("f-article-id").value = id || "";
+  document.getElementById("article-modal-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+
+  if (id) {
+    api({ action: "get_article", id }).then(res => {
+      if (!res.data) return;
+      fillModalForm(res.data);
+    });
+  } else {
+    document.getElementById("f-published-at").value = new Date().toISOString().slice(0,10);
+    ["es","en","ca"].forEach(loc => renderSectionsBuilder(loc));
+  }
+}
+
+function closeArticleModal(e) {
+  if (e.target !== document.getElementById("article-modal-overlay")) return;
+  closeArticleModalDirect();
+}
+function closeArticleModalDirect() {
+  document.getElementById("article-modal-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeArticleModalDirect(); });
+
+// Locale tabs
+document.querySelectorAll(".locale-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".locale-tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".locale-panel").forEach(p => p.classList.remove("active"));
+    tab.classList.add("active");
+    document.getElementById("locale-panel-" + tab.dataset.locale).classList.add("active");
+  });
+});
+
+function clearModalForm() {
+  ["f-slug","f-author","f-author-role","f-cover-image","f-cover-alt"].forEach(id => {
+    document.getElementById(id).value = "";
+  });
+  document.getElementById("f-type").value = "article";
+  document.getElementById("f-reading-time").value = "5";
+  document.getElementById("f-sort-order").value = "0";
+  document.getElementById("f-featured").checked = false;
+  document.querySelectorAll(".f-cat").forEach(cb => cb.checked = false);
+  ["es","en","ca"].forEach(loc => {
+    ["title","excerpt","seo-title","seo-desc"].forEach(f => {
+      document.getElementById(`f-${f}-${loc}`).value = "";
+    });
+  });
+  // reset locale tab to ES
+  document.querySelectorAll(".locale-tab").forEach(t => t.classList.toggle("active", t.dataset.locale === "es"));
+  document.querySelectorAll(".locale-panel").forEach(p => p.classList.toggle("active", p.id === "locale-panel-es"));
+}
+
+function fillModalForm(data) {
+  document.getElementById("f-slug").value         = data.slug || "";
+  document.getElementById("f-type").value         = data.type || "article";
+  document.getElementById("f-published-at").value = (data.published_at || "").slice(0,10);
+  document.getElementById("f-reading-time").value = data.reading_time_min ?? 5;
+  document.getElementById("f-author").value       = data.author || "";
+  document.getElementById("f-author-role").value  = data.author_role || "";
+  document.getElementById("f-cover-image").value  = data.cover_image || "";
+  document.getElementById("f-cover-alt").value    = data.cover_image_alt || "";
+  document.getElementById("f-sort-order").value   = data.sort_order ?? 0;
+  document.getElementById("f-featured").checked   = !!data.featured;
+
+  const cats = JSON.parse(data.categories || "[]");
+  document.querySelectorAll(".f-cat").forEach(cb => { cb.checked = cats.includes(cb.value); });
+
+  ["es","en","ca"].forEach(loc => {
+    const tr = (data.translations || {})[loc] || {};
+    document.getElementById(`f-title-${loc}`).value     = tr.title || "";
+    document.getElementById(`f-excerpt-${loc}`).value   = tr.excerpt || "";
+    document.getElementById(`f-seo-title-${loc}`).value = tr.seo_title || "";
+    document.getElementById(`f-seo-desc-${loc}`).value  = tr.seo_desc || "";
+    try { _sections[loc] = JSON.parse(tr.content || "[]"); } catch(e) { _sections[loc] = []; }
+    renderSectionsBuilder(loc);
+  });
+}
+
+// ─── Sections builder ─────────────────────────────────────────────────────────
+function renderSectionsBuilder(loc) {
+  const container = document.getElementById("sections-" + loc);
+  const sections  = _sections[loc];
+  if (sections.length === 0) {
+    container.innerHTML = '<div style="font-size:11px;color:var(--text-3);padding:8px 0">Sin secciones. Agregá con los botones de abajo.</div>';
+    return;
+  }
+  container.innerHTML = sections.map((s, i) => buildSectionHTML(loc, s, i)).join("");
+}
+
+function buildSectionHTML(loc, s, i) {
+  const moveUp   = i > 0 ? `<button class="btn-icon" title="Subir" onclick="moveSection('${loc}',${i},-1)">↑</button>` : "";
+  const moveDown = i < _sections[loc].length - 1 ? `<button class="btn-icon" title="Bajar" onclick="moveSection('${loc}',${i},1)">↓</button>` : "";
+  const del      = `<button class="btn-icon danger" title="Eliminar" onclick="removeSection('${loc}',${i})">×</button>`;
+
+  let fields = "";
+  if (s.type === "paragraph" || s.type === "callout") {
+    const escaped = (s.text || "").replace(/"/g, "&quot;");
+    fields = `<textarea class="form-textarea" rows="3" oninput="updateSection('${loc}',${i},'text',this.value)">${esc(s.text || "")}</textarea>`;
+  } else if (s.type === "heading") {
+    const escaped = (s.text || "").replace(/"/g, "&quot;");
+    fields = `
+      <select class="form-select" style="width:80px" onchange="updateSection('${loc}',${i},'level',+this.value)">
+        <option value="2" ${s.level===2?"selected":""}>H2</option>
+        <option value="3" ${s.level===3?"selected":""}>H3</option>
+      </select>
+      <input class="form-input" type="text" value="${escaped}" placeholder="Texto del título" oninput="updateSection('${loc}',${i},'text',this.value)" style="margin-top:6px">`;
+  } else if (s.type === "list") {
+    const items = (s.items || []).join("\n");
+    fields = `<textarea class="form-textarea" rows="4" placeholder="Un ítem por línea" oninput="updateSection('${loc}',${i},'items',this.value.split('\\n'))">${esc(items)}</textarea>`;
+  } else if (s.type === "quote") {
+    const escaped = (s.text || "").replace(/"/g, "&quot;");
+    const attr    = (s.attribution || "").replace(/"/g, "&quot;");
+    fields = `
+      <textarea class="form-textarea" rows="2" placeholder="Texto de la cita" oninput="updateSection('${loc}',${i},'text',this.value)">${esc(s.text || "")}</textarea>
+      <input class="form-input" type="text" value="${attr}" placeholder="Atribución (opcional)" oninput="updateSection('${loc}',${i},'attribution',this.value)" style="margin-top:6px">`;
+  }
+
+  return `<div class="section-item" id="sec-${loc}-${i}">
+    <div class="section-item-header">
+      <span class="section-item-type">${s.type}</span>
+      <div class="section-item-actions">${moveUp}${moveDown}${del}</div>
+    </div>
+    ${fields}
+  </div>`;
+}
+
+function addSection(loc, type) {
+  const defaults = {
+    paragraph: { type: "paragraph", text: "" },
+    heading:   { type: "heading",   level: 2, text: "" },
+    list:      { type: "list",      items: [""] },
+    quote:     { type: "quote",     text: "", attribution: "" },
+    callout:   { type: "callout",   text: "" },
+  };
+  _sections[loc].push({ ...defaults[type] });
+  renderSectionsBuilder(loc);
+}
+
+function removeSection(loc, i) {
+  _sections[loc].splice(i, 1);
+  renderSectionsBuilder(loc);
+}
+
+function moveSection(loc, i, dir) {
+  const arr = _sections[loc];
+  const j = i + dir;
+  if (j < 0 || j >= arr.length) return;
+  [arr[i], arr[j]] = [arr[j], arr[i]];
+  renderSectionsBuilder(loc);
+}
+
+function updateSection(loc, i, field, value) {
+  _sections[loc][i][field] = value;
+}
+
+// ─── Save article ─────────────────────────────────────────────────────────────
+async function saveArticle() {
+  const id   = document.getElementById("f-article-id").value;
+  const slug = document.getElementById("f-slug").value.trim();
+  if (!slug) { alert("El slug es obligatorio."); return; }
+
+  const categories = [...document.querySelectorAll(".f-cat:checked")].map(cb => cb.value);
+  const translations = {};
+  ["es","en","ca"].forEach(loc => {
+    translations[loc] = {
+      title:     document.getElementById(`f-title-${loc}`).value,
+      excerpt:   document.getElementById(`f-excerpt-${loc}`).value,
+      seo_title: document.getElementById(`f-seo-title-${loc}`).value,
+      seo_desc:  document.getElementById(`f-seo-desc-${loc}`).value,
+      content:   JSON.stringify(_sections[loc]),
+    };
+  });
+
+  const payload = {
+    id:              id ? +id : undefined,
+    slug,
+    type:            document.getElementById("f-type").value,
+    published_at:    document.getElementById("f-published-at").value,
+    reading_time_min:+document.getElementById("f-reading-time").value,
+    author:          document.getElementById("f-author").value,
+    author_role:     document.getElementById("f-author-role").value,
+    cover_image:     document.getElementById("f-cover-image").value,
+    cover_image_alt: document.getElementById("f-cover-alt").value,
+    featured:        document.getElementById("f-featured").checked,
+    sort_order:      +document.getElementById("f-sort-order").value,
+    categories,
+    translations,
+  };
+
+  const res = await fetch("api.php?_csrf=" + encodeURIComponent(CSRF), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "save_article", _csrf: CSRF, ...payload }),
+  });
+  const json = await res.json();
+  if (!json.ok) { alert("Error: " + (json.error || "desconocido")); return; }
+
+  closeArticleModalDirect();
+  loadContentList();
 }
 </script>
 </body>

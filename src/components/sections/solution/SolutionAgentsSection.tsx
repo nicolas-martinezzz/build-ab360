@@ -112,9 +112,9 @@ export const SolutionAgentsSection = async () => {
   const t = await getTranslations("solutionPage.agents");
 
   return (
-    <section className="section-block-spacious bg-agent-surface">
+    <section aria-labelledby="solution-agents-title" className="section-block-spacious bg-agent-surface">
       <SectionContainer>
-        <h2 className="figma-title-2 max-w-[53.5rem] text-surface-bg">
+        <h2 className="figma-title-2 max-w-[53.5rem] text-surface-bg" id="solution-agents-title">
           {t("headline")}
         </h2>
 

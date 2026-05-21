@@ -104,21 +104,27 @@ export const FooterNewsletterForm = ({
 
   return (
     <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-      <input
-        className="h-11 rounded-[5px] border border-white/20 bg-transparent px-3.5 text-sm text-white placeholder:text-white/40 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/20"
-        onChange={(e) => setName(e.target.value)}
-        placeholder={namePlaceholder}
-        type="text"
-        value={name}
-      />
-      <input
-        className="h-11 rounded-[5px] border border-white/20 bg-transparent px-3.5 text-sm text-white placeholder:text-white/40 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/20"
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder={emailPlaceholder}
-        required
-        type="email"
-        value={email}
-      />
+      <label className="flex flex-col gap-1.5">
+        <span className="sr-only">{namePlaceholder}</span>
+        <input
+          className="h-11 rounded-[5px] border border-white/20 bg-transparent px-3.5 text-sm text-white placeholder:text-white/40 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/20 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-bg"
+          onChange={(e) => setName(e.target.value)}
+          placeholder={namePlaceholder}
+          type="text"
+          value={name}
+        />
+      </label>
+      <label className="flex flex-col gap-1.5">
+        <span className="sr-only">{emailPlaceholder}</span>
+        <input
+          className="h-11 rounded-[5px] border border-white/20 bg-transparent px-3.5 text-sm text-white placeholder:text-white/40 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/20 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-bg"
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder={emailPlaceholder}
+          required
+          type="email"
+          value={email}
+        />
+      </label>
       <input
         autoComplete="off"
         className="pointer-events-none absolute -left-[9999px] top-auto h-px w-px opacity-0"
@@ -143,7 +149,7 @@ export const FooterNewsletterForm = ({
         </span>
       </label>
       <button
-        className="h-11 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-600 disabled:opacity-50"
+        className="h-11 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-400 disabled:opacity-50"
         disabled={!accepted || isSubmitting}
         type="submit"
       >

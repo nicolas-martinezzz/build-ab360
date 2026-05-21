@@ -12,14 +12,17 @@ export const buildNavigationLinks = ({
   solution,
   program,
   about,
+  resources,
 }: {
   challenge: string;
   solution: string;
   program: string;
   about: string;
+  resources: string;
 }): HeaderNavigationLink[] => [
   { key: "challenge", href: SITE_PATHS.challenge, label: challenge },
   { key: "solution", href: SITE_PATHS.solution, label: solution },
   { key: "program", href: SITE_PATHS.programa, label: program },
   { key: "about", href: SITE_PATHS.about, label: about },
+  { key: "resources", href: SITE_PATHS.resources, label: resources },
 ];

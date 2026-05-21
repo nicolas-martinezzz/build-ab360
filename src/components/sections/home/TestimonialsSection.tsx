@@ -16,12 +16,12 @@ export const TestimonialsSection = async () => {
   return (
     <section
       aria-labelledby="testimonials-title"
-      className="bg-green-100/40 py-14 md:min-h-[42.125rem] md:py-[4.3125rem]"
+      className="section-block bg-green-100/40 md:min-h-[42.125rem]"
     >
       <SectionContainer>
         <p className="figma-text-m text-grey-dark">{t("label")}</p>
         <h2
-          className="figma-title-2 mt-[1.6875rem] text-grey-dark [overflow-wrap:anywhere]"
+          className="figma-title-2 mt-3 text-grey-dark [overflow-wrap:anywhere]"
           id="testimonials-title"
         >
           {t("title")}

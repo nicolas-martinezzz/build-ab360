@@ -22,6 +22,7 @@ export const SiteHeaderBar = ({
   solution,
   program,
   about,
+  resources,
   joinBootcamp,
   bootcampPath,
 }: SiteHeaderBarProps) => {
@@ -40,6 +41,7 @@ export const SiteHeaderBar = ({
     solution,
     program,
     about,
+    resources,
   });
 
   useHeaderCompact({ setIsCompact });
@@ -71,8 +73,8 @@ export const SiteHeaderBar = ({
         className={twMerge(
           "relative z-[60] overflow-hidden backdrop-blur-xl supports-[backdrop-filter]:backdrop-saturate-150 transition-all duration-500 ease-out",
           isCompact
-            ? "bg-surface-bg/70 ring-1 ring-inset ring-white/15 shadow-[0_14px_45px_rgba(0,0,0,0.28)]"
-            : "bg-surface-bg/52 ring-1 ring-inset ring-white/10 shadow-[0_8px_28px_rgba(0,0,0,0.18)]",
+            ? "bg-surface-bg/70 ring-1 ring-inset ring-white/15 shadow-[var(--shadow-header-compact)]"
+            : "bg-surface-bg/52 ring-1 ring-inset ring-white/10 shadow-[var(--shadow-header)]",
         )}
       >
         <div
@@ -96,14 +98,14 @@ export const SiteHeaderBar = ({
             aria-label={brandAria}
             className={twMerge(
               "min-w-0 max-w-[calc(100%-3.25rem)] shrink-0 font-bold leading-tight tracking-tight text-white transition-all duration-500 ease-out sm:max-w-[calc(100%-3.5rem)] md:max-w-none",
-              isCompact ? "text-[0.75rem] sm:text-sm md:text-base" : "text-[0.8125rem] sm:text-base md:text-lg",
+              isCompact ? "text-[0.6875rem] sm:text-[0.8125rem] md:text-[0.9375rem]" : "text-[0.75rem] sm:text-[0.9375rem] md:text-[1.0625rem]",
             )}
             href={SITE_PATHS.home}
             onClick={closeMenu}
           >
             <span className="inline-block whitespace-nowrap">
               <span className="text-green-300">yūtopias</span>{" "}
-              <span className="font-medium text-white/90">systems</span>
+              <span className="font-light text-white/90">systems</span>
             </span>
           </Link>
 

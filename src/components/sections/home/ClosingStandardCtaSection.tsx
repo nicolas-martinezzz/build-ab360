@@ -9,7 +9,7 @@ export const ClosingStandardCtaSection = async () => {
   return (
     <section
       aria-labelledby="closing-standard-cta-title"
-      className="bg-green-600 py-12 text-center text-white md:min-h-[18.625rem] md:py-[4.375rem]"
+      className="section-band bg-green-600 text-center text-white md:min-h-[18.625rem]"
     >
       <SectionContainer className="text-center">
         <h2

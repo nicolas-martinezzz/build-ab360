@@ -7,12 +7,12 @@ export const ChallengeTodaySection = async () => {
   const t = await getTranslations("challengePage.todaySection");
 
   return (
-    <section className="bg-green-100/40 py-14 md:min-h-[56.3125rem] md:py-[4.8125rem]">
+    <section aria-labelledby="challenge-today-title" className="bg-green-100/40 py-14 md:min-h-[56.3125rem] md:py-[4.8125rem]">
       <SectionContainer>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,43.0625rem)_35.5rem] lg:items-start lg:justify-between">
           <div>
-            <p className="figma-text-l text-grey-dark">{t("eyebrow")}</p>
-            <h2 className="figma-title-2-bold mt-5 max-w-[46.6875rem] whitespace-pre-line text-black">
+            <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
+            <h2 className="figma-title-2-bold mt-5 max-w-[46.6875rem] whitespace-pre-line text-black" id="challenge-today-title">
               {t("headline")}
             </h2>
             <p className="figma-text-l mt-8 max-w-[43.0625rem] text-black">{t("paragraph1")}</p>

@@ -9,6 +9,7 @@ export const SiteHeader = async () => {
   return (
     <SiteHeaderBar
       about={t("about")}
+      resources={t("resources")}
       bootcampPath={bootcampPath}
       brandAria={t("brandAria")}
       challenge={t("challenge")}

@@ -5,7 +5,7 @@ export const SolutionQuoteBanner = async () => {
   const t = await getTranslations("solutionPage.quoteBanner");
 
   return (
-    <section className="bg-white py-12 md:py-16">
+    <section aria-label={t("line1")} className="bg-white py-12 md:py-16">
       <SectionContainer className="text-center">
         <div className="mx-auto max-w-[54.875rem]">
           <p className="text-sm leading-[1.44] text-surface-bg md:text-base">

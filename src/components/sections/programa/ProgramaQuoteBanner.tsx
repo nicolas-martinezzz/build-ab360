@@ -5,12 +5,12 @@ export const ProgramaQuoteBanner = async () => {
   const t = await getTranslations("programaPage.quoteBanner");
 
   return (
-    <section className="bg-surface-bg py-16 md:py-20 lg:py-24">
+    <section aria-labelledby="programa-quote-banner-title" className="bg-surface-bg py-16 md:py-20 lg:py-24">
       <SectionContainer>
         <div className="max-w-[44rem]">
           <p className="type-eyebrow text-white/75">{t("eyebrow")}</p>
 
-          <h2 className="figma-title-2-bold mt-3 text-white">
+          <h2 className="figma-title-2-bold mt-3 text-white" id="programa-quote-banner-title">
             {t("headlineLine1")}
             <br />
             {t("headlineLine2")}

@@ -19,7 +19,7 @@ export const Hero = async ({ locale }: HeroProps) => {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative flex min-h-screen min-h-dvh items-center py-24 sm:py-28 md:py-32"
+      className="relative flex h-dvh min-h-[600px] items-center py-20 sm:py-24 md:py-28"
       id={SITE_SECTION_IDS.challenge}
     >
       <div className="absolute inset-0 overflow-hidden bg-surface-bg">

@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Yutopias Systems — Decisions with measurable impact",
-    "description": "Simulate how your choices affect cost and sustainability before you commit."
+    "title": "Yūtopias Systems — Decisions with measurable impact",
+    "description": "Simulate how your choices affect cost, energy, and sustainability before you commit. AB360 connects all building data in a single model."
   },
   "nav": {
     "brandAria": "Yutopias systems, home",
@@ -54,9 +54,9 @@
     "openlab": {
       "quote": "Yutopias, La Salle R&D, and ACCIÓ have defined a different way to roll out Simulab: build it alongside the first partners. We do not sell finished software — we co-build the standard together. We call this process <openlab>OpenLab</openlab>.",
       "pathLabel": "The path",
-      "headlineLine1": "OpenLab is the open innovation program.",
-      "headlineLine2": "Adapt first, then adopt.",
-      "headlineLine3": "Not the other way around.",
+      "headlineLine1": "OpenLab is the open",
+      "headlineLine2": "innovation program.",
+      "headlineLine3": "Adapt first, then adopt. Not the other way around.",
       "description": "It is not training or consulting. It is the process of making it yours, where your data and your operations co-create the standard the sector needs.",
       "bootcampLead": "Zero Bootcamp is the entry point.",
       "ctaPrimary": "Join the Zero Bootcamp",
@@ -160,24 +160,18 @@
     },
     "blogResources": {
       "eyebrow": "Resources",
-      "title": "Latest blog posts",
+      "title": "Latest Articles / eBooks",
       "cta": "View more",
       "ctaHref": "/resources",
-      "article1": {
-        "imageAlt": "Woman reviewing data dashboards in an office",
-        "meta": "22 September 2025 | 5 min read",
-        "title": "Goodbye to silos: Data integration reshaping the building lifecycle",
-        "tag1": "Data",
-        "tag2": "Technology",
-        "author": "Eduardo Núñez · COO at yutopias systems"
-      },
-      "article2": {
-        "imageAlt": "Woman reviewing data dashboards in an office",
-        "meta": "22 September 2025 | 5 min read",
-        "title": "Goodbye to silos: Data integration reshaping the building lifecycle",
-        "tag1": "Data",
-        "tag2": "Technology",
-        "author": "Eduardo Núñez · COO at yutopias systems"
+      "minRead": "min read",
+      "articleBadge": "Article",
+      "ebookBadge": "eBook",
+      "viewEbook": "View eBook",
+      "categories": {
+        "datos": "Data",
+        "sostenibilidad": "Sustainability",
+        "tecnologia": "Technology",
+        "estrategia": "Strategy"
       }
     },
     "yutopiasAbout": {
@@ -196,8 +190,8 @@
   },
   "challengePage": {
     "metadata": {
-      "title": "The challenge",
-      "description": "How AB360 transforms decision-making in buildings through simulation and connected data."
+      "title": "The challenge — Decision-making in construction",
+      "description": "Cost, energy, and impact have always been connected in a building. The problem is nobody measured them together. AB360 changes that with simulation and connected data."
     },
     "headline": "Building is a complex system.\nThousands of decisions.\nDecades of consequences.\nYet it is approached without a holistic view.",
     "body": "The vision exists. The data does not. Or it arrives late. Or it is fragmented or non-existent - within each organization and across all of them. And when it does arrive, the most important decisions have already been made - consciously or not.",
@@ -371,9 +365,14 @@
     "grid": {
       "featured": "Featured",
       "readMore": "Read article",
+      "viewEbook": "View eBook",
       "minRead": "min read",
       "allArticles": "All articles",
-      "noResults": "No articles in this category."
+      "noResults": "No content in this category.",
+      "tabArticles": "Articles",
+      "tabEbooks": "eBooks",
+      "badgeArticle": "Article",
+      "badgeEbook": "eBook"
     },
     "categories": {
       "all": "All",
@@ -386,7 +385,11 @@
       "eyebrow": "Free ebook",
       "title": "The practical guide to scaling Inbound Marketing in your company",
       "subtitle": "Download our free guide and discover how to structure a content strategy that generates real business opportunities.",
-      "emailPlaceholder": "Your email",
+      "firstNamePlaceholder": "First name",
+      "lastNamePlaceholder": "Last name",
+      "companyPlaceholder": "Company",
+      "emailPlaceholder": "Email",
+      "requiredNote": "All fields are required",
       "consentLabel": "I have read and accept the",
       "consentLinkLabel": "privacy policy",
       "ctaButton": "Download free ebook",
@@ -421,8 +424,8 @@
   },
   "aboutPage": {
     "metadata": {
-      "title": "About us",
-      "description": "Learn about Yutopias Systems and our vision to transform decision-making in construction."
+      "title": "About us — Yūtopias Systems",
+      "description": "We are Yūtopias Systems, the team behind AB360. Our mission is to transform how decisions are made in construction using simulation and connected data."
     },
     "hero": {
       "brandPrimary": "yūtopias",
@@ -566,8 +569,8 @@
   },
   "solutionPage": {
     "metadata": {
-      "title": "The solution",
-      "description": "AB360 is the platform that connects building data across its entire lifecycle."
+      "title": "The solution — AB360, building data platform",
+      "description": "AB360 connects cost, energy, and environmental impact in a single model. Simulate decisions before committing and measure real impact at every stage of the building lifecycle."
     },
     "hero": {
       "eyebrow": "AI SIMULATION AGENT",
@@ -713,8 +716,8 @@
   },
   "programaPage": {
     "metadata": {
-      "title": "The program",
-      "description": "OpenLab is the 12-month open innovation program to adapt SimuLab to your real operations."
+      "title": "OpenLab — 12-month open innovation program",
+      "description": "Join OpenLab and adapt SimuLab to your real operations. 12 months of open innovation for construction companies ready to make data-driven decisions."
     },
     "hero": {
       "eyebrow": "THE PROGRAM",

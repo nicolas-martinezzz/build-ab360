@@ -3,10 +3,10 @@ import type { Question, Reto, Dimension, ProfileMeta, DimensionKey, ProfileKey }
 export const TOTAL_QUESTIONS = 12;
 
 export const DIM: Record<DimensionKey, Dimension> = {
-  A: { name: "Decidir con datos",                  short: "Bloque I",   color: "#127334", bg: "#E4F1CF", dark: "#127334" },
-  B: { name: "Conocimiento del equipo",             short: "Bloque II",  color: "#359E52", bg: "#E4F1CF", dark: "#127334" },
-  C: { name: "Decisiones coordinadas",              short: "Bloque III", color: "#359E52", bg: "#E4F1CF", dark: "#127334" },
-  D: { name: "Visión en tiempo real de dirección",  short: "Bloque IV",  color: "#9BBF64", bg: "#E4F1CF", dark: "#127334" },
+  A: { name: "Decidir con datos",                  short: "Bloque I",   color: "var(--color-green-600)", bg: "var(--color-green-100)", dark: "var(--color-green-600)" },
+  B: { name: "Conocimiento del equipo",             short: "Bloque II",  color: "var(--color-green-500)", bg: "var(--color-green-100)", dark: "var(--color-green-600)" },
+  C: { name: "Decisiones coordinadas",              short: "Bloque III", color: "var(--color-green-500)", bg: "var(--color-green-100)", dark: "var(--color-green-600)" },
+  D: { name: "Visión en tiempo real de dirección",  short: "Bloque IV",  color: "var(--color-green-300)", bg: "var(--color-green-100)", dark: "var(--color-green-600)" },
 };
 
 export const RETOS: Reto[] = [

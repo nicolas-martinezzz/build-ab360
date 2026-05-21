@@ -7,9 +7,9 @@ export const AboutPrinciplesSection = async () => {
   const t = await getTranslations("aboutPage.principles");
 
   return (
-    <section className="section-block bg-white">
+    <section aria-labelledby="about-principles-title" className="section-block bg-white">
       <SectionContainer>
-        <h2 className="figma-title-2-bold max-w-[52rem] text-surface-bg">
+        <h2 className="figma-title-2-bold max-w-[52rem] text-surface-bg" id="about-principles-title">
           {t("title")}
         </h2>
         <ul className="mt-8 list-none divide-y divide-grey-light/70 p-0">

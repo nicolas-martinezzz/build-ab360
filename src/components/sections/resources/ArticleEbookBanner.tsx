@@ -20,7 +20,7 @@ export const ArticleEbookBanner = ({ eyebrow, title, buttonLabel }: ArticleEbook
         <p className="line-clamp-2 text-sm font-semibold text-surface-bg">{title}</p>
       </div>
       <button
-        className="shrink-0 rounded-[5px] bg-green-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-600"
+        className="shrink-0 rounded-[5px] bg-green-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-400"
         onClick={handleClick}
         type="button"
       >

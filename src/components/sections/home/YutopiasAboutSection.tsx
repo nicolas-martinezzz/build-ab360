@@ -9,7 +9,7 @@ export const YutopiasAboutSection = async () => {
   return (
     <section
       aria-labelledby="yutopias-about-title"
-      className="bg-surface-bg py-16 text-white md:min-h-[31.875rem] md:py-[7.5rem]"
+      className="section-block bg-surface-bg text-white md:min-h-[31.875rem]"
       id={SITE_SECTION_IDS.about}
     >
       <SectionContainer>

@@ -3,9 +3,9 @@ import { twMerge } from "tailwind-merge";
 
 const variantClasses = {
   primary:
-    "bg-green-500 text-white hover:bg-green-600 focus-visible:ring-green-500",
+    "bg-green-500 text-white hover:bg-green-400 focus-visible:ring-green-500",
   secondary:
-    "bg-green-300 text-white hover:bg-green-400 focus-visible:ring-green-400",
+    "bg-green-500 text-white hover:bg-green-400 focus-visible:ring-green-500",
   outline:
     "border border-green-100 bg-transparent text-green-500 hover:bg-green-100/40 focus-visible:ring-green-500",
   outlineInverse:
