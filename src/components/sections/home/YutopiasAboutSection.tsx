@@ -15,7 +15,7 @@ export const YutopiasAboutSection = async () => {
       <SectionContainer>
         <div className="grid gap-12 lg:grid-cols-[1fr_23.5rem] lg:items-start">
           <div className="min-w-0">
-            <h2 className="text-[1.25rem] font-normal leading-[1.44] [overflow-wrap:anywhere]" id="yutopias-about-title">
+            <h2 className="figma-title-3 font-normal [overflow-wrap:anywhere]" id="yutopias-about-title">
               <span className="text-white">{t("headlinePrefix")}</span>{" "}
               {t.rich("headlineBrand", {
                 y: (chunks) => <span className="text-green-300">{chunks}</span>,
@@ -37,7 +37,7 @@ export const YutopiasAboutSection = async () => {
           </div>
 
           <div className="min-w-0 lg:flex lg:justify-end lg:pt-[0.125rem]">
-            <p className="max-w-[23.5rem] whitespace-pre-line border-white/90 text-base italic leading-6 text-white/95 lg:border-r lg:pr-5 lg:text-right">
+            <p className="figma-text-m max-w-[23.5rem] whitespace-pre-line border-white/90 italic text-white/95 lg:border-r lg:pr-5 lg:text-right">
               {t("philosophy")}
             </p>
           </div>

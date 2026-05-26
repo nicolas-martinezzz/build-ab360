@@ -13,7 +13,7 @@ export const ProgramaHeroBottomBanner = async () => {
           {t("logosStrip.topBanner")}
         </p>
         <LinkButton
-          className="h-9 rounded-[6px] bg-white px-6 py-2 text-sm font-semibold text-surface-bg hover:bg-white/90"
+          className="bg-white px-6 font-semibold text-surface-bg hover:bg-white/90"
           href={SITE_PATHS.reservaPlaza}
         >
           {t("logosStrip.topCta")}
@@ -28,15 +28,15 @@ export const ProgramaLogosStrip = async () => {
 
   return (
     <section aria-label={t("logosStrip.ariaLabel")}>
-    <div className="bg-green-50 py-12 md:py-16">
+    <div className="section-band bg-green-50">
       <SectionContainer className="grid gap-10 md:grid-cols-2 md:gap-16">
-        <p className="figma-text-l max-w-[32rem] text-surface-bg">
+        <p className="figma-text-m max-w-[32rem] text-surface-bg">
           {t("logosStrip.leftLine1")}
           <br />
           {t("logosStrip.leftLine2")}
         </p>
 
-        <p className="figma-text-l max-w-[32rem] justify-self-start text-surface-bg md:justify-self-end">
+        <p className="figma-text-m max-w-[32rem] justify-self-start text-surface-bg md:justify-self-end">
           <span className="font-bold text-green-500">
             {t("logosStrip.rightLead")}
           </span>

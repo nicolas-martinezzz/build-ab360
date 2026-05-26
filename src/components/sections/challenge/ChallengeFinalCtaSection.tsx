@@ -7,11 +7,12 @@ import { SITE_PATHS } from "@/config/routes";
 
 export const ChallengeFinalCtaSection = async () => {
   const t = await getTranslations("challengePage.finalCtaSection");
+  const tagline2 = t("tagline2");
 
   return (
     <section
       aria-labelledby="challenge-final-cta-title"
-      className="relative isolate flex min-h-[28rem] items-center justify-center overflow-hidden py-14 sm:min-h-[35.5625rem] md:py-[4.8125rem]"
+      className="section-band relative isolate flex min-h-[28rem] items-center justify-center overflow-hidden sm:min-h-[35.5625rem]"
     >
       <Image
         alt=""
@@ -41,8 +42,7 @@ export const ChallengeFinalCtaSection = async () => {
         </LinkButton>
         <p className="figma-text-m mt-4 italic text-white/80">
           {t("tagline1")}
-          <br />
-          {t("tagline2")}
+          {tagline2 ? <><br />{tagline2}</> : null}
         </p>
       </SectionContainer>
     </section>

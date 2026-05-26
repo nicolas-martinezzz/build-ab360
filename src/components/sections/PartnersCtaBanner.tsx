@@ -40,7 +40,7 @@ export const PartnersCtaBanner = ({
     <SectionContainer className="relative z-10 text-center">
       <h2
         className={twMerge(
-          "mx-auto max-w-[61.3125rem] text-[1.75rem] font-normal leading-[1.35] text-white sm:text-[2rem] md:text-[2.5rem] md:leading-[1.45] lg:text-[3rem]",
+          "figma-title-3 mx-auto max-w-[61.3125rem] font-normal text-white",
           headlineClassName ?? "",
         )}
         id="partners-cta-banner-title"

@@ -90,7 +90,7 @@ export function CookieConsentBanner() {
       {/* Manage panel — slides up above the banner */}
       {manageOpen && (
         <div
-          aria-label={t("manageTitle")}
+          aria-labelledby="cookie-manage-title"
           aria-modal="true"
           className={[
             "bg-surface-bg border-t border-white/10 px-4 py-5 sm:px-6",
@@ -98,7 +98,7 @@ export function CookieConsentBanner() {
           ].join(" ")}
           role="dialog"
         >
-          <h2 className="mb-4 text-sm font-semibold text-white">{t("manageTitle")}</h2>
+          <h2 className="mb-4 text-sm font-semibold text-white" id="cookie-manage-title">{t("manageTitle")}</h2>
 
           <div className="space-y-4">
             {/* Necessary — always on, disabled */}

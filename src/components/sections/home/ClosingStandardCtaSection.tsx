@@ -13,14 +13,13 @@ export const ClosingStandardCtaSection = async () => {
     >
       <SectionContainer className="text-center">
         <h2
-          className="mx-auto max-w-[52rem] text-[1.625rem] font-normal leading-[1.24] [overflow-wrap:anywhere] sm:text-[2rem] md:text-[2.625rem]"
+          className="figma-title-2 mx-auto max-w-[72rem] [overflow-wrap:anywhere]"
           id="closing-standard-cta-title"
         >
-          <span className="block">{t("titleLine1")}</span>
-          <span className="mt-1 block">{t("titleLine2")}</span>
+          {t("titleLine1")} {t("titleLine2")}
         </h2>
         <LinkButton
-          className="mx-auto mt-8 h-[45px] w-full max-w-xs border-white/60 bg-transparent px-6 text-base font-medium text-white hover:bg-white/10 focus-visible:ring-offset-green-600 sm:w-auto"
+          className="mx-auto mt-8 w-full max-w-xs border-white/60 bg-transparent px-6 text-white hover:bg-white/10 focus-visible:ring-offset-green-600 sm:w-auto"
           href={SITE_PATHS.contact}
           variant="outlineInverse"
         >

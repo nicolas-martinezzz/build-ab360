@@ -1,16 +1,10 @@
 "use client";
 
-import { useCookieConsent } from "@/hooks/useCookieConsent";
-
 type Props = { label: string };
 
 export function FooterCookieButton({ label }: Props) {
-  const { savePreferences } = useCookieConsent();
-
   const handleClick = () => {
-    // Reset decided so the banner reappears
-    savePreferences(false);
-    // Force a re-read by reloading — simplest approach without global state
+    localStorage.removeItem("cookie-consent");
     window.location.reload();
   };
 

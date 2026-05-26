@@ -25,13 +25,13 @@ export const PartnersBootcampCtaSection = async () => {
       <div aria-hidden className="absolute inset-0 bg-black/60" />
       <SectionContainer className="relative z-10 text-center">
         <h2
-          className="mx-auto max-w-[61.3125rem] text-[1.75rem] font-normal leading-[1.45] text-white [overflow-wrap:anywhere] sm:text-[2.125rem] md:text-[2.5rem]"
+          className="figma-title-3 mx-auto max-w-[61.3125rem] font-normal text-white [overflow-wrap:anywhere]"
           id="partners-bootcamp-cta-title"
         >
           {t("headline")}
         </h2>
         <LinkButton
-          className="mx-auto mt-[2.6875rem] w-full max-w-sm justify-center sm:w-auto"
+          className="mx-auto mt-10 w-full max-w-sm justify-center sm:w-auto"
           href={SITE_PATHS.reservaPlaza}
           variant="primary"
         >

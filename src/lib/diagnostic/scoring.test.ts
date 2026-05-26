@@ -237,7 +237,7 @@ describe("getScoreBandMeta", () => {
   it("todos los campos están definidos en cualquier score", () => {
     for (const pct of [0, 0.3, 0.5, 0.75, 0.9, 1]) {
       const band = getScoreBandMeta(pct);
-      expect(band.color).toMatch(/^(#|var\(--)/)
+      expect(band.color).toMatch(/^(#|var\(--)/);
       expect(band.bandBg).toMatch(/^(#|var\(--)/);
       expect(band.title.trim()).not.toBe("");
       expect(band.sub.trim()).not.toBe("");

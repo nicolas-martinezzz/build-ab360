@@ -7,6 +7,7 @@ import { SITE_PATHS } from "@/config/routes";
 import { Link } from "@/i18n/navigation";
 import { DesktopNav } from "@/components/sections/site-header/DesktopNav";
 import { MobileDrawer } from "@/components/sections/site-header/MobileDrawer";
+import { HeaderLocaleSwitcher } from "@/components/sections/site-header/HeaderLocaleSwitcher";
 import { useDesktopViewport, useHeaderCompact, useMenuA11y } from "@/components/sections/site-header/hooks";
 import { buildNavigationLinks } from "@/components/sections/site-header/navigation";
 import type { SiteHeaderBarProps } from "@/components/sections/site-header/types";
@@ -25,6 +26,10 @@ export const SiteHeaderBar = ({
   resources,
   joinBootcamp,
   bootcampPath,
+  localeNavAria,
+  localeEs,
+  localeEn,
+  localeCa,
 }: SiteHeaderBarProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
@@ -71,7 +76,7 @@ export const SiteHeaderBar = ({
     >
       <div
         className={twMerge(
-          "relative z-[60] overflow-hidden backdrop-blur-xl supports-[backdrop-filter]:backdrop-saturate-150 transition-all duration-500 ease-out",
+          "relative z-[60] backdrop-blur-xl supports-[backdrop-filter]:backdrop-saturate-150 transition-all duration-500 ease-out",
           isCompact
             ? "bg-surface-bg/70 ring-1 ring-inset ring-white/15 shadow-[var(--shadow-header-compact)]"
             : "bg-surface-bg/52 ring-1 ring-inset ring-white/10 shadow-[var(--shadow-header)]",
@@ -130,6 +135,13 @@ export const SiteHeaderBar = ({
               </LinkButton>
             </div>
 
+            <HeaderLocaleSwitcher
+              ariaLabel={localeNavAria}
+              localeCa={localeCa}
+              localeEn={localeEn}
+              localeEs={localeEs}
+            />
+
             <button
               ref={menuButtonRef}
               aria-controls={menuId}
@@ -165,6 +177,10 @@ export const SiteHeaderBar = ({
         joinBootcamp={joinBootcamp}
         lastDrawerActionRef={lastDrawerActionRef}
         links={navigationLinks}
+        localeCa={localeCa}
+        localeEn={localeEn}
+        localeEs={localeEs}
+        localeNavAria={localeNavAria}
         menuId={menuId}
         menuOpen={menuOpen}
         mobileMenuAria={mobileMenuAria}

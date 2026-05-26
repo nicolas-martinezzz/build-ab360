@@ -25,7 +25,7 @@ export const ChallengeDiscoverAb360Section = async () => {
   const t = await getTranslations("challengePage.discoverAb360");
 
   return (
-    <section aria-labelledby="challenge-discover-title" className="bg-white py-14 md:py-[4.0625rem]">
+    <section aria-labelledby="challenge-discover-title" className="section-block bg-white">
       <SectionContainer>
         <div className="max-w-[50rem]">
           <p className="type-eyebrow text-black">{t("eyebrow")}</p>
@@ -37,17 +37,17 @@ export const ChallengeDiscoverAb360Section = async () => {
           <p className="figma-text-l mt-4 max-w-[45.625rem] text-black">{t("paragraph2")}</p>
 
           <div className="mt-6 flex flex-col items-start">
-            <LinkButton className="h-[45px] w-full max-w-sm border-green-500 px-5 text-green-500 hover:bg-green-100/50 sm:w-auto" href={SITE_PATHS.solution} variant="outline">
+            <LinkButton className="w-full max-w-sm border-green-500 px-5 text-green-500 hover:bg-green-100/50 sm:w-auto" href={SITE_PATHS.solution} variant="outline">
               {t("sectionCta")}
             </LinkButton>
             <p className="figma-text-m mt-3 italic text-grey-dark">{t("sectionCtaHint")}</p>
           </div>
         </div>
 
-        <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
           {DISCOVER_AGENT_CARDS.map((card) => (
             <li key={card.key} className="min-w-0">
-              <article className="flex h-full flex-col gap-1.5 px-4 py-3">
+              <article className="flex h-full flex-col gap-1 px-4 py-3">
                 <span
                   className={
                     card.isLive
@@ -57,10 +57,10 @@ export const ChallengeDiscoverAb360Section = async () => {
                 >
                   {t(`${card.key}.badge`)}
                 </span>
-                <p className="figma-text-m italic text-black md:min-h-[3rem]">{t(`${card.key}.role`)}</p>
-                <h3 className="figma-text-l-bold text-black md:min-h-[3.5rem]">{t(`${card.key}.title`)}</h3>
-                <p className="figma-text-m text-surface-bg md:min-h-[5.5rem]">{t(`${card.key}.body`)}</p>
-                <p className="figma-text-m mt-auto pt-1.5 text-surface-bg">{t("metricsLabel")}</p>
+                <p className="figma-text-m italic text-black">{t(`${card.key}.role`)}</p>
+                <h3 className="figma-text-l-bold text-black">{t(`${card.key}.title`)}</h3>
+                <p className="figma-text-m text-surface-bg">{t(`${card.key}.body`)}</p>
+                <p className="figma-text-m mt-auto pt-1 text-surface-bg">{t("metricsLabel")}</p>
                 <div className="mt-[3px] flex flex-wrap gap-[7px]">
                   {card.pills.map((pillKey) => (
                     <span className="rounded-[2px] bg-green-100 px-[5px] text-sm font-normal leading-6 text-green-400" key={pillKey}>

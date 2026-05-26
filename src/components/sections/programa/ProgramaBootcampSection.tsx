@@ -29,21 +29,21 @@ export const ProgramaBootcampSection = async () => {
   ];
 
   return (
-    <section aria-labelledby="programa-bootcamp-title" className="bg-green-50 py-16 md:py-20">
+    <section aria-labelledby="programa-bootcamp-title" className="section-block bg-green-50">
       <SectionContainer>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,28.5rem)] lg:gap-14">
           <div className="max-w-[48rem]">
             <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
             <h2 className="figma-title-2-bold mt-3 text-surface-bg" id="programa-bootcamp-title">{t("headline")}</h2>
-            <p className="mt-3 text-[1.75rem] leading-[1.2] text-green-500 sm:text-[2rem] md:text-[2.25rem]">{t("dateLine")}</p>
+            <p className="figma-title-3 mt-3 text-green-500">{t("dateLine")}</p>
             <p className="figma-text-l-bold mt-2 text-green-500">{t("venueLine1")}</p>
             <p className="figma-text-m text-green-500 underline">{t("venueLine2")}</p>
 
             <div className="mt-7 space-y-4">
-              <p className="figma-text-l text-surface-bg">{t("paragraph1")}</p>
-              <p className="figma-text-l text-surface-bg">{t("paragraph2")}</p>
-              <p className="figma-text-l text-surface-bg">{t("paragraph3")}</p>
-              <p className="figma-text-l-bold text-green-500">{t("limitedSeats")}</p>
+              <p className="figma-text-m text-surface-bg">{t("paragraph1")}</p>
+              <p className="figma-text-m text-surface-bg">{t("paragraph2")}</p>
+              <p className="figma-text-m text-surface-bg">{t("paragraph3")}</p>
+              <p className="figma-text-m font-bold text-green-500">{t("limitedSeats")}</p>
             </div>
 
             <ul className="mt-8 space-y-4">
@@ -51,8 +51,8 @@ export const ProgramaBootcampSection = async () => {
                 <li className="flex items-start gap-3" key={`value-${index}`}>
                   <span className="mt-1 text-[1.5rem] leading-none text-green-500">✓</span>
                   <div>
-                    <p className="figma-text-l-bold text-surface-bg">{t(VALUE_KEYS[index * 2])}</p>
-                    <p className="figma-text-l text-surface-bg">{t(VALUE_KEYS[index * 2 + 1])}</p>
+                    <p className="figma-text-m font-bold text-surface-bg">{t(VALUE_KEYS[index * 2])}</p>
+                    <p className="figma-text-m text-surface-bg">{t(VALUE_KEYS[index * 2 + 1])}</p>
                   </div>
                 </li>
               ))}
@@ -63,10 +63,10 @@ export const ProgramaBootcampSection = async () => {
               <ul className="mt-6 divide-y divide-grey-light/50">
                 {agenda.map((item) => (
                   <li className="grid grid-cols-[5.5rem_1fr] gap-4 py-3" key={`${item.time}-${item.title}`}>
-                    <p className="figma-text-l-bold text-green-500">{item.time}</p>
+                    <p className="figma-text-m font-bold text-green-500">{item.time}</p>
                     <div>
-                      <p className="figma-text-l-bold text-surface-bg">{item.title}</p>
-                      {item.meta ? <p className="figma-text-l text-grey-dark">{item.meta}</p> : null}
+                      <p className="figma-text-m font-bold text-surface-bg">{item.title}</p>
+                      {item.meta ? <p className="figma-text-m text-grey-dark">{item.meta}</p> : null}
                     </div>
                   </li>
                 ))}

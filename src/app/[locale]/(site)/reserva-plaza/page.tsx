@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { ReservaPlazaForm } from "@/components/reserva-plaza/ReservaPlazaForm";
 
-export const metadata: Metadata = {
-  title: "Reserva tu plaza — Bootcamp Zero",
-  description: "Solicita tu plaza en el Bootcamp Zero. Plazas limitadas, proceso de selección real.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "reservaPlazaPage.metadata" });
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default async function ReservaPlazaPage({
   params,
@@ -15,55 +23,52 @@ export default async function ReservaPlazaPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("reservaPlazaPage");
 
   const steps = [
-    { n: "01", title: "Reservá tu plaza",    body: "Dejanos tus datos y te reservamos el lugar." },
-    { n: "02", title: "Hacé el diagnóstico", body: "Completás el autodiagnóstico de tu empresa en 10 minutos." },
-    { n: "03", title: "Te confirmamos",       body: "Revisamos tu perfil y te contactamos para confirmar." },
+    { n: "01", title: t("steps.step1Title"), body: t("steps.step1Body") },
+    { n: "02", title: t("steps.step2Title"), body: t("steps.step2Body") },
+    { n: "03", title: t("steps.step3Title"), body: t("steps.step3Body") },
   ];
 
   return (
     <>
       {/* Hero */}
-      <section className="bg-surface-bg py-16 md:py-20">
+      <section className="section-block bg-surface-bg">
         <SectionContainer>
           <div className="max-w-2xl">
-            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-green-400">
-              Bootcamp Zero
-            </p>
-            <h1 className="mt-3 text-[1.75rem] font-bold leading-[1.15] text-white sm:text-[2.25rem] md:text-[2.75rem]">
-              Únete al Bootcamp Zero
+            <p className="type-eyebrow text-green-400">{t("hero.eyebrow")}</p>
+            <h1 className="figma-title-1 mt-3 text-white">
+              {t("hero.title")}
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
-              Plazas limitadas · Selección real. Reservá tu plaza y completá el diagnóstico — analizamos tu perfil y te confirmamos si encajás con el programa.
+            <p className="figma-text-l mt-4 text-white/70">
+              {t("hero.body")}
             </p>
           </div>
         </SectionContainer>
       </section>
 
       {/* Form + steps */}
-      <section className="bg-surface-light py-14 md:py-20">
+      <section className="section-block bg-surface-light">
         <SectionContainer>
-          <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1fr_420px] lg:items-start lg:gap-16">
+          <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1fr_26.25rem] lg:items-start lg:gap-16">
 
             {/* Steps — left */}
             <div>
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-surface-bg/50">
-                Cómo funciona
-              </p>
-              <h2 className="mt-3 text-[1.5rem] font-bold leading-tight text-surface-bg sm:text-[1.75rem]">
-                Tres pasos para entrar
+              <p className="type-eyebrow text-surface-bg/50">{t("steps.eyebrow")}</p>
+              <h2 className="figma-title-3 mt-3 text-surface-bg">
+                {t("steps.title")}
               </h2>
-              <p className="mt-3 text-base leading-relaxed text-surface-bg/60">
-                El proceso está diseñado para que llegues al bootcamp con el diagnóstico de tu empresa ya hecho.
+              <p className="figma-text-m mt-3 text-surface-bg/60">
+                {t("steps.body")}
               </p>
               <ol className="mt-8 flex flex-col gap-4">
                 {steps.map(({ n, title, body }) => (
                   <li key={n} className="flex gap-4 rounded-[10px] border border-surface-bg/10 bg-white px-5 py-4 shadow-[var(--shadow-panel)]">
-                    <span className="text-[1.125rem] font-bold leading-[1.4] text-green-600 shrink-0 w-7">{n}.</span>
+                    <span className="figma-text-l-bold shrink-0 w-7 text-green-600">{n}.</span>
                     <div>
-                      <p className="text-sm font-bold text-surface-bg">{title}</p>
-                      <p className="mt-0.5 text-sm leading-relaxed text-surface-bg/60">{body}</p>
+                      <p className="figma-text-m font-bold text-surface-bg">{title}</p>
+                      <p className="figma-text-m mt-0.5 text-surface-bg/60">{body}</p>
                     </div>
                   </li>
                 ))}
@@ -72,11 +77,9 @@ export default async function ReservaPlazaPage({
 
             {/* Form — right */}
             <div className="rounded-[10px] border border-surface-bg/10 bg-white p-6 shadow-[var(--shadow-panel-lg)] sm:p-8 lg:sticky lg:top-24">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-surface-bg/40">
-                Paso 1 de 2
-              </p>
-              <h3 className="mt-2 text-lg font-bold text-surface-bg">
-                Tus datos
+              <p className="type-eyebrow text-surface-bg/40">{t("form.stepLabel")}</p>
+              <h3 className="figma-title-3 mt-2 text-surface-bg">
+                {t("form.stepTitle")}
               </h3>
               <ReservaPlazaForm locale={locale} />
             </div>

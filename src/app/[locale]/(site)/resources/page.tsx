@@ -32,6 +32,8 @@ export default async function ResourcesPage({ params }: Props) {
     tabEbooks: t("grid.tabEbooks"),
     badgeArticle: t("grid.badgeArticle"),
     badgeEbook: t("grid.badgeEbook"),
+    tabsAriaLabel: t("grid.tabsAriaLabel"),
+    filterAriaLabel: t("grid.filterAriaLabel"),
     categories: {
       all: t("categories.all"),
       datos: t("categories.datos"),
@@ -46,20 +48,15 @@ export default async function ResourcesPage({ params }: Props) {
       {/* Hero */}
       <section
         aria-labelledby="resources-hero-title"
-        className="bg-surface-bg py-16 md:py-24 lg:py-32"
+        className="section-block-spacious bg-surface-bg"
       >
         <SectionContainer>
           <div className="max-w-2xl">
-            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-green-400">
-              {t("hero.eyebrow")}
-            </p>
-            <h1
-              className="mt-3 text-[1.75rem] font-bold leading-[1.15] text-white sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.5rem]"
-              id="resources-hero-title"
-            >
+            <p className="type-eyebrow text-green-400">{t("hero.eyebrow")}</p>
+            <h1 className="figma-title-1 mt-3 text-white" id="resources-hero-title">
               {t("hero.title")}
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
+            <p className="figma-text-l mt-4 text-white/70">
               {t("hero.subtitle")}
             </p>
           </div>
@@ -69,7 +66,7 @@ export default async function ResourcesPage({ params }: Props) {
       {/* Content grid with tab filter */}
       <section
         aria-label={t("grid.allArticles")}
-        className="bg-surface-light py-14 md:py-20"
+        className="section-block bg-surface-light"
       >
         <SectionContainer>
           <ResourcesGrid
