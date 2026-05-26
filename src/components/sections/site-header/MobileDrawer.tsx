@@ -3,7 +3,9 @@ import { twMerge } from "tailwind-merge";
 import { getButtonClassName } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 import { DRAWER_LINK_CLASS } from "@/components/sections/site-header/navigation";
+import { HeaderLocaleSwitcher } from "@/components/sections/site-header/HeaderLocaleSwitcher";
 import type { HeaderNavigationLink } from "@/components/sections/site-header/types";
+
 type MobileDrawerProps = {
   menuOpen: boolean;
   menuId: string;
@@ -16,6 +18,10 @@ type MobileDrawerProps = {
   links: HeaderNavigationLink[];
   joinBootcamp: string;
   bootcampPath: string;
+  localeNavAria: string;
+  localeEs: string;
+  localeEn: string;
+  localeCa: string;
 };
 
 export const MobileDrawer = ({
@@ -30,6 +36,10 @@ export const MobileDrawer = ({
   links,
   joinBootcamp,
   bootcampPath,
+  localeNavAria,
+  localeEs,
+  localeEn,
+  localeCa,
 }: MobileDrawerProps) => (
   <>
     <div
@@ -88,6 +98,16 @@ export const MobileDrawer = ({
         >
           {joinBootcamp}
         </Link>
+
+        <div className="mt-6 border-t border-white/10 pt-5">
+          <HeaderLocaleSwitcher
+            ariaLabel={localeNavAria}
+            localeCa={localeCa}
+            localeEn={localeEn}
+            localeEs={localeEs}
+            variant="inline"
+          />
+        </div>
       </nav>
     </div>
   </>

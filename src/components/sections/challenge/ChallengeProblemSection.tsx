@@ -6,16 +6,19 @@ export const ChallengeProblemSection = async () => {
   const t = await getTranslations("challengePage.nextSection");
   const problemCards = [
     {
-      title: t("problemCards.card1.title"),
-      body: t("problemCards.card1.body"),
-    },
-    {
       title: t("problemCards.card2.title"),
       body: t("problemCards.card2.body"),
+      icon: SITE_ASSETS.challenge.iconGlobe,
+    },
+    {
+      title: t("problemCards.card1.title"),
+      body: t("problemCards.card1.body"),
+      icon: SITE_ASSETS.challenge.iconUnlink,
     },
     {
       title: t("problemCards.card3.title"),
       body: t("problemCards.card3.body"),
+      icon: SITE_ASSETS.challenge.iconClockAlert,
     },
   ] as const;
 
@@ -56,7 +59,7 @@ export const ChallengeProblemSection = async () => {
                 aria-hidden
                 className="mb-6 h-10 w-10 object-contain sm:h-[51px] sm:w-[51px]"
                 height={51}
-                src={SITE_ASSETS.challenge.scanSearchIcon}
+                src={card.icon}
                 width={51}
               />
               <h3 className="max-w-[23.5rem] whitespace-pre-line figma-text-l-bold text-black">{card.title}</h3>
@@ -69,7 +72,7 @@ export const ChallengeProblemSection = async () => {
           {evidenceCards.map((card) => (
             <article className="rounded-[5px] border border-grey-light bg-surface-bg p-[1.875rem] text-white" key={card.quote}>
               <p className="figma-text-l-bold text-white">{card.quote}</p>
-              <p className="mt-5 text-[0.8125rem] italic leading-[1.4] text-grey-light underline decoration-grey-light underline-offset-2">
+              <p className="figma-text-m mt-5 italic leading-[1.4] text-grey-light underline decoration-grey-light underline-offset-2">
                 {card.source}
               </p>
             </article>

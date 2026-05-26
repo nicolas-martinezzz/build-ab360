@@ -5,13 +5,13 @@ export const SolutionQuoteBanner = async () => {
   const t = await getTranslations("solutionPage.quoteBanner");
 
   return (
-    <section aria-label={t("line1")} className="bg-white py-12 md:py-16">
+    <section aria-label={t("line1")} className="section-band bg-white">
       <SectionContainer className="text-center">
         <div className="mx-auto max-w-[54.875rem]">
-          <p className="text-sm leading-[1.44] text-surface-bg md:text-base">
+          <p className="figma-text-m text-surface-bg">
             {t("line1")}
           </p>
-          <p className="text-sm font-bold leading-[1.34] text-surface-bg md:text-base">
+          <p className="figma-text-m font-bold text-surface-bg">
             {t("line2")}
           </p>
         </div>

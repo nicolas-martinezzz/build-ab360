@@ -6,6 +6,7 @@ import { SITE_PATHS, getDiagnosticPathByLocale, getBootcampPathByLocale } from "
 import { Link } from "@/i18n/navigation";
 import { FooterNewsletterForm } from "@/components/sections/FooterNewsletterForm";
 import { FooterLocaleSwitcher } from "@/components/sections/FooterLocaleSwitcher";
+import { FooterCookieButton } from "@/components/sections/FooterCookieButton";
 
 export const SiteFooter = async () => {
   const locale = await getLocale();
@@ -20,12 +21,12 @@ export const SiteFooter = async () => {
       role="contentinfo"
     >
       <SectionContainer className="py-12 sm:py-14 lg:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_2fr] lg:gap-12">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1.4fr_1.6fr_2fr] lg:gap-8">
 
           {/* Col 1: Logo + Contact + Social */}
           <div className="flex flex-col gap-5">
             <Link
-              aria-label="yūtopias systems — inicio"
+              aria-label={t("brandAria")}
               className="inline-block text-[1.0625rem] font-bold"
               href={SITE_PATHS.home}
             >
@@ -175,7 +176,7 @@ export const SiteFooter = async () => {
             {t("copyright")}
           </p>
           <div className="flex flex-col items-start gap-2 sm:items-end">
-            <nav aria-label="Enlaces legales" className="flex flex-wrap gap-x-1 gap-y-1 text-sm text-white/50">
+            <nav aria-label={t("legalNavAria")} className="flex flex-wrap gap-x-1 gap-y-1 text-sm text-white/50">
               <Link
                 className="underline-offset-2 transition hover:text-white hover:underline"
                 href={SITE_PATHS.information}
@@ -190,6 +191,8 @@ export const SiteFooter = async () => {
               <Link className="underline-offset-2 transition hover:text-white hover:underline" href={SITE_PATHS.cookies}>
                 {t("cookiesLink")}
               </Link>
+              <span aria-hidden className="select-none px-1">·</span>
+              <FooterCookieButton label={t("manageCookiesLink")} />
             </nav>
             <FooterLocaleSwitcher
               ariaLabel={t("localeNavAria")}

@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { ALL_ARTICLES, ALL_EBOOKS } from "@/content/articles";
 import { formatArticleDate } from "@/lib/dateFormat";
+import { SITE_PATHS } from "@/config/routes";
 
 export const BlogResourcesSection = async () => {
   const t = await getTranslations("home.blogResources");
@@ -22,14 +23,14 @@ export const BlogResourcesSection = async () => {
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
-            <h2 className="mt-2 text-[2rem] font-normal leading-[1.15] text-surface-bg sm:text-[2.25rem]" id="blog-resources-title">
+            <h2 className="figma-title-3 mt-2 text-surface-bg" id="blog-resources-title">
               {t("title")}
             </h2>
           </div>
           <LinkButton
-            className="h-9 self-start rounded-[5px] border border-green-500 bg-transparent px-4 text-sm font-medium text-green-500 hover:bg-green-100/50 md:self-auto"
-            href={t("ctaHref")}
-            variant="text"
+            className="self-start md:self-auto"
+            href={SITE_PATHS.resources}
+            variant="outline"
           >
             {t("cta")}
           </LinkButton>
@@ -41,7 +42,7 @@ export const BlogResourcesSection = async () => {
             const tr = article.translations[lang] ?? article.translations.es;
             return (
               <li key={article.slug}>
-                <Link className="group block h-full" href={`/resources/${article.slug}`}>
+                <Link className="group block h-full" href={`${SITE_PATHS.resources}/${article.slug}`}>
                   <article className="flex h-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-card-hover)]">
                     <div className="relative h-[13rem] w-full shrink-0 overflow-hidden sm:h-[15rem]">
                       <Image
@@ -51,28 +52,28 @@ export const BlogResourcesSection = async () => {
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         src={article.coverImage}
                       />
-                      <span className="absolute left-3 top-3 rounded-[5px] bg-green-500 px-4 py-1.5 text-[0.9375rem] font-semibold text-white shadow-[var(--shadow-card-sm)]">
+                      <span className="absolute left-3 top-3 rounded-[5px] bg-green-500 px-4 py-1.5 figma-text-m font-semibold text-white shadow-[var(--shadow-card-sm)]">
                         {t("articleBadge")}
                       </span>
                     </div>
                     <div className="flex flex-1 flex-col gap-3 px-5 py-5">
-                      <p className="text-[0.75rem] leading-none text-grey-dark">
+                      <p className="figma-text-m leading-none text-grey-dark">
                         {formatArticleDate(article.publishedAt, locale)} · {article.readingTimeMin} {t("minRead")}
                       </p>
-                      <h3 className="text-[1.25rem] font-bold leading-[1.3] text-surface-bg transition group-hover:text-green-700">
+                      <h3 className="figma-card-title text-surface-bg transition group-hover:text-green-700">
                         {tr.title}
                       </h3>
                       <div className="flex flex-wrap gap-2">
                         {article.categories.slice(0, 2).map((cat) => (
                           <span
-                            className="rounded-[5px] bg-green-100 px-2.5 py-1 text-[0.8125rem] leading-none text-surface-bg"
+                            className="rounded-[5px] bg-green-100 px-2.5 py-1 figma-text-m leading-none text-surface-bg"
                             key={cat}
                           >
                             {t(`categories.${cat}`)}
                           </span>
                         ))}
                       </div>
-                      <p className="mt-auto text-sm text-surface-bg/60">
+                      <p className="figma-text-m mt-auto text-surface-bg/60">
                         {article.author} · {article.authorRole}
                       </p>
                     </div>
@@ -85,7 +86,7 @@ export const BlogResourcesSection = async () => {
             const tr = ebook.translations[lang] ?? ebook.translations.es;
             return (
               <li key={ebook.slug}>
-                <Link className="group block h-full" href={`/resources/${ebook.slug}`}>
+                <Link className="group block h-full" href={`${SITE_PATHS.resources}/${ebook.slug}`}>
                   <article className="flex h-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-card-hover)]">
                     <div className="relative h-[13rem] w-full shrink-0 overflow-hidden sm:h-[15rem]">
                       <Image
@@ -95,16 +96,16 @@ export const BlogResourcesSection = async () => {
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         src={ebook.coverImage}
                       />
-                      <span className="absolute left-3 top-3 rounded-[5px] bg-green-500 px-4 py-1.5 text-[0.9375rem] font-semibold text-white shadow-[var(--shadow-card-sm)]">
+                      <span className="absolute left-3 top-3 rounded-[5px] bg-green-500 px-4 py-1.5 figma-text-m font-semibold text-white shadow-[var(--shadow-card-sm)]">
                         {t("ebookBadge")}
                       </span>
                     </div>
                     <div className="flex flex-1 flex-col gap-3 px-5 py-5">
-                      <h3 className="text-[1.25rem] font-bold leading-[1.3] text-surface-bg transition group-hover:text-green-700">
+                      <h3 className="figma-card-title text-surface-bg transition group-hover:text-green-700">
                         {tr.title}
                       </h3>
-                      <p className="mt-auto text-sm font-medium text-green-600">
-                        {t("viewEbook")} →
+                      <p className="figma-text-m mt-auto font-medium text-green-600">
+                        {t("viewEbook")} <span aria-hidden>→</span>
                       </p>
                     </div>
                   </article>

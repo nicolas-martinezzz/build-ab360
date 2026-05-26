@@ -20,6 +20,8 @@ interface ResourcesGridProps {
     tabEbooks: string;
     badgeArticle: string;
     badgeEbook: string;
+    tabsAriaLabel: string;
+    filterAriaLabel: string;
     categories: Record<string, string>;
   };
   allCategories: ArticleCategory[];
@@ -44,7 +46,7 @@ export const ResourcesGrid = ({
   return (
     <div className="flex flex-col gap-8">
       {/* Top-level tabs: Artículos / Ebooks */}
-      <div aria-label="Tipo de contenido" className="flex gap-2 border-b border-surface-bg/10" role="tablist">
+      <div aria-label={labels.tabsAriaLabel} className="flex gap-2 border-b border-surface-bg/10" role="tablist">
         <button
           aria-controls="resources-tabpanel"
           aria-selected={activeTab === "articles"}
@@ -76,7 +78,7 @@ export const ResourcesGrid = ({
       </div>
 
       {/* Category filter */}
-      <div aria-label="Filtrar por categoría" className="flex flex-wrap gap-2" role="group">
+      <div aria-label={labels.filterAriaLabel} className="flex flex-wrap gap-2" role="group">
           <button
             aria-pressed={activeCategory === "all"}
             className={`rounded-full px-4 py-2 text-sm font-medium transition focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-light ${

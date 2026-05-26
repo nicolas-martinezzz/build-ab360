@@ -19,7 +19,7 @@ export const TestimonialsSection = async () => {
       className="section-block bg-green-100/40 md:min-h-[42.125rem]"
     >
       <SectionContainer>
-        <p className="figma-text-m text-grey-dark">{t("label")}</p>
+        <p className="type-eyebrow text-grey-dark">{t("label")}</p>
         <h2
           className="figma-title-2 mt-3 text-grey-dark [overflow-wrap:anywhere]"
           id="testimonials-title"
@@ -44,10 +44,10 @@ export const TestimonialsSection = async () => {
                         src={TESTIMONIAL_AVATARS[key]}
                         width={53}
                       />
-                      <div className="min-w-0 flex-1 space-y-1 md:min-h-[5.5rem]">
-                        <p className="figma-text-l-bold text-grey-dark">{t(`${key}.name`)}</p>
-                        <p className="figma-text-m font-medium text-black">{t(`${key}.company`)}</p>
-                        <p className="figma-text-m italic text-grey-dark">{t(`${key}.role`)}</p>
+                      <div className="min-w-0 flex-1">
+                        <p className="figma-text-l-bold leading-tight text-grey-dark">{t(`${key}.name`)}</p>
+                        <p className="figma-text-m font-medium leading-tight text-black">{t(`${key}.company`)}</p>
+                        <p className="figma-text-m italic leading-tight text-grey-dark">{t(`${key}.role`)}</p>
                       </div>
                     </div>
                   </div>

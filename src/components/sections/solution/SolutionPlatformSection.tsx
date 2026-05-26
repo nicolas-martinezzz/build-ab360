@@ -11,7 +11,7 @@ export const SolutionPlatformSection = async () => {
       <SectionContainer className="relative z-10">
         <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
 
-        <h2 className="mt-4 max-w-[56rem] text-[2rem] font-bold leading-[1.2] text-surface-bg sm:text-[2.25rem] md:text-[3rem]" id="solution-platform-title">
+        <h2 className="figma-title-2-bold mt-4 max-w-[56rem] text-surface-bg" id="solution-platform-title">
           {t("headline1")}
           <br />
           {t("headline2")}
@@ -34,7 +34,7 @@ export const SolutionPlatformSection = async () => {
 
         <div className="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,23.8125rem)] lg:gap-14">
           <div>
-            <h3 className="text-[1.375rem] font-semibold leading-[1.25] text-surface-bg sm:text-[1.75rem] md:text-[1.875rem]">
+            <h3 className="figma-title-3 text-surface-bg">
               {t("twinTitle")}
             </h3>
             <p className="figma-text-l mt-4 max-w-[46.9375rem] text-surface-bg">
@@ -48,7 +48,7 @@ export const SolutionPlatformSection = async () => {
           </div>
 
           <div>
-            <h3 className="text-[1.375rem] font-semibold leading-[1.25] text-surface-bg sm:text-[1.75rem] md:text-[1.875rem]">
+            <h3 className="figma-title-3 text-surface-bg">
               {t("connectedTitle")}
             </h3>
             <p className="figma-text-l mt-4 max-w-[23.8125rem] text-surface-bg">

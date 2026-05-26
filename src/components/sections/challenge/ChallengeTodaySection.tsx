@@ -7,9 +7,9 @@ export const ChallengeTodaySection = async () => {
   const t = await getTranslations("challengePage.todaySection");
 
   return (
-    <section aria-labelledby="challenge-today-title" className="bg-green-100/40 py-14 md:min-h-[56.3125rem] md:py-[4.8125rem]">
+    <section aria-labelledby="challenge-today-title" className="section-block bg-green-100/40 md:min-h-[56.3125rem]">
       <SectionContainer>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,43.0625rem)_35.5rem] lg:items-start lg:justify-between">
+        <div className="grid gap-10 lg:grid-cols-[1fr_minmax(0,28rem)] lg:items-start lg:justify-between">
           <div>
             <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
             <h2 className="figma-title-2-bold mt-5 max-w-[46.6875rem] whitespace-pre-line text-black" id="challenge-today-title">
@@ -21,7 +21,7 @@ export const ChallengeTodaySection = async () => {
             <article className="mt-10 max-w-[43.125rem] border-l-2 border-green-500 pl-5">
               <h3 className="figma-text-l-bold uppercase text-green-500">{t("taxonomy.title")}</h3>
               <p className="figma-text-l-bold mb-5 mt-0 text-green-500">{t("taxonomy.body")}</p>
-              <p className="text-base leading-[1.38] text-green-500 underline decoration-green-500 underline-offset-2">
+              <p className="figma-text-m text-green-500 underline decoration-green-500 underline-offset-2">
                 {t("taxonomy.source")}
               </p>
             </article>

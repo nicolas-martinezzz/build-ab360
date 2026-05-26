@@ -9,15 +9,15 @@ const ITEM_KEYS = [
 type BenefitProps = { number: string; titlePrefix: string; titleSuffix: string; body: string };
 
 const Benefit = ({ number, titlePrefix, titleSuffix, body }: BenefitProps) => (
-  <li className="w-full max-w-[20rem]">
+  <li className="w-full">
     <div className="flex flex-col gap-2">
-      <h3 className="figma-text-l-bold max-w-[12.5rem] text-surface-bg">
+      <h3 className="figma-text-l-bold text-surface-bg">
         <span className="mr-1.5 text-green-500">{number}.</span>
         {titlePrefix}
         <br />
         {titleSuffix}
       </h3>
-      <p className="figma-text-m max-w-[18rem] text-grey-dark">{body}</p>
+      <p className="figma-text-m text-grey-dark">{body}</p>
     </div>
   </li>
 );
@@ -36,9 +36,9 @@ export const ProgramaEcosystemSection = async () => {
   });
 
   return (
-    <section aria-label={tBootcamp("entryTitle")} className="bg-white py-16 md:py-20">
+    <section aria-label={tBootcamp("entryTitle")} className="section-block bg-white">
       <SectionContainer>
-        <ul className="grid justify-items-start gap-x-6 gap-y-12 md:grid-cols-2 xl:grid-cols-4">
+        <ul className="grid justify-items-start gap-x-10 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
           {benefits.map((b) => (
             <Benefit key={b.number} {...b} />
           ))}

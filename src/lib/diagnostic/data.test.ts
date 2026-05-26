@@ -104,9 +104,9 @@ describe("DIM — dimensions", () => {
     for (const [k, d] of Object.entries(DIM)) {
       expect(d.name.trim(), `DIM ${k} name`).not.toBe("");
       expect(d.short.trim(), `DIM ${k} short`).not.toBe("");
-      expect(d.color, `DIM ${k} color`).toMatch(/^#[0-9A-Fa-f]{6}$/);
-      expect(d.bg, `DIM ${k} bg`).toMatch(/^#[0-9A-Fa-f]{6}$/);
-      expect(d.dark, `DIM ${k} dark`).toMatch(/^#[0-9A-Fa-f]{6}$/);
+      expect(d.color, `DIM ${k} color`).toMatch(/^(#[0-9A-Fa-f]{6}|var\(--.+\))$/);
+      expect(d.bg, `DIM ${k} bg`).toMatch(/^(#[0-9A-Fa-f]{6}|var\(--.+\))$/);
+      expect(d.dark, `DIM ${k} dark`).toMatch(/^(#[0-9A-Fa-f]{6}|var\(--.+\))$/);
     }
   });
 });

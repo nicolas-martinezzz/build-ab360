@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 import { routing } from "@/i18n/routing";
+import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import "../globals.css";
 
 const montserrat = Montserrat({
@@ -94,7 +95,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html className={`${montserrat.variable} ${inter.variable}`} lang={locale} suppressHydrationWarning>
       <body className="min-h-screen antialiased pb-[env(safe-area-inset-bottom)]">
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          <CookieConsentBanner />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
