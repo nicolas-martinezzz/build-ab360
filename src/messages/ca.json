@@ -24,7 +24,7 @@
       "headline": "Com decidis el cost, l'energia i l'impacte d'un edifici al llarg dels propers 50 anys?",
       "subhead": "Aquestes tres variables sempre han estat connectades. El problema és que ningú les mesura juntes abans de prendre decisions.",
       "cta": "Fes el teu autodiagnòstic",
-      "hint": "10 minuts. Te'n vas sabent on ets."
+      "hint": "10 minuts. Saps on ets i per on millorar."
     },
     "introStrip": {
       "regionAria": "Missatge introductori",
@@ -99,7 +99,8 @@
       "headlineLine1": "Això no és tot.",
       "headlineLine2": "Al fons, alguna cosa més està creixent: AB360.",
       "body": "Estem construint una plataforma que connecta les dades de l'edifici per prendre millors decisions al llarg de tot el cicle de vida, amb l'ajuda de tres agents d'IA.",
-      "cta": "Coneix AB360",
+      "cta": "Veure la solució",
+      "ctaCaption": "Veure l'impacte abans d'actuar. Això és tot.",
       "agent1": {
         "badge": "Live",
         "role": "Agent 1",
@@ -114,7 +115,7 @@
         "badge": "En desenvolupament",
         "role": "Agent 2",
         "title": "Cycle Planner",
-        "body": "Converteix aquestes decisions en planificació per optimitzar temps, cost i abast.",
+        "body": "Planifica tasques, terminis, costos i petjades. Connecta amb els teus OKRs. Anticipa les desviacions.",
         "metricsLabel": "El seu llenguatge",
         "pill1": "OKR",
         "pill2": "Tasques",
@@ -196,7 +197,7 @@
     "headline": "L'edificació és un sistema complex.\nMilers de decisions.\nDècades de conseqüències.\nPerò s'aborda sense una visió de conjunt.",
     "body": "La visió existeix. Les dades, no. O arriben tard. O estan fragmentades o són inexistents - dins de cada organització i entre totes elles. I quan arriben, les decisions més importants ja s'han pres - conscientment o no.",
     "cta": "Fes el teu autodiagnòstic",
-    "hint": "10 minuts. Te'n vas sabent on ets.",
+    "hint": "10 minuts. Saps on ets i per on millorar.",
     "nextSection": {
       "eyebrow": "Fins ara",
       "titleLine1": "Així funciona avui.",
@@ -272,7 +273,7 @@
         "badge": "En desenvolupament",
         "role": "Agent 2",
         "title": "Cycle Planner",
-        "body": "Converteix aquestes decisions en planificació per optimitzar temps, cost i abast.",
+        "body": "Planifica tasques, terminis, costos i petjades. Connecta amb els teus OKRs. Anticipa les desviacions.",
         "pill1": "OKR",
         "pill2": "Tasques",
         "pill3": "Planificació"
@@ -290,8 +291,8 @@
       "line1": "Busquem partners que vulguin definir com",
       "line2": "es prendran decisions en aquest sector.",
       "cta": "Uneix-te al Bootcamp Zero",
-      "tagline1": "Els que arribin després, ho faran servir.",
-      "tagline2": "Els que entrin ara, ho modelaran."
+      "tagline1": "Entres ara, ho modelem junts.",
+      "tagline2": ""
     }
   },
   "privacyPage": {
@@ -330,13 +331,89 @@
       }
     ]
   },
+  "cookieBanner": {
+    "message": "Utilitzem cookies necessàries per al funcionament del lloc. Amb el teu permís, també farem servir cookies analítiques per millorar l'experiència.",
+    "acceptAll": "Acceptar-ho tot",
+    "rejectAll": "Només les necessàries",
+    "manage": "Gestionar",
+    "manageTitle": "Gestionar preferències de cookies",
+    "necessary": "Cookies necessàries",
+    "necessaryDesc": "Permeten la navegació i l'ús de funcions essencials. No es poden desactivar.",
+    "analytics": "Cookies analítiques",
+    "analyticsDesc": "Ens ajuden a entendre com s'utilitza el lloc per millorar-lo. Estan desactivades fins que les acceptis.",
+    "savePreferences": "Desar preferències",
+    "privacyLink": "Política de privacitat",
+    "cookiesLink": "Política de cookies",
+    "bannerAria": "Avís de cookies"
+  },
   "cookiesPage": {
     "metadata": {
-      "title": "Política de cookies",
-      "description": "Informació sobre l'ús de cookies a AB360."
+      "title": "Política de cookies — AB360",
+      "description": "Informació sobre l'ús de cookies al lloc web AB360 de YUTOPIAS SYSTEMS S.L."
     },
     "title": "Política de cookies",
-    "body": "Estem actualitzant aquesta secció per detallar l'ús de cookies, la seva finalitat i les opcions de configuració disponibles per a cada usuari."
+    "lead": "Informació sobre les cookies utilitzades en aquest lloc web, d'acord amb el Reglament (UE) 2016/679 (RGPD) i la Llei 34/2002 (LSSI).",
+    "sections": [
+      {
+        "title": "Què són les cookies?",
+        "paragraphs": [
+          "Les cookies són petits fitxers de text que els llocs web emmagatzemen al navegador de l'usuari. Permeten que el lloc recordi informació entre visites o durant una mateixa sessió.",
+          "No totes les cookies requereixen consentiment: les estrictament necessàries per al funcionament del lloc estan exemptes sota la normativa europea."
+        ]
+      },
+      {
+        "title": "Cookies utilitzades en aquest lloc",
+        "paragraphs": [
+          "Aquest lloc utilitza únicament cookies de les categories següents:"
+        ]
+      },
+      {
+        "title": "Cookies necessàries",
+        "paragraphs": [
+          "Són imprescindibles per al funcionament bàsic del lloc. Inclouen cookies de sessió, preferència d'idioma i seguretat de formularis.",
+          "No es poden desactivar. No emmagatzemen informació personal identificable."
+        ],
+        "bullets": [
+          "Durada: sessió o fins a 12 mesos segons el tipus.",
+          "Titular: YUTOPIAS SYSTEMS S.L.",
+          "Finalitat: funcionament tècnic del lloc."
+        ]
+      },
+      {
+        "title": "Cookies analítiques",
+        "paragraphs": [
+          "Permeten mesurar l'ús del lloc web (pàgines visitades, temps de permanència, origen del trànsit) amb la finalitat de millorar l'experiència i els continguts.",
+          "Només s'activen si l'usuari dóna el seu consentiment. Actualment aquestes cookies estan desactivades fins que s'habiliti el servei d'analítica."
+        ],
+        "bullets": [
+          "Durada: fins a 24 mesos.",
+          "Proveïdor previst: Google Analytics (Google LLC).",
+          "Finalitat: anàlisi agregada de l'ús del lloc."
+        ]
+      },
+      {
+        "title": "Gestió del consentiment",
+        "paragraphs": [
+          "En accedir al lloc per primera vegada, es mostrarà un avís per acceptar, rebutjar o gestionar les cookies no necessàries.",
+          "Pots modificar les teves preferències en qualsevol moment des de l'enllaç 'Gestionar cookies' al peu de pàgina.",
+          "També pots configurar el navegador per bloquejar o eliminar cookies, tot i que això pot afectar el funcionament del lloc."
+        ]
+      },
+      {
+        "title": "Transferències internacionals",
+        "paragraphs": [
+          "El proveïdor d'analítica previst (Google LLC) pot transferir dades a servidors ubicats fora de l'Espai Econòmic Europeu. Aquestes transferències estan cobertes per les clàusules contractuals tipus aprovades per la Comissió Europea.",
+          "No s'activen transferències fins que l'usuari accepti les cookies analítiques."
+        ]
+      },
+      {
+        "title": "Més informació",
+        "paragraphs": [
+          "Per a qualsevol consulta sobre l'ús de cookies, podeu contactar-nos a jjm@yutopias.com.",
+          "Per a més informació sobre el tractament de dades personals, consulteu la nostra Política de privacitat."
+        ]
+      }
+    ]
   },
   "contactPage": {
     "metadata": {
@@ -372,7 +449,9 @@
       "tabArticles": "Articles",
       "tabEbooks": "eBooks",
       "badgeArticle": "Article",
-      "badgeEbook": "eBook"
+      "badgeEbook": "eBook",
+      "tabsAriaLabel": "Tipus de contingut",
+      "filterAriaLabel": "Filtrar per categoria"
     },
     "categories": {
       "all": "Tots",
@@ -416,11 +495,59 @@
   },
   "informationPage": {
     "metadata": {
-      "title": "Informació",
-      "description": "Informació legal i corporativa d'AB360 i Yutopias Systems."
+      "title": "Informació legal — AB360",
+      "description": "Informació legal i corporativa de YUTOPIAS SYSTEMS S.L., titular del lloc web AB360."
     },
-    "title": "Informació",
-    "body": "Estem preparant aquesta secció amb informació corporativa i legal rellevant per a usuaris, partners i entitats col·laboradores."
+    "title": "Informació legal",
+    "lead": "Informació corporativa i legal del titular d'aquest lloc web, d'acord amb la Llei 34/2002, de Serveis de la Societat de la Informació i del Comerç Electrònic (LSSI).",
+    "sections": [
+      {
+        "title": "Dades identificatives del titular",
+        "bullets": [
+          "Denominació social: YUTOPIAS SYSTEMS S.L.",
+          "CIF: B44747095",
+          "Domicili social: Carrer de l'Església, n.º 4 local 2D, 08024 Barcelona, Espanya",
+          "Registre Mercantil de Barcelona: Tom 48661, Foli 23, Full B-591697, Inscripció 1a",
+          "Identificador Únic Europeu (EUID): ESO8005.000684390",
+          "Correu electrònic: jjm@yutopias.com"
+        ]
+      },
+      {
+        "title": "Objecte",
+        "paragraphs": [
+          "Aquest lloc web té com a finalitat donar a conèixer la plataforma AB360 i els serveis de YUTOPIAS SYSTEMS S.L., així com facilitar la recepció de sol·licituds d'informació, contactes comercials i candidatures.",
+          "Els formularis disponibles s'utilitzen exclusivament per a les finalitats indicades en cada cas."
+        ]
+      },
+      {
+        "title": "Propietat intel·lectual i industrial",
+        "paragraphs": [
+          "Els continguts, codi font, disseny, estructura de navegació, textos, imatges, logotips, marques i altres elements d'aquest lloc web són titularitat de YUTOPIAS SYSTEMS S.L. o de tercers que n'han autoritzat l'ús.",
+          "Queda prohibida la reproducció, distribució, comunicació pública o transformació sense autorització prèvia i expressa del titular."
+        ]
+      },
+      {
+        "title": "Condicions d'ús",
+        "paragraphs": [
+          "L'accés i l'ús d'aquest lloc web és responsabilitat exclusiva de l'usuari i s'ha de fer conforme a la legalitat vigent, la bona fe i l'ús lícit.",
+          "Es prohibeix l'ús del lloc amb finalitats il·legals o contràries a aquestes condicions."
+        ]
+      },
+      {
+        "title": "Limitació de responsabilitat",
+        "paragraphs": [
+          "YUTOPIAS SYSTEMS S.L. no assumeix cap responsabilitat pels danys ocasionats per l'ús indegut o il·legal d'aquest lloc web o del seu contingut.",
+          "L'empresa es reserva el dret de modificar, suspendre o interrompre l'accés al lloc o als seus continguts sense avís previ per raons tècniques o de negoci."
+        ]
+      },
+      {
+        "title": "Legislació aplicable i jurisdicció",
+        "paragraphs": [
+          "Aquest avís legal es regeix per la legislació espanyola vigent.",
+          "En cas de conflicte, i llevat de norma imperativa en contra, la jurisdicció competent serà la dels jutjats i tribunals de Barcelona."
+        ]
+      }
+    ]
   },
   "aboutPage": {
     "metadata": {
@@ -452,7 +579,7 @@
       "title": "Com pensem",
       "principle1": {
         "title": "L'evidència abans que la intuïció.",
-        "body": "El sector decideix amb la meitat de les dades sobre la taula. Els nostres càlculs són auditables, els nostres arquetips estan validats científicament — la confiança no es declara, es demostra."
+        "body": "El sector decideix amb poques dades. Nosaltres aportem les que falten. Càlculs auditables. Arquetips validats científicament."
       },
       "principle2": {
         "title": "La innovació oberta com a única via",
@@ -563,8 +690,8 @@
     "partnersBanner": {
       "headline": "Busquem partners que vulguin definir com es prendran decisions en aquest sector.",
       "cta": "Uneix-te al Bootcamp Zero",
-      "tagline1": "Els que arribin després, ho usaran.",
-      "tagline2": "Els que entrin ara, ho moldejaran."
+      "tagline1": "Entres ara, ho modelem junts.",
+      "tagline2": ""
     }
   },
   "solutionPage": {
@@ -578,7 +705,7 @@
       "headline": "El primer agent d'IA per decidir millor en edificació.",
       "body": "Simulab no és un software aïllat. És el primer agent operatiu d'AB360 — la plataforma que integra BIM, ERP, GMAO i PMS en un bessó digital semàntic. Introdueixes les dades del teu projecte. El motor calcula simultàniament l'impacte en costos i en petjades — carboni, hídrica, energètica.\nVeus el resultat abans d'actuar.",
       "cta": "Fes el teu autodiagnòstic",
-      "hint": "10 minuts. Te'n vas sabent on ets."
+      "hint": "10 minuts. Saps on ets i per on millorar."
     },
     "quoteBanner": {
       "line1": "Cada decisió sense simulació ja té un cost.",
@@ -705,7 +832,7 @@
     "diagnosticCta": {
       "body": "Descobreix quins són els reptes de la teva organització i com AB360 pot resoldre'ls.",
       "cta": "Fes el teu autodiagnòstic",
-      "hint": "10 minuts. Te'n vas sabent on ets."
+      "hint": "10 minuts. Saps on ets i per on millorar."
     },
     "partnersBanner": {
       "headline": "Busquem partners que vulguin definir com es prendran decisions en aquest sector.",
@@ -748,7 +875,7 @@
       "introLead": "La teva empresa pren bones decisions. El problema és que les pren amb la meitat de la informació que hauria de tenir.",
       "introBody": "OpenLab® desenvolupa un cas d'ús real alineat amb els OKRs de la teva empresa. S'estructura en sis targetes, cadascuna amb un propòsit clar i un lliurable concret. El procés culmina amb l'SmartCheck.",
       "introFoot": "Si vols més informació o tens dubtes, escriu-nos.",
-      "cta": "Vull saber més sobre l'OpenLab®",
+      "cta": "Uneix-te al Bootcamp Zero",
       "block1Title": "DIAGNÒSTIC: On ets",
       "t1Title": "Radiografia operativa",
       "t1Body": "On es perd marge, temps i qualitat en els teus processos reals. Sempre des de la realitat — no des del que creiem que passa.",
@@ -779,8 +906,8 @@
     "quoteBanner": {
       "eyebrow": "AVANTATGE COMPETITIU",
       "headlineLine1": "Avui pots co-crear el sistema.",
-      "headlineLine2": "Els que entrin demà",
-      "headlineLine3": "només el podran usar.",
+      "headlineLine2": "",
+      "headlineLine3": "",
       "sublead": "Un moment en què els partners no només accedeixen a l'eina — la modelen.",
       "paragraph1": "Els arquetips de Simulab es calibren segons la teva tipologia de projecte. Els teus processos s'integren al simulador, i si identifiques una funcionalitat que falta, pots co-crear-la. Allò que tingui valor per al sector es democratitza a l'ecosistema.",
       "paragraph2": "Quan el sistema maduri, aquest marge d'influència es tanca. Entrar ara significa condicions preferencials i una posició competitiva que no estarà disponible després."
@@ -855,13 +982,13 @@
       "formSuccess": "Gràcies. La teva sol·licitud s'ha desat correctament.",
       "formError": "No hem pogut desar la teva sol·licitud. Torna-ho a provar.",
       "entryCard1Title": "Selecció prèvia",
-      "entryCard1Body": "El procés comença abans del programa: en una sessió inicial presentes el teu cas i coneixes el sistema. Després, se seleccionen les empreses que formaran part de l'OpenLab.",
+      "entryCard1Body": "Comences per l'autodiagnòstic. Després, una sessió inicial on presentes el teu cas i coneixes el sistema. Se seleccionen les empreses que formaran part de l'OpenLab.",
       "entryCard2Title": "Participació activa",
       "entryCard2Body": "Cada partner aporta un o més participants. Sense participació real, el procés no produeix resultats.",
       "entryCard3Title": "Amb dades reals",
       "entryCard3Body": "Un Excel, un ERP, un BIM o un GMAO. Les dades dels teus projectes reals — no de laboratori.",
       "entryCard4Title": "SmartCheck personalitzat",
-      "entryCard4Body": "SmartCheck és el panell personalitzat que connecta les decisions del teu projecte amb els teus drivers de negoci. Es construeix amb tu.",
+      "entryCard4Body": "El panell que mesura l'èxit de cada cas d'ús per a la teva empresa, no només per al projecte. El construïm amb tu.",
       "entryCard5Title": "SQUADS per projecte",
       "entryCard5Body": "A OpenLab no treballes sol. Els SQUADS són grups d'empreses que comparteixen les mateixes dades sobre un mateix projecte, cadascun des del seu cas d'ús.",
       "entryCard6Title": "24 mesos en total",
@@ -869,7 +996,7 @@
       "entryCard7Title": "Format híbrid",
       "entryCard7Body": "Bootcamps #1 i #2 al Campus La Salle-URL. La resta, en remot per Google Meet. Cada sessió té un lliurable concret.",
       "entryCard8Title": "Inversió deduïble",
-      "entryCard8Body": "20.000€ + IVA. Activable com a actiu intangible R+D+I en un període bianual — la factura es desgrava i no impacta en el teu compte de resultats."
+      "entryCard8Body": "10.000€ + IVA. Activable com a actiu intangible R+D+I en un període bianual — la factura es desgrava i no impacta en el teu compte de resultats."
     },
     "formadores": {
       "eyebrow": "QUI HO IMPARTEIX",
@@ -898,6 +1025,15 @@
       "formador8Name": "Xavier Baño",
       "formador8Role": "Direcció Transferència Tecnològica",
       "formador8Org": "La Salle R&D",
+      "formador9Name": "Genís Roca",
+      "formador9Role": "Inquiet amb ganes d'ajudar",
+      "formador9Org": "",
+      "formador10Name": "Bruno Sauer",
+      "formador10Role": "CEO · GBCe",
+      "formador10Org": "Green Building Council España",
+      "formador11Name": "Lurdes Mochales",
+      "formador11Role": "Direcció d'Innovació Oberta",
+      "formador11Org": "ACCIÓ, Gencat",
       "pendingName": "Per confirmar",
       "pendingRole": "[Càrrec], [Entitat]",
       "pendingOrg": "[Breu presentació]"
@@ -912,8 +1048,8 @@
       "topCta": "Saber-ne més",
       "leftLine1": "Si el que busques és formació o consultoria, hi ha llocs millors.",
       "leftLine2": "Això és una altra cosa.",
-      "rightLead": "Els primers partners co-creen el sistema i surten abans.",
-      "rightBody": "Els que arribin després trobaran les regles ja escrites i pagaran per utilitzar-les."
+      "rightLead": "Els primers partners co-creen el sistema.",
+      "rightBody": "Tenen veu en com es construeix."
     }
   },
   "diagnosticPage": {
@@ -1033,7 +1169,34 @@
       "bridgeAlertEmail": "Si us plau, introdueix un correu electrònic vàlid."
     }
   },
+  "reservaPlazaPage": {
+    "metadata": {
+      "title": "Reserva la teva plaça — Bootcamp Zero",
+      "description": "Sol·licita la teva plaça al Bootcamp Zero. Places limitades, procés de selecció real."
+    },
+    "hero": {
+      "eyebrow": "BOOTCAMP ZERO",
+      "title": "Uneix-te al Bootcamp Zero",
+      "body": "Places limitades · Selecció real. Reserva la teva plaça i completa el diagnòstic — analitzem el teu perfil i et confirmem si encaixes amb el programa."
+    },
+    "steps": {
+      "eyebrow": "COM FUNCIONA",
+      "title": "Tres passos per entrar",
+      "body": "El procés està dissenyat perquè arribis al bootcamp amb el diagnòstic de la teva empresa ja fet.",
+      "step1Title": "Reserva la teva plaça",
+      "step1Body": "Deixa'ns les teves dades i et reservem el lloc.",
+      "step2Title": "Fes el diagnòstic",
+      "step2Body": "Compleixes l'autodiagnòstic de la teva empresa en 10 minuts.",
+      "step3Title": "Et confirmem",
+      "step3Body": "Revisem el teu perfil i ens posem en contacte per confirmar."
+    },
+    "form": {
+      "stepLabel": "Pas 1 de 2",
+      "stepTitle": "Les teves dades"
+    }
+  },
   "footer": {
+    "brandAria": "yūtopias systems — inici",
     "barcelonaTitle": "Barcelona",
     "barcelonaAddress1": "Carrer de l'Església, 4, 2D",
     "barcelonaAddress2": "08024 Barcelona",
@@ -1096,6 +1259,7 @@
     "informationLink": "Informació Legal",
     "privacyLink": "Política de Privacitat",
     "cookiesLink": "Política de Cookies",
+    "manageCookiesLink": "Gestionar cookies",
     "copyright": "Copyright © YUTOPIAS SYSTEMS S.L. 2026"
   }
 }

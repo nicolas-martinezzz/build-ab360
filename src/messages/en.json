@@ -24,7 +24,7 @@
       "headline": "How do you decide the cost, energy, and impact of a building over the next 50 years?",
       "subhead": "Those three variables have always been connected. The problem is that no one measures them together before making decisions.",
       "cta": "Take your self-assessment",
-      "hint": "10 minutes. You leave knowing where you stand."
+      "hint": "10 minutes. You know where you stand and where to improve."
     },
     "introStrip": {
       "regionAria": "Introductory message",
@@ -99,7 +99,8 @@
       "headlineLine1": "This is not everything.",
       "headlineLine2": "Behind it, something else is growing: AB360.",
       "body": "We are building a platform that connects building data to support better decisions across the full lifecycle, with the help of three AI agents.",
-      "cta": "Discover AB360",
+      "cta": "See the solution",
+      "ctaCaption": "See the impact before you act. That's it.",
       "agent1": {
         "badge": "Live",
         "role": "Agent 1",
@@ -114,7 +115,7 @@
         "badge": "In development",
         "role": "Agent 2",
         "title": "Cycle Planner",
-        "body": "Turn those decisions into planning to optimize time, cost, and scope.",
+        "body": "Plan tasks, deadlines, costs and footprints. Connect with your OKRs. Anticipate deviations.",
         "metricsLabel": "Its language",
         "pill1": "OKRs",
         "pill2": "Tasks",
@@ -196,7 +197,7 @@
     "headline": "Building is a complex system.\nThousands of decisions.\nDecades of consequences.\nYet it is approached without a holistic view.",
     "body": "The vision exists. The data does not. Or it arrives late. Or it is fragmented or non-existent - within each organization and across all of them. And when it does arrive, the most important decisions have already been made - consciously or not.",
     "cta": "Take your self-assessment",
-    "hint": "10 minutes. You leave knowing where you stand.",
+    "hint": "10 minutes. You know where you stand and where to improve.",
     "nextSection": {
       "eyebrow": "Until now",
       "titleLine1": "This is how it works today.",
@@ -272,7 +273,7 @@
         "badge": "In development",
         "role": "Agent 2",
         "title": "Cycle Planner",
-        "body": "Turn those decisions into planning to optimize time, cost, and scope.",
+        "body": "Plan tasks, deadlines, costs and footprints. Connect with your OKRs. Anticipate deviations.",
         "pill1": "OKR",
         "pill2": "Tasks",
         "pill3": "Planning"
@@ -290,8 +291,8 @@
       "line1": "We are looking for partners who want to define how",
       "line2": "decisions will be made in this sector.",
       "cta": "Join the Zero Bootcamp",
-      "tagline1": "Those who arrive later will use it.",
-      "tagline2": "Those who join now will shape it."
+      "tagline1": "You join now, we shape it together.",
+      "tagline2": ""
     }
   },
   "privacyPage": {
@@ -330,13 +331,89 @@
       }
     ]
   },
+  "cookieBanner": {
+    "message": "We use necessary cookies to keep the site running. With your permission, we will also use analytics cookies to improve your experience.",
+    "acceptAll": "Accept all",
+    "rejectAll": "Necessary only",
+    "manage": "Manage",
+    "manageTitle": "Manage cookie preferences",
+    "necessary": "Necessary cookies",
+    "necessaryDesc": "Enable navigation and essential site features. Cannot be disabled.",
+    "analytics": "Analytics cookies",
+    "analyticsDesc": "Help us understand how the site is used so we can improve it. Disabled until you accept them.",
+    "savePreferences": "Save preferences",
+    "privacyLink": "Privacy policy",
+    "cookiesLink": "Cookie policy",
+    "bannerAria": "Cookie notice"
+  },
   "cookiesPage": {
     "metadata": {
-      "title": "Cookie policy",
-      "description": "Information about cookie usage on AB360."
+      "title": "Cookie policy — AB360",
+      "description": "Information about the use of cookies on the AB360 website by YUTOPIAS SYSTEMS S.L."
     },
     "title": "Cookie policy",
-    "body": "We are updating this section to provide detailed information about cookie usage, purposes, and configuration options for each user."
+    "lead": "Information about the cookies used on this website, in accordance with Regulation (EU) 2016/679 (GDPR) and Spanish Law 34/2002 (LSSI).",
+    "sections": [
+      {
+        "title": "What are cookies?",
+        "paragraphs": [
+          "Cookies are small text files that websites store in the user's browser. They allow the site to remember information between visits or during a single session.",
+          "Not all cookies require consent: those strictly necessary for the site to function are exempt under European regulations."
+        ]
+      },
+      {
+        "title": "Cookies used on this site",
+        "paragraphs": [
+          "This site uses only cookies of the following categories:"
+        ]
+      },
+      {
+        "title": "Necessary cookies",
+        "paragraphs": [
+          "Essential for basic site functionality. They include session cookies, language preference, and form security.",
+          "They cannot be disabled. They do not store personally identifiable information."
+        ],
+        "bullets": [
+          "Duration: session or up to 12 months depending on type.",
+          "Controller: YUTOPIAS SYSTEMS S.L.",
+          "Purpose: technical site operation."
+        ]
+      },
+      {
+        "title": "Analytics cookies",
+        "paragraphs": [
+          "Allow measuring site usage (pages visited, time on site, traffic source) to improve the experience and content.",
+          "They are only activated if the user gives consent. These cookies are currently disabled until the analytics service is enabled."
+        ],
+        "bullets": [
+          "Duration: up to 24 months.",
+          "Intended provider: Google Analytics (Google LLC).",
+          "Purpose: aggregate analysis of site usage."
+        ]
+      },
+      {
+        "title": "Consent management",
+        "paragraphs": [
+          "When you first visit the site, a notice will appear to accept, reject, or manage non-necessary cookies.",
+          "You can modify your preferences at any time via the 'Manage cookies' link in the footer.",
+          "You can also configure your browser to block or delete cookies, although this may affect site functionality."
+        ]
+      },
+      {
+        "title": "International transfers",
+        "paragraphs": [
+          "The intended analytics provider (Google LLC) may transfer data to servers located outside the European Economic Area. These transfers are covered by standard contractual clauses approved by the European Commission.",
+          "No transfers are activated until the user accepts analytics cookies."
+        ]
+      },
+      {
+        "title": "Further information",
+        "paragraphs": [
+          "For any questions about the use of cookies, you can contact us at jjm@yutopias.com.",
+          "For more information about the processing of personal data, see our Privacy policy."
+        ]
+      }
+    ]
   },
   "contactPage": {
     "metadata": {
@@ -372,7 +449,9 @@
       "tabArticles": "Articles",
       "tabEbooks": "eBooks",
       "badgeArticle": "Article",
-      "badgeEbook": "eBook"
+      "badgeEbook": "eBook",
+      "tabsAriaLabel": "Content type",
+      "filterAriaLabel": "Filter by category"
     },
     "categories": {
       "all": "All",
@@ -416,11 +495,59 @@
   },
   "informationPage": {
     "metadata": {
-      "title": "Information",
-      "description": "Legal and corporate information about AB360 and Yutopias Systems."
+      "title": "Legal information — AB360",
+      "description": "Legal and corporate information about YUTOPIAS SYSTEMS S.L., owner of the AB360 website."
     },
-    "title": "Information",
-    "body": "We are preparing this section with relevant corporate and legal information for users, partners, and collaborating entities."
+    "title": "Legal information",
+    "lead": "Corporate and legal information about the owner of this website, in accordance with Spanish Law 34/2002 on Information Society Services and Electronic Commerce (LSSI).",
+    "sections": [
+      {
+        "title": "Owner identification",
+        "bullets": [
+          "Company name: YUTOPIAS SYSTEMS S.L.",
+          "Tax ID (CIF): B44747095",
+          "Registered address: Carrer de l'Església, n.º 4 local 2D, 08024 Barcelona, Spain",
+          "Barcelona Mercantile Registry: Volume 48661, Folio 23, Sheet B-591697, Entry 1st",
+          "European Unique Identifier (EUID): ESO8005.000684390",
+          "Email: jjm@yutopias.com"
+        ]
+      },
+      {
+        "title": "Purpose",
+        "paragraphs": [
+          "This website is intended to present the AB360 platform and the services of YUTOPIAS SYSTEMS S.L., as well as to receive information requests, commercial inquiries, and applications.",
+          "The available forms are used exclusively for the purposes stated in each case."
+        ]
+      },
+      {
+        "title": "Intellectual and industrial property",
+        "paragraphs": [
+          "The content, source code, design, navigation structure, texts, images, logos, trademarks, and other elements of this website are the property of YUTOPIAS SYSTEMS S.L. or third parties who have authorized their use.",
+          "Reproduction, distribution, public communication, or transformation without prior written authorization is prohibited."
+        ]
+      },
+      {
+        "title": "Terms of use",
+        "paragraphs": [
+          "Access to and use of this website is the sole responsibility of the user and must comply with applicable law, good faith, and lawful use.",
+          "Use of the website for illegal or unauthorized purposes is prohibited."
+        ]
+      },
+      {
+        "title": "Limitation of liability",
+        "paragraphs": [
+          "YUTOPIAS SYSTEMS S.L. assumes no liability for damages caused by improper or unlawful use of this website or its content.",
+          "The company reserves the right to modify, suspend, or discontinue access to the website or its content without notice for technical or business reasons."
+        ]
+      },
+      {
+        "title": "Applicable law and jurisdiction",
+        "paragraphs": [
+          "This legal notice is governed by applicable Spanish law.",
+          "In the event of a dispute, and unless mandatory law provides otherwise, the competent jurisdiction shall be that of the courts of Barcelona."
+        ]
+      }
+    ]
   },
   "aboutPage": {
     "metadata": {
@@ -452,7 +579,7 @@
       "title": "How we think",
       "principle1": {
         "title": "Evidence before intuition.",
-        "body": "The sector makes decisions with half the data on the table. Our calculations are auditable, our archetypes are scientifically validated — trust is not declared, it is demonstrated."
+        "body": "The sector makes decisions with too little data. We provide what is missing. Auditable calculations. Scientifically validated archetypes."
       },
       "principle2": {
         "title": "Open innovation as the only path",
@@ -563,8 +690,8 @@
     "partnersBanner": {
       "headline": "We are looking for partners who want to define how decisions will be made in this sector.",
       "cta": "Join the Zero Bootcamp",
-      "tagline1": "Those who come later will use it.",
-      "tagline2": "Those who join now will shape it."
+      "tagline1": "You join now, we shape it together.",
+      "tagline2": ""
     }
   },
   "solutionPage": {
@@ -578,7 +705,7 @@
       "headline": "The first AI agent for better decision-making in construction.",
       "body": "Simulab is not standalone software. It is the first operational agent of AB360 — the platform that integrates BIM, ERP, GMAO, and PMS into a semantic digital twin. Enter your project data. The engine simultaneously calculates the impact on costs and footprints — carbon, water, and energy.\nSee the result before you act.",
       "cta": "Take your self-assessment",
-      "hint": "10 minutes. You leave knowing where you stand."
+      "hint": "10 minutes. You know where you stand and where to improve."
     },
     "quoteBanner": {
       "line1": "Every decision without simulation already has a cost.",
@@ -705,13 +832,13 @@
     "diagnosticCta": {
       "body": "Discover your organization's challenges and how AB360 can solve them.",
       "cta": "Take your self-assessment",
-      "hint": "10 minutes. You leave knowing where you stand."
+      "hint": "10 minutes. You know where you stand and where to improve."
     },
     "partnersBanner": {
       "headline": "We're looking for partners who want to define how decisions will be made in this sector.",
       "cta": "Join the Zero Bootcamp",
-      "tagline1": "Those who come later will use it.",
-      "tagline2": "Those who join now will shape it."
+      "tagline1": "You join now, we shape it together.",
+      "tagline2": ""
     }
   },
   "programaPage": {
@@ -748,7 +875,7 @@
       "introLead": "Your company makes good decisions. The problem is that it makes them with only half of the information it should have.",
       "introBody": "OpenLab® develops a real use case aligned with your company OKRs. It is structured into six cards, each with a clear purpose and a concrete deliverable. The process culminates with SmartCheck.",
       "introFoot": "If you want more information or have questions, write to us.",
-      "cta": "I want to know more about OpenLab®",
+      "cta": "Join the Zero Bootcamp",
       "block1Title": "DIAGNOSIS: Where you are",
       "t1Title": "Operational X-ray",
       "t1Body": "Where margin, time and quality are lost in your real processes. Always from reality — not from what we think is happening.",
@@ -779,8 +906,8 @@
     "quoteBanner": {
       "eyebrow": "COMPETITIVE ADVANTAGE",
       "headlineLine1": "Today you can co-create the system.",
-      "headlineLine2": "Those who join tomorrow",
-      "headlineLine3": "will only be able to use it.",
+      "headlineLine2": "",
+      "headlineLine3": "",
       "sublead": "A moment when partners do not just access the tool — they shape it.",
       "paragraph1": "Simulab archetypes are calibrated to your project typology. Your processes are integrated into the simulator, and if you identify missing functionality, you can co-create it. What has value for the sector is democratized across the ecosystem.",
       "paragraph2": "When the system matures, that margin of influence closes. Joining now means preferential conditions and a competitive position that will not be available later."
@@ -855,13 +982,13 @@
       "formSuccess": "Thanks. Your request has been saved successfully.",
       "formError": "We could not save your request. Please try again.",
       "entryCard1Title": "Prior selection",
-      "entryCard1Body": "The process starts before the programme: in an initial session you present your case and discover the system. Afterwards, the companies that will join OpenLab are selected.",
+      "entryCard1Body": "You start with the self-assessment. Then, an initial session where you present your case and discover the system. The companies that will join OpenLab are selected.",
       "entryCard2Title": "Active participation",
       "entryCard2Body": "Each partner assigns one or more participants. Without real participation, the process does not deliver results.",
       "entryCard3Title": "With real data",
       "entryCard3Body": "An Excel, an ERP, a BIM or a CMMS. Data from your real projects — not from a lab.",
       "entryCard4Title": "Custom SmartCheck",
-      "entryCard4Body": "SmartCheck is the personalised panel that connects your project decisions with your business drivers. It is built with you.",
+      "entryCard4Body": "The panel that measures the success of each use case for your company, not just for the project. We build it with you.",
       "entryCard5Title": "Project SQUADS",
       "entryCard5Body": "In OpenLab you do not work alone. SQUADS are groups of companies that share the same data about the same project, each from its own use case.",
       "entryCard6Title": "24 months total",
@@ -869,7 +996,7 @@
       "entryCard7Title": "Hybrid format",
       "entryCard7Body": "Bootcamps #1 and #2 at the La Salle-URL Campus. The rest is remote via Google Meet. Each session has a concrete deliverable.",
       "entryCard8Title": "Deductible investment",
-      "entryCard8Body": "€20,000 + VAT. It can be activated as an intangible R&D+i asset over a two-year period — the invoice is tax-deductible and does not impact your profit and loss account."
+      "entryCard8Body": "€10,000 + VAT. It can be activated as an intangible R&D+i asset over a two-year period — the invoice is tax-deductible and does not impact your profit and loss account."
     },
     "formadores": {
       "eyebrow": "WHO DELIVERS IT",
@@ -898,6 +1025,15 @@
       "formador8Name": "Xavier Baño",
       "formador8Role": "Technology Transfer Director",
       "formador8Org": "La Salle R&D",
+      "formador9Name": "Genís Roca",
+      "formador9Role": "Restless and eager to help",
+      "formador9Org": "",
+      "formador10Name": "Bruno Sauer",
+      "formador10Role": "CEO · GBCe",
+      "formador10Org": "Green Building Council España",
+      "formador11Name": "Lurdes Mochales",
+      "formador11Role": "Open Innovation Director",
+      "formador11Org": "ACCIÓ, Gencat",
       "pendingName": "To be confirmed",
       "pendingRole": "[Role], [Organisation]",
       "pendingOrg": "[Brief bio]"
@@ -912,8 +1048,8 @@
       "topCta": "Learn more",
       "leftLine1": "If what you need is training or consulting, there are better places for that.",
       "leftLine2": "This is something else.",
-      "rightLead": "The first partners co-create the system and move faster.",
-      "rightBody": "Those who arrive later will find the rules already written and will pay to use them."
+      "rightLead": "The first partners co-create the system.",
+      "rightBody": "They have a voice in how it is built."
     }
   },
   "diagnosticPage": {
@@ -1033,7 +1169,34 @@
       "bridgeAlertEmail": "Please enter a valid email address."
     }
   },
+  "reservaPlazaPage": {
+    "metadata": {
+      "title": "Reserve your place — Bootcamp Zero",
+      "description": "Apply for your place in Bootcamp Zero. Limited spots, real selection process."
+    },
+    "hero": {
+      "eyebrow": "BOOTCAMP ZERO",
+      "title": "Join Bootcamp Zero",
+      "body": "Limited spots · Real selection. Reserve your place and complete the assessment — we review your profile and confirm whether you are a fit."
+    },
+    "steps": {
+      "eyebrow": "HOW IT WORKS",
+      "title": "Three steps to join",
+      "body": "The process is designed so you arrive at the bootcamp with your company diagnosis already done.",
+      "step1Title": "Reserve your place",
+      "step1Body": "Share your details and we will hold your spot.",
+      "step2Title": "Take the assessment",
+      "step2Body": "Complete your company self-assessment in 10 minutes.",
+      "step3Title": "We confirm",
+      "step3Body": "We review your profile and contact you to confirm."
+    },
+    "form": {
+      "stepLabel": "Step 1 of 2",
+      "stepTitle": "Your details"
+    }
+  },
   "footer": {
+    "brandAria": "yūtopias systems — home",
     "barcelonaTitle": "Barcelona",
     "barcelonaAddress1": "Carrer de l'Església, 4, 2D",
     "barcelonaAddress2": "08024 Barcelona",
@@ -1096,6 +1259,7 @@
     "informationLink": "Legal Information",
     "privacyLink": "Privacy Policy",
     "cookiesLink": "Cookie Policy",
+    "manageCookiesLink": "Manage cookies",
     "copyright": "Copyright © YUTOPIAS SYSTEMS S.L. 2026"
   }
 }
