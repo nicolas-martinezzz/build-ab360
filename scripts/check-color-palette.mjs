@@ -17,6 +17,7 @@ const ALLOWED_HEX = new Set([
   "#1C1E2E",
   "#7B7C82",
   "#D7D7D7",
+  "#F4F6F3",
   "#FFFFFF",
   "#000000",
 ]);
