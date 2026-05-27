@@ -163,7 +163,6 @@
       "eyebrow": "Recursos",
       "title": "Últims Articles / eBooks",
       "cta": "Veure més",
-      "ctaHref": "/resources",
       "minRead": "min de lectura",
       "articleBadge": "Article",
       "ebookBadge": "eBook",
@@ -344,7 +343,8 @@
     "savePreferences": "Desar preferències",
     "privacyLink": "Política de privacitat",
     "cookiesLink": "Política de cookies",
-    "bannerAria": "Avís de cookies"
+    "bannerAria": "Avís de cookies",
+    "close": "Tancar el panell de cookies"
   },
   "cookiesPage": {
     "metadata": {
@@ -1255,6 +1255,7 @@
     "newsletterBotBlockedMessage": "No hem pogut validar aquest enviament.",
     "creditLine": "Disseny web i desenvolupament",
     "creditAuthor": "YUTOPIAS SYSTEMS S.L.",
+    "creditDeveloper": "Nicolas Martinez",
     "creditAnd": "i",
     "informationLink": "Informació Legal",
     "privacyLink": "Política de Privacitat",

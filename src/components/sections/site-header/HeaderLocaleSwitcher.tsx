@@ -88,8 +88,9 @@ export function HeaderLocaleSwitcher({ localeEs, localeEn, localeCa, ariaLabel, 
           role="listbox"
         >
           {LOCALES.map((locale) => (
-            <li key={locale} aria-selected={currentLocale === locale} role="option">
+            <li key={locale}>
               <Link
+                aria-selected={currentLocale === locale}
                 className={[
                   "flex w-full items-center gap-2.5 px-4 py-2 text-sm transition",
                   currentLocale === locale
@@ -98,6 +99,7 @@ export function HeaderLocaleSwitcher({ localeEs, localeEn, localeCa, ariaLabel, 
                 ].join(" ")}
                 href={pathname}
                 locale={locale}
+                role="option"
                 onClick={() => setOpen(false)}
               >
                 <span aria-hidden className={["h-1.5 w-1.5 shrink-0 rounded-full", currentLocale === locale ? "bg-green-400" : ""].join(" ")} />

@@ -163,7 +163,6 @@
       "eyebrow": "Resources",
       "title": "Latest Articles / eBooks",
       "cta": "View more",
-      "ctaHref": "/resources",
       "minRead": "min read",
       "articleBadge": "Article",
       "ebookBadge": "eBook",
@@ -344,7 +343,8 @@
     "savePreferences": "Save preferences",
     "privacyLink": "Privacy policy",
     "cookiesLink": "Cookie policy",
-    "bannerAria": "Cookie notice"
+    "bannerAria": "Cookie notice",
+    "close": "Close cookie panel"
   },
   "cookiesPage": {
     "metadata": {
@@ -1255,6 +1255,7 @@
     "newsletterBotBlockedMessage": "We could not validate this submission.",
     "creditLine": "Web design and development",
     "creditAuthor": "YUTOPIAS SYSTEMS S.L.",
+    "creditDeveloper": "Nicolas Martinez",
     "creditAnd": "and",
     "informationLink": "Legal Information",
     "privacyLink": "Privacy Policy",

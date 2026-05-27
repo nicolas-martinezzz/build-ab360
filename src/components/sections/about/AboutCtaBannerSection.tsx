@@ -38,7 +38,7 @@ export const AboutCtaBannerSection = async () => {
         >
           {t("cta")}
         </LinkButton>
-        <p className="figma-text-m mt-6 text-white/82">
+        <p className="figma-text-m mt-6 text-white/80">
           {t("tagline1")}
           {tagline2 ? <><br />{tagline2}</> : null}
         </p>

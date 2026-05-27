@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
 import { SITE_PATHS } from "@/config/routes";
 
@@ -168,6 +168,7 @@ export function CookieConsentBanner() {
               {t("savePreferences")}
             </button>
             <button
+              aria-label={t("close")}
               className="rounded-[var(--radius-button)] border border-white/20 px-4 py-2 text-sm font-medium text-white/80 transition hover:border-white/40 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300"
               onClick={handleManageClose}
               type="button"
