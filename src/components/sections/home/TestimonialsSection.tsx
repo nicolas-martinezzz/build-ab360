@@ -16,7 +16,7 @@ export const TestimonialsSection = async () => {
   return (
     <section
       aria-labelledby="testimonials-title"
-      className="section-block bg-green-100/40 md:min-h-[42.125rem]"
+      className="section-block bg-green-100/40"
     >
       <SectionContainer>
         <p className="type-eyebrow text-grey-dark">{t("label")}</p>
@@ -27,14 +27,14 @@ export const TestimonialsSection = async () => {
           {t("title")}
         </h2>
 
-        <ul className="mt-[3.75rem] grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 md:grid-cols-3">
+        <ul className="mt-14 grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 md:grid-cols-3">
           {CARD_KEYS.map((key) => {
             const highlight = t(`${key}.highlight`).trim();
             return (
               <li key={key} className="min-w-0">
-                <article className="flex h-full min-w-0 flex-col gap-5 rounded-[5px] border border-grey-light bg-white p-[1.875rem]">
+                <article className="flex h-full min-w-0 flex-col gap-5 rounded-[5px] border border-grey-light bg-white p-7">
                   <div className="flex min-w-0 items-center justify-between">
-                    <div className="flex min-w-0 flex-1 gap-[1.1875rem]">
+                    <div className="flex min-w-0 flex-1 gap-4">
                       {/* eslint-disable-next-line @next/next/no-img-element -- Figma avatar needs exact visual parity */}
                       <img
                         alt=""
@@ -44,14 +44,14 @@ export const TestimonialsSection = async () => {
                         src={TESTIMONIAL_AVATARS[key]}
                         width={53}
                       />
-                      <div className="min-w-0 flex-1">
+                      <div className="min-w-0 flex-1 flex flex-col gap-0.5">
                         <p className="figma-text-l-bold leading-tight text-grey-dark">{t(`${key}.name`)}</p>
                         <p className="figma-text-m font-medium leading-tight text-black">{t(`${key}.company`)}</p>
                         <p className="figma-text-m italic leading-tight text-grey-dark">{t(`${key}.role`)}</p>
                       </div>
                     </div>
                   </div>
-                  {highlight ? <p className="figma-text-l-bold text-green-600 md:min-h-[3rem]">{highlight}</p> : null}
+                  {highlight ? <p className="figma-text-l-bold text-green-600">{highlight}</p> : null}
                   <blockquote className="figma-text-m border-l-0 pl-0 text-black">
                     <p className="[overflow-wrap:anywhere]">&ldquo;{t(`${key}.quote`)}&rdquo;</p>
                   </blockquote>

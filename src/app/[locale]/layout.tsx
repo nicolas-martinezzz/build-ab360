@@ -2,9 +2,24 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
+import { Inter, Montserrat } from "next/font/google";
 import type { ReactNode } from "react";
 import { routing } from "@/i18n/routing";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
+
+const montserrat = Montserrat({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-montserrat",
+  display: "swap",
+  adjustFontFallback: true,
+});
+
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-inter",
+  display: "swap",
+  adjustFontFallback: true,
+});
 
 type Props = {
   children: ReactNode;
@@ -77,9 +92,17 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      {children}
-      <CookieConsentBanner />
-    </NextIntlClientProvider>
+    <html
+      className={`${montserrat.variable} ${inter.variable}`}
+      lang={locale}
+      suppressHydrationWarning
+    >
+      <body className="min-h-screen antialiased pb-[env(safe-area-inset-bottom,0px)]">
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          <CookieConsentBanner />
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

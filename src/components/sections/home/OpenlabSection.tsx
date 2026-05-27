@@ -42,7 +42,7 @@ export const OpenlabSection = async () => {
   return (
     <section
       aria-labelledby="openlab-title"
-      className="section-block-spacious bg-white"
+      className="section-block bg-white"
       id={SITE_SECTION_IDS.program}
     >
       <SectionContainer>
@@ -69,7 +69,7 @@ export const OpenlabSection = async () => {
           </p>
           <p className="mt-[0.5625rem] figma-text-l-bold text-surface-bg">{t("bootcampLead")}</p>
 
-          <div className="mt-[1.1875rem] flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <LinkButton
               className="w-full justify-center sm:w-auto"
               href={SITE_PATHS.reservaPlaza}
@@ -87,15 +87,15 @@ export const OpenlabSection = async () => {
           </div>
         </div>
 
-        <ul className="mt-[4.25rem] grid list-none gap-10 p-0 md:auto-rows-fr md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:grid-cols-4 lg:items-start lg:gap-8">
+        <ul className="mt-14 grid list-none gap-10 p-0 md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:grid-cols-4 lg:items-start lg:gap-8">
           {featureKeys.map((key, i) => (
             <li key={key} className="min-w-0 lg:h-full">
               <div className="flex flex-col gap-2 md:h-full">
                 {OPENLAB_ICONS[i]}
-                <h3 className="figma-text-l-bold pt-5 text-surface-bg md:min-h-[4.5rem]">
+                <h3 className="figma-text-l-bold pt-5 text-surface-bg">
                   {t(`${key}.title`)}
                 </h3>
-                <p className="figma-text-m text-grey-dark md:min-h-[7rem]">{t(`${key}.body`)}</p>
+                <p className="figma-text-m text-grey-dark">{t(`${key}.body`)}</p>
               </div>
             </li>
           ))}

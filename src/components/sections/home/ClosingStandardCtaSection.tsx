@@ -9,11 +9,11 @@ export const ClosingStandardCtaSection = async () => {
   return (
     <section
       aria-labelledby="closing-standard-cta-title"
-      className="section-band bg-green-600 text-center text-white md:min-h-[18.625rem]"
+      className="section-band bg-green-600 text-center text-white"
     >
-      <SectionContainer className="text-center">
+      <SectionContainer>
         <h2
-          className="figma-title-2 mx-auto max-w-[72rem] [overflow-wrap:anywhere]"
+          className="figma-title-2 [overflow-wrap:anywhere]"
           id="closing-standard-cta-title"
         >
           {t("titleLine1")} {t("titleLine2")}

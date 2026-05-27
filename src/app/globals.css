@@ -311,15 +311,27 @@ section {
 }
 
 .figma-text-m {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   line-height: 1.5;
   font-weight: 400;
 }
 
+@media (min-width: 768px) {
+  .figma-text-m {
+    font-size: 1rem;
+  }
+}
+
 .figma-card-title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   line-height: 1.2;
   font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .figma-card-title {
+    font-size: 1.25rem;
+  }
 }
 
 @keyframes slideUp {
