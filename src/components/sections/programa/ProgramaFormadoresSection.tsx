@@ -116,7 +116,7 @@ export const ProgramaFormadoresSection = async ({
                 <Image
                   alt=""
                   aria-hidden
-                  className="object-cover"
+                  className="object-cover object-top"
                   fill
                   sizes="(max-width: 768px) 64px, 72px"
                   src={avatar}
