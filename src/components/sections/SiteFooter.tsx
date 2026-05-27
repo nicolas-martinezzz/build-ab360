@@ -155,7 +155,7 @@ export const SiteFooter = async () => {
             rel="noreferrer noopener"
             target="_blank"
           >
-            YUTOPIAS SYSTEMS S.L.
+            {t("creditAuthor")}
           </a>
           {" "}{t("creditAnd")}{" "}
           <a
@@ -164,7 +164,7 @@ export const SiteFooter = async () => {
             rel="noreferrer noopener"
             target="_blank"
           >
-            Nicolas Martinez
+            {t("creditDeveloper")}
           </a>
         </p>
       </SectionContainer>
