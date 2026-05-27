@@ -16,11 +16,11 @@ export const SiteFooter = async () => {
 
   return (
     <footer
-      className="border-t border-white/10 bg-surface-bg text-white"
+      className="section-band border-t border-white/10 bg-surface-bg text-white"
       id="site-footer"
       role="contentinfo"
     >
-      <SectionContainer className="section-block">
+      <SectionContainer>
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1.2fr_2fr_2fr] lg:gap-6">
 
           {/* Col 1: Logo + Contact + Social */}

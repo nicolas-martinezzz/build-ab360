@@ -105,7 +105,13 @@ section {
 
 @media (min-width: 768px) {
   .section-block {
-    padding-block: 7.5rem;
+    padding-block: 7rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-block {
+    padding-block: 8rem;
   }
 }
 
@@ -188,29 +194,29 @@ section {
 
 @media (min-width: 768px) {
   .section-band {
-    padding-block: 4.5rem;
+    padding-block: 5rem;
   }
 }
 
 .section-block-spacious {
-  padding-block: 5rem;
+  padding-block: 4.5rem;
 }
 
 @media (min-width: 640px) {
   .section-block-spacious {
-    padding-block: 6rem;
+    padding-block: 5.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .section-block-spacious {
-    padding-block: 7.5rem;
+    padding-block: 7rem;
   }
 }
 
 @media (min-width: 1024px) {
   .section-block-spacious {
-    padding-block: 9rem;
+    padding-block: 8rem;
   }
 }
 

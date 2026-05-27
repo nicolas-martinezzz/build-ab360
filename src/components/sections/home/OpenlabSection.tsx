@@ -87,7 +87,7 @@ export const OpenlabSection = async () => {
           </div>
         </div>
 
-        <ul className="mt-14 grid list-none gap-10 p-0 md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:grid-cols-4 lg:items-start lg:gap-8">
+        <ul className="mt-14 grid list-none gap-10 p-0 md:auto-rows-fr md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:grid-cols-4 lg:items-start lg:gap-8">
           {featureKeys.map((key, i) => (
             <li key={key} className="min-w-0 lg:h-full">
               <div className="flex flex-col gap-2 md:h-full">

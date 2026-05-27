@@ -11,7 +11,7 @@ export const SimulabSection = async () => {
   return (
     <section
       aria-labelledby="simulab-title"
-      className="section-block-spacious bg-white"
+      className="section-block bg-white"
       id={SITE_SECTION_IDS.solution}
     >
       <SectionContainer className="text-center">
