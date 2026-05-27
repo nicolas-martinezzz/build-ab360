@@ -16,14 +16,14 @@ export const BlogResourcesSection = async () => {
   const ebooks = ALL_EBOOKS.slice(0, 2);
 
   return (
-    <section aria-labelledby="blog-resources-title" className="section-block bg-green-100/40">
+    <section aria-labelledby="blog-resources-title" className="section-block bg-white">
       <SectionContainer>
 
         {/* Header */}
-        <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
-            <h2 className="figma-title-3 mt-2 text-surface-bg" id="blog-resources-title">
+            <h2 className="figma-title-2 mt-2 text-surface-bg" id="blog-resources-title">
               {t("title")}
             </h2>
           </div>
@@ -37,7 +37,7 @@ export const BlogResourcesSection = async () => {
         </div>
 
         {/* Unified grid: articles + ebooks together */}
-        <ul className="grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-12 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3">
           {latestArticles.map((article) => {
             const tr = article.translations[lang] ?? article.translations.es;
             return (

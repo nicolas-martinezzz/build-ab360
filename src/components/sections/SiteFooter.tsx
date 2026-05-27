@@ -20,8 +20,8 @@ export const SiteFooter = async () => {
       id="site-footer"
       role="contentinfo"
     >
-      <SectionContainer className="py-12 sm:py-14 lg:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1.4fr_1.6fr_2fr] lg:gap-8">
+      <SectionContainer className="section-block">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1.2fr_2fr_2fr] lg:gap-6">
 
           {/* Col 1: Logo + Contact + Social */}
           <div className="flex flex-col gap-5">
@@ -85,7 +85,7 @@ export const SiteFooter = async () => {
 
           {/* Col 2: PILARES */}
           <nav aria-label={t("pilarsNavAria")} className="flex min-w-0 flex-col gap-3">
-            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white/50">
+            <p className="type-eyebrow text-white/50">
               {t("pilarsTitle")}
             </p>
             <div className="flex flex-col gap-2 text-sm">
@@ -110,7 +110,7 @@ export const SiteFooter = async () => {
           {/* Col 3: ACCIÓN + RECURSOS */}
           <div className="flex min-w-0 flex-col gap-7">
             <nav aria-label={t("actionNavAria")} className="flex flex-col gap-3">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white/50">
+              <p className="type-eyebrow text-white/50">
                 {t("actionTitle")}
               </p>
               <div className="flex flex-col gap-2 text-sm">
@@ -126,7 +126,7 @@ export const SiteFooter = async () => {
 
           {/* Col 4: Newsletter */}
           <div className="flex min-w-0 flex-col gap-4">
-            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white/50">
+            <p className="type-eyebrow text-white/50">
               {t("newsletterTitle")}
             </p>
             <p className="text-sm leading-relaxed text-white/70">{t("newsletterSubtitle")}</p>

@@ -109,7 +109,7 @@ export function DiagnosticWizard({ locale, mode = "diagnostic" }: Props) {
     const sessionId = await initSession(locale, mode === "bootcamp" ? "reserva-plaza" : "autodiagnostico");
     await savePrelead(sessionId, locale, lead);
     dispatch({ type: "PRELEAD_DONE", lead, sessionId });
-  }, [locale]);
+  }, [locale, mode]);
 
   /* Profile selection */
   const handleProfileDone = useCallback((profile: ProfileKey) => {

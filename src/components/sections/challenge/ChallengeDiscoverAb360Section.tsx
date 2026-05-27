@@ -44,10 +44,10 @@ export const ChallengeDiscoverAb360Section = async () => {
           </div>
         </div>
 
-        <ul className="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
+        <ul className="mt-12 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
           {DISCOVER_AGENT_CARDS.map((card) => (
             <li key={card.key} className="min-w-0">
-              <article className="flex h-full flex-col gap-1 px-4 py-3">
+              <article className="flex h-full flex-col gap-1 rounded-[5px] border border-grey-light p-4">
                 <span
                   className={
                     card.isLive
@@ -63,7 +63,7 @@ export const ChallengeDiscoverAb360Section = async () => {
                 <p className="figma-text-m mt-auto pt-1 text-surface-bg">{t("metricsLabel")}</p>
                 <div className="mt-[3px] flex flex-wrap gap-[7px]">
                   {card.pills.map((pillKey) => (
-                    <span className="rounded-[2px] bg-green-100 px-[5px] text-sm font-normal leading-6 text-green-400" key={pillKey}>
+                    <span className="rounded-[2px] bg-green-100 px-[5px] figma-text-m leading-6 text-green-400" key={pillKey}>
                       {t(pillKey)}
                     </span>
                   ))}
