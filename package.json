@@ -7,7 +7,7 @@
     "prebuild": "npm run check:json-bom",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint src/",
     "lint:palette": "node scripts/check-color-palette.mjs",
     "check:json-bom": "node scripts/check-json-bom.mjs",
     "check:i18n-parity": "node scripts/check-i18n-parity.mjs",
