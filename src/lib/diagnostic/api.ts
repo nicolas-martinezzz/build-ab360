@@ -1,24 +1,12 @@
 import type { ProfileKey, LeadData, DiagnosticResults } from "./types";
 
-// In local dev with NEXT_PUBLIC_DIAGNOSTIC_FORCE_API=true, the PHP backend
-// runs as a separate process (`php -S localhost:8080 -t public`).
-// NEXT_PUBLIC_DIAGNOSTIC_LOCAL_PORT defaults to 8080 if not set.
-const _localPort = process.env.NEXT_PUBLIC_DIAGNOSTIC_LOCAL_PORT ?? "8080";
-const ENDPOINT =
-  process.env.NEXT_PUBLIC_DIAGNOSTIC_FORCE_API === "true"
-    ? `http://localhost:${_localPort}/api/diagnostic.php`
-    : "/api/diagnostic.php";
+const ENDPOINT = "/api/diagnostic.php";
 
 function shouldPersistRemotely(): boolean {
   if (typeof window === "undefined") return false;
   const host = window.location.hostname;
   const isLocal = host === "localhost" || host === "127.0.0.1";
   const isYutopias = /(^|\.)yutopias\.com$/i.test(host);
-  // Allow local testing of the PHP backend (email flows, DB writes) when the
-  // env flag is set. The PHP server must be running separately on the same
-  // host (e.g. `php -S localhost:8080 -t public`).
-  const forceApi = process.env.NEXT_PUBLIC_DIAGNOSTIC_FORCE_API === "true";
-  if (isLocal && forceApi) return true;
   return !isLocal && isYutopias;
 }
 
