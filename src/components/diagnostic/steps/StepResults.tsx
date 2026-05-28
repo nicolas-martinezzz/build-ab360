@@ -375,9 +375,8 @@ function BridgeSection({
           </div>
         </div>
         <div className="text-center flex-shrink-0 bg-white border border-grey-light rounded-[8px] px-4 py-3">
-          <p className="text-[36px] font-bold text-surface-bg leading-none">16</p>
-          <p className="text-[13px] font-semibold text-green-600 uppercase">Jun</p>
-          <p className="text-[11px] text-grey-dark">2026</p>
+          <p className="text-[13px] font-bold text-surface-bg leading-none tracking-tight uppercase">Próx.</p>
+          <p className="text-[13px] font-semibold text-green-600 uppercase mt-1">2026</p>
         </div>
       </div>
 

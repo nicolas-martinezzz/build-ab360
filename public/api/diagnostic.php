@@ -725,8 +725,6 @@ try {
             $userFirstName = $leadData["first_name"] ?? "";
             $userGreeting  = $userFirstName !== "" ? $userFirstName : "hola";
 
-            $diagnosticUrl = "https://yutopias.com/autodiagnostico";
-
             $userSubject = "=?UTF-8?B?" . base64_encode("Tu informe de diagnóstico digital — Yūtopias") . "?=";
 
             $userBody = '<!DOCTYPE html>
@@ -787,18 +785,11 @@ try {
           ' . $retosHtml . '
         </table>
 
-        <!-- Next step CTA -->
+        <!-- Next step -->
         <p style="margin:0 0 12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#127334;border-bottom:2px solid #127334;padding-bottom:6px;">¿Qué sigue?</p>
-        <p style="margin:0 0 20px 0;font-size:14px;color:#555;line-height:1.65;">
+        <p style="margin:0 0 28px 0;font-size:14px;color:#555;line-height:1.65;">
           En Yūtopias trabajamos con equipos de construcción y promotora para convertir estos diagnósticos en planes de acción concretos. Si querés profundizar en los resultados o explorar cómo mejorar cada dimensión, estamos para ayudarte.
         </p>
-        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
-          <tr>
-            <td style="border-radius:8px;background:#127334;">
-              <a href="' . $diagnosticUrl . '" style="display:inline-block;padding:12px 28px;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;letter-spacing:0.02em;">Ver diagnóstico online →</a>
-            </td>
-          </tr>
-        </table>
 
       </td></tr>
 
