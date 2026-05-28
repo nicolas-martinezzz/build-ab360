@@ -30,8 +30,14 @@ export const SiteFooter = async () => {
               className="inline-block text-[1.0625rem] font-bold"
               href={SITE_PATHS.home}
             >
-              <span className="text-green-300">yūtopias</span>{" "}
-              <span className="font-light text-white/90">systems</span>
+              <Image
+                alt="yūtopias systems"
+                className="h-10 max-w-[200px] object-contain"
+                height={40}
+                src={SITE_ASSETS.branding.logo}
+                style={{ width: "auto" }}
+                width={200}
+              />
             </Link>
 
             <div className="flex flex-col gap-5 sm:flex-row lg:flex-col">

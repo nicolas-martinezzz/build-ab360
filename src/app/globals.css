@@ -479,3 +479,77 @@ section {
     padding-bottom: 0.25rem;
   }
 }
+
+/* ─── Print styles — diagnostic results ──────────────────────────────────── */
+@media print {
+  /* Hide everything except the results content */
+  header,
+  nav,
+  footer,
+  [data-print-hide],
+  .diagnostic-print-hide {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #1c1e2e !important;
+    font-size: 11pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Force white backgrounds on dark band cards — overrides inline style */
+  .diagnostic-band-card {
+    background: #f0f7ec !important;
+    color: #1c1e2e !important;
+    border: 1px solid #c3e195 !important;
+    box-shadow: none !important;
+  }
+
+  /* Dimension cards keep their tint but never black */
+  .diagnostic-dim-card {
+    background: #f8faf5 !important;
+    border: 1px solid #d7d7d7 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+
+  /* Reto cards */
+  .diagnostic-reto-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #d7d7d7 !important;
+  }
+
+  /* Bridge/CTA section — not useful on paper */
+  .diagnostic-bridge-section {
+    display: none !important;
+  }
+
+  /* Prevent orphaned headings */
+  h2, h3 {
+    break-after: avoid;
+  }
+
+  /* Score ring SVG — keep colors */
+  svg circle {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Progress bars */
+  [role="progressbar"] > div {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Restart button */
+  .diagnostic-restart-btn {
+    display: none !important;
+  }
+
+  @page {
+    margin: 1.5cm 2cm;
+  }
+}

@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useCallback, useEffect, useId, useRef, useState } from "react";
+import Image from "next/image";
 import { twMerge } from "tailwind-merge";
+import { SITE_ASSETS } from "@/config/assets";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SITE_PATHS } from "@/config/routes";
 import { Link } from "@/i18n/navigation";
@@ -108,10 +110,17 @@ export const SiteHeaderBar = ({
             href={SITE_PATHS.home}
             onClick={closeMenu}
           >
-            <span className="inline-block whitespace-nowrap">
-              <span className="text-green-300">yūtopias</span>{" "}
-              <span className="font-light text-white/90">systems</span>
-            </span>
+            <Image
+              alt="yūtopias systems"
+              className={twMerge(
+                "max-w-[200px] object-contain transition-all duration-500 ease-out sm:max-w-[240px]",
+                isCompact ? "h-10" : "h-12",
+              )}
+              height={48}
+              src={SITE_ASSETS.branding.logo}
+              style={{ width: "auto" }}
+              width={240}
+            />
           </Link>
 
           <DesktopNav isCompact={isCompact} links={navigationLinks} mainNavAria={mainNavAria} />
