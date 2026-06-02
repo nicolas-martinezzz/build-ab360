@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { SectionContainer } from "@/components/ui/SectionContainer";
+import { SITE_ASSETS } from "@/config/assets";
 import { getDiagnosticPathByLocale } from "@/config/routes";
 
 export const SolutionHeroSection = async () => {
@@ -14,16 +15,21 @@ export const SolutionHeroSection = async () => {
       aria-labelledby="solution-hero-heading"
       className="relative flex min-h-screen min-h-dvh items-center py-24 md:py-32 lg:py-36"
     >
-      <div className="absolute inset-0 overflow-hidden bg-surface-bg">
-        <iframe
+      <div className="absolute inset-0 overflow-hidden">
+        <div
           aria-hidden
-          className="absolute inset-0 h-full w-full border-0 motion-reduce:hidden"
-          loading="eager"
-          src="/simulab-demo.html"
-          tabIndex={-1}
-          title=""
+          className="absolute inset-0 hidden bg-gradient-to-br from-surface-bg via-surface-bg to-green-900/40 motion-reduce:block"
         />
-        <MediaBackdrop opacity={0.7} />
+        {/* eslint-disable-next-line @next/next/no-img-element -- animated GIF hero backdrop */}
+        <img
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+          decoding="async"
+          fetchPriority="high"
+          src={SITE_ASSETS.home.heroBackgroundGif}
+        />
+        <MediaBackdrop opacity={0.8} />
       </div>
 
       <SectionContainer className="relative z-10">
