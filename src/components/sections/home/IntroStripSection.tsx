@@ -10,7 +10,7 @@ export const IntroStripSection = async () => {
       className="section-band bg-green-100"
     >
       <SectionContainer>
-        <div className="grid gap-10 md:grid-cols-2 md:items-start md:justify-between md:gap-x-20">
+        <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-x-20">
           <div
             className="intro-verse-col-left figma-text-l max-w-[29.2rem] text-left text-black"
           >
@@ -22,7 +22,7 @@ export const IntroStripSection = async () => {
             <p className="intro-verse-line figma-text-l-bold text-black">{t("leftLine6")}</p>
           </div>
           <div
-            className="intro-verse-col-right figma-text-l max-w-[29.2rem] text-left text-black md:justify-self-end md:text-right"
+            className="intro-verse-col-right figma-text-l max-w-[29.2rem] text-left text-black"
           >
             <p className="intro-verse-line">{t("rightLine1")}</p>
             <p className="intro-verse-line figma-text-l-bold text-green-500">{t("rightLine2")}</p>
