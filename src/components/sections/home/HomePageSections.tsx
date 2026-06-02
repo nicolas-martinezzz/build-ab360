@@ -2,6 +2,7 @@ import { Ab360PlatformSection } from "@/components/sections/home/Ab360PlatformSe
 import { BlogResourcesSection } from "@/components/sections/home/BlogResourcesSection";
 import { ClosingStandardCtaSection } from "@/components/sections/home/ClosingStandardCtaSection";
 import { IntroStripSection } from "@/components/sections/home/IntroStripSection";
+import { OpenlabContactSection } from "@/components/sections/home/OpenlabContactSection";
 import { OpenlabSection } from "@/components/sections/home/OpenlabSection";
 import { PartnersBanner } from "@/components/sections/home/PartnersBanner";
 import { PartnersBootcampCtaSection } from "@/components/sections/home/PartnersBootcampCtaSection";
@@ -20,6 +21,7 @@ export const HomePageSections = () => (
     <SimulabSection />
     <PartnersBanner />
     <OpenlabSection />
+    <OpenlabContactSection />
     <SimulationChoiceBanner />
     <PartnersBootcampCtaSection />
     <Ab360PlatformSection />

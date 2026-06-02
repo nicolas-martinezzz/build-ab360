@@ -1,8 +1,6 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { SITE_ASSETS } from "@/config/assets";
 import { SITE_PATHS, SITE_SECTION_IDS } from "@/config/routes";
 
 export const SimulabSection = async () => {
@@ -19,16 +17,16 @@ export const SimulabSection = async () => {
           className="figma-title-3 mx-auto max-w-[49.5rem] text-surface-bg [overflow-wrap:anywhere]"
           id="simulab-title"
         >
-          {t("headline")}
+          {t.rich("headline", { b: (chunks) => <strong>{chunks}</strong> })}
         </h2>
 
-        <div className="relative mx-auto mt-11 aspect-[1636/974] w-full max-w-[51.125rem]">
-          <Image
-            alt={t("imageAlt")}
-            className="object-contain"
-            fill
-            sizes="(max-width: 1024px) 100vw, 1024px"
-            src={SITE_ASSETS.simulab.dashboardMockup}
+        <div className="relative mx-auto mt-11 w-full max-w-[51.125rem] overflow-hidden rounded-xl shadow-2xl">
+          <iframe
+            allowFullScreen
+            className="h-[32rem] w-full sm:h-[40rem] lg:h-[46rem]"
+            loading="lazy"
+            src="/simulab-demo.html"
+            title={t("imageAlt")}
           />
         </div>
 

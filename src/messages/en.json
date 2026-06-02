@@ -16,7 +16,9 @@
     "program": "The program",
     "about": "About us",
     "resources": "Resources",
-    "joinBootcamp": "Join the Zero Bootcamp"
+    "joinBootcamp": "Join the Zero Bootcamp",
+    "announcementText": "Zero Bootcamp registrations open. Coming in July · Barcelona.",
+    "announcementLinkLabel": "Learn more"
   },
   "home": {
     "hero": {
@@ -24,7 +26,7 @@
       "headline": "How do you decide the cost, energy, and impact of a building over the next 50 years?",
       "subhead": "Those three variables have always been connected. The problem is that no one measures them together before making decisions.",
       "cta": "Take your self-assessment",
-      "hint": "10 minutes. You know where you stand and where to improve."
+      "hint": "10 minutes. You leave knowing where you stand."
     },
     "introStrip": {
       "regionAria": "Introductory message",
@@ -38,29 +40,30 @@
       "rightLine2": "It is the simulation of its real impact."
     },
     "simulab": {
-      "headline": "SimuLab projects the impact of your decisions before you execute them.",
+      "headline": "<b>SimuLab</b> projects the impact of your decisions before you execute them.",
       "feature1Title": "Connect cost and impact",
       "feature1Body": "Bring cost and environmental footprints together to understand the real impact of every decision.",
       "feature2Title": "Aligned with regulation",
       "feature2Body": "Assess decisions against regulatory criteria, the EU taxonomy, and sustainability objectives.",
       "feature3Title": "Built on archetypes",
       "feature3Body": "Use scientifically validated models to simulate each building typology with precision.",
-      "cta": "See the solution",
+      "cta": "Learn about SimuLab",
       "ctaHint": "See the impact before acting. That is all.",
       "closing1": "SimuLab is only as good as the data you are willing to put on the table.",
       "closing2": "The tool does not do the work for you — it makes it possible to do it better",
       "imageAlt": "SimuLab in AB360: laptop showing a simulation cost comparison dashboard."
     },
     "openlab": {
-      "quote": "Yutopias, La Salle R&D, and ACCIÓ have defined a different way to roll out Simulab: build it alongside the first partners. We do not sell finished software — we co-build the standard together. We call this process <openlab>OpenLab</openlab>.",
+      "quote": "<openlab>OpenLab</openlab> is senior expert consulting + a proprietary vertical platform. 6 months adapting it with you, 6 months using it yourself.",
       "pathLabel": "The path",
       "headlineLine1": "OpenLab is the open",
       "headlineLine2": "innovation program.",
-      "headlineLine3": "Adapt first, then adopt. Not the other way around.",
-      "description": "It is not training or consulting. It is the process of making it yours, where your data and your operations co-create the standard the sector needs.",
-      "bootcampLead": "Zero Bootcamp is the entry point.",
-      "ctaPrimary": "Join the Zero Bootcamp",
-      "ctaSecondary": "Explore OpenLab",
+      "headlineLine3": "Adapt first, then adopt.",
+      "headlineLine4": "Not the other way around.",
+      "description": "OpenLab is senior expert consulting + a proprietary vertical platform. 6 months adapting it with you, 6 months using it yourself.",
+      "bootcampLead": "12 months · Investment €10,000 · Only 16 spots",
+      "ctaPrimary": "I'm interested in OpenLab",
+      "ctaSecondary": "Learn more",
       "col1": {
         "title": "You work with real data from your projects",
         "body": "The information already exists inside your company. In OpenLab we connect it with sector reference databases. Every simulation feeds the system. The outcome improves with each project."
@@ -77,7 +80,38 @@
         "title": "SmartCheck: your goals aligned with the project",
         "body": "Project objectives set the north star. SmartCheck validates that yours and your business drivers are aligned with them. And when you want, the same for every stakeholder."
       },
-      "footerTagline": "The first movers do not follow the standard. They build it."
+      "footerTagline": "The first movers do not follow the standard. They build it.",
+      "contactForm": {
+        "eyebrow": "JOIN OPENLAB",
+        "headline": "Join OpenLAB to adopt and adapt AB360",
+        "description": "OpenLAB drives the digitalisation of the building lifecycle and sustainable infrastructure. If you share this vision, tell us which city you'd like to participate or collaborate from.",
+        "fieldName": "Full name",
+        "fieldNamePlaceholder": "Your full name",
+        "fieldEmail": "Email",
+        "fieldEmailPlaceholder": "you@company.com",
+        "fieldOrg": "Organisation",
+        "fieldOrgPlaceholder": "Your company or organisation",
+        "fieldPriority": "Priority",
+        "fieldPriorityPlaceholder": "Select an option",
+        "priorityOpt1": "Adopt AB360 in my company",
+        "priorityOpt2": "Collaborate as a technology partner",
+        "priorityOpt3": "Research and academia",
+        "priorityOpt4": "Other",
+        "fieldMessage": "Message",
+        "fieldMessagePlaceholder": "Briefly tell us your idea or need...",
+        "checkPrivacy": "I have read and accept the",
+        "checkPrivacyLink": "Privacy Policy",
+        "checkNewsletter": "I want to receive information about AB360 and its updates",
+        "submit": "SEND REQUEST",
+        "submitting": "Sending...",
+        "errorRequired": "Please fill in all required fields.",
+        "errorEmail": "The email is not valid.",
+        "errorPrivacy": "You must accept the privacy policy.",
+        "errorGeneric": "Error sending. Please try again.",
+        "errorConnection": "Connection error. Please try again.",
+        "successTitle": "Request received",
+        "successBody": "Thank you for your interest in OpenLAB. Our team will review your request and contact you soon."
+      }
     },
     "simulationChoiceBanner": {
       "regionAria": "Message on project decisions and simulation",
@@ -99,8 +133,8 @@
       "headlineLine1": "This is not everything.",
       "headlineLine2": "Behind it, something else is growing: AB360.",
       "body": "We are building a platform that connects building data to support better decisions across the full lifecycle, with the help of three AI agents.",
-      "cta": "See the solution",
-      "ctaCaption": "See the impact before you act. That's it.",
+      "cta": "Shall we talk?",
+      "ctaCaption": "",
       "agent1": {
         "badge": "Live",
         "role": "Agent 1",
@@ -115,7 +149,7 @@
         "badge": "In development",
         "role": "Agent 2",
         "title": "Cycle Planner",
-        "body": "Plan tasks, deadlines, costs and footprints. Connect with your OKRs. Anticipate deviations.",
+        "body": "Turns those decisions into planning to optimise time, cost and scope.",
         "metricsLabel": "Its language",
         "pill1": "OKRs",
         "pill2": "Tasks",
@@ -161,7 +195,7 @@
     },
     "blogResources": {
       "eyebrow": "Resources",
-      "title": "Latest Articles / eBooks",
+      "title": "Latest blog articles",
       "cta": "View more",
       "minRead": "min read",
       "articleBadge": "Article",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
+import { AnnouncementBar } from "@/components/sections/AnnouncementBar";
 import { Hero } from "@/components/sections/home/Hero";
 import { HomePageSections } from "@/components/sections/home/HomePageSections";
 
@@ -74,6 +75,9 @@ export default async function HomePage({ params }: Props) {
         type="application/ld+json"
       />
       <div className="relative bg-surface-bg">
+        <div className="pt-[4.25rem] md:pt-[4.5rem]">
+          <AnnouncementBar />
+        </div>
         <Hero locale={locale} />
       </div>
       <HomePageSections />

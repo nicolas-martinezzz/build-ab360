@@ -6,7 +6,6 @@ import { SITE_PATHS, SITE_SECTION_IDS } from "@/config/routes";
 type AgentKey = "agent1" | "agent2" | "agent3";
 
 const AGENTS: readonly { key: AgentKey; live: boolean }[] = [
-  { key: "agent1", live: true },
   { key: "agent2", live: false },
   { key: "agent3", live: false },
 ];
@@ -44,10 +43,10 @@ export const Ab360PlatformSection = async () => {
           >
             {t("cta")}
           </LinkButton>
-          <p className="figma-text-l mt-4 italic text-grey-dark">{t("ctaCaption")}</p>
+          {t("ctaCaption") ? <p className="figma-text-l mt-4 italic text-grey-dark">{t("ctaCaption")}</p> : null}
         </header>
 
-        <ul className="mt-12 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
+        <ul className="mt-12 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 sm:gap-4">
           {AGENTS.map(({ key, live }) => (
             <li key={key} className="min-w-0">
               <article className="flex h-full flex-col gap-1 rounded-[5px] border border-grey-light p-4">

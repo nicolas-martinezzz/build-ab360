@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
@@ -62,7 +63,8 @@ export const OpenlabSection = async () => {
           >
             <span className="block">{t("headlineLine1")}</span>
             <span className="block">{t("headlineLine2")}</span>
-            <span className="mt-2 block text-green-500">{t("headlineLine3")}</span>
+            <span className="mt-2 block">{t("headlineLine3")}</span>
+            <span className="block">{t("headlineLine4")}</span>
           </h2>
           <p className="figma-text-l mt-5 max-w-[42.75rem] leading-relaxed text-surface-bg">
             {t("description")}
@@ -72,18 +74,17 @@ export const OpenlabSection = async () => {
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <LinkButton
               className="w-full justify-center sm:w-auto"
-              href={SITE_PATHS.reservaPlaza}
+              href={`#${SITE_SECTION_IDS.openlabContact}`}
               variant="primary"
             >
               {t("ctaPrimary")}
             </LinkButton>
-            <LinkButton
-              className="w-full justify-center sm:w-auto"
+            <Link
+              className="inline-flex items-center text-surface-bg underline underline-offset-4 transition-opacity hover:opacity-70"
               href={SITE_PATHS.challenge}
-              variant="outline"
             >
               {t("ctaSecondary")}
-            </LinkButton>
+            </Link>
           </div>
         </div>
 

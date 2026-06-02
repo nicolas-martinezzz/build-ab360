@@ -16,7 +16,9 @@
     "program": "El programa",
     "about": "Nosaltres",
     "resources": "Recursos",
-    "joinBootcamp": "Uneix-te al Bootcamp Zero"
+    "joinBootcamp": "Uneix-te al Bootcamp Zero",
+    "announcementText": "Inscripcions al Bootcamp Zero obertes. Pròximament al juliol · Barcelona.",
+    "announcementLinkLabel": "Saber-ne més"
   },
   "home": {
     "hero": {
@@ -24,7 +26,7 @@
       "headline": "Com decidis el cost, l'energia i l'impacte d'un edifici al llarg dels propers 50 anys?",
       "subhead": "Aquestes tres variables sempre han estat connectades. El problema és que ningú les mesura juntes abans de prendre decisions.",
       "cta": "Fes el teu autodiagnòstic",
-      "hint": "10 minuts. Saps on ets i per on millorar."
+      "hint": "10 minuts. Te'n vas sabent on ets."
     },
     "introStrip": {
       "regionAria": "Missatge introductori",
@@ -38,29 +40,30 @@
       "rightLine2": "És la simulació del seu impacte real."
     },
     "simulab": {
-      "headline": "SimuLab projecta l'impacte de les teves decisions abans d'executar-les.",
+      "headline": "<b>SimuLab</b> projecta l'impacte de les teves decisions abans d'executar-les.",
       "feature1Title": "Connecta cost i impacte",
       "feature1Body": "Integra cost i petjades ambientals per entendre l'impacte real de cada decisió.",
       "feature2Title": "Alineat amb la normativa",
       "feature2Body": "Avalua les decisions segons els criteris regulatoris, la taxonomia europea i els objectius de sostenibilitat.",
       "feature3Title": "Basat en arquetips",
       "feature3Body": "Utilitza models validats científicament per simular amb precisió cada tipologia d'edifici.",
-      "cta": "Veure la solució",
+      "cta": "Conèixer SimuLab",
       "ctaHint": "Veure l'impacte abans d'actuar. Això és tot.",
       "closing1": "Simulab és tan bo com les dades que estàs disposat a posar sobre la taula.",
       "closing2": "L'eina no fa la feina per tu — fa possible que la facis millor",
       "imageAlt": "SimuLab a AB360: comparativa de simulacions de cost en un portàtil."
     },
     "openlab": {
-      "quote": "Yutopias, La Salle R&D i ACCIÓ han definit una forma diferent de desplegar Simulab: construir-lo juntament amb els primers partners. No venem un programari acabat — construïm junts l'estàndard. A aquest procés li diem <openlab>OpenLab</openlab>.",
+      "quote": "<openlab>OpenLab</openlab> és consultoria experta sènior + plataforma vertical pròpia. 6 mesos adaptant-la amb tu, 6 mesos usant-la tu.",
       "pathLabel": "El camí",
       "headlineLine1": "OpenLab és el programa",
       "headlineLine2": "d'innovació oberta.",
-      "headlineLine3": "Primer adaptar, després adoptar. No a la inversa.",
-      "description": "No és formació ni consultoria. És el procés de fer-ho teu, on les teves dades i la teva operativa co-creen l'estàndard que el sector necessita.",
-      "bootcampLead": "El Bootcamp Zero és el punt d'entrada.",
-      "ctaPrimary": "Uneix-te al Bootcamp Zero",
-      "ctaSecondary": "Explora OpenLab",
+      "headlineLine3": "Primer adaptar, després adoptar.",
+      "headlineLine4": "No a la inversa.",
+      "description": "OpenLab és consultoria experta sènior + plataforma vertical pròpia. 6 mesos adaptant-la amb tu, 6 mesos usant-la tu.",
+      "bootcampLead": "12 mesos · Inversió 10.000€ · Només 16 places",
+      "ctaPrimary": "M'interessa el OpenLab",
+      "ctaSecondary": "Saber més",
       "col1": {
         "title": "Treballes amb dades reals dels teus projectes",
         "body": "La informació ja existeix a la teva empresa. A l'OpenLab la connectem amb bases de dades de referència del sector. Cada simulació alimenta el sistema. El resultat millora amb cada projecte."
@@ -77,7 +80,38 @@
         "title": "El SmartCheck: els teus objectius alineats amb els del projecte",
         "body": "Els objectius del projecte marquen el nord. El SmartCheck valida que els teus i els drivers del negoci estan alineats amb ells. I quan vulguis, el mateix per a tots els actors."
       },
-      "footerTagline": "Els primers no segueixen l'estàndard. El construeixen."
+      "footerTagline": "Els primers no segueixen l'estàndard. El construeixen.",
+      "contactForm": {
+        "eyebrow": "UNEIX-TE AL OPENLAB",
+        "headline": "Uneix-te a OpenLAB per adoptar i adaptar AB360",
+        "description": "OpenLAB impulsa la digitalització del cicle de vida de l'edificació i les infraestructures sostenibles. Si comparteixes aquesta visió, explica'ns des de quina ciutat t'agradaria participar o col·laborar.",
+        "fieldName": "Nom i cognoms",
+        "fieldNamePlaceholder": "El teu nom complet",
+        "fieldEmail": "Email",
+        "fieldEmailPlaceholder": "tu@empresa.com",
+        "fieldOrg": "Organització",
+        "fieldOrgPlaceholder": "La teva empresa o organització",
+        "fieldPriority": "Prioritat",
+        "fieldPriorityPlaceholder": "Selecciona una opció",
+        "priorityOpt1": "Adoptar AB360 a la meva empresa",
+        "priorityOpt2": "Col·laborar com a partner tecnològic",
+        "priorityOpt3": "Recerca i acadèmia",
+        "priorityOpt4": "Altre",
+        "fieldMessage": "Missatge",
+        "fieldMessagePlaceholder": "Explica'ns breument la teva idea o necessitat...",
+        "checkPrivacy": "He llegit i accepto la",
+        "checkPrivacyLink": "Política de Privacitat",
+        "checkNewsletter": "Vull rebre informació sobre AB360 i les seves novetats",
+        "submit": "ENVIAR SOL·LICITUD",
+        "submitting": "Enviant...",
+        "errorRequired": "Si us plau, omple tots els camps obligatoris.",
+        "errorEmail": "L'email no és vàlid.",
+        "errorPrivacy": "Has d'acceptar la política de privacitat.",
+        "errorGeneric": "Error en enviar. Torna-ho a intentar.",
+        "errorConnection": "Error de connexió. Torna-ho a intentar.",
+        "successTitle": "Sol·licitud rebuda",
+        "successBody": "Gràcies pel teu interès en OpenLAB. El nostre equip revisarà la teva sol·licitud i et contactarà aviat."
+      }
     },
     "simulationChoiceBanner": {
       "regionAria": "Missatge sobre decisions de projecte i simulació",
@@ -99,8 +133,8 @@
       "headlineLine1": "Això no és tot.",
       "headlineLine2": "Al fons, alguna cosa més està creixent: AB360.",
       "body": "Estem construint una plataforma que connecta les dades de l'edifici per prendre millors decisions al llarg de tot el cicle de vida, amb l'ajuda de tres agents d'IA.",
-      "cta": "Veure la solució",
-      "ctaCaption": "Veure l'impacte abans d'actuar. Això és tot.",
+      "cta": "Parlem?",
+      "ctaCaption": "",
       "agent1": {
         "badge": "Live",
         "role": "Agent 1",
@@ -115,7 +149,7 @@
         "badge": "En desenvolupament",
         "role": "Agent 2",
         "title": "Cycle Planner",
-        "body": "Planifica tasques, terminis, costos i petjades. Connecta amb els teus OKRs. Anticipa les desviacions.",
+        "body": "Converteix aquestes decisions en planificació per optimitzar temps, cost i abast.",
         "metricsLabel": "El seu llenguatge",
         "pill1": "OKR",
         "pill2": "Tasques",
@@ -161,7 +195,7 @@
     },
     "blogResources": {
       "eyebrow": "Recursos",
-      "title": "Últims Articles / eBooks",
+      "title": "Últims articles del blog",
       "cta": "Veure més",
       "minRead": "min de lectura",
       "articleBadge": "Article",

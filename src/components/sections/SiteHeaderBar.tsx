@@ -126,24 +126,6 @@ export const SiteHeaderBar = ({
           <DesktopNav isCompact={isCompact} links={navigationLinks} mainNavAria={mainNavAria} />
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <div
-              className={twMerge(
-                "hidden md:items-center md:transition-all md:duration-500 md:ease-out",
-                isCompact ? "md:pointer-events-none md:opacity-0" : "md:flex md:opacity-100",
-              )}
-            >
-              <LinkButton
-                className={twMerge(
-                  "min-h-10 whitespace-nowrap text-sm transition-all duration-500 ease-out md:min-h-10",
-                  isCompact ? "px-3.5" : "px-4 md:px-5",
-                )}
-                href={bootcampPath}
-                variant="primary"
-              >
-                {joinBootcamp}
-              </LinkButton>
-            </div>
-
             <HeaderLocaleSwitcher
               ariaLabel={localeNavAria}
               localeCa={localeCa}
