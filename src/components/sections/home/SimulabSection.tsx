@@ -47,9 +47,9 @@ export const SimulabSection = async () => {
         <div className="mt-[2.875rem] flex justify-center px-1">
           <div className="flex flex-col items-center">
             <LinkButton
-              className="w-full max-w-sm border-green-500 px-5 text-green-500 hover:bg-green-100/50 sm:w-auto"
+              className="w-full max-w-sm px-8 sm:w-auto"
               href={SITE_PATHS.solution}
-              variant="outline"
+              variant="primary"
             >
               {t("cta")}
             </LinkButton>
