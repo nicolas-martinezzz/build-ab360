@@ -42,6 +42,12 @@
   --font-cta: var(--font-inter), var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
 
+:root {
+  --header-h: 4.25rem;
+}
+@media (min-width: 640px) { :root { --header-h: 4.5rem; } }
+@media (min-width: 768px) { :root { --header-h: 4.5rem; } }
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: max(5rem, calc(env(safe-area-inset-top, 0px) + 3.5rem));

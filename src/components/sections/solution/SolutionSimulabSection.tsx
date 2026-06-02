@@ -1,7 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import Image from "next/image";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { SITE_ASSETS } from "@/config/assets";
 
 const FeatureBlock = ({ title, body }: { title: string; body: string }) => (
   <div className="flex flex-col gap-1.5">
@@ -16,13 +14,12 @@ export const SolutionSimulabSection = async () => {
   return (
     <section aria-label="SimuLab" className="section-block bg-white">
       <SectionContainer>
-        <div className="relative mx-auto aspect-[1200/498] w-full max-w-[75rem] overflow-hidden rounded-[10px]">
-          <Image
-            alt={t("imageAlt")}
-            className="object-contain"
-            fill
-            sizes="(max-width: 1200px) 100vw, 1200px"
-            src={SITE_ASSETS.solution.dashboardScreenshot}
+        <div className="mx-auto w-full max-w-[75rem] overflow-hidden rounded-[10px]">
+          <iframe
+            className="h-[32rem] w-full sm:h-[40rem] lg:h-[46rem]"
+            loading="lazy"
+            src="/simulab-demo.html"
+            title={t("imageAlt")}
           />
         </div>
 

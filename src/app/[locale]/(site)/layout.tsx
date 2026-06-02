@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { AnnouncementBar } from "@/components/sections/AnnouncementBar";
 import { SiteFooter } from "@/components/sections/SiteFooter";
 import { SiteHeader } from "@/components/sections/SiteHeader";
 
@@ -19,6 +20,9 @@ export default async function SiteLayout({ children, params }: Props) {
         {t("skipToContent")}
       </a>
       <SiteHeader />
+      <div style={{ paddingTop: "var(--header-h)" }}>
+        <AnnouncementBar />
+      </div>
       <main className="min-w-0" id="main-content">
         {children}
       </main>
