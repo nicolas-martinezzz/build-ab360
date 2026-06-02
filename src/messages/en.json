@@ -739,7 +739,8 @@
       "headline": "The first AI agent for better decision-making in construction.",
       "body": "Simulab is not standalone software. It is the first operational agent of AB360 — the platform that integrates BIM, ERP, GMAO, and PMS into a semantic digital twin. Enter your project data. The engine simultaneously calculates the impact on costs and footprints — carbon, water, and energy.\nSee the result before you act.",
       "cta": "Take your self-assessment",
-      "hint": "10 minutes. You know where you stand and where to improve."
+      "hint": "10 minutes. You know where you stand and where to improve.",
+      "demoAlt": "Interactive SimuLab demo — cost and sustainability simulation for a building."
     },
     "quoteBanner": {
       "line1": "Every decision without simulation already has a cost.",

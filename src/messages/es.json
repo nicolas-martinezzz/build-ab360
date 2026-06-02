@@ -817,7 +817,8 @@
       "headline": "El primer agente de IA para decidir mejor en edificación.",
       "body": "Simulab no es un software aislado. Es el primer agente operativo de AB360 — la plataforma que integra BIM, ERP, GMAO y PMS en un gemelo digital semántico. Introduces los datos de tu proyecto. El motor calcula simultáneamente el impacto en costes y en huellas — carbono, hídrica, energética.\nVes el resultado antes de actuar.",
       "cta": "Haz tu autodiagnóstico",
-      "hint": "10 minutos. Sabes dónde estás y por dónde mejorar."
+      "hint": "10 minutos. Sabes dónde estás y por dónde mejorar.",
+      "demoAlt": "Demo interactiva de SimuLab — simulación de coste y sostenibilidad de un edificio."
     },
     "quoteBanner": {
       "line1": "Ves el resultado antes,",

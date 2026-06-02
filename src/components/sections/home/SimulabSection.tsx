@@ -20,12 +20,11 @@ export const SimulabSection = async () => {
           {t.rich("headline", { b: (chunks) => <strong>{chunks}</strong> })}
         </h2>
 
-        <div className="relative mx-auto mt-11 w-full max-w-[51.125rem] overflow-hidden rounded-xl shadow-2xl">
+        <div className="relative mx-auto mt-11 w-full max-w-[51.125rem] overflow-hidden rounded-xl">
           <iframe
-            allowFullScreen
             className="h-[32rem] w-full sm:h-[40rem] lg:h-[46rem]"
             loading="lazy"
-            src="/simulab-demo.html"
+            src="/simulab-teaser.html"
             title={t("imageAlt")}
           />
         </div>
