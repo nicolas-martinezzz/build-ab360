@@ -595,6 +595,9 @@ $csrf      = csrfToken();
       <div class="nav-item" data-section="ebook">
         <span class="nav-dot"></span> Ebook Leads
       </div>
+      <div class="nav-item" data-section="openlab">
+        <span class="nav-dot"></span> OpenLab
+      </div>
     </div>
   </nav>
 
@@ -829,6 +832,31 @@ $csrf      = csrfToken();
       </div>
     </section>
 
+    <!-- OpenLab -->
+    <section id="section-openlab" class="section">
+      <div class="page-header">
+        <div class="page-title">OpenLab</div>
+        <div class="page-subtitle">Solicitudes del formulario Súmate al OpenLab</div>
+      </div>
+      <div class="table-toolbar">
+        <div class="search-wrap">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input class="search-input" type="text" id="ol-search" placeholder="Buscar...">
+        </div>
+        <a id="export-ol-excel" class="btn-export" href="#">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Excel
+        </a>
+        <span class="table-info" id="ol-info"></span>
+      </div>
+      <div class="ag-wrap ag-theme-alpine-dark" id="grid-openlab"></div>
+      <div class="pagination">
+        <button class="page-btn" id="ol-prev" disabled>Anterior</button>
+        <span class="page-info" id="ol-page">1</span>
+        <button class="page-btn" id="ol-next">Siguiente</button>
+      </div>
+    </section>
+
     <!-- Contenido -->
     <section id="section-contenido" class="section">
       <div class="page-header">
@@ -1037,6 +1065,7 @@ document.querySelectorAll(".nav-item").forEach(el => {
       if (sec === "newsletter")    initGrid("newsletter");
       if (sec === "bootcamp")      initGrid("bootcamp");
       if (sec === "ebook")         initGrid("ebook");
+      if (sec === "openlab")       initGrid("openlab");
     }
   });
 });
@@ -1180,6 +1209,17 @@ const cols = {
     { field: "created_at",       headerName: "Fecha",      minWidth: 148 },
     { field: "updated_at",       headerName: "Actualizado",minWidth: 148 },
   ],
+  openlab: [
+    { field: "id",         headerName: "ID",           maxWidth: 70 },
+    { field: "name",       headerName: "Nombre",       minWidth: 180 },
+    { field: "email",      headerName: "Email",        minWidth: 220 },
+    { field: "org",        headerName: "Organización", minWidth: 180 },
+    { field: "priority",   headerName: "Prioridad",    minWidth: 130 },
+    { field: "newsletter", headerName: "Newsletter",   maxWidth: 100 },
+    { field: "locale",     headerName: "Idioma",       maxWidth: 80 },
+    { field: "message",    headerName: "Mensaje",      minWidth: 260 },
+    { field: "created_at", headerName: "Fecha",        minWidth: 148 },
+  ],
 };
 
 const actionMap = {
@@ -1189,6 +1229,7 @@ const actionMap = {
   newsletter:   "table_newsletter",
   bootcamp:     "table_bootcamp",
   ebook:        "table_ebook_leads",
+  openlab:      "table_openlab",
 };
 
 const exportTableMap = {
@@ -1198,9 +1239,10 @@ const exportTableMap = {
   newsletter:   "newsletter",
   bootcamp:     "bootcamp",
   ebook:        "ebook_leads",
+  openlab:      "openlab",
 };
 
-const prefixMap = { diagnosticos: "diag", reservaplaza: "rp", leads: "ld", newsletter: "nl", bootcamp: "bc", ebook: "eb" };
+const prefixMap = { diagnosticos: "diag", reservaplaza: "rp", leads: "ld", newsletter: "nl", bootcamp: "bc", ebook: "eb", openlab: "ol" };
 
 function initGrid(key) {
   const rowClickable = key === "diagnosticos" || key === "leads";
@@ -1304,6 +1346,7 @@ const _statsLabels = {
   bootcamp_leads:         ["Bootcamp",               "leads registrados"],
   avg_score:              ["Score promedio",          "sobre 10"],
   ebook_leads:            ["Ebook Leads",            "descargas registradas"],
+  openlab_contacts:       ["OpenLab",                "solicitudes recibidas"],
 };
 
 // ─── Questions bank (mirrors src/lib/diagnostic/data.ts QS) ──────────────────

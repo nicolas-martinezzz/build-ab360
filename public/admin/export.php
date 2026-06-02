@@ -157,6 +157,11 @@ $queries = [
         FROM ebook_leads
         ORDER BY created_at DESC
     ",
+    "openlab" => "
+        SELECT id, name, email, org, priority, message, newsletter, locale, created_at
+        FROM openlab_contacts
+        ORDER BY created_at DESC
+    ",
 ];
 
 // ─── Full diagnostics export (one row per session with all 12 answers) ────────

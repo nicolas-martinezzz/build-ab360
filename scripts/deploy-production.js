@@ -193,7 +193,7 @@ async function deploy() {
         await withRetry("API PHP", async (c) => {
             await c.cd("/httpdocs");
             await safeEnsureDir(c, "api");
-            const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "reserva-plaza.php", "ebook-lead.php"];
+            const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "reserva-plaza.php", "ebook-lead.php", "openlab-contact.php"];
             for (const f of phpFiles) {
                 await c.uploadFrom(path.join(__dirname, "../public/api", f), f);
                 console.log("  ✓ api/" + f);

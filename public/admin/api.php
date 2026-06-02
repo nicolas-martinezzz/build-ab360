@@ -74,6 +74,14 @@ switch ($action) {
             $stats["ebook_leads"] = 0;
         }
 
+        try {
+            $stats["openlab_contacts"] = (int)$pdo->query(
+                "SELECT COUNT(*) FROM openlab_contacts"
+            )->fetchColumn();
+        } catch (Throwable $ignored) {
+            $stats["openlab_contacts"] = 0;
+        }
+
         jsonOut(["ok" => true, "data" => $stats]);
 
     // ─── Sessions over time (last 90 days) ────────────────────────────────────
@@ -309,6 +317,48 @@ switch ($action) {
         $rows = $stmt->fetchAll();
         jsonOut(["ok" => true, "data" => $rows]);
 
+    // ─── AG Grid: openlab contacts ───────────────────────────────────────────
+    case "table_openlab":
+        $page   = max(0, (int)($_GET["page"] ?? 0));
+        $limit  = min(500, max(1, (int)($_GET["limit"] ?? 100)));
+        $offset = $page * $limit;
+
+        if (!$isSqlite) {
+            $pdo->exec("
+                CREATE TABLE IF NOT EXISTS openlab_contacts (
+                    id               BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+                    name             VARCHAR(240)    NOT NULL,
+                    email            VARCHAR(255)    NOT NULL,
+                    org              VARCHAR(180)    NOT NULL,
+                    priority         VARCHAR(64)     NOT NULL,
+                    message          TEXT            NOT NULL,
+                    newsletter       TINYINT(1)      NOT NULL DEFAULT 0,
+                    locale           VARCHAR(8)      NOT NULL DEFAULT 'es',
+                    ip_hash          VARCHAR(64)     NULL,
+                    user_agent       VARCHAR(255)    NULL,
+                    created_at       TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    PRIMARY KEY (id),
+                    KEY idx_email      (email),
+                    KEY idx_created_at (created_at)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+            ");
+        }
+
+        $total = (int)$pdo->query("SELECT COUNT(*) FROM openlab_contacts")->fetchColumn();
+
+        $stmt = $pdo->prepare("
+            SELECT id, name, email, org, priority, newsletter, locale, message, created_at
+            FROM openlab_contacts
+            ORDER BY created_at DESC
+            LIMIT :lim OFFSET :off
+        ");
+        $stmt->bindValue(":lim", $limit, PDO::PARAM_INT);
+        $stmt->bindValue(":off", $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
+
+        jsonOut(["ok" => true, "total" => $total, "page" => $page, "limit" => $limit, "data" => $rows]);
+
     // ─── AG Grid: ebook leads ─────────────────────────────────────────────────
     case "table_ebook_leads":
         $page   = max(0, (int)($_GET["page"] ?? 0));
@@ -479,6 +529,10 @@ switch ($action) {
         } catch (\Throwable $e) { $ebook = 0; }
         $bootcamp  = (int)$pdo->query("SELECT COUNT(*) FROM bootcamp_leads")->fetchColumn();
 
+        try {
+            $openlab = (int)$pdo->query("SELECT COUNT(*) FROM openlab_contacts")->fetchColumn();
+        } catch (\Throwable $e) { $openlab = 0; }
+
         jsonOut(["ok" => true, "data" => [
             ["label" => "Diagnósticos iniciados", "value" => $sessions,  "pct" => 100],
             ["label" => "Completados",             "value" => $completed, "pct" => $sessions ? round($completed/$sessions*100,1) : 0],
@@ -486,6 +540,7 @@ switch ($action) {
             ["label" => "Newsletter",              "value" => $newsletter,"pct" => null],
             ["label" => "Ebook leads",             "value" => $ebook,     "pct" => null],
             ["label" => "Bootcamp",                "value" => $bootcamp,  "pct" => null],
+            ["label" => "OpenLab",                 "value" => $openlab,   "pct" => null],
         ]]);
 
     // ─── Articles: CREATE TABLE IF NOT EXISTS (MySQL compat) ─────────────────
