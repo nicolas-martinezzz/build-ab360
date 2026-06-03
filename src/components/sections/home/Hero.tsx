@@ -33,7 +33,7 @@ export const Hero = async ({ locale }: HeroProps) => {
       </div>
       <SectionContainer className="relative z-10 text-left">
         {eyebrow ? (
-          <p className="type-eyebrow mb-[0.875rem] text-green-200">
+          <p className="type-eyebrow mb-4 text-green-200">
             {eyebrow}
           </p>
         ) : null}
@@ -44,12 +44,12 @@ export const Hero = async ({ locale }: HeroProps) => {
           {t("headline")}
         </h1>
         {subhead ? (
-          <p className="figma-text-l mt-[1.375rem] max-w-[52.5rem] whitespace-pre-line text-white/85">
+          <p className="figma-text-l mt-5 max-w-[52.5rem] whitespace-pre-line text-white/85">
             {subhead}
           </p>
         ) : null}
         <LinkButton
-          className="mt-[1.375rem] w-full max-w-sm sm:w-auto"
+          className="mt-6 w-full max-w-sm sm:w-auto"
           href={diagnosticPath}
           variant="primary"
         >

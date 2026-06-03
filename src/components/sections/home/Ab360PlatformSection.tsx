@@ -65,7 +65,7 @@ export const Ab360PlatformSection = async () => {
                 <h3 className="figma-card-title text-black">{t(`${key}.title`)}</h3>
                 <p className="figma-text-m text-surface-bg">{t(`${key}.body`)}</p>
                 <p className="figma-text-m mt-auto pt-1 text-surface-bg">{t(`${key}.metricsLabel`)}</p>
-                <ul className="mt-[3px] flex flex-wrap gap-[7px]">
+                <ul className="mt-1 flex flex-wrap gap-[7px]">
                   {PILL_KEYS[key].map((pillKey) => (
                     <li key={pillKey}>
                       <span className="inline-block rounded-[2px] bg-green-100 px-[5px] figma-text-m leading-6 text-green-400">

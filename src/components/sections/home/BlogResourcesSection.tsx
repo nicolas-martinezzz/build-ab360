@@ -23,7 +23,7 @@ export const BlogResourcesSection = async () => {
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
-            <h2 className="figma-title-2 mt-2 text-surface-bg" id="blog-resources-title">
+            <h2 className="figma-title-2 mt-4 text-surface-bg" id="blog-resources-title">
               {t("title")}
             </h2>
           </div>

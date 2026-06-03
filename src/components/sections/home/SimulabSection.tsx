@@ -20,16 +20,16 @@ export const SimulabSection = async () => {
           {t.rich("headline", { b: (chunks) => <strong>{chunks}</strong> })}
         </h2>
 
-        <div className="relative mx-auto mt-11 w-full max-w-[51.125rem] overflow-hidden rounded-xl">
+        <div className="relative mx-auto mt-8 w-full max-w-[51.125rem] overflow-hidden rounded-xl">
           <iframe
-            className="h-[32rem] w-full sm:h-[40rem] lg:h-[46rem]"
+            className="h-[20rem] w-full sm:h-[26rem] lg:h-[32rem]"
             loading="lazy"
             src="/simulab-teaser.html"
             title={t("imageAlt")}
           />
         </div>
 
-        <ul className="mt-10 grid gap-8 text-center sm:mt-[4rem] sm:grid-cols-3">
+        <ul className="mt-10 grid gap-8 text-center sm:mt-12 sm:grid-cols-3">
           <li className="min-w-0 px-1">
             <h3 className="figma-text-l-bold text-surface-bg">{t("feature1Title")}</h3>
             <p className="mt-1 figma-text-l text-grey-dark">{t("feature1Body")}</p>
@@ -44,7 +44,7 @@ export const SimulabSection = async () => {
           </li>
         </ul>
 
-        <div className="mt-[2.875rem] flex justify-center px-1">
+        <div className="mt-12 flex justify-center px-1">
           <div className="flex flex-col items-center">
             <LinkButton
               className="w-full max-w-sm px-8 sm:w-auto"
@@ -57,7 +57,7 @@ export const SimulabSection = async () => {
           </div>
         </div>
 
-        <div className="mx-auto mt-[6.5rem] max-w-[57.375rem] space-y-0.5">
+        <div className="mx-auto mt-24 max-w-[57.375rem] space-y-0.5">
           <p className="figma-text-l text-grey-dark">{t("closing1")}</p>
           <p className="figma-text-l-bold text-green-600">{t("closing2")}</p>
         </div>

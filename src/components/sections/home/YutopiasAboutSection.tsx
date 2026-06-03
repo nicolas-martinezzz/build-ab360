@@ -28,7 +28,7 @@ export const YutopiasAboutSection = async () => {
               })}
             </p>
             <LinkButton
-              className="mt-[1.9375rem] w-full focus-visible:ring-offset-surface-bg sm:w-auto"
+              className="mt-8 w-full focus-visible:ring-offset-surface-bg sm:w-auto"
               href={SITE_PATHS.information}
               variant="primary"
             >
