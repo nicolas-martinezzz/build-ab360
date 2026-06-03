@@ -62,6 +62,9 @@
       "headlineLine4": "No a la inversa.",
       "description": "OpenLab és consultoria experta sènior + plataforma vertical pròpia. 6 mesos adaptant-la amb tu, 6 mesos usant-la tu.",
       "bootcampLead": "12 mesos · Inversió 10.000€ · Només 16 places",
+      "stat1": "12 mesos",
+      "stat2": "Inversió 10.000€",
+      "stat3": "Només 16 places",
       "ctaPrimary": "M'interessa el OpenLab",
       "ctaSecondary": "Saber més",
       "col1": {
@@ -81,6 +84,16 @@
         "body": "Els objectius del projecte marquen el nord. El SmartCheck valida que els teus i els drivers del negoci estan alineats amb ells. I quan vulguis, el mateix per a tots els actors."
       },
       "footerTagline": "Els primers no segueixen l'estàndard. El construeixen.",
+      "bootcampCard": {
+        "eyebrow": "Encara avaluant?",
+        "headline": "Vine al Bootcamp Zero.",
+        "body": "Un matí per conèixer el programa, explorar el teu cas d'ús i decidir si OpenLab® és per a tu. Veuràs Simulab funcionant amb dades reals i coneixeràs les dinàmiques del programa abans de comprometre't a res.",
+        "stat1": "Pròximament",
+        "stat2": "Gratuït",
+        "stat3": "Places limitades",
+        "ctaPrimary": "Uneix-te al Bootcamp Zero",
+        "ctaSecondary": "Veure l'agenda"
+      },
       "contactForm": {
         "eyebrow": "UNEIX-TE AL OPENLAB",
         "headline": "Uneix-te a OpenLAB per adoptar i adaptar AB360",
@@ -1241,7 +1254,7 @@
     "madridTitle": "Madrid",
     "madridAddress1": "Calle Hermosilla 147, 2D",
     "madridAddress2": "28028 Madrid",
-    "madridPhone": "+34 650 69 13 38",
+    "madridPhone": "+34 660 69 13 38",
     "madridEmail": "en@yutopias.com",
     "legalTitle": "Informació legal",
     "legalNavAria": "Enllaços legals",
