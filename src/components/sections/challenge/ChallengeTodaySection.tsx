@@ -27,7 +27,7 @@ export const ChallengeTodaySection = async () => {
             </article>
           </div>
 
-          <div className="mx-auto w-full max-w-[35.5rem] lg:pt-[3.4375rem]">
+          <div className="mx-auto w-full max-w-[35.5rem] lg:pt-14">
             <Image
               alt={t("pillarsImageAlt")}
               className="h-auto w-full"

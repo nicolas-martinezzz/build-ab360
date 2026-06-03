@@ -5,7 +5,7 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 
 type ContactPageProps = {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
 export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
@@ -28,7 +28,7 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
     contactPage?: Record<string, string>;
   };
   const contactLabels = rawMessages.contactPage ?? {};
-  const query = await searchParams;
+  const query = searchParams ? await searchParams : {};
   const leadData = {
     name: getFirst(query.name),
     email: getFirst(query.email),

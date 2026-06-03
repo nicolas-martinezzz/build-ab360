@@ -825,39 +825,47 @@
       "description": "AB360 conecta costes, energía e impacto ambiental en un solo modelo. Simula decisiones antes de ejecutarlas y mide el impacto real en cada fase del ciclo de vida."
     },
     "hero": {
-      "eyebrow": "AGENTE IA DE SIMULACIÓN",
-      "badge": "Live",
-      "headline": "El primer agente de IA para decidir mejor en edificación.",
-      "body": "Simulab no es un software aislado. Es el primer agente operativo de AB360 — la plataforma que integra BIM, ERP, GMAO y PMS en un gemelo digital semántico. Introduces los datos de tu proyecto. El motor calcula simultáneamente el impacto en costes y en huellas — carbono, hídrica, energética.\nVes el resultado antes de actuar.",
+      "eyebrow": "AGENTE DE SIMULACIÓN",
+      "badge": "Beta en validación",
+      "headline": "SimuLab. Primer agente IA vertical para edificación sostenible.",
+      "body": "En construcción, la información muchas veces no llega a tiempo. El resultado son decisiones tomadas con datos incompletos — y errores que podrían haberse evitado.",
       "cta": "Haz tu autodiagnóstico",
-      "hint": "10 minutos. Sabes dónde estás y por dónde mejorar.",
-      "demoAlt": "Demo interactiva de SimuLab — simulación de coste y sostenibilidad de un edificio."
-    },
-    "quoteBanner": {
-      "line1": "Ves el resultado antes,",
-      "line2": "tomas una decisión y actúas después."
+      "hint": "10 minutos. Te vas sabiendo dónde estás.",
+      "demoAlt": "Demo interactiva de SimuLab — simulación de coste y sostenibilidad de un edificio.",
+      "collaborators": "Desarrollado en colaboración con La Salle R&D URL y SNGULAR. Con el soporte de ACCIÓ.",
+      "ctaLabel": "¿Cómo toma decisiones tu empresa?"
     },
     "simulab": {
       "imageAlt": "Vista del dashboard de SimuLab en AB360",
-      "intro1": "Llevas años tomando buenas decisiones. Imagina tomarlas con todos los datos sobre la mesa.",
-      "intro2": "Simulab no muestra datos del pasado. Proyecta el impacto de las decisiones antes de que sean irreversibles. Introduces los datos de tu proyecto. El motor calcula simultáneamente el impacto en costes y en huellas — carbono, hídrica, energética.",
-      "intro3": "Ves el resultado antes de actuar.",
+      "intro1": "Imagina poder decidir con todos los datos sobre la mesa.",
+      "intro2": "Simulab no muestra datos del pasado. Proyecta el impacto de las decisiones antes de que sean irreversibles. Integra los datos de BIM, ERP, GMAO y PMS en un gemelo digital semántico — y calcula simultáneamente costes y huellas de carbono, hídrica y energética.",
       "feature1Title": "Simulación dinámica",
-      "feature1Body": "Cada solución constructiva tiene un coste y un índice de huella — carbono, energía y agua — que se traducen en costes de ejecución e indicadores ambientales de proyecto. Cambia una variable y Simulab recalcula todo el escenario en tiempo real, antes de que la decisión sea irreversible.",
+      "feature1Body": "Cambias una variable y ves el impacto al momento — en coste, carbono, agua y energía. Decides sobre datos, no sobre suposiciones.",
       "feature2Title": "Taxonomía europea",
-      "feature2Body": "Los índices e indicadores de Simulab están calibrados sobre la taxonomía europea y las certificaciones ambientales. Cada decisión de proyecto es rigurosa, auditable y alineada con un enfoque sostenible desde el primer cálculo.",
+      "feature2Body": "Tus decisiones llegan auditadas desde el primer cálculo. No rehaces informes para certificar: ya están alineados con la taxonomía europea.",
       "feature3Title": "Arquetipos validados",
-      "feature3Body": "Simulab no trata cada proyecto como un prototipo nuevo. Reconoce arquetipos — patrones constructivos científicamente validados — y los hace dinámicos. Ajusta variables, cambia soluciones, y el sistema recalcula el impacto en coste y huellas ambientales sin perder el rigor del modelo.",
-      "feature4Title": "Personalización estructurada",
-      "feature4Body": "Cada partner tiene su tipología, su operativa y sus objetivos. Simulab parte del arquetipo más cercano a su realidad y lo adapta en tres pasos: primero entendemos cómo trabajas, luego configuramos el modelo, y finalmente lo co-creamos contigo hasta que es tuyo. Al panel personalizado de tus hitos lo llamamos SmartCheck."
+      "feature3Body": "No empiezas de cero. Partes del patrón constructivo más cercano a tu proyecto y lo ajustas. Mueves variables, pruebas alternativas, y el rigor se mantiene.",
+      "feature4Title": "Personalización",
+      "feature4Body": "SimuLab no es genérico ni es un desarrollo a medida. Es un sistema que se calibra a tu tipología de edificación y a tu operativa real.",
+      "featuresHeadline": "Cuatro razones por las que Simulab calcula lo que otros no pueden."
     },
     "openlab": {
       "eyebrow": "EL CAMINO",
-      "headline": "OpenLab para primero adaptar, luego adoptar SimuLab.",
-      "body": "OpenLab es el programa de 12 meses donde Simulab se adapta a la operativa real de cada partner mediante arquetipos. Yutopias, La Salle R&D y ACCIÓ han decidido que la mejor forma de desplegar Simulab es co-creándolo con los primeros partners. No vendemos un software terminado — construimos juntos el estándar.",
-      "bootcampLead": "El Bootcamp Zero es el punto de entrada.",
-      "ctaPrimary": "Únete al Bootcamp Zero",
-      "ctaSecondary": "Explora OpenLab"
+      "headline": "OpenLab: donde Simulab se convierte en tuyo.",
+      "body": "El OpenLab es el programa de 12 meses donde Simulab se adapta a tu operativa real. Co-creamos contigo. Al final no te llevas un informe — te llevas una herramienta calibrada a tu realidad y un equipo autónomo que sabe usarla.",
+      "bootcampLead": "¿Todavía evaluando? Ven al Bootcamp Zero.",
+      "ctaPrimary": "Me interesa el OpenLab",
+      "ctaSecondary": "Saber más",
+      "stat1": "12 meses",
+      "stat2": "Inversión 10.000€",
+      "stat3": "Solo 16 Plazas",
+      "bootcampBadge": "Gratuito",
+      "bootcampStat1": "Proximamente",
+      "bootcampStat2": "Gratuito",
+      "bootcampStat3": "Plazas limitadas",
+      "bootcampBody": "Una mañana para conocer el programa, explorar tu caso de uso y decidir si openlab® es para ti. Verás Simulab funcionando con datos reales y conocerás las dinámicas del OpenLab antes de comprometerte a nada.",
+      "bootcampCtaPrimary": "Únete al Bootcamp Zero",
+      "bootcampCtaSecondary": "Ver la agenda"
     },
     "platform": {
       "eyebrow": "LA PLATAFORMA",
@@ -874,7 +882,7 @@
       "connectedBody": "AB360 conecta a los equipos internos y de proyecto que colaboran en cualquier momento del ciclo de la edificación — promotoras, proyectistas, constructoras, industriales y explotación —, y el software que usan — BIM, ERP, GMAO, PMS —. No sustituye ninguna fuente. Las integra en un solo cerebro semántico — que no solo almacena los datos, sino que entiende su significado."
     },
     "agents": {
-      "headline": "Los agentes de AB360",
+      "headline": "Otros agentes de AB360",
       "agent1": {
         "badge": "Live",
         "role": "Agente IA de Simulación",
@@ -926,8 +934,8 @@
       "body": "AB360 no es un sistema para la empresa. Es un sistema para cada persona que toma decisiones dentro de ella.",
       "actor1": {
         "title": "Promotor / Inversor",
-        "description": "Conoce el impacto económico y ambiental de cada decisión de diseño antes de comprometer presupuesto.",
-        "quote": "\"Apruebo presupuestos sobre estimaciones. Cuando llegan los datos reales, ya no hay margen de maniobra.\""
+        "description": "Conoce el impacto de cada decisión antes de aprobar una inversión. Producto, variables, oportunidad — todas medidas a tiempo.",
+        "quote": "\"Apruebo inversiones con los plazos en contra. Cuando llegan los datos reales, ya no hay margen.\""
       },
       "actor2": {
         "title": "CEO / CIO / COO",
@@ -936,22 +944,22 @@
       },
       "actor3": {
         "title": "Director de Estudios",
-        "description": "Simula el coste real de cada oferta antes de presentarla. Reduce la brecha entre estimación y ejecución.",
-        "quote": "\"Entre lo que ofertamos y lo que ejecutamos siempre hay una brecha. Y nunca sabemos exactamente por qué.\""
+        "description": "Simula el coste real de cada oferta antes de asignar recursos y entrar en la licitación.",
+        "quote": "\"Entre lo que ofertamos y lo que ejecutamos siempre hay una brecha. Y nunca sabemos por qué.\""
       },
       "actor4": {
         "title": "Arquitecto / Ingeniero",
-        "description": "Calcula el impacto de cada decisión técnica en coste y huella antes de trasladarla al equipo.",
+        "description": "Calcula el impacto de cada decisión técnica en coste y huella. Sin esperar al cierre del diseño. Sin retrabajos si cambian los OKRs.",
         "quote": "\"Cada cambio que llega tarde arrastra a todo el equipo. Y siempre llegan tarde.\""
       },
       "actor5": {
         "title": "Delegado de construcción / Project Manager",
-        "description": "Detecta desvíos en tiempo real y coordina a todos los agentes sobre una única fuente de verdad.",
+        "description": "Cada cambio se decide con una predicción de su impacto. Coste, plazo, huella al momento.",
         "quote": "\"Hago ofertas con margen casi nulo y espero a los cambios para recuperarlo. No puede ser el modelo.\""
       },
       "actor6": {
         "title": "Gestor / Propiedad / Facilities",
-        "description": "Opera el activo con datos completos desde el primer día. Anticipa costes de mantenimiento y decisiones.",
+        "description": "Decide cada actualización del activo con su impacto simulado al instante. Capex con agilidad.",
         "quote": "\"Me entero de los problemas del activo cuando ya son urgentes. Nunca antes.\""
       }
     },
@@ -963,8 +971,8 @@
     "partnersBanner": {
       "headline": "Buscamos partners que quieran definir cómo se tomarán decisiones en este sector.",
       "cta": "Únete al Bootcamp Zero",
-      "tagline1": "Entras ahora, lo moldeamos contigo.",
-      "tagline2": ""
+      "tagline1": "Los que lleguen después, lo usarán.",
+      "tagline2": "Los que entren ahora, lo moldean."
     }
   },
   "programaPage": {

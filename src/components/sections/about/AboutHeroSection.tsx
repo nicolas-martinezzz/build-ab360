@@ -40,7 +40,7 @@ export const AboutHeroSection = async () => {
           {t("title")}{" "}
           <em className="font-light italic">{t("titleAccent")}</em>
         </h1>
-        <p className="figma-text-l mt-[1.375rem] max-w-[52.5rem] text-white/82">
+        <p className="figma-text-l mt-5 max-w-[52.5rem] text-white/82">
           {t("body")}
         </p>
       </SectionContainer>

@@ -207,7 +207,7 @@ export function OpenlabContactForm({ locale, t }: Props) {
             type="checkbox"
             checked={privacy}
             onChange={(e) => setPrivacy(e.target.checked)}
-            className="mt-[3px] flex-shrink-0 accent-green-600"
+            className="mt-1 flex-shrink-0 accent-green-600"
           />
           <span className="text-sm leading-relaxed text-surface-bg/60">
             {t.checkPrivacy}{" "}
@@ -228,7 +228,7 @@ export function OpenlabContactForm({ locale, t }: Props) {
             type="checkbox"
             checked={newsletter}
             onChange={(e) => setNewsletter(e.target.checked)}
-            className="mt-[3px] flex-shrink-0 accent-green-600"
+            className="mt-1 flex-shrink-0 accent-green-600"
           />
           <span className="text-sm leading-relaxed text-surface-bg/60">{t.checkNewsletter}</span>
         </label>

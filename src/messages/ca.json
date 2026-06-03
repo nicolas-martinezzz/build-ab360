@@ -747,39 +747,47 @@
       "description": "AB360 connecta cost, energia i impacte ambiental en un sol model. Simula decisions abans d'executar-les i mesura l'impacte real en cada fase del cicle de vida."
     },
     "hero": {
-      "eyebrow": "AGENT IA DE SIMULACIÓ",
-      "badge": "Live",
-      "headline": "El primer agent d'IA per decidir millor en edificació.",
-      "body": "Simulab no és un software aïllat. És el primer agent operatiu d'AB360 — la plataforma que integra BIM, ERP, GMAO i PMS en un bessó digital semàntic. Introdueixes les dades del teu projecte. El motor calcula simultàniament l'impacte en costos i en petjades — carboni, hídrica, energètica.\nVeus el resultat abans d'actuar.",
+      "eyebrow": "AGENT DE SIMULACIÓ",
+      "badge": "Beta en validació",
+      "headline": "SimuLab. Primer agent IA vertical per a edificació sostenible.",
+      "body": "En construcció, la informació moltes vegades no arriba a temps. El resultat són decisions preses amb dades incompletes — i errors que s'haurien pogut evitar.",
       "cta": "Fes el teu autodiagnòstic",
-      "hint": "10 minuts. Saps on ets i per on millorar.",
-      "demoAlt": "Demo interactiva de SimuLab — simulació de cost i sostenibilitat d'un edifici."
-    },
-    "quoteBanner": {
-      "line1": "Cada decisió sense simulació ja té un cost.",
-      "line2": "Només que encara no el veus."
+      "hint": "10 minuts. Te'n vas sabent on ets.",
+      "demoAlt": "Demo interactiva de SimuLab — simulació de cost i sostenibilitat d'un edifici.",
+      "collaborators": "Desenvolupat en col·laboració amb La Salle R&D URL i SNGULAR. Amb el suport d'ACCIÓ.",
+      "ctaLabel": "Com pren decisions la teva empresa?"
     },
     "simulab": {
       "imageAlt": "Vista del dashboard de SimuLab a AB360",
-      "intro1": "Fa anys que prens bones decisions. Imagina prendre-les amb totes les dades sobre la taula.",
-      "intro2": "Simulab no mostra dades del passat. Projecta l'impacte de les decisions abans que siguin irreversibles. Introdueixes les dades del teu projecte. El motor calcula simultàniament l'impacte en costos i en petjades — carboni, hídrica, energètica.",
-      "intro3": "Veus el resultat abans d'actuar.",
+      "intro1": "Imagina poder decidir amb totes les dades sobre la taula.",
+      "intro2": "Simulab no mostra dades del passat. Projecta l'impacte de les decisions abans que siguin irreversibles. Integra les dades de BIM, ERP, GMAO i PMS en un bessó digital semàntic — i calcula simultàniament costos i petjades de carboni, hídrica i energètica.",
       "feature1Title": "Simulació dinàmica",
-      "feature1Body": "Cada solució constructiva té un cost i un índex de petjada — carboni, energia i aigua — que es tradueixen en costos d'execució i indicadors ambientals de projecte. Canvia una variable i Simulab recalcula tot l'escenari en temps real, abans que la decisió sigui irreversible.",
+      "feature1Body": "Canvies una variable i veus l'impacte al moment — en cost, carboni, aigua i energia. Decideixes sobre dades, no sobre suposicions.",
       "feature2Title": "Taxonomia europea",
-      "feature2Body": "Els índexs i indicadors de Simulab estan calibrats sobre la taxonomia europea i les certificacions ambientals. Cada decisió de projecte és rigorosa, auditable i alineada amb un enfocament sostenible des del primer càlcul.",
+      "feature2Body": "Les teves decisions arriben auditades des del primer càlcul. No refàs informes per certificar: ja estan alineades amb la taxonomia europea.",
       "feature3Title": "Arquetips validats",
-      "feature3Body": "Simulab no tracta cada projecte com un prototip nou. Reconeix arquetips — patrons constructius científicament validats — i els fa dinàmics. Ajusta variables, canvia solucions, i el sistema recalcula l'impacte en cost i petjades ambientals sense perdre el rigor del model.",
-      "feature4Title": "Personalització estructurada",
-      "feature4Body": "Cada partner té la seva tipologia, la seva operativa i els seus objectius. Simulab parteix de l'arquetip més proper a la seva realitat i l'adapta en tres passos: primer entenem com treballes, després configurem el model, i finalment el co-creem amb tu fins que és teu. Al panell personalitzat dels teus fites l'anomenem SmartCheck."
+      "feature3Body": "No comences de zero. Parteixes del patró constructiu més proper al teu projecte i l'ajustes. Mous variables, proves alternatives, i el rigor es manté.",
+      "feature4Title": "Personalització",
+      "feature4Body": "SimuLab no és genèric ni és un desenvolupament a mida. És un sistema que es calibra a la teva tipologia d'edificació i a la teva operativa real.",
+      "featuresHeadline": "Quatre raons per les quals Simulab calcula el que altres no poden."
     },
     "openlab": {
       "eyebrow": "EL CAMÍ",
-      "headline": "OpenLab per primer adaptar, després adoptar SimuLab.",
-      "body": "OpenLab és el programa de 12 mesos on Simulab s'adapta a l'operativa real de cada partner mitjançant arquetips. Yutopias, La Salle R&D i ACCIÓ han decidit que la millor forma de desplegar Simulab és co-creant-lo amb els primers partners. No venem un software acabat — construïm junts l'estàndard.",
-      "bootcampLead": "El Bootcamp Zero és el punt d'entrada.",
-      "ctaPrimary": "Uneix-te al Bootcamp Zero",
-      "ctaSecondary": "Explora OpenLab"
+      "headline": "OpenLab: on Simulab es converteix en teu.",
+      "body": "L'OpenLab és el programa de 12 mesos on Simulab s'adapta a la teva operativa real. Co-creem amb tu. Al final no t'emportes un informe — t'emportes una eina calibrada a la teva realitat i un equip autònom que sap usar-la.",
+      "bootcampLead": "Encara avaluant? Vine al Bootcamp Zero.",
+      "ctaPrimary": "M'interessa l'OpenLab",
+      "ctaSecondary": "Saber-ne més",
+      "stat1": "12 mesos",
+      "stat2": "Inversió 10.000€",
+      "stat3": "Només 16 places",
+      "bootcampBadge": "Gratuït",
+      "bootcampStat1": "16 Juny",
+      "bootcampStat2": "Gratuït",
+      "bootcampStat3": "Places limitades",
+      "bootcampBody": "Un matí per conèixer el programa, explorar el teu cas d'ús i decidir si openlab® és per a tu. Veuràs Simulab funcionant amb dades reals i coneixeràs les dinàmiques de l'OpenLab abans de comprometre't a res.",
+      "bootcampCtaPrimary": "Uneix-te al Bootcamp Zero",
+      "bootcampCtaSecondary": "Veure l'agenda"
     },
     "platform": {
       "eyebrow": "LA PLATAFORMA",
@@ -796,7 +804,7 @@
       "connectedBody": "AB360 connecta els equips interns i de projecte que col·laboren en qualsevol moment del cicle de l'edificació — promotores, projectistes, constructores, industrials i explotació —, i el software que utilitzen — BIM, ERP, GMAO, PMS —. No substitueix cap font. Les integra en un sol cervell semàntic — que no només emmagatzema les dades, sinó que entén el seu significat."
     },
     "agents": {
-      "headline": "Els agents d'AB360",
+      "headline": "Altres agents d'AB360",
       "agent1": {
         "badge": "Live",
         "role": "Agent IA de Simulació",
@@ -848,8 +856,8 @@
       "body": "AB360 no és un sistema per a l'empresa. És un sistema per a cada persona que pren decisions dins d'ella.",
       "actor1": {
         "title": "Promotor / Inversor",
-        "description": "Coneix l'impacte econòmic i ambiental de cada decisió de disseny abans de comprometre pressupost.",
-        "quote": "\"Aprovo pressupostos sobre estimacions. Quan arriben les dades reals, ja no hi ha marge de maniobra.\""
+        "description": "Coneix l'impacte de cada decisió abans d'aprovar una inversió. Producte, variables, oportunitat — totes mesurades a temps.",
+        "quote": "\"Aprovo inversions amb els terminis en contra. Quan arriben les dades reals, ja no hi ha marge.\""
       },
       "actor2": {
         "title": "CEO / CIO / COO",
@@ -858,22 +866,22 @@
       },
       "actor3": {
         "title": "Director d'Estudis",
-        "description": "Simula el cost real de cada oferta abans de presentar-la. Redueix la bretxa entre estimació i execució.",
-        "quote": "\"Entre el que ofertem i el que executem sempre hi ha una bretxa. I mai sabem exactament per què.\""
+        "description": "Simula el cost real de cada oferta abans d'assignar recursos i entrar en la licitació.",
+        "quote": "\"Entre el que ofertem i el que executem sempre hi ha una bretxa. I mai sabem per què.\""
       },
       "actor4": {
         "title": "Arquitecte / Enginyer",
-        "description": "Calcula l'impacte de cada decisió tècnica en cost i petjada abans de traslladar-la a l'equip.",
+        "description": "Calcula l'impacte de cada decisió tècnica en cost i petjada. Sense esperar al tancament del disseny. Sense refetes si canvien els OKRs.",
         "quote": "\"Cada canvi que arriba tard arrossega tot l'equip. I sempre arriben tard.\""
       },
       "actor5": {
         "title": "Delegat de construcció / Project Manager",
-        "description": "Detecta desviacions en temps real i coordina tots els agents sobre una única font de veritat.",
+        "description": "Cada canvi es decideix amb una predicció del seu impacte. Cost, termini, petjada al moment.",
         "quote": "\"Faig ofertes amb marge quasi nul i espero els canvis per recuperar-lo. No pot ser el model.\""
       },
       "actor6": {
         "title": "Gestor / Propietat / Facilities",
-        "description": "Opera l'actiu amb dades completes des del primer dia. Anticipa costos de manteniment i decisions.",
+        "description": "Decideix cada actualització de l'actiu amb el seu impacte simulat a l'instant. Capex amb agilitat.",
         "quote": "\"M'assabento dels problemes de l'actiu quan ja són urgents. Mai abans.\""
       }
     },

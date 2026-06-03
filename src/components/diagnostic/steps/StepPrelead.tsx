@@ -115,7 +115,7 @@ export function StepPrelead({ locale, mode = "diagnostic", onDone }: Props) {
                   type="checkbox"
                   checked={privacy}
                   onChange={(e) => setPrivacy(e.target.checked)}
-                  className="mt-[3px] accent-green-500 flex-shrink-0"
+                  className="mt-1 accent-green-500 flex-shrink-0"
                 />
                 <span className="text-sm text-grey-dark leading-[1.5]">
                   {t("privacyText")}{" "}

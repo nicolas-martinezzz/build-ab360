@@ -51,8 +51,8 @@ export const ChallengeDiscoverAb360Section = async () => {
                 <span
                   className={
                     card.isLive
-                      ? "inline-flex w-fit rounded-[5px] border border-green-500 bg-white px-2.5 py-[3px] figma-text-m text-green-500"
-                      : "inline-flex w-fit rounded-[5px] border border-grey-light bg-white px-2.5 py-[3px] figma-text-m text-grey-dark"
+                      ? "inline-flex w-fit rounded-[5px] border border-green-500 bg-white px-2.5 py-1 figma-text-m text-green-500"
+                      : "inline-flex w-fit rounded-[5px] border border-grey-light bg-white px-2.5 py-1 figma-text-m text-grey-dark"
                   }
                 >
                   {t(`${card.key}.badge`)}
@@ -61,9 +61,9 @@ export const ChallengeDiscoverAb360Section = async () => {
                 <h3 className="figma-text-l-bold text-black">{t(`${card.key}.title`)}</h3>
                 <p className="figma-text-m text-surface-bg">{t(`${card.key}.body`)}</p>
                 <p className="figma-text-m mt-auto pt-1 text-surface-bg">{t("metricsLabel")}</p>
-                <div className="mt-[3px] flex flex-wrap gap-[7px]">
+                <div className="mt-1 flex flex-wrap gap-2">
                   {card.pills.map((pillKey) => (
-                    <span className="rounded-[2px] bg-green-100 px-[5px] figma-text-m leading-6 text-green-400" key={pillKey}>
+                    <span className="rounded-[2px] bg-green-100 px-1.5 figma-text-m leading-6 text-green-400" key={pillKey}>
                       {t(pillKey)}
                     </span>
                   ))}

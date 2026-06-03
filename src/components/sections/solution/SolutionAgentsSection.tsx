@@ -1,7 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import Image from "next/image";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { SITE_ASSETS } from "@/config/assets";
 
 type AgentCardProps = {
   status: "live" | "development";
@@ -11,12 +9,16 @@ type AgentCardProps = {
   shortDesc: string;
   languageLabel: string;
   pills: string[];
-  imageSrc: string;
   description: string;
   descriptionLine2?: string;
   features: string[];
-  checkIcon: string;
 };
+
+const CheckIcon = () => (
+  <svg className="mt-0.5 shrink-0 text-green-500" fill="none" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3.75 9.75L7.5 13.5L14.25 5.25" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+  </svg>
+);
 
 const AgentCard = ({
   status,
@@ -26,11 +28,9 @@ const AgentCard = ({
   shortDesc,
   languageLabel,
   pills,
-  imageSrc,
   description,
   descriptionLine2,
   features,
-  checkIcon,
 }: AgentCardProps) => {
   const badgeClasses =
     status === "live"
@@ -38,28 +38,24 @@ const AgentCard = ({
       : "border-grey-light text-grey-dark";
 
   return (
-    <article className="relative isolate flex flex-col gap-6 py-8 lg:flex-row">
-      <div className="flex w-full flex-col gap-2 lg:w-[22.75rem] lg:shrink-0">
-        <span
-          className={`w-fit rounded-[5px] border bg-white px-2 py-[2px] text-sm leading-[1.2] ${badgeClasses}`}
-        >
+    <article className="grid gap-10 py-10 lg:grid-cols-2 lg:gap-16 lg:py-12">
+      {/* Left */}
+      <div className="flex flex-col gap-4">
+        <span className={`w-fit rounded-[5px] border bg-white px-2 py-0.5 text-sm leading-[1.2] ${badgeClasses}`}>
           {statusLabel}
         </span>
 
         <div className="flex flex-col gap-1">
           <p className="figma-text-l italic text-surface-bg">{role}</p>
           <h3 className="figma-title-3 text-surface-bg">{title}</h3>
-          <p className="figma-text-l text-surface-bg">{shortDesc}</p>
+          <p className="figma-text-l mt-1 text-surface-bg">{shortDesc}</p>
         </div>
 
-        <div className="mt-2 flex flex-col gap-1.5">
-          <p className="figma-text-l text-grey-dark">{languageLabel}</p>
-          <div className="flex flex-wrap gap-[7px]">
-            {pills.map((pill, pillIndex) => (
-              <span
-                key={`${title}-pill-${pillIndex}-${pill}`}
-                className="rounded-[2px] bg-green-100 px-[8px] py-[2px] text-sm leading-[1.2] text-green-400"
-              >
+        <div className="flex flex-col gap-1.5">
+          <p className="figma-text-m text-grey-dark">{languageLabel}</p>
+          <div className="flex flex-wrap gap-2">
+            {pills.map((pill, i) => (
+              <span key={i} className="rounded-[2px] bg-green-100 px-2 py-0.5 text-sm leading-[1.2] text-green-400">
                 {pill}
               </span>
             ))}
@@ -67,42 +63,18 @@ const AgentCard = ({
         </div>
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col gap-[30px]">
-        <div className="relative aspect-[2752/1536] min-h-[10rem] w-full overflow-hidden bg-green-100 sm:min-h-[13rem] md:min-h-[18rem]">
-          <Image
-            alt={title}
-            className="object-cover"
-            fill
-            sizes="(max-width: 1024px) 100vw, 683px"
-            src={imageSrc}
-          />
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <p className="figma-text-l text-surface-bg">{description}</p>
-          {descriptionLine2 ? (
-            <p className="figma-text-l text-surface-bg">{descriptionLine2}</p>
-          ) : null}
-
-          <ul className="flex flex-col gap-3">
-            {features.map((feature, featureIndex) => (
-              <li
-                key={`${title}-feature-${featureIndex}`}
-                className="flex items-start gap-4"
-              >
-                <Image
-                  alt=""
-                  aria-hidden
-                  className="shrink-0"
-                  height={24}
-                  src={checkIcon}
-                  width={24}
-                />
-                <span className="figma-text-l flex-1 text-surface-bg">{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* Right */}
+      <div className="flex flex-col gap-5">
+        <p className="figma-text-l text-surface-bg">{description}</p>
+        {descriptionLine2 ? <p className="figma-text-l text-surface-bg">{descriptionLine2}</p> : null}
+        <ul className="flex flex-col gap-3">
+          {features.map((feature, i) => (
+            <li key={i} className="flex items-start gap-3">
+              <CheckIcon />
+              <span className="figma-text-l text-surface-bg">{feature}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </article>
   );
@@ -120,35 +92,9 @@ export const SolutionAgentsSection = async () => {
 
         <div className="mt-10 divide-y divide-agent-divider">
           <AgentCard
-            checkIcon={SITE_ASSETS.solution.checkIcon}
-            description={t("agent1.description")}
-            features={[
-              t("agent1.feature1"),
-              t("agent1.feature2"),
-              t("agent1.feature3"),
-              t("agent1.feature4"),
-            ]}
-            imageSrc={SITE_ASSETS.solution.simulabAgent}
-            languageLabel={t("agent1.languageLabel")}
-            pills={[t("agent1.pill1"), t("agent1.pill2"), t("agent1.pill3")]}
-            role={t("agent1.role")}
-            shortDesc={t("agent1.shortDesc")}
-            status="live"
-            statusLabel={t("agent1.badge")}
-            title={t("agent1.title")}
-          />
-
-          <AgentCard
-            checkIcon={SITE_ASSETS.solution.checkIcon}
             description={t("agent2.description")}
             descriptionLine2={t("agent2.descriptionLine2")}
-            features={[
-              t("agent2.feature1"),
-              t("agent2.feature2"),
-              t("agent2.feature3"),
-              t("agent2.feature4"),
-            ]}
-            imageSrc={SITE_ASSETS.solution.cyclePlannerAgent}
+            features={[t("agent2.feature1"), t("agent2.feature2"), t("agent2.feature3"), t("agent2.feature4")]}
             languageLabel={t("agent2.languageLabel")}
             pills={[t("agent2.pill1"), t("agent2.pill2"), t("agent2.pill3")]}
             role={t("agent2.role")}
@@ -159,10 +105,8 @@ export const SolutionAgentsSection = async () => {
           />
 
           <AgentCard
-            checkIcon={SITE_ASSETS.solution.checkIcon}
             description={t("agent3.description")}
             features={[t("agent3.feature1"), t("agent3.feature2"), t("agent3.feature3")]}
-            imageSrc={SITE_ASSETS.solution.platonAgent}
             languageLabel={t("agent3.languageLabel")}
             pills={[t("agent3.pill1"), t("agent3.pill2")]}
             role={t("agent3.role")}

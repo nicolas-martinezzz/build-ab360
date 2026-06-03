@@ -15,7 +15,7 @@ export const SolutionDiagnosticCta = async () => {
           {t("body")}
         </p>
 
-        <div className="mt-10 flex justify-center md:mt-[4.3125rem]">
+        <div className="mt-10 flex justify-center md:mt-16">
           <LinkButton
             href={diagnosticPath}
             variant="primary"

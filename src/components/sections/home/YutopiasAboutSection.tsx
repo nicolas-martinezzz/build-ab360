@@ -36,7 +36,7 @@ export const YutopiasAboutSection = async () => {
             </LinkButton>
           </div>
 
-          <div className="min-w-0 lg:flex lg:justify-end lg:pt-[0.125rem]">
+          <div className="min-w-0 lg:flex lg:justify-end lg:pt-0.5">
             <p className="figma-text-m max-w-[23.5rem] whitespace-pre-line border-white/90 italic text-white/95 lg:border-r lg:pr-5 lg:text-right">
               {t("philosophy")}
             </p>

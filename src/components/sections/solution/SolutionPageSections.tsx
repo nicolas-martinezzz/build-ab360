@@ -5,14 +5,12 @@ import { SolutionHeroSection } from "@/components/sections/solution/SolutionHero
 import { SolutionOpenlabSection } from "@/components/sections/solution/SolutionOpenlabSection";
 import { SolutionPartnersBanner } from "@/components/sections/solution/SolutionPartnersBanner";
 import { SolutionPlatformSection } from "@/components/sections/solution/SolutionPlatformSection";
-import { SolutionQuoteBanner } from "@/components/sections/solution/SolutionQuoteBanner";
 import { SolutionSimulabSection } from "@/components/sections/solution/SolutionSimulabSection";
 
 export const SolutionPageSections = () => (
   <>
     <SolutionHeroSection />
-    <SolutionQuoteBanner />
-    <SolutionSimulabSection />
+<SolutionSimulabSection />
     <SolutionOpenlabSection />
     <SolutionPlatformSection />
     <SolutionAgentsSection />

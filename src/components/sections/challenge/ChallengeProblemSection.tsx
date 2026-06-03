@@ -50,7 +50,7 @@ export const ChallengeProblemSection = async () => {
           <span className="text-green-500">{t("titleLine2Errores")}</span>.
         </p>
 
-        <div className="mt-[4.625rem] grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {problemCards.map((card) => (
             <article className="min-w-0" key={card.title}>
               {/* eslint-disable-next-line @next/next/no-img-element -- asset mirrors exact Figma icon */}
@@ -68,9 +68,9 @@ export const ChallengeProblemSection = async () => {
           ))}
         </div>
 
-        <div className="mt-[2.5rem] grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {evidenceCards.map((card) => (
-            <article className="rounded-[5px] border border-grey-light bg-surface-bg p-[1.875rem] text-white" key={card.quote}>
+            <article className="rounded-[5px] border border-grey-light bg-surface-bg p-8 text-white" key={card.quote}>
               <p className="figma-text-l-bold text-white">{card.quote}</p>
               <p className="figma-text-m mt-5 italic leading-[1.4] text-grey-light underline decoration-grey-light underline-offset-2">
                 {card.source}
@@ -79,7 +79,7 @@ export const ChallengeProblemSection = async () => {
           ))}
         </div>
 
-        <div className="mt-[6.375rem] text-center">
+        <div className="mt-24 text-center">
           <p className="whitespace-pre-line figma-title-3 text-black">{t("closingLine1")}</p>
           <p className="figma-title-3 text-green-500">{t("closingLine2")}</p>
         </div>

@@ -79,11 +79,11 @@ export const ProgramaBootcampSection = async () => {
           </div>
 
           <div className="h-fit lg:sticky lg:top-20 lg:self-start">
-            <div className="flex h-fit flex-col gap-[34px] rounded-[5px] bg-green-500 px-10 py-[30px] text-white">
+            <div className="flex h-fit flex-col gap-8 rounded-[5px] bg-green-500 px-10 py-8 text-white">
               <div className="space-y-4">
                 <div>
                   <h3 className="figma-title-3 font-bold text-white">{t("ctaCardHeadline")}</h3>
-                  <p className="figma-text-l-bold mt-[5px] text-white">{t("ctaCardSubhead")}</p>
+                  <p className="figma-text-l-bold mt-1 text-white">{t("ctaCardSubhead")}</p>
                 </div>
                 <p className="figma-text-m text-white">{t("ctaCardBody")}</p>
               </div>

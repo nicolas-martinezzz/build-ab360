@@ -123,7 +123,7 @@ export function ReservaPlazaForm({ locale }: Props) {
         <input
           type="checkbox" checked={privacy}
           onChange={(e) => setPrivacy(e.target.checked)}
-          className="mt-[3px] flex-shrink-0 accent-green-600"
+          className="mt-1 flex-shrink-0 accent-green-600"
         />
         <span className="text-sm leading-relaxed text-surface-bg/60">
           Acepto la{" "}

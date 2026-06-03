@@ -747,39 +747,47 @@
       "description": "AB360 connects cost, energy, and environmental impact in a single model. Simulate decisions before committing and measure real impact at every stage of the building lifecycle."
     },
     "hero": {
-      "eyebrow": "AI SIMULATION AGENT",
-      "badge": "Live",
-      "headline": "The first AI agent for better decision-making in construction.",
-      "body": "Simulab is not standalone software. It is the first operational agent of AB360 — the platform that integrates BIM, ERP, GMAO, and PMS into a semantic digital twin. Enter your project data. The engine simultaneously calculates the impact on costs and footprints — carbon, water, and energy.\nSee the result before you act.",
+      "eyebrow": "SIMULATION AGENT",
+      "badge": "Beta in validation",
+      "headline": "SimuLab. First vertical AI agent for sustainable construction.",
+      "body": "In construction, information often does not arrive on time. The result is decisions made with incomplete data — and errors that could have been avoided.",
       "cta": "Take your self-assessment",
-      "hint": "10 minutes. You know where you stand and where to improve.",
-      "demoAlt": "Interactive SimuLab demo — cost and sustainability simulation for a building."
-    },
-    "quoteBanner": {
-      "line1": "Every decision without simulation already has a cost.",
-      "line2": "You just don't see it yet."
+      "hint": "10 minutes. You leave knowing where you stand.",
+      "demoAlt": "Interactive SimuLab demo — cost and sustainability simulation for a building.",
+      "collaborators": "Developed in collaboration with La Salle R&D URL and SNGULAR. With the support of ACCIÓ.",
+      "ctaLabel": "How does your company make decisions?"
     },
     "simulab": {
       "imageAlt": "SimuLab dashboard view in AB360",
-      "intro1": "You've been making good decisions for years. Imagine making them with all the data on the table.",
-      "intro2": "Simulab doesn't show past data. It projects the impact of decisions before they become irreversible. Enter your project data. The engine simultaneously calculates the impact on costs and footprints — carbon, water, and energy.",
-      "intro3": "See the result before you act.",
+      "intro1": "Imagine being able to decide with all the data on the table.",
+      "intro2": "Simulab does not show past data. It projects the impact of decisions before they become irreversible. It integrates BIM, ERP, GMAO, and PMS data into a semantic digital twin — and simultaneously calculates costs and carbon, water, and energy footprints.",
       "feature1Title": "Dynamic simulation",
-      "feature1Body": "Every construction solution has a cost and footprint index — carbon, energy, and water — that translate into execution costs and project environmental indicators. Change a variable and Simulab recalculates the entire scenario in real time, before the decision becomes irreversible.",
+      "feature1Body": "Change a variable and see the impact immediately — in cost, carbon, water, and energy. Decide on data, not assumptions.",
       "feature2Title": "European taxonomy",
-      "feature2Body": "Simulab's indices and indicators are calibrated to the European taxonomy and environmental certifications. Every project decision is rigorous, auditable, and aligned with a sustainable approach from the first calculation.",
+      "feature2Body": "Your decisions arrive audited from the first calculation. You do not redo reports to certify: they are already aligned with the European taxonomy.",
       "feature3Title": "Validated archetypes",
-      "feature3Body": "Simulab doesn't treat each project as a new prototype. It recognizes archetypes — scientifically validated construction patterns — and makes them dynamic. Adjust variables, change solutions, and the system recalculates the impact on cost and environmental footprints without losing model rigor.",
-      "feature4Title": "Structured customization",
-      "feature4Body": "Each partner has their typology, operations, and objectives. Simulab starts from the archetype closest to their reality and adapts it in three steps: first we understand how you work, then we configure the model, and finally we co-create it with you until it's yours. We call the personalized milestone panel SmartCheck."
+      "feature3Body": "You do not start from scratch. You start from the construction pattern closest to your project and adjust it. Move variables, test alternatives, and rigor is maintained.",
+      "feature4Title": "Customization",
+      "feature4Body": "SimuLab is not generic nor a custom development. It is a system that calibrates to your building typology and your real operations.",
+      "featuresHeadline": "Four reasons why Simulab calculates what others cannot."
     },
     "openlab": {
       "eyebrow": "THE PATH",
-      "headline": "OpenLab to first adapt, then adopt SimuLab.",
-      "body": "OpenLab is the 12-month program where Simulab adapts to each partner's real operations through archetypes. Yutopias, La Salle R&D, and ACCIÓ have decided that the best way to deploy Simulab is by co-creating it with the first partners. We don't sell finished software — we build the standard together.",
-      "bootcampLead": "Zero Bootcamp is the entry point.",
-      "ctaPrimary": "Join the Zero Bootcamp",
-      "ctaSecondary": "Explore OpenLab"
+      "headline": "OpenLab: where Simulab becomes yours.",
+      "body": "OpenLab is the 12-month program where Simulab adapts to your real operations. We co-create with you. At the end you do not take away a report — you take away a tool calibrated to your reality and an autonomous team that knows how to use it.",
+      "bootcampLead": "Still evaluating? Come to Bootcamp Zero.",
+      "ctaPrimary": "I am interested in OpenLab",
+      "ctaSecondary": "Learn more",
+      "stat1": "12 months",
+      "stat2": "Investment €10,000",
+      "stat3": "Only 16 spots",
+      "bootcampBadge": "Free",
+      "bootcampStat1": "June 16",
+      "bootcampStat2": "Free",
+      "bootcampStat3": "Limited spots",
+      "bootcampBody": "A morning to get to know the program, explore your use case and decide if openlab® is for you. You will see Simulab working with real data and get to know the OpenLab dynamics before committing to anything.",
+      "bootcampCtaPrimary": "Join Bootcamp Zero",
+      "bootcampCtaSecondary": "See the agenda"
     },
     "platform": {
       "eyebrow": "THE PLATFORM",
@@ -796,7 +804,7 @@
       "connectedBody": "AB360 connects internal and project teams collaborating at any point in the building lifecycle — developers, designers, builders, industrials, and operations — and the software they use — BIM, ERP, GMAO, PMS. It doesn't replace any source. It integrates them into a single semantic brain — that doesn't just store data, but understands its meaning."
     },
     "agents": {
-      "headline": "The AB360 agents",
+      "headline": "Other AB360 agents",
       "agent1": {
         "badge": "Live",
         "role": "AI Simulation Agent",
@@ -848,8 +856,8 @@
       "body": "AB360 is not a system for the company. It's a system for each person who makes decisions within it.",
       "actor1": {
         "title": "Developer / Investor",
-        "description": "Know the economic and environmental impact of each design decision before committing budget.",
-        "quote": "\"I approve budgets based on estimates. When real data arrives, there's no room to maneuver.\""
+        "description": "Know the impact of each decision before approving an investment. Product, variables, opportunity — all measured in time.",
+        "quote": "\"I approve investments with deadlines against me. When real data arrives, there is no margin.\""
       },
       "actor2": {
         "title": "CEO / CIO / COO",
@@ -858,22 +866,22 @@
       },
       "actor3": {
         "title": "Director of Studies",
-        "description": "Simulate the real cost of each bid before presenting it. Reduce the gap between estimation and execution.",
-        "quote": "\"There's always a gap between what we bid and what we execute. And we never know exactly why.\""
+        "description": "Simulate the real cost of each bid before allocating resources and entering the tender.",
+        "quote": "\"There is always a gap between what we bid and what we execute. And we never know why.\""
       },
       "actor4": {
         "title": "Architect / Engineer",
-        "description": "Calculate the impact of each technical decision on cost and footprint before passing it to the team.",
+        "description": "Calculate the impact of each technical decision on cost and footprint. Without waiting for the design close. No rework if OKRs change.",
         "quote": "\"Every late change drags the whole team down. And they always come late.\""
       },
       "actor5": {
         "title": "Construction Delegate / Project Manager",
-        "description": "Detect deviations in real time and coordinate all agents on a single source of truth.",
+        "description": "Each change is decided with a prediction of its impact. Cost, timeline, footprint immediately.",
         "quote": "\"I make bids with almost no margin and wait for changes to recover it. That can't be the model.\""
       },
       "actor6": {
         "title": "Manager / Property / Facilities",
-        "description": "Operate the asset with complete data from day one. Anticipate maintenance costs and decisions.",
+        "description": "Decide each asset update with its simulated impact instantly. Capex with agility.",
         "quote": "\"I find out about asset problems when they're already urgent. Never before.\""
       }
     },
@@ -885,8 +893,8 @@
     "partnersBanner": {
       "headline": "We're looking for partners who want to define how decisions will be made in this sector.",
       "cta": "Join the Zero Bootcamp",
-      "tagline1": "You join now, we shape it together.",
-      "tagline2": ""
+      "tagline1": "Those who come later will use it.",
+      "tagline2": "Those who join now will shape it."
     }
   },
   "programaPage": {

@@ -165,7 +165,7 @@ export const BootcampLeadForm = ({
         type="text"
         value={website}
       />
-      <Button className="mt-[14px] w-full" disabled={isSubmitting} type="submit" variant="dark">
+      <Button className="mt-3.5 w-full" disabled={isSubmitting} type="submit" variant="dark">
         {submitLabel}
       </Button>
       {error ? <p className="figma-text-m text-red-100">{error}</p> : null}

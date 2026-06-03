@@ -7,14 +7,11 @@ export const SolutionQuoteBanner = async () => {
   return (
     <section aria-label={t("line1")} className="section-band bg-white">
       <SectionContainer className="text-center">
-        <div className="mx-auto max-w-[54.875rem]">
-          <p className="figma-text-m text-surface-bg">
-            {t("line1")}
-          </p>
-          <p className="figma-text-m font-bold text-surface-bg">
-            {t("line2")}
-          </p>
-        </div>
+        <p className="figma-title-3 mx-auto max-w-[54.875rem] font-normal text-surface-bg">
+          {t("line1")}
+          <br />
+          <span className="font-semibold">{t("line2")}</span>
+        </p>
       </SectionContainer>
     </section>
   );

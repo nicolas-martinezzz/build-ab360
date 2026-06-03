@@ -35,7 +35,7 @@ export const SolutionHeroSection = async () => {
       <SectionContainer className="relative z-10">
         <div className="flex flex-wrap items-center gap-4">
           <p className="type-eyebrow text-white">{t("eyebrow")}</p>
-          <span className="figma-text-m rounded-[5px] border border-green-200 bg-white px-2.5 py-[3px] text-green-500">
+          <span className="figma-text-m rounded-[5px] border border-green-200 bg-white px-2.5 py-1 text-green-500">
             {t("badge")}
           </span>
         </div>
@@ -47,18 +47,25 @@ export const SolutionHeroSection = async () => {
           {t("headline")}
         </h1>
 
-        <p className="figma-text-l mt-[1.375rem] max-w-[52.5rem] whitespace-pre-line text-white">
+        <p className="figma-text-m mt-3 font-semibold text-green-400">
+          {t("collaborators")}
+        </p>
+
+        <p className="figma-text-l mt-5 max-w-[52.5rem] whitespace-pre-line text-white">
           {t("body")}
         </p>
 
+        <p className="figma-text-l-bold mt-4 text-white">
+          {t("ctaLabel")}
+        </p>
         <LinkButton
-          className="mt-[1.375rem] w-full max-w-sm sm:w-auto"
+          className="mt-3 w-full max-w-sm sm:w-auto"
           href={diagnosticPath}
           variant="primary"
         >
           {t("cta")}
         </LinkButton>
-        <p className="figma-text-m mt-4 text-white/80">
+        <p className="figma-text-m mt-4 italic text-white/60">
           {t("hint")}
         </p>
       </SectionContainer>
