@@ -47,18 +47,10 @@ export const OpenlabSection = async () => {
       id={SITE_SECTION_IDS.program}
     >
       <SectionContainer>
-        <blockquote className="border-l-2 border-green-600 pl-5">
-          <p className="figma-text-l text-green-600 italic">
-            {t.rich("quote", {
-              openlab: (chunks) => <strong className="font-bold not-italic">{chunks}</strong>,
-            })}
-          </p>
-        </blockquote>
-
-        <div className="mt-14 min-w-0 md:mt-16">
+        <div className="min-w-0">
           <p className="type-eyebrow text-grey-dark">{t("pathLabel")}</p>
           <h2
-            className="figma-title-2-bold mt-7 text-surface-bg [overflow-wrap:anywhere]"
+            className="figma-title-2-bold mt-4 text-surface-bg [overflow-wrap:anywhere]"
             id="openlab-title"
           >
             <span className="block">{t("headlineLine1")}</span>
@@ -66,10 +58,26 @@ export const OpenlabSection = async () => {
             <span className="mt-2 block">{t("headlineLine3")}</span>
             <span className="block">{t("headlineLine4")}</span>
           </h2>
-          <p className="figma-text-l mt-5 max-w-[42.75rem] leading-relaxed text-surface-bg">
+
+          {/* Stats row */}
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+            <span className="inline-flex items-center gap-1.5 figma-text-m text-surface-bg">
+              <svg aria-hidden className="size-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              {t("stat1")}
+            </span>
+            <span className="inline-flex items-center gap-1.5 figma-text-m text-surface-bg">
+              <svg aria-hidden className="size-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              {t("stat2")}
+            </span>
+            <span className="inline-flex items-center gap-1.5 figma-text-m text-surface-bg">
+              <svg aria-hidden className="size-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              {t("stat3")}
+            </span>
+          </div>
+
+          <p className="figma-text-l mt-4 max-w-[42.75rem] leading-relaxed text-surface-bg">
             {t("description")}
           </p>
-          <p className="mt-[0.5625rem] figma-text-l-bold text-surface-bg">{t("bootcampLead")}</p>
 
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <LinkButton
@@ -81,7 +89,7 @@ export const OpenlabSection = async () => {
             </LinkButton>
             <Link
               className="inline-flex items-center text-surface-bg underline underline-offset-4 transition-opacity hover:opacity-70"
-              href={SITE_PATHS.challenge}
+              href={SITE_PATHS.programa}
             >
               {t("ctaSecondary")}
             </Link>
@@ -103,6 +111,48 @@ export const OpenlabSection = async () => {
         </ul>
 
         <p className="mt-12 figma-text-l-bold text-green-600">{t("footerTagline")}</p>
+
+        {/* Bootcamp Zero card */}
+        <div className="mt-10 rounded-xl border border-grey-light bg-surface-light p-6 sm:p-8 md:p-10">
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-12">
+            <div className="min-w-0 shrink-0 md:max-w-[14rem]">
+              <p className="figma-text-m text-grey-dark">{t("bootcampCard.eyebrow")}</p>
+              <p className="figma-text-l-bold mt-1 text-surface-bg">{t("bootcampCard.headline")}</p>
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="figma-text-m text-surface-bg">{t("bootcampCard.body")}</p>
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+                <span className="inline-flex items-center gap-1.5 figma-text-m text-surface-bg">
+                  <svg aria-hidden className="size-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                  {t("bootcampCard.stat1")}
+                </span>
+                <span className="inline-flex items-center gap-1.5 figma-text-m text-surface-bg">
+                  <svg aria-hidden className="size-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  {t("bootcampCard.stat2")}
+                </span>
+                <span className="inline-flex items-center gap-1.5 figma-text-m text-surface-bg">
+                  <svg aria-hidden className="size-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  {t("bootcampCard.stat3")}
+                </span>
+              </div>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:gap-4">
+                <LinkButton
+                  className="w-full justify-center sm:w-auto"
+                  href={SITE_PATHS.reservaPlaza}
+                  variant="primary"
+                >
+                  {t("bootcampCard.ctaPrimary")}
+                </LinkButton>
+                <Link
+                  className="inline-flex items-center text-surface-bg underline underline-offset-4 transition-opacity hover:opacity-70"
+                  href={SITE_PATHS.reservaPlaza}
+                >
+                  {t("bootcampCard.ctaSecondary")}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </SectionContainer>
     </section>
   );
