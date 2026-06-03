@@ -204,6 +204,12 @@ section {
   }
 }
 
+@media (min-width: 1024px) {
+  .section-band {
+    padding-block: 5.5rem;
+  }
+}
+
 .section-block-spacious {
   padding-block: 4.5rem;
 }

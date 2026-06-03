@@ -1,7 +1,7 @@
 export const SITE_ASSETS = {
   branding: {
     kitDigitalLogo: "/images/branding/kit-digital-logo.png",
-    logo: "/images/branding/yutopias-systems-logo.png",
+    logo: "/images/branding/yutopias-systems-wordmark.png",
   },
   home: {
     heroBackgroundGif: "/images/home/yutopias-hero-background.gif",

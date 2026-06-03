@@ -34,6 +34,7 @@ export const SITE_SECTION_IDS = {
   program: "programa",
   about: "nosotros",
   platform: "platform",
+  openlabContact: "openlab-contacto",
 } as const;
 
 export type SiteNavSectionKey = keyof Pick<
