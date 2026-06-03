@@ -10,12 +10,14 @@ import {
   getDynamicConclusion,
   getGoodAnswers,
 } from "@/lib/diagnostic/scoring";
-import type { DiagnosticResults, ComputedReto } from "@/lib/diagnostic/types";
+import { downloadReport } from "@/lib/diagnostic/report-html";
+import type { DiagnosticResults, ComputedReto, LeadData } from "@/lib/diagnostic/types";
 import type { DimensionKey } from "@/lib/diagnostic/types";
 
 type Props = {
   results: DiagnosticResults;
   answers: (number | null)[];
+  lead?: LeadData | null;
   onComplete: (lead: BridgeLead) => void;
   onRestart: () => void;
 };
@@ -29,7 +31,7 @@ export type BridgeLead = {
   challenge: string;
 };
 
-export function StepResults({ results, answers, onComplete, onRestart }: Props) {
+export function StepResults({ results, answers, lead, onComplete, onRestart }: Props) {
   const t = useTranslations("diagnosticPage.results");
   const { weightedScore, scoreOver10, topRetos, dimensionPerformance, profile } = results;
   const weightedPct = weightedScore / 100;
@@ -222,11 +224,16 @@ export function StepResults({ results, answers, onComplete, onRestart }: Props) 
         <BridgeSection topRetos={topRetos} onComplete={onComplete} t={t} />
       </div>
 
-      {/* Restart + Print */}
+      {/* Download + Restart */}
       <div className="text-center py-4 flex items-center justify-center gap-6">
         <button
           type="button"
-          onClick={() => window.print()}
+          onClick={() => downloadReport({
+            results,
+            firstName: lead?.name ?? "",
+            company: lead?.company ?? "",
+            role: "",
+          })}
           className="diagnostic-print-hide text-[14px] font-medium text-green-600 hover:text-green-700 border border-green-200 rounded-lg px-4 py-2 transition-colors"
         >
           {t("printReport")}

@@ -218,6 +218,7 @@ export function DiagnosticWizard({ locale, mode = "diagnostic" }: Props) {
         <StepResults
           results={state.results}
           answers={state.answers}
+          lead={state.lead}
           onComplete={handleBridgeComplete}
           onRestart={() => dispatch({ type: "RESTART" })}
         />

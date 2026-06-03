@@ -132,7 +132,7 @@ export function saveComplete(
     sessionId,
     weightedScore: results.weightedScore,
     scoreOver10: results.scoreOver10,
-    topRetos: results.topRetos.map((r) => `${r.reto.code} · ${r.reto.name}`),
+    topRetos: results.topRetos.map((r) => r.reto.name),
     summary: {
       weightedScore: results.weightedScore,
       scoreOver10: results.scoreOver10,
