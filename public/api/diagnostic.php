@@ -577,6 +577,61 @@ function he(string $s): string {
     return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
 }
 
+function buildEmailBody(string $firstName, string $sc, string $reportHtml, bool $withReport): string {
+    $report = $withReport ? '<tr><td style="padding-top:0;">' . $reportHtml . '</td></tr>' : '';
+    return '<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background:#F4F7F4;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F7F4;padding:32px 16px;">
+<tr><td align="center">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;">
+
+  <!-- Eyebrow bar -->
+  <tr><td style="background:#1B6B3A;border-radius:6px 6px 0 0;padding:14px 28px;">
+    <p style="margin:0;font-size:13px;font-weight:700;color:#ffffff;letter-spacing:0.04em;">YŪTOPIAS SYSTEMS</p>
+  </td></tr>
+
+  <!-- Intro card -->
+  <tr><td style="background:#ffffff;padding:32px 28px 28px;border-left:1px solid #DDE8DD;border-right:1px solid #DDE8DD;">
+    <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#3AA76D;">Tu diagnóstico de madurez digital</p>
+    <p style="margin:0 0 16px;font-size:22px;font-weight:600;line-height:1.3;color:#141B2E;">Hola ' . $firstName . ', aquí tienes tu informe.</p>
+    <p style="margin:0 0 12px;font-size:15px;color:#4A5568;line-height:1.7;">Completaste el diagnóstico de madurez digital de yūtopias. Tu puntuación es <strong style="color:#141B2E;">' . $sc . '/10</strong>.</p>
+    <p style="margin:0 0 28px;font-size:14px;color:#4A5568;line-height:1.7;">El informe completo está debajo — incluye tu análisis por bloques y las 3 prioridades de mejora. Puedes imprimirlo como PDF desde tu navegador.</p>
+    <!-- CTAs -->
+    <table cellpadding="0" cellspacing="0" border="0"><tr>
+      <td style="background:#1B6B3A;border-radius:6px;mso-padding-alt:0;">
+        <a href="https://yutopias.com/es/contact/" style="display:inline-block;padding:12px 22px;font-size:13px;font-weight:700;color:#ffffff;text-decoration:none;letter-spacing:0.02em;">Hablar con el equipo &rarr;</a>
+      </td>
+      <td style="padding-left:12px;">
+        <a href="https://yutopias.com/es/solution/" style="display:inline-block;padding:11px 22px;font-size:13px;font-weight:600;color:#1B6B3A;text-decoration:none;border:1px solid #1B6B3A;border-radius:6px;">Ver SimuLab</a>
+      </td>
+    </tr></table>
+  </td></tr>
+
+  <!-- Divider -->
+  <tr><td style="background:#ffffff;padding:0 28px;border-left:1px solid #DDE8DD;border-right:1px solid #DDE8DD;">
+    <div style="height:1px;background:#E8EEE8;"></div>
+  </td></tr>
+
+  <!-- Report section label -->
+  <tr><td style="background:#ffffff;padding:20px 28px 0;border-left:1px solid #DDE8DD;border-right:1px solid #DDE8DD;">
+    <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#3AA76D;">Tu informe completo</p>
+  </td></tr>
+
+  ' . $report . '
+
+  <!-- Footer -->
+  <tr><td style="background:#F0F7F0;border:1px solid #DDE8DD;border-top:0;border-radius:0 0 6px 6px;padding:16px 28px;">
+    <p style="margin:0;font-size:11px;color:#7A9A7A;line-height:1.6;">yūtopias systems &middot; <a href="https://yutopias.com" style="color:#1B6B3A;text-decoration:none;">yutopias.com</a><br>Recibiste este email porque completaste el diagnóstico de madurez digital.</p>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body></html>';
+}
+
 function buildReportHtml(array $d): string {
     $dims = [
         "A" => ["name" => "Decidir con datos",                  "short" => "Bloque I",   "color" => "#1B6B3A", "bg" => "#E8F3EA", "dark" => "#0D4A24"],
@@ -643,53 +698,186 @@ function buildReportHtml(array $d): string {
         $idx++;
     }
 
-    $isoSvg = '<svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M 32 12 L 44 8 L 48 22 L 36 26 Z" fill="#1B6B3A" stroke="#0A1220" stroke-width="1.2" stroke-linejoin="round"/><path d="M 54 14 A 38 38 0 0 1 72 22 L 67 31 A 28 28 0 0 0 55 26 Z" fill="#3AA76D" stroke="#0A1220" stroke-width="1.2" stroke-linejoin="round"/><path d="M 72 22 A 38 38 0 0 1 85 39 L 76 44 A 28 28 0 0 0 67 31 Z" fill="#3AA76D" stroke="#0A1220" stroke-width="1.2" stroke-linejoin="round"/><path d="M 85 39 A 38 38 0 0 1 88 54 L 78 55 A 28 28 0 0 0 76 44 Z" fill="#6BC38C" stroke="#0A1220" stroke-width="1.2" stroke-linejoin="round"/><path d="M 88 54 A 38 38 0 0 1 81 73 L 72 68 A 28 28 0 0 0 78 55 Z" fill="#7FCA96" stroke="#0A1220" stroke-width="1.2" stroke-linejoin="round"/><path d="M 81 73 A 38 38 0 0 1 65 86 L 61 76 A 28 28 0 0 0 72 68 Z" fill="#8ED5A5" stroke="#0A1220" stroke-width="1.2" stroke-linejoin="round"/><path d="M 65 86 A 38 38 0 0 1 42 88 L 44 78 A 28 28 0 0 0 61 76 Z" fill="#9EDCB0" stroke="#0A1220" stroke-width="1.2" stroke-linejoin="round"/><path d="M 42 88 A 38 38 0 0 1 22 76 L 29 68 A 28 28 0 0 0 44 78 Z" fill="#AFE2BD" stroke="#0A1220" stroke-width="1.2" stroke-linejoin="round"/><path d="M 22 76 A 38 38 0 0 1 13 55 L 23 54 A 28 28 0 0 0 29 68 Z" fill="#B5E3C1" stroke="#0A1220" stroke-width="1.2" stroke-linejoin="round"/><path d="M 13 55 A 38 38 0 0 1 16 38 L 25 43 A 28 28 0 0 0 23 54 Z" fill="#C4E6CE" stroke="#0A1220" stroke-width="1.2" stroke-linejoin="round"/></svg>';
+    // Build full report as email-safe table HTML (no SVG, no grid, no dark backgrounds)
+    $out  = '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F7F4;">';
 
-    return '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Informe de diagnóstico digital · yūtopias systems</title><style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:#F0F5E9;color:#141B2E;-webkit-font-smoothing:antialiased;}.wrap{max-width:960px;margin:0 auto;}.hero{background:#141B2E;color:#fff;padding:48px 40px 56px;}.brand{display:flex;align-items:center;gap:10px;margin-bottom:48px;}.brand-name{font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.01em;}.brand-name span{color:#3AA76D;font-weight:300;letter-spacing:0.14em;margin-left:2px;}.hero h1{font-size:36px;font-weight:400;line-height:1.12;letter-spacing:-0.02em;max-width:780px;margin-bottom:12px;}.hero .meta{font-size:14px;color:rgba(255,255,255,0.55);}.body{background:#F0F5E9;padding:40px 40px 64px;}.card{background:#fff;border-radius:8px;border:1px solid #E3E6DE;padding:32px 36px;margin-bottom:20px;}.result-band{border-radius:8px;padding:20px 24px;margin-bottom:20px;border:1px solid #E3E6DE;}.score-area{display:grid;grid-template-columns:140px 1fr;gap:32px;align-items:start;margin-bottom:28px;}.ring-wrap{position:relative;width:130px;height:130px;}.ring-wrap svg{transform:rotate(-90deg);display:block;}.ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:100%;}.dim-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}.reto-list{display:grid;gap:12px;}.sec-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1B6B3A;border-bottom:2px solid #1B6B3A;padding-bottom:6px;margin-bottom:16px;}.cta-block{background:#141B2E;border-radius:8px;padding:32px 36px;margin-bottom:20px;}.footer{background:#141B2E;padding:20px 40px;}.footer p{font-size:11px;color:rgba(255,255,255,0.4);text-align:center;}.footer a{color:#3AA76D;text-decoration:none;}@media print{body,html{background:#fff!important;}.hero,.cta-block,.footer{background:#141B2E!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}.result-band{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.dim-grid>div,.reto-list>div{page-break-inside:avoid;break-inside:avoid;}}@media(max-width:680px){.hero{padding:32px 20px 40px;}.body{padding:24px 20px 48px;}.card{padding:24px 20px;}.hero h1{font-size:24px;}.score-area{grid-template-columns:1fr;}.dim-grid{grid-template-columns:1fr;}}</style></head><body><div class="wrap"><div class="hero"><div class="brand">' . $isoSvg . '<span class="brand-name">yūtopias<span>s y s t e m s</span></span></div><h1>Informe de diagnóstico de madurez digital</h1><p class="meta">Generado el ' . he($today) . '</p></div><div class="body">'
-        . $personBlock
-        . '<div class="result-band" style="background:' . $band["bg"] . ';border-color:' . $band["color"] . '44;"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:' . $band["color"] . ';margin-bottom:12px;">Tu diagnóstico</div><div style="font-size:22px;font-weight:600;line-height:1.25;letter-spacing:-0.015em;color:' . $band["color"] . ';margin-bottom:10px;">' . he($band["title"]) . '</div><div style="font-size:15px;line-height:1.65;color:#5A6472;">' . he($band["sub"]) . '</div></div>'
-        . '<div class="card"><div class="score-area"><div><div class="ring-wrap"><svg height="130" viewBox="0 0 110 110" width="130"><circle cx="55" cy="55" r="46" fill="none" stroke="#EDE9E0" stroke-width="10"/><circle cx="55" cy="55" r="46" fill="none" stroke="' . $band["color"] . '" stroke-width="10" stroke-linecap="round" stroke-dasharray="' . $circ . '" stroke-dashoffset="' . $offset . '"/></svg><div class="ring-center"><div style="font-size:30px;font-weight:700;line-height:1;color:' . $band["color"] . ';letter-spacing:-0.02em;">' . $sc . '</div><div style="font-size:11px;color:#8F97A3;margin-top:4px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">/10</div></div></div></div><div><div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#1B6B3A;margin-bottom:8px;">Puntuación global</div><div style="font-size:32px;font-weight:700;color:#141B2E;line-height:1;margin-bottom:8px;">' . $d["weightedScore"] . '<span style="font-size:16px;font-weight:400;color:#5A6472;">/100</span></div><div style="margin-bottom:12px;"><span style="display:inline-block;background:#1B6B3A;color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:0.05em;">' . he($profDisp) . '</span></div><div style="background:#EEF0E8;border-radius:999px;height:8px;overflow:hidden;margin-bottom:8px;"><div style="height:100%;border-radius:999px;width:' . $d["weightedScore"] . '%;background:' . $band["color"] . ';"></div></div><div style="font-size:13px;color:#5A6472;line-height:1.6;">Puntuación: <strong>' . $sc . '/10</strong>. Cada bloque pesa distinto según el perfil declarado.</div></div></div><div class="sec-label">Rendimiento por dimensión</div><div class="dim-grid">' . $dimCards . '</div><div style="padding:12px 16px;border:1px dashed #E3E6DE;border-radius:8px;background:#FAFAF4;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;"><span style="font-size:11px;font-weight:700;color:#141B2E;letter-spacing:0.06em;text-transform:uppercase;">Escala de madurez:</span><span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;background:#EEF0E8;color:#5A6472;text-transform:uppercase;letter-spacing:0.04em;">0–44% Depende de personas</span><span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;background:#EEF0E8;color:#5A6472;text-transform:uppercase;letter-spacing:0.04em;">45–69% Procesos parciales</span><span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;background:#EEF0E8;color:#5A6472;text-transform:uppercase;letter-spacing:0.04em;">70–84% Base sólida</span><span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;background:#EEF0E8;color:#5A6472;text-transform:uppercase;letter-spacing:0.04em;">85–100% Bien integrado</span></div></div>'
-        . '<div class="card"><div class="sec-label">Tus 3 prioridades de mejora</div><div class="reto-list">' . $retoCards . '</div></div>'
-        . '<div class="cta-block"><div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#3AA76D;margin-bottom:12px;">Próximo paso</div><div style="font-size:22px;font-weight:600;color:#fff;line-height:1.3;margin-bottom:12px;">¿Quieres ver cómo SimuLab resuelve estas prioridades en tu organización?</div><div style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.65;margin-bottom:20px;">El equipo de yūtopias puede preparar una sesión de trabajo personalizada basada en tu diagnóstico. Sin presentaciones genéricas — solo lo que aplica a tu caso.</div><div style="display:inline-block;background:#3AA76D;color:#fff;font-size:13px;font-weight:700;padding:12px 24px;border-radius:6px;text-decoration:none;letter-spacing:0.03em;"><a href="https://yutopias.com/es/contact/" style="color:#fff;text-decoration:none;">Hablar con el equipo &rarr;</a></div></div>'
-        . '</div><div class="footer"><p>yūtopias systems · <a href="https://yutopias.com">yutopias.com</a> · Informe generado el ' . he($today) . '</p></div></div></body></html>';
-}
+    // ── Header ──
+    $out .= '<tr><td style="background:#F4F7F4;padding:20px 28px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="background:#ffffff;border:1px solid #DDE8DD;border-radius:6px;padding:20px 24px;">
+            <p style="margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1B6B3A;">YŪTOPIAS SYSTEMS</p>
+            <p style="margin:0;font-size:22px;font-weight:600;color:#141B2E;line-height:1.3;">Informe de diagnóstico de madurez digital</p>
+            <p style="margin:6px 0 0;font-size:12px;color:#7A9A7A;">Generado el ' . he($today) . '</p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>';
 
-function buildEmailBody(string $firstName, string $sc, string $reportHtml, bool $withReport): string {
-    $report = $withReport ? '<div style="margin-top:32px;border-top:1px solid #E3E6DE;padding-top:24px;">' . $reportHtml . '</div>' : "";
-    return '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Tu informe de diagnóstico</title></head><body style="margin:0;padding:0;background:#F0F5E9;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif;">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#F0F5E9;padding:32px 16px;">
-  <tr><td align="center">
-    <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;">
-      <!-- Header -->
-      <tr><td style="background:#141B2E;border-radius:8px 8px 0 0;padding:28px 32px;">
-        <table cellpadding="0" cellspacing="0"><tr>
-          <td style="font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.01em;">yūtopias <span style="color:#3AA76D;font-weight:300;letter-spacing:0.14em;">s y s t e m s</span></td>
-        </tr></table>
-      </td></tr>
-      <!-- Body -->
-      <tr><td style="background:#fff;padding:32px 32px 24px;border-left:1px solid #E3E6DE;border-right:1px solid #E3E6DE;">
-        <p style="font-size:22px;font-weight:600;color:#141B2E;margin:0 0 16px;line-height:1.3;">Hola ' . $firstName . ', aquí tienes tu informe.</p>
-        <p style="font-size:15px;color:#5A6472;line-height:1.7;margin:0 0 20px;">Completaste el diagnóstico de madurez digital de yūtopias. Tu puntuación es <strong style="color:#141B2E;">' . $sc . '/10</strong>.</p>
-        <p style="font-size:15px;color:#5A6472;line-height:1.7;margin:0 0 28px;">Debajo encontrarás el informe completo con tu análisis por bloques y las 3 prioridades de mejora identificadas. Puedes imprimirlo o guardarlo como PDF desde tu navegador.</p>
-        <table cellpadding="0" cellspacing="0"><tr>
-          <td style="background:#3AA76D;border-radius:6px;">
-            <a href="https://yutopias.com/es/contact/" style="display:inline-block;padding:12px 24px;font-size:13px;font-weight:700;color:#fff;text-decoration:none;letter-spacing:0.03em;">Hablar con el equipo &rarr;</a>
-          </td>
-          <td style="padding-left:12px;">
-            <a href="https://yutopias.com/es/solution/" style="display:inline-block;padding:12px 24px;font-size:13px;font-weight:600;color:#141B2E;text-decoration:none;border:1px solid #E3E6DE;border-radius:6px;">Ver SimuLab</a>
-          </td>
-        </tr></table>
-      </td></tr>
-      <!-- Footer -->
-      <tr><td style="background:#FAFAF4;border:1px solid #E3E6DE;border-top:0;border-radius:0 0 8px 8px;padding:16px 32px;">
-        <p style="font-size:11px;color:#8F97A3;margin:0;line-height:1.6;">yūtopias systems · <a href="https://yutopias.com" style="color:#3AA76D;text-decoration:none;">yutopias.com</a><br>Recibiste este email porque completaste el diagnóstico de madurez digital.</p>
-      </td></tr>
-      <!-- Informe adjunto inline -->
-      ' . ($withReport ? '<tr><td style="padding-top:32px;">' . $reportHtml . '</td></tr>' : '') . '
-    </table>
-  </td></tr>
-</table>
-</body></html>';
+    // ── Person block ──
+    if ($rows !== "") {
+        $out .= '<tr><td style="padding:12px 28px 0;">
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr><td style="background:#F0F7F0;border:1px solid #DDE8DD;border-radius:6px;padding:16px 20px;">
+              <p style="margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1B6B3A;border-bottom:1px solid #C8DFC8;padding-bottom:8px;">Datos del diagnóstico</p>
+              <table cellpadding="0" cellspacing="0" border="0" width="100%">' . $rows . '</table>
+            </td></tr>
+          </table>
+        </td></tr>';
+    }
+
+    // ── Diagnosis band ──
+    $out .= '<tr><td style="padding:12px 28px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr><td style="background:' . $band["bg"] . ';border:1px solid #C8DFC8;border-left:4px solid ' . $band["color"] . ';border-radius:6px;padding:18px 20px;">
+          <p style="margin:0 0 6px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:' . $band["color"] . ';">Tu diagnóstico</p>
+          <p style="margin:0 0 8px;font-size:19px;font-weight:600;line-height:1.3;color:' . $band["color"] . ';">' . he($band["title"]) . '</p>
+          <p style="margin:0;font-size:14px;line-height:1.65;color:#4A6A4A;">' . he($band["sub"]) . '</p>
+        </td></tr>
+      </table>
+    </td></tr>';
+
+    // ── Score card ──
+    $out .= '<tr><td style="padding:12px 28px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr><td style="background:#ffffff;border:1px solid #DDE8DD;border-radius:6px;padding:20px 24px;">
+          <p style="margin:0 0 12px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1B6B3A;border-bottom:1px solid #E8EEE8;padding-bottom:8px;">Puntuación global</p>
+          <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
+            <td style="vertical-align:top;padding-right:20px;width:120px;">
+              <p style="margin:0;font-size:48px;font-weight:700;color:' . $band["color"] . ';line-height:1;">' . $sc . '</p>
+              <p style="margin:0;font-size:14px;color:#7A9A7A;font-weight:600;">/10</p>
+              <p style="margin:8px 0 0;font-size:22px;font-weight:700;color:#141B2E;line-height:1;">' . $d["weightedScore"] . '<span style="font-size:13px;font-weight:400;color:#7A9A7A;">/100</span></p>
+            </td>
+            <td style="vertical-align:top;">
+              <p style="margin:0 0 8px;font-size:12px;color:#4A5568;line-height:1.6;">Perfil: <strong style="color:#141B2E;">' . he($profDisp) . '</strong></p>
+              <!-- Progress bar via table -->
+              <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:8px;">
+                <tr>
+                  <td width="' . $d["weightedScore"] . '%" style="background:' . $band["color"] . ';height:8px;border-radius:4px 0 0 4px;font-size:1px;">&nbsp;</td>
+                  <td style="background:#E8EEE8;height:8px;border-radius:0 4px 4px 0;font-size:1px;">&nbsp;</td>
+                </tr>
+              </table>
+              <p style="margin:0;font-size:12px;color:#7A9A7A;">Cada bloque pesa distinto según el perfil declarado.</p>
+            </td>
+          </tr></table>
+        </td></tr>
+      </table>
+    </td></tr>';
+
+    // ── Dimension cards ──
+    $out .= '<tr><td style="padding:12px 28px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr><td style="background:#ffffff;border:1px solid #DDE8DD;border-radius:6px;padding:20px 24px;">
+          <p style="margin:0 0 14px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1B6B3A;border-bottom:1px solid #E8EEE8;padding-bottom:8px;">Rendimiento por bloque</p>';
+
+    foreach ($dims as $key => $dim) {
+        $val = isset($d["dimensionPerformance"][$key]) ? (int)$d["dimensionPerformance"][$key] : 0;
+        if ($val >= 85)     $matLabel = "Bien asentado";
+        elseif ($val >= 70) $matLabel = "Funciona con huecos";
+        elseif ($val >= 45) $matLabel = "Hay base, falta conectar";
+        else                $matLabel = "Requiere atención";
+
+        if ($val >= 85)     $matCopy = "Este bloque ya opera con buenas prácticas. El foco es mantener la consistencia y conectarlo con los otros bloques.";
+        elseif ($val >= 70) $matCopy = "Hay procesos establecidos, pero dependen de trabajo manual o de personas concretas. Eso erosiona fiabilidad y escalabilidad.";
+        elseif ($val >= 45) $matCopy = "Existen herramientas parciales, pero la información no fluye entre ellas. De ahí el retrabajo y los errores de coordinación.";
+        else                $matCopy = "Este bloque opera reactivamente y depende de personas. Es el origen más probable de desvíos y pérdida de conocimiento.";
+
+        $out .= '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:14px;border:1px solid #E8EEE8;border-left:3px solid ' . $dim["color"] . ';border-radius:0 4px 4px 0;">
+          <tr><td style="padding:12px 14px;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
+              <td style="vertical-align:top;">
+                <p style="margin:0 0 2px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#7A9A7A;">' . he($dim["short"]) . '</p>
+                <p style="margin:0 0 6px;font-size:14px;font-weight:600;color:#141B2E;">' . he($dim["name"]) . '</p>
+                <p style="margin:0 0 6px;font-size:11px;font-weight:600;color:' . $dim["color"] . ';background:' . $dim["bg"] . ';display:inline;padding:2px 8px;border-radius:3px;">' . he($matLabel) . '</p>
+                <p style="margin:6px 0 0;font-size:12px;color:#4A5568;line-height:1.55;">' . he($matCopy) . '</p>
+              </td>
+              <td style="vertical-align:top;text-align:right;padding-left:12px;white-space:nowrap;">
+                <p style="margin:0;font-size:28px;font-weight:700;color:' . $dim["color"] . ';">' . $val . '%</p>
+              </td>
+            </tr></table>
+            <!-- Bar -->
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:8px;">
+              <tr>
+                <td width="' . $val . '%" style="background:' . $dim["color"] . ';height:5px;border-radius:3px 0 0 3px;font-size:1px;">&nbsp;</td>
+                <td style="background:#E8EEE8;height:5px;border-radius:0 3px 3px 0;font-size:1px;">&nbsp;</td>
+              </tr>
+            </table>
+          </td></tr>
+        </table>';
+    }
+
+    $out .= '<!-- Scale legend -->
+          <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#F0F7F0;border:1px solid #DDE8DD;border-radius:4px;margin-top:4px;">
+            <tr>
+              <td style="padding:10px 14px;">
+                <p style="margin:0 0 6px;font-size:10px;font-weight:700;color:#141B2E;letter-spacing:0.08em;text-transform:uppercase;">Escala de madurez:</p>
+                <table cellpadding="0" cellspacing="4" border="0"><tr>
+                  <td style="font-size:10px;font-weight:600;color:#4A5568;background:#E8EEE8;padding:3px 8px;border-radius:3px;white-space:nowrap;">0–44% Depende de personas</td>
+                  <td style="font-size:10px;font-weight:600;color:#4A5568;background:#E8EEE8;padding:3px 8px;border-radius:3px;white-space:nowrap;">45–69% Procesos parciales</td>
+                  <td style="font-size:10px;font-weight:600;color:#4A5568;background:#E8EEE8;padding:3px 8px;border-radius:3px;white-space:nowrap;">70–84% Base sólida</td>
+                  <td style="font-size:10px;font-weight:600;color:#4A5568;background:#E8EEE8;padding:3px 8px;border-radius:3px;white-space:nowrap;">85–100% Bien integrado</td>
+                </tr></table>
+              </td>
+            </tr>
+          </table>
+        </td></tr>
+      </table>
+    </td></tr>';
+
+    // ── Top 3 retos ──
+    $out .= '<tr><td style="padding:12px 28px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr><td style="background:#ffffff;border:1px solid #DDE8DD;border-radius:6px;padding:20px 24px;">
+          <p style="margin:0 0 14px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1B6B3A;border-bottom:1px solid #E8EEE8;padding-bottom:8px;">Tus 3 prioridades de mejora</p>';
+
+    $idx = 1;
+    foreach ($d["topRetoCodes"] as $code) {
+        if (!isset($retos[$code])) continue;
+        $r   = $retos[$code];
+        $dim = $dims[$r["dim"]];
+        $out .= '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:12px;border:1px solid #E8EEE8;border-left:4px solid ' . $dim["color"] . ';border-radius:0 4px 4px 0;">
+          <tr><td style="padding:14px 16px;">
+            <table cellpadding="0" cellspacing="0" border="0"><tr>
+              <td style="vertical-align:top;padding-right:10px;">
+                <span style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;background:#141B2E;color:#ffffff;font-size:13px;font-weight:700;border-radius:50%;">' . $idx . '</span>
+              </td>
+              <td style="vertical-align:top;">
+                <p style="margin:0 0 4px;font-size:15px;font-weight:600;color:#141B2E;">' . he($r["name"]) . '</p>
+                <p style="margin:0 0 8px;font-size:10px;font-weight:600;color:' . $dim["dark"] . ';background:' . $dim["bg"] . ';display:inline;padding:2px 8px;border-radius:3px;">' . he($dim["short"]) . ' &middot; ' . he($dim["name"]) . '</p>
+                <p style="margin:8px 0 6px;font-size:13px;color:#4A5568;line-height:1.55;"><strong style="color:#141B2E;">Lo que ocurre hoy:</strong> ' . he($r["sit"]) . '</p>
+                <p style="margin:0;font-size:13px;color:#141B2E;line-height:1.55;"><strong style="color:' . $dim["dark"] . ';">Lo que permite resolver:</strong> ' . he($r["obj"]) . '</p>
+              </td>
+            </tr></table>
+          </td></tr>
+        </table>';
+        $idx++;
+    }
+
+    $out .= '</td></tr></table></td></tr>';
+
+    // ── CTA block ──
+    $out .= '<tr><td style="padding:12px 28px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr><td style="background:#F0F7F0;border:1px solid #C8DFC8;border-left:4px solid #1B6B3A;border-radius:0 6px 6px 0;padding:20px 24px;">
+          <p style="margin:0 0 6px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#1B6B3A;">Próximo paso</p>
+          <p style="margin:0 0 10px;font-size:18px;font-weight:600;color:#141B2E;line-height:1.3;">¿Quieres ver cómo SimuLab resuelve estas prioridades en tu organización?</p>
+          <p style="margin:0 0 16px;font-size:13px;color:#4A5568;line-height:1.65;">El equipo de yūtopias puede preparar una sesión de trabajo personalizada basada en tu diagnóstico. Sin presentaciones genéricas — solo lo que aplica a tu caso.</p>
+          <table cellpadding="0" cellspacing="0" border="0"><tr>
+            <td style="background:#1B6B3A;border-radius:6px;">
+              <a href="https://yutopias.com/es/contact/" style="display:inline-block;padding:11px 20px;font-size:13px;font-weight:700;color:#ffffff;text-decoration:none;">Hablar con el equipo &rarr;</a>
+            </td>
+          </tr></table>
+        </td></tr>
+      </table>
+    </td></tr>';
+
+    // ── Footer ──
+    $out .= '<tr><td style="padding:12px 28px 20px;">
+      <p style="margin:0;font-size:11px;color:#7A9A7A;text-align:center;">yūtopias systems &middot; <a href="https://yutopias.com" style="color:#1B6B3A;text-decoration:none;">yutopias.com</a> &middot; Informe generado el ' . he($today) . '</p>
+    </td></tr>';
+
+    $out .= '</table>';
+    return $out;
 }
 
 function buildInternalEmailBody(string $firstName, string $lastName, string $company, string $role, string $email, string $sc, int $weightedScore, array $dimPerf, array $retoCodes, string $challenge): string {
