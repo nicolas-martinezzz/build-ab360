@@ -75,9 +75,14 @@ export const OpenlabSection = async () => {
             </span>
           </div>
 
-          <p className="figma-text-l mt-4 max-w-[42.75rem] leading-relaxed text-surface-bg">
-            {t("description")}
-          </p>
+          <div className="mt-4 max-w-[42.75rem] rounded-[6px] border border-surface-bg/10 bg-surface-bg/5 px-4 py-3">
+            <p className="figma-text-l leading-relaxed text-surface-bg">
+              {t("description")}
+            </p>
+            <p className="figma-text-l mt-1 leading-relaxed text-green-600">
+              {t("descriptionNote")}
+            </p>
+          </div>
 
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <LinkButton
