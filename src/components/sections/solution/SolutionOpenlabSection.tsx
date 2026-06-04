@@ -61,7 +61,7 @@ export const SolutionOpenlabSection = async () => {
               <LinkButton href={SITE_PATHS.contact} variant="primary">
                 {t("ctaPrimary")}
               </LinkButton>
-              <LinkButton href={SITE_PATHS.contact} variant="text">
+              <LinkButton href={SITE_PATHS.reservaPlaza} variant="text">
                 {t("ctaSecondary")}
               </LinkButton>
             </div>

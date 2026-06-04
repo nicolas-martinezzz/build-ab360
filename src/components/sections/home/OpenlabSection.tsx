@@ -89,7 +89,7 @@ export const OpenlabSection = async () => {
             </LinkButton>
             <Link
               className="inline-flex items-center text-surface-bg underline underline-offset-4 transition-opacity hover:opacity-70"
-              href={SITE_PATHS.programa}
+              href={SITE_PATHS.reservaPlaza}
             >
               {t("ctaSecondary")}
             </Link>

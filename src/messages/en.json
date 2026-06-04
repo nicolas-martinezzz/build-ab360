@@ -61,8 +61,8 @@
       "headlineLine3": "Adapt first, then adopt.",
       "headlineLine4": "Not the other way around.",
       "description": "OpenLab is senior expert consulting + a proprietary vertical platform. 6 months adapting it with you, 6 months using it yourself.",
-      "bootcampLead": "12 months · Investment €10,000 · Only 16 spots",
-      "stat1": "12 months",
+      "bootcampLead": "6 months · Investment €10,000 · Only 16 spots",
+      "stat1": "6 months",
       "stat2": "Investment €10,000",
       "stat3": "Only 16 spots",
       "ctaPrimary": "I'm interested in OpenLab",
@@ -149,7 +149,7 @@
       "cta": "Shall we talk?",
       "ctaCaption": "",
       "agent1": {
-        "badge": "Live",
+        "badge": "Beta I+D",
         "role": "Agent 1",
         "title": "SimuLab",
         "body": "Simulate how your decisions affect cost and sustainability before you execute them.",
@@ -307,7 +307,7 @@
       "agent1Cta": "Discover SimuLab",
       "finalCta": "Discover AB360",
       "agent1": {
-        "badge": "Live",
+        "badge": "Beta I+D",
         "role": "Agent 1",
         "title": "SimuLab",
         "body": "Simulate how your decisions affect cost and sustainability before execution.",
@@ -748,7 +748,7 @@
     },
     "hero": {
       "eyebrow": "SIMULATION AGENT",
-      "badge": "Beta in validation",
+      "badge": "Beta I+D",
       "headline": "SimuLab. First vertical AI agent for sustainable construction.",
       "body": "In construction, information often does not arrive on time. The result is decisions made with incomplete data — and errors that could have been avoided.",
       "cta": "Take your self-assessment",
@@ -774,11 +774,11 @@
     "openlab": {
       "eyebrow": "THE PATH",
       "headline": "OpenLab: where Simulab becomes yours.",
-      "body": "OpenLab is the 12-month program where Simulab adapts to your real operations. We co-create with you. At the end you do not take away a report — you take away a tool calibrated to your reality and an autonomous team that knows how to use it.",
+      "body": "OpenLab is the 6-month program where Simulab adapts to your real operations. We co-create with you. At the end you do not take away a report — you take away a tool calibrated to your reality and an autonomous team that knows how to use it.",
       "bootcampLead": "Still evaluating? Come to Bootcamp Zero.",
       "ctaPrimary": "I am interested in OpenLab",
       "ctaSecondary": "Learn more",
-      "stat1": "12 months",
+      "stat1": "6 months",
       "stat2": "Investment €10,000",
       "stat3": "Only 16 spots",
       "bootcampBadge": "Free",
@@ -806,7 +806,7 @@
     "agents": {
       "headline": "Other AB360 agents",
       "agent1": {
-        "badge": "Live",
+        "badge": "Beta I+D",
         "role": "AI Simulation Agent",
         "title": "SimuLab",
         "shortDesc": "Brief text",
@@ -899,12 +899,12 @@
   },
   "programaPage": {
     "metadata": {
-      "title": "OpenLab — 12-month open innovation program",
-      "description": "Join OpenLab and adapt SimuLab to your real operations. 12 months of open innovation for construction companies ready to make data-driven decisions."
+      "title": "OpenLab — 6-month open innovation program",
+      "description": "Join OpenLab and adapt SimuLab to your real operations. 6 months of open innovation for construction companies ready to make data-driven decisions."
     },
     "hero": {
       "eyebrow": "THE PROGRAM",
-      "headline": "OpenLab, a 12-month open innovation journey",
+      "headline": "OpenLab, a 6-month open innovation journey",
       "body": "Yutopias, La Salle R&D and ACCIÓ have decided the best way to deploy SimuLab is to co-create it with the first partners. We don't sell finished software — we build the standard together.",
       "cta": "Join the Zero Bootcamp"
     },

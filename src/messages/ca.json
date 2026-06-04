@@ -61,8 +61,8 @@
       "headlineLine3": "Primer adaptar, després adoptar.",
       "headlineLine4": "No a la inversa.",
       "description": "OpenLab és consultoria experta sènior + plataforma vertical pròpia. 6 mesos adaptant-la amb tu, 6 mesos usant-la tu.",
-      "bootcampLead": "12 mesos · Inversió 10.000€ · Només 16 places",
-      "stat1": "12 mesos",
+      "bootcampLead": "6 mesos · Inversió 10.000€ · Només 16 places",
+      "stat1": "6 mesos",
       "stat2": "Inversió 10.000€",
       "stat3": "Només 16 places",
       "ctaPrimary": "M'interessa el OpenLab",
@@ -149,7 +149,7 @@
       "cta": "Parlem?",
       "ctaCaption": "",
       "agent1": {
-        "badge": "Live",
+        "badge": "Beta I+D",
         "role": "Agent 1",
         "title": "SimuLab",
         "body": "Simula l'impacte de les teves decisions en cost i sostenibilitat abans d'executar-les.",
@@ -307,7 +307,7 @@
       "agent1Cta": "Descobreix SimuLab",
       "finalCta": "Descobreix AB360",
       "agent1": {
-        "badge": "Live",
+        "badge": "Beta I+D",
         "role": "Agent 1",
         "title": "SimuLab",
         "body": "Simula l'impacte de les teves decisions en cost i sostenibilitat abans d'executar-les.",
@@ -748,7 +748,7 @@
     },
     "hero": {
       "eyebrow": "AGENT DE SIMULACIÓ",
-      "badge": "Beta en validació",
+      "badge": "Beta I+D",
       "headline": "SimuLab. Primer agent IA vertical per a edificació sostenible.",
       "body": "En construcció, la informació moltes vegades no arriba a temps. El resultat són decisions preses amb dades incompletes — i errors que s'haurien pogut evitar.",
       "cta": "Fes el teu autodiagnòstic",
@@ -774,11 +774,11 @@
     "openlab": {
       "eyebrow": "EL CAMÍ",
       "headline": "OpenLab: on Simulab es converteix en teu.",
-      "body": "L'OpenLab és el programa de 12 mesos on Simulab s'adapta a la teva operativa real. Co-creem amb tu. Al final no t'emportes un informe — t'emportes una eina calibrada a la teva realitat i un equip autònom que sap usar-la.",
+      "body": "L'OpenLab és el programa de 6 mesos on Simulab s'adapta a la teva operativa real. Co-creem amb tu. Al final no t'emportes un informe — t'emportes una eina calibrada a la teva realitat i un equip autònom que sap usar-la.",
       "bootcampLead": "Encara avaluant? Vine al Bootcamp Zero.",
       "ctaPrimary": "M'interessa l'OpenLab",
       "ctaSecondary": "Saber-ne més",
-      "stat1": "12 mesos",
+      "stat1": "6 mesos",
       "stat2": "Inversió 10.000€",
       "stat3": "Només 16 places",
       "bootcampBadge": "Gratuït",
@@ -806,7 +806,7 @@
     "agents": {
       "headline": "Altres agents d'AB360",
       "agent1": {
-        "badge": "Live",
+        "badge": "Beta I+D",
         "role": "Agent IA de Simulació",
         "title": "SimuLab",
         "shortDesc": "Text breu",
@@ -899,12 +899,12 @@
   },
   "programaPage": {
     "metadata": {
-      "title": "OpenLab — Programa d'innovació oberta de 12 mesos",
-      "description": "Entra a OpenLab i adapta SimuLab a la teva operativa real. 12 mesos d'innovació oberta per a empreses d'edificació que volen prendre decisions amb dades."
+      "title": "OpenLab — Programa d'innovació oberta de 6 mesos",
+      "description": "Entra a OpenLab i adapta SimuLab a la teva operativa real. 6 mesos d'innovació oberta per a empreses d'edificació que volen prendre decisions amb dades."
     },
     "hero": {
       "eyebrow": "EL PROGRAMA",
-      "headline": "OpenLab, un viatge d'innovació oberta de 12 mesos",
+      "headline": "OpenLab, un viatge d'innovació oberta de 6 mesos",
       "body": "Yutopias, La Salle R&D i ACCIÓ han decidit que la millor forma de desplegar Simulab és co-creant-lo amb els primers partners. No venem un software acabat — construïm junts l'estàndard.",
       "cta": "Uneix-te al Bootcamp Zero"
     },
