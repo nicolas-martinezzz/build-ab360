@@ -509,8 +509,8 @@
     },
     "ebook": {
       "eyebrow": "Free ebook",
-      "title": "The practical guide to scaling Inbound Marketing in your company",
-      "subtitle": "Download our free guide and discover how to structure a content strategy that generates real business opportunities.",
+      "title": "Goodbye Silos: Data Integration as a Strategic Imperative in Construction",
+      "subtitle": "Download our free guide and discover why data fragmentation is no longer just an operational inefficiency, but the barrier separating those who will lead the sector from those who will fall behind.",
       "firstNamePlaceholder": "First name",
       "lastNamePlaceholder": "Last name",
       "companyPlaceholder": "Company",
@@ -528,7 +528,7 @@
     },
     "ebookBanner": {
       "eyebrow": "Free ebook",
-      "title": "The practical guide to scaling Inbound Marketing",
+      "title": "Goodbye Silos: Data Integration in Construction",
       "button": "Download"
     },
     "articlePage": {

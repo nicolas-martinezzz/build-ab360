@@ -3,21 +3,21 @@ import type { Article } from "./types";
 export const article: Article = {
   slug: "ab360-ebook",
   type: "ebook",
-  publishedAt: "2025-01-15T00:00:00Z",
+  publishedAt: "2026-06-04T00:00:00Z",
   readingTimeMin: 0,
   author: "Equipo AB360",
   authorRole: "Yutopias Systems",
   categories: ["datos", "sostenibilidad", "estrategia"],
   coverImage: "/images/resources/ebook-cover.jpg",
-  coverImageAlt: "AB360 Ebook — Guía práctica para escalar el Inbound Marketing en edificación",
+  coverImageAlt: "Ebook — Adiós a los Silos: La Integración de Datos como Imperativo Estratégico en la Edificación",
   translations: {
     es: {
-      title: "La guía práctica para escalar el Inbound Marketing en tu empresa",
+      title: "Adiós a los Silos: La Integración de Datos como Imperativo Estratégico en la Edificación",
       excerpt:
-        "Descarga gratis nuestra guía y descubre cómo estructurar una estrategia de contenidos que genere oportunidades de negocio reales en el sector de la edificación.",
-      seoTitle: "Ebook gratuito: Inbound Marketing en edificación | AB360",
+        "Descarga gratis nuestra guía y descubre por qué la fragmentación de la información ya no es solo una ineficiencia operativa, sino la barrera que separa a quienes liderarán el sector de quienes quedarán relegados.",
+      seoTitle: "Ebook gratuito: Integración de datos en edificación | AB360",
       seoDescription:
-        "Descarga la guía práctica de AB360 para escalar el Inbound Marketing en empresas del sector de la edificación y generar oportunidades de negocio reales.",
+        "Descarga la guía de AB360 para desmantelar los silos de información y convertir los datos fragmentados en una única fuente de verdad a lo largo del ciclo de vida del edificio.",
       content: [
         {
           type: "heading",
@@ -26,16 +26,16 @@ export const article: Article = {
         },
         {
           type: "paragraph",
-          text: "El sector de la edificación tiene un problema de comunicación. Los equipos saben lo que hacen, pero raramente saben cómo explicarlo de forma que genere demanda real. Esta guía nace de ese diagnóstico.",
+          text: "El sector de la edificación es la orquestación más compleja de disciplinas y actores. Pero esa complejidad lleva décadas paralizada por un mismo problema: los datos viven en sistemas dispares, formatos incompatibles y silos organizativos. Esta guía parte de ese diagnóstico y traza la salida.",
         },
         {
           type: "list",
           items: [
-            "Cómo definir tu audiencia real en un sector B2B complejo",
-            "Qué tipos de contenido generan confianza y oportunidades en edificación",
-            "Cómo estructurar un pipeline de contenidos sin un equipo de marketing dedicado",
-            "Los errores más comunes al escalar Inbound en sectores técnicos",
-            "Un plan de acción de 90 días para empezar a generar leads desde contenido",
+            "Por qué el modelo de silos tiene un coste oculto —retrabajos, duplicidad y sobrecostes— que rara vez se mide",
+            "Qué es realmente la integración de datos: del CDE y el PIM a la «única fuente de verdad»",
+            "Cómo BIM, PIM e IoT se combinan en un ecosistema digital vivo",
+            "El valor transversal a lo largo del ciclo de vida: promoción, diseño, construcción y operación",
+            "Cómo la IA convierte los datos integrados en decisiones predictivas y prescriptivas",
           ],
         },
         {
@@ -45,11 +45,11 @@ export const article: Article = {
         },
         {
           type: "paragraph",
-          text: "Está pensada para directores comerciales, CEOs y responsables de marketing de empresas del sector: promotoras, constructoras, ingenierías, consultoras de sostenibilidad y fabricantes de materiales.",
+          text: "Está pensada para promotores, constructoras, ingenierías, arquitectos y Facility Managers que sienten en el día a día el coste de la información fragmentada: el ROI difícil de justificar, las fuentes inconsistentes, el mantenimiento reactivo.",
         },
         {
           type: "callout",
-          text: "Esta guía no es teoría de marketing. Es un sistema probado en empresas del sector de la edificación que ya están generando oportunidades reales desde contenido.",
+          text: "Esta guía no es teoría tecnológica. Es el marco que explica por qué la integración de datos ha dejado de ser una opción futurista para convertirse en una condición de supervivencia competitiva.",
         },
         {
           type: "heading",
@@ -58,21 +58,21 @@ export const article: Article = {
         },
         {
           type: "paragraph",
-          text: "El Inbound Marketing no funciona igual en todos los sectores. En edificación, los ciclos de venta son largos, los decisores son múltiples y la confianza se construye lento. Eso lo cambia todo: el tipo de contenido, la frecuencia, los canales, los KPIs.",
+          text: "La visión ideal del sector es un flujo de información lineal y colaborativo. La realidad es un laberinto: la experiencia de proyectos pasados rara vez se capitaliza, y cada decisión tomada con datos incompletos se paga más tarde. Desmantelar los silos no es un proyecto de software más; es un cambio de paradigma.",
         },
         {
           type: "quote",
-          text: "En sectores técnicos como la edificación, el contenido no vende — genera confianza. Y la confianza, a largo plazo, es lo que vende.",
+          text: "En la edificación, los datos fragmentados no son una ineficiencia operativa más — son la herencia tóxica de una era que ya no se puede sostener.",
         },
       ],
     },
     en: {
-      title: "The practical guide to scaling Inbound Marketing in your company",
+      title: "Goodbye Silos: Data Integration as a Strategic Imperative in Construction",
       excerpt:
-        "Download our free guide and discover how to structure a content strategy that generates real business opportunities in the building sector.",
-      seoTitle: "Free Ebook: Inbound Marketing in construction | AB360",
+        "Download our free guide and discover why data fragmentation is no longer just an operational inefficiency, but the barrier separating those who will lead the sector from those who will fall behind.",
+      seoTitle: "Free Ebook: Data Integration in Construction | AB360",
       seoDescription:
-        "Download AB360's practical guide to scaling Inbound Marketing in building sector companies and generate real business opportunities.",
+        "Download AB360's guide to dismantling information silos and turning fragmented data into a single source of truth across the building lifecycle.",
       content: [
         {
           type: "heading",
@@ -81,31 +81,31 @@ export const article: Article = {
         },
         {
           type: "paragraph",
-          text: "The building sector has a communication problem. Teams know what they do, but rarely know how to explain it in a way that generates real demand. This guide was born from that diagnosis.",
+          text: "The construction sector is the most complex orchestration of disciplines and stakeholders. But that complexity has been paralysed for decades by the same problem: data lives in disparate systems, incompatible formats and organisational silos. This guide starts from that diagnosis and maps the way out.",
         },
         {
           type: "list",
           items: [
-            "How to define your real audience in a complex B2B sector",
-            "What types of content build trust and opportunities in construction",
-            "How to structure a content pipeline without a dedicated marketing team",
-            "The most common mistakes when scaling Inbound in technical sectors",
-            "A 90-day action plan to start generating leads from content",
+            "Why the silo model carries a hidden cost — rework, duplication and overruns — that is rarely measured",
+            "What data integration really means: from CDE and PIM to a 'single source of truth'",
+            "How BIM, PIM and IoT combine into a living digital ecosystem",
+            "The cross-cutting value across the lifecycle: development, design, construction and operations",
+            "How AI turns integrated data into predictive and prescriptive decisions",
           ],
         },
         {
           type: "callout",
-          text: "This guide is not marketing theory. It's a proven system for building sector companies that are already generating real opportunities from content.",
+          text: "This guide is not technology theory. It is the framework that explains why data integration has stopped being a futuristic option and become a condition for competitive survival.",
         },
       ],
     },
     ca: {
-      title: "La guia pràctica per escalar l'Inbound Marketing a la teva empresa",
+      title: "Adéu als Silotis: La Integració de Dades com a Imperatiu Estratègic en l'Edificació",
       excerpt:
-        "Descarrega gratis la nostra guia i descobreix com estructurar una estratègia de continguts que generi oportunitats de negoci reals al sector de l'edificació.",
-      seoTitle: "Ebook gratuït: Inbound Marketing en edificació | AB360",
+        "Descarrega gratis la nostra guia i descobreix per què la fragmentació de la informació ja no és només una ineficiència operativa, sinó la barrera que separa els que lideraran el sector dels que quedaran relegats.",
+      seoTitle: "Ebook gratuït: Integració de dades en edificació | AB360",
       seoDescription:
-        "Descarrega la guia pràctica d'AB360 per escalar l'Inbound Marketing a empreses del sector de l'edificació i generar oportunitats de negoci reals.",
+        "Descarrega la guia d'AB360 per desmantellar els silos d'informació i convertir les dades fragmentades en una única font de veritat al llarg del cicle de vida de l'edifici.",
       content: [
         {
           type: "heading",
@@ -114,11 +114,11 @@ export const article: Article = {
         },
         {
           type: "paragraph",
-          text: "El sector de l'edificació té un problema de comunicació. Els equips saben el que fan, però rarament saben com explicar-ho de manera que generi demanda real. Aquesta guia neix d'aquest diagnòstic.",
+          text: "El sector de l'edificació és l'orquestració més complexa de disciplines i actors. Però aquesta complexitat porta dècades paralitzada pel mateix problema: les dades viuen en sistemes dispars, formats incompatibles i sitges organitzatives. Aquesta guia parteix d'aquest diagnòstic i traça la sortida.",
         },
         {
           type: "callout",
-          text: "Aquesta guia no és teoria de màrqueting. És un sistema provat en empreses del sector de l'edificació que ja estan generant oportunitats reals des del contingut.",
+          text: "Aquesta guia no és teoria tecnològica. És el marc que explica per què la integració de dades ha deixat de ser una opció futurista per convertir-se en una condició de supervivència competitiva.",
         },
       ],
     },

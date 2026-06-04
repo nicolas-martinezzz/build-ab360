@@ -587,8 +587,8 @@
     },
     "ebook": {
       "eyebrow": "EBOOK GRATUITO",
-      "title": "La guía práctica para escalar el Inbound Marketing en tu empresa",
-      "subtitle": "Descarga gratis nuestra guía y descubre cómo estructurar una estrategia de contenidos que genere oportunidades de negocio reales.",
+      "title": "Adiós a los Silos: La Integración de Datos como Imperativo Estratégico en la Edificación",
+      "subtitle": "Descarga gratis nuestra guía y descubre por qué la fragmentación de la información ya no es solo una ineficiencia operativa, sino la barrera que separa a quienes liderarán el sector de quienes quedarán relegados.",
       "firstNamePlaceholder": "Nombre",
       "lastNamePlaceholder": "Apellido",
       "companyPlaceholder": "Empresa",
@@ -606,7 +606,7 @@
     },
     "ebookBanner": {
       "eyebrow": "EBOOK GRATUITO",
-      "title": "La guía práctica para escalar el Inbound Marketing",
+      "title": "Adiós a los Silos: La Integración de Datos",
       "button": "Descargar"
     },
     "articlePage": {

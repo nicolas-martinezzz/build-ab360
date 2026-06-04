@@ -509,8 +509,8 @@
     },
     "ebook": {
       "eyebrow": "Ebook gratuït",
-      "title": "La guia pràctica per escalar l'Inbound Marketing a la teva empresa",
-      "subtitle": "Descarrega gratis la nostra guia i descobreix com estructurar una estratègia de continguts que generi oportunitats de negoci reals.",
+      "title": "Adéu als Silos: La Integració de Dades com a Imperatiu Estratègic en l'Edificació",
+      "subtitle": "Descarrega gratis la nostra guia i descobreix per què la fragmentació de la informació ja no és només una ineficiència operativa, sinó la barrera que separa els que lideraran el sector dels que quedaran relegats.",
       "firstNamePlaceholder": "Nom",
       "lastNamePlaceholder": "Cognom",
       "companyPlaceholder": "Empresa",
@@ -528,7 +528,7 @@
     },
     "ebookBanner": {
       "eyebrow": "Ebook gratuït",
-      "title": "La guia pràctica per escalar l'Inbound Marketing",
+      "title": "Adéu als Silos: La Integració de Dades",
       "button": "Descarregar"
     },
     "articlePage": {
