@@ -68,3 +68,8 @@ jobs:
             git reset --hard origin/main && \
             echo 'Deploy complete'
           "
+
+          # Deploy private files (outside webroot — not tracked by build-ab360)
+          scp -i ~/.ssh/server_key -P 2222 -o StrictHostKeyChecking=no \
+            $GITHUB_WORKSPACE/private/smtp_mailer.php \
+            nico@185.47.247.175:/var/www/vhosts/yutopias.com/private/smtp_mailer.php
