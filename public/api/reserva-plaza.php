@@ -48,6 +48,7 @@ if ($name === "" || $company === "" || !filter_var($email, FILTER_VALIDATE_EMAIL
 $configPath = getenv("NEWSLETTER_CONFIG_FILE") ?: dirname(dirname(__DIR__)) . "/private/newsletter-config.php";
 $config = [];
 if (is_file($configPath)) { $loaded = require $configPath; if (is_array($loaded)) $config = $loaded; }
+require_once dirname($configPath) . "/smtp_mailer.php";
 
 $dbHost     = (string)($config["db_host"]     ?? getenv("PROD_DB_HOST")     ?? "");
 $dbPort     = (int)   ($config["db_port"]     ?? getenv("PROD_DB_PORT")     ?? 3306);
@@ -127,7 +128,7 @@ try {
             "Reply-To: $mailFrom",
             "Content-Type: text/plain; charset=UTF-8",
         ]);
-        mail($recipient, $subj, $body, $headers);
+        yutopias_mail($recipient, $subj, $body, $headers);
     }
 
     echo json_encode(["ok" => true]);

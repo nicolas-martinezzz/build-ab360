@@ -83,6 +83,7 @@ if (is_file($configPath)) {
         $config = $loaded;
     }
 }
+require_once dirname($configPath) . "/smtp_mailer.php";
 
 $dbHost     = (string)($config["db_host"]     ?? getenv("NEWSLETTER_DB_HOST")     ?? "");
 $dbPort     = (int)($config["db_port"]        ?? getenv("NEWSLETTER_DB_PORT")     ?? 3306);
@@ -190,7 +191,7 @@ try {
         . "Reply-To: " . $safeEmail . "\r\n"
         . "Content-Type: text/plain; charset=UTF-8\r\n";
 
-    if (!mail($notifyTo, $subject, $message, $headers)) {
+    if (!yutopias_mail($notifyTo, $subject, $message, $headers)) {
         error_log("[ebook-lead] Failed to send notification to " . $notifyTo);
     }
 

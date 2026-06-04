@@ -66,6 +66,7 @@ if (is_file($configPath)) {
         $config = $loaded;
     }
 }
+require_once dirname($configPath) . "/smtp_mailer.php";
 
 $dbHost     = (string)($config["db_host"]     ?? getenv("NEWSLETTER_DB_HOST")     ?? "");
 $dbPort     = (int)   ($config["db_port"]     ?? getenv("NEWSLETTER_DB_PORT")     ?? 3306);
@@ -510,20 +511,35 @@ try {
             WHERE id = :id
         ")->execute([":id" => $sessionId]);
 
-        // ── Send report emails when bridge-form lead is present ────────────────
-        if (is_array($lead) && count($lead) > 0
-            && isset($firstName) && $firstName !== ""
-            && isset($email)     && filter_var($email, FILTER_VALIDATE_EMAIL)
-            && $weightedScore >= 0
-        ) {
+        // ── Resolve lead data: bridge form → prelead fallback ────────────────────
+        $eEmail     = isset($email)         && filter_var($email, FILTER_VALIDATE_EMAIL) ? $email : null;
+        $eFirstName = isset($firstName)     ? $firstName     : "";
+        $eLastName  = isset($lastName)      ? $lastName      : "";
+        $eCompany   = isset($company)       ? $company       : "";
+        $eRole      = isset($roleName)      ? $roleName      : "";
+        $eChallenge = isset($challengeText) ? $challengeText : "";
+
+        if ($eEmail === null) {
+            $preStmt = $pdo->prepare("SELECT first_name, company, email FROM diagnostic_leads WHERE session_id = :sid LIMIT 1");
+            $preStmt->execute([":sid" => $sessionId]);
+            $preRow = $preStmt->fetch();
+            if ($preRow && filter_var((string)$preRow["email"], FILTER_VALIDATE_EMAIL)) {
+                $eEmail     = (string)$preRow["email"];
+                $eFirstName = (string)($preRow["first_name"] ?? "");
+                $eCompany   = (string)($preRow["company"]    ?? "");
+            }
+        }
+
+        // ── Send report emails ────────────────────────────────────────────────
+        if ($eEmail !== null && $eFirstName !== "") {
             $notifyTo = (string)($config["notify_to_prod"] ?? getenv("NOTIFY_TO_PROD") ?? "");
             $mailFrom = (string)($config["mail_from"]      ?? getenv("NEWSLETTER_MAIL_FROM") ?? "no-reply@yutopias.com");
 
             $reportHtml = buildReportHtml([
-                "firstName"            => $firstName,
-                "lastName"             => $lastName  ?? "",
-                "company"              => $company,
-                "role"                 => $roleName  ?? "",
+                "firstName"            => $eFirstName,
+                "lastName"             => $eLastName,
+                "company"              => $eCompany,
+                "role"                 => $eRole,
                 "weightedScore"        => $weightedScore,
                 "scoreOver10"          => $scoreOver10,
                 "profile"              => $profile,
@@ -532,9 +548,9 @@ try {
             ]);
 
             $sc       = number_format($scoreOver10, 1, ",", "");
-            $safeName = htmlspecialchars($firstName, ENT_QUOTES, "UTF-8");
+            $safeName = htmlspecialchars($eFirstName, ENT_QUOTES, "UTF-8");
             $subjectUser = "=?UTF-8?B?" . base64_encode("Tu informe de diagnóstico digital · yūtopias systems") . "?=";
-            $bodyUser = buildEmailBody($safeName, $sc, $reportHtml, true);
+            $bodyUser    = buildEmailBody($safeName, $sc, $reportHtml, true);
 
             $headersUser = implode("\r\n", [
                 "MIME-Version: 1.0",
@@ -542,19 +558,19 @@ try {
                 "From: =?UTF-8?B?" . base64_encode("yūtopias systems") . "?= <{$mailFrom}>",
                 "Reply-To: {$mailFrom}",
             ]);
-            @mail($email, $subjectUser, $bodyUser, $headersUser);
+            yutopias_mail($eEmail, $subjectUser, $bodyUser, $headersUser);
 
             if ($notifyTo !== "") {
-                $subjectInternal = "=?UTF-8?B?" . base64_encode("Nuevo diagnóstico completado · {$firstName} ({$company})") . "?=";
-                $bodyInternal = buildInternalEmailBody($firstName, $lastName ?? "", $company, $roleName ?? "", $email, $sc, $weightedScore, $dimPerf, array_filter([$reto1, $reto2, $reto3]), $challengeText ?? "");
+                $subjectInternal = "=?UTF-8?B?" . base64_encode("Nuevo diagnóstico completado · {$eFirstName} ({$eCompany})") . "?=";
+                $bodyInternal    = buildInternalEmailBody($eFirstName, $eLastName, $eCompany, $eRole, $eEmail, $sc, $weightedScore, $dimPerf, array_filter([$reto1, $reto2, $reto3]), $eChallenge);
                 $headersInternal = implode("\r\n", [
                     "MIME-Version: 1.0",
                     "Content-Type: text/html; charset=UTF-8",
                     "From: =?UTF-8?B?" . base64_encode("yūtopias · Diagnóstico") . "?= <{$mailFrom}>",
-                    "Reply-To: {$email}",
+                    "Reply-To: {$eEmail}",
                 ]);
                 foreach (array_filter(array_map("trim", explode(",", $notifyTo))) as $recipient) {
-                    @mail($recipient, $subjectInternal, $bodyInternal, $headersInternal);
+                    yutopias_mail($recipient, $subjectInternal, $bodyInternal, $headersInternal);
                 }
             }
         }
@@ -601,7 +617,7 @@ function buildEmailBody(string $firstName, string $sc, string $reportHtml, bool 
     <!-- CTAs -->
     <table cellpadding="0" cellspacing="0" border="0"><tr>
       <td style="background:#1B6B3A;border-radius:6px;mso-padding-alt:0;">
-        <a href="https://yutopias.com/es/contact/" style="display:inline-block;padding:12px 22px;font-size:13px;font-weight:700;color:#ffffff;text-decoration:none;letter-spacing:0.02em;">Hablar con el equipo &rarr;</a>
+        <a href="https://yutopias.com/es/#openlab-contacto" style="display:inline-block;padding:12px 22px;font-size:13px;font-weight:700;color:#ffffff;text-decoration:none;letter-spacing:0.02em;">S&uacute;mate al OpenLab &rarr;</a>
       </td>
       <td style="padding-left:12px;">
         <a href="https://yutopias.com/es/solution/" style="display:inline-block;padding:11px 22px;font-size:13px;font-weight:600;color:#1B6B3A;text-decoration:none;border:1px solid #1B6B3A;border-radius:6px;">Ver SimuLab</a>
@@ -864,7 +880,7 @@ function buildReportHtml(array $d): string {
           <p style="margin:0 0 16px;font-size:13px;color:#4A5568;line-height:1.65;">El equipo de yūtopias puede preparar una sesión de trabajo personalizada basada en tu diagnóstico. Sin presentaciones genéricas — solo lo que aplica a tu caso.</p>
           <table cellpadding="0" cellspacing="0" border="0"><tr>
             <td style="background:#1B6B3A;border-radius:6px;">
-              <a href="https://yutopias.com/es/contact/" style="display:inline-block;padding:11px 20px;font-size:13px;font-weight:700;color:#ffffff;text-decoration:none;">Hablar con el equipo &rarr;</a>
+              <a href="https://yutopias.com/es/#openlab-contacto" style="display:inline-block;padding:11px 20px;font-size:13px;font-weight:700;color:#ffffff;text-decoration:none;">S&uacute;mate al OpenLab &rarr;</a>
             </td>
           </tr></table>
         </td></tr>
