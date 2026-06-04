@@ -75,7 +75,7 @@ export const OpenlabSection = async () => {
             </span>
           </div>
 
-          <div className="mt-4 max-w-[42.75rem] rounded-[6px] border border-surface-bg/10 bg-surface-bg/5 px-4 py-3">
+          <div className="mt-4 max-w-[42.75rem]">
             <p className="figma-text-l leading-relaxed text-surface-bg">
               {t("description")}
             </p>
