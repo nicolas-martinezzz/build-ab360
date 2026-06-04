@@ -140,15 +140,15 @@ export const EbookLeadForm = ({
     return (
       <div className="flex flex-col items-start gap-4">
         <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-600">
             <svg aria-hidden className="h-4 w-4 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
               <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
-          <p className="text-base font-semibold text-white">{successTitle}</p>
+          <p className="text-base font-semibold text-surface-bg">{successTitle}</p>
         </div>
         <a
-          className="inline-flex h-11 items-center gap-2 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-400"
+          className="inline-flex h-11 items-center gap-2 rounded-[5px] bg-green-600 px-6 text-sm font-semibold text-white transition hover:bg-green-700"
           download
           href={EBOOK_PDF_PATH}
         >
@@ -176,8 +176,8 @@ export const EbookLeadForm = ({
   return (
     <form className="flex flex-col gap-5" name="ebook-subscription" onSubmit={handleSubmit}>
       {/* Required note */}
-      <p className="text-xs text-white/40">
-        <span aria-hidden className="mr-1 text-green-400">*</span>
+      <p className="text-xs text-surface-bg/40">
+        <span aria-hidden className="mr-1 text-green-600">*</span>
         {requiredNote}
       </p>
 
@@ -241,24 +241,24 @@ export const EbookLeadForm = ({
         value={website}
       />
 
-      <label className="flex cursor-pointer items-start gap-3 text-sm text-white/60 transition hover:text-white/80">
+      <label className="flex cursor-pointer items-start gap-3 text-sm text-surface-bg/60 transition hover:text-surface-bg/80">
         <input
           checked={accepted}
-          className="mt-0.5 h-4 w-4 shrink-0 accent-green-500"
+          className="mt-0.5 h-4 w-4 shrink-0 accent-green-600"
           onChange={(e) => setAccepted(e.target.checked)}
           required
           type="checkbox"
         />
         <span>
           {consentLabel}{" "}
-          <Link className="text-green-400 underline underline-offset-2 transition hover:text-green-300" href={SITE_PATHS.privacy}>
+          <Link className="text-green-700 underline underline-offset-2 transition hover:text-green-600" href={SITE_PATHS.privacy}>
             {consentLinkLabel}
           </Link>
         </span>
       </label>
 
       <button
-        className="mt-1 flex h-12 items-center justify-center gap-2 rounded-[5px] bg-green-500 px-6 text-sm font-semibold text-white transition hover:bg-green-400 disabled:cursor-not-allowed disabled:opacity-40"
+        className="mt-1 flex h-12 items-center justify-center gap-2 rounded-[5px] bg-green-600 px-6 text-sm font-semibold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-40"
         disabled={!accepted || isSubmitting}
         type="submit"
       >
@@ -285,14 +285,14 @@ export const EbookLeadForm = ({
 };
 
 const inputClass =
-  "h-11 w-full rounded-[5px] border border-white/15 bg-white/5 px-3.5 text-sm text-white placeholder:text-white/30 transition focus:border-green-500/60 focus:bg-white/8 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-bg";
+  "h-11 w-full rounded-[5px] border border-surface-bg/15 bg-white px-3.5 text-sm text-surface-bg placeholder:text-surface-bg/30 transition focus:border-green-600/60 focus:outline-none focus:ring-2 focus:ring-green-600/20 focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 focus-visible:ring-offset-green-50";
 
 function Field({ htmlFor, label, children }: { htmlFor: string; label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="flex items-center gap-1 text-xs font-medium text-white/60" htmlFor={htmlFor}>
+      <label className="flex items-center gap-1 text-xs font-medium text-surface-bg/60" htmlFor={htmlFor}>
         {label}
-        <span aria-hidden className="text-green-400">*</span>
+        <span aria-hidden className="text-green-600">*</span>
       </label>
       {children}
     </div>

@@ -268,16 +268,16 @@ export default async function ArticleDetailPage({ params }: Props) {
               {/* Article content */}
               {translation.content.map((section, i) => renderSection(section, i))}
 
-              {/* Ebook lead form — inline, below content */}
+              {/* Ebook lead form */}
               {isEbook && (
-                <div className="mt-4 rounded-[10px] bg-surface-bg px-6 py-8 sm:px-10">
-                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-green-400">
+                <div className="mt-4 rounded-[10px] border border-green-200 bg-green-50 px-6 py-8 sm:px-10">
+                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-green-700">
                     {t("ebook.eyebrow")}
                   </p>
-                  <p className="mt-2 text-lg font-bold text-white">
+                  <p className="mt-2 text-lg font-bold text-surface-bg">
                     {t("ebook.ctaButton")}
                   </p>
-                  <div className="mt-5 max-w-sm">
+                  <div className="mt-6">
                     <EbookLeadForm
                       botBlockedMessage={t("ebook.botBlockedMessage")}
                       companyPlaceholder={t("ebook.companyPlaceholder")}
