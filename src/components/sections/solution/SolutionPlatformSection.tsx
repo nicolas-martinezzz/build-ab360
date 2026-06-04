@@ -7,21 +7,21 @@ export const SolutionPlatformSection = async () => {
   const t = await getTranslations("solutionPage.platform");
 
   return (
-    <section aria-labelledby="solution-platform-title" className="section-block-spacious relative overflow-hidden bg-agent-surface">
+    <section aria-labelledby="solution-platform-title" className="section-block-spacious relative overflow-hidden bg-agent-surface !pt-5 !pb-7 lg:!pt-7 lg:!pb-9">
       <SectionContainer className="relative z-10">
         <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
 
-        <h2 className="figma-title-2-bold mt-4 max-w-[56rem] text-surface-bg" id="solution-platform-title">
+        <h2 className="figma-title-2-bold mt-3 max-w-[56rem] text-surface-bg" id="solution-platform-title">
           {t("headline1")}
           <br />
           {t("headline2")}
         </h2>
 
-        <p className="figma-text-l mt-6 max-w-[56rem] text-surface-bg">
+        <p className="figma-text-l mt-3 max-w-[56rem] text-surface-bg">
           {t("body")}
         </p>
 
-        <div className="relative mx-auto mt-10 aspect-[4/3] w-full max-w-[58rem] overflow-hidden">
+        <div className="relative mx-auto mt-5 aspect-[4/3] w-full max-w-[56rem] overflow-hidden">
           <Image
             alt=""
             aria-hidden
@@ -32,7 +32,7 @@ export const SolutionPlatformSection = async () => {
           />
         </div>
 
-        <div className="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,23.8125rem)] lg:gap-14">
+        <div className="mt-7 grid gap-12 lg:mt-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,23.8125rem)] lg:gap-14">
           <div>
             <h3 className="figma-title-3 text-surface-bg">
               {t("twinTitle")}
