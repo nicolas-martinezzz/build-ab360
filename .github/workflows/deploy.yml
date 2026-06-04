@@ -49,27 +49,12 @@ jobs:
           mkdir -p api
           cp $GITHUB_WORKSPACE/public/api/*.php api/
 
+          # Copy private server files (deployed outside webroot by build-ab360 workflow)
+          mkdir -p _private
+          cp $GITHUB_WORKSPACE/private/smtp_mailer.php _private/
+
           # Commit and push
           git add -A
           git diff --cached --quiet && echo "No changes to deploy" && exit 0
           git commit -m "deploy: $(date -u '+%Y-%m-%d %H:%M UTC') — ${{ github.sha }}"
           git push
-
-      - name: Pull on server
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/server_key
-          chmod 600 ~/.ssh/server_key
-          ssh-keyscan -p 2222 185.47.247.175 >> ~/.ssh/known_hosts
-
-          ssh -i ~/.ssh/server_key -p 2222 -o StrictHostKeyChecking=no nico@185.47.247.175 "
-            cd ~/httpdocs && \
-            git fetch origin && \
-            git reset --hard origin/main && \
-            echo 'Deploy complete'
-          "
-
-          # Deploy private files (outside webroot — not tracked by build-ab360)
-          scp -i ~/.ssh/server_key -P 2222 -o StrictHostKeyChecking=no \
-            $GITHUB_WORKSPACE/private/smtp_mailer.php \
-            nico@185.47.247.175:/var/www/vhosts/yutopias.com/private/smtp_mailer.php
