@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 
 const FeatureBlock = ({ title, body, icon }: { title: string; body: string; icon: string }) => (
   <div className="flex flex-col gap-4">
-    <Image alt={title} height={40} src={icon} width={40} />
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img alt="" aria-hidden height={40} src={icon} width={40} />
     <div className="flex flex-col gap-3">
       <h3 className="figma-text-l-bold text-surface-bg">{title}</h3>
       <p className="figma-text-m text-grey-dark">{body}</p>
@@ -43,10 +43,10 @@ export const SolutionSimulabSection = async () => {
         </p>
 
         <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <FeatureBlock body={t("feature1Body")} icon="/icons/simulab-feature-1.png" title={t("feature1Title")} />
-          <FeatureBlock body={t("feature2Body")} icon="/icons/simulab-feature-2.png" title={t("feature2Title")} />
-          <FeatureBlock body={t("feature3Body")} icon="/icons/simulab-feature-3.png" title={t("feature3Title")} />
-          <FeatureBlock body={t("feature4Body")} icon="/icons/simulab-feature-4.png" title={t("feature4Title")} />
+          <FeatureBlock body={t("feature1Body")} icon="/images/icons/simulab-feature-1.png" title={t("feature1Title")} />
+          <FeatureBlock body={t("feature2Body")} icon="/images/icons/simulab-feature-2.png" title={t("feature2Title")} />
+          <FeatureBlock body={t("feature3Body")} icon="/images/icons/simulab-feature-3.png" title={t("feature3Title")} />
+          <FeatureBlock body={t("feature4Body")} icon="/images/icons/simulab-feature-4.png" title={t("feature4Title")} />
         </div>
 
       </SectionContainer>

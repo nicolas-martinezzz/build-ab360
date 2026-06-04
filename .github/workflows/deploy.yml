@@ -1,0 +1,72 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Push build to build-ab360
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          # Setup SSH
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no"
+
+          # Configure git
+          git config --global user.email "deploy@yutopias.com"
+          git config --global user.name "Deploy Bot"
+
+          # Clone build repo, replace contents with new build
+          git clone git@github.com:nicolas-martinezzz/build-ab360.git /tmp/build-ab360
+          cd /tmp/build-ab360
+
+          # Copy build output
+          rsync -av --delete \
+            --exclude='.git' \
+            $GITHUB_WORKSPACE/out/ ./
+
+          # Copy PHP API files
+          mkdir -p api
+          cp $GITHUB_WORKSPACE/public/api/*.php api/
+
+          # Commit and push
+          git add -A
+          git diff --cached --quiet && echo "No changes to deploy" && exit 0
+          git commit -m "deploy: $(date -u '+%Y-%m-%d %H:%M UTC') — ${{ github.sha }}"
+          git push
+
+      - name: Pull on server
+        env:
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p 2222 185.47.247.175 >> ~/.ssh/known_hosts
+
+          ssh -i ~/.ssh/deploy_key -p 2222 -o StrictHostKeyChecking=no nico@185.47.247.175 "
+            cd ~/httpdocs && \
+            git fetch origin && \
+            git reset --hard origin/main && \
+            echo 'Deploy complete'
+          "

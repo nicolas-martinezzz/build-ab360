@@ -1,73 +1,153 @@
 require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") });
-const ftp = require("basic-ftp");
+const ftp  = require("basic-ftp");
+const ssh2 = require("ssh2");
 const path = require("path");
-const fs = require("fs");
-const os = require("os");
+const fs   = require("fs");
+const os   = require("os");
 const crypto = require("crypto");
 
-const MANIFEST_REMOTE_PATH = "/httpdocs/.deploy-manifest.json";
-const MANIFEST_LOCAL_TMP   = path.join(os.tmpdir(), "deploy-manifest.json");
+// ─── SSH config ────────────────────────────────────────────────────────────────
+const SSH_CONFIG = {
+    host:       "185.47.247.175",
+    port:       2222,
+    username:   "nico",
+    privateKey: fs.readFileSync(path.join(os.homedir(), ".ssh", "id_ed25519")),
+};
 
-function md5(filePath) {
-    return crypto.createHash("md5").update(fs.readFileSync(filePath)).digest("hex");
+// ─── FTP config (only used for /private outside webroot) ───────────────────────
+async function ftpConnect() {
+    const c = new ftp.Client();
+    c.ftp.verbose = false;
+    c.ftp.timeout = 120000;
+    await c.access({
+        host:           SSH_CONFIG.host,
+        user:           SSH_CONFIG.username,
+        password:       process.env.DEPLOY_PASSWORD,
+        secure:         true,
+        secureOptions:  { rejectUnauthorized: false },
+    });
+    return c;
 }
 
-// Build a flat map of { remotePath -> md5 } for every file under localDir
-function buildLocalManifest(localDir, remoteBase = "", skip = new Set()) {
-    const manifest = {};
-    for (const entry of fs.readdirSync(localDir, { withFileTypes: true })) {
-        if (skip.has(entry.name)) continue;
-        const localPath  = path.join(localDir, entry.name);
-        const remotePath = remoteBase ? `${remoteBase}/${entry.name}` : entry.name;
-        if (entry.isDirectory()) {
-            Object.assign(manifest, buildLocalManifest(localPath, remotePath));
-        } else {
-            manifest[remotePath] = md5(localPath);
+// ─── SSH helpers ───────────────────────────────────────────────────────────────
+function openSSH() {
+    return new Promise((resolve, reject) => {
+        const conn = new ssh2.Client();
+        conn.on("ready", () => resolve(conn))
+            .on("error", reject)
+            .connect(SSH_CONFIG);
+    });
+}
+
+function exec(conn, cmd) {
+    return new Promise((resolve, reject) => {
+        conn.exec(cmd, (err, stream) => {
+            if (err) return reject(err);
+            let out = "", err2 = "";
+            stream.on("data", d => (out += d));
+            stream.stderr.on("data", d => (err2 += d));
+            stream.on("close", (code) => {
+                if (code !== 0) reject(new Error(`cmd failed (${code}): ${err2 || cmd}`));
+                else resolve(out.trim());
+            });
+        });
+    });
+}
+
+function openSFTP(conn) {
+    return new Promise((resolve, reject) => conn.sftp((err, sftp) => err ? reject(err) : resolve(sftp)));
+}
+
+function md5File(p) {
+    return crypto.createHash("md5").update(fs.readFileSync(p)).digest("hex");
+}
+
+// ─── SFTP sync ─────────────────────────────────────────────────────────────────
+// Mirrors localDir → remoteDir:
+//   - uploads new or changed files (by size+mtime, falls back to md5 on mismatch)
+//   - deletes remote files/dirs not present locally
+//   - skip set: top-level dir names to leave untouched on the remote
+async function syncDir(sftp, conn, localDir, remoteDir, skip = new Set()) {
+    let uploaded = 0, deleted = 0, skipped = 0;
+
+    // Ensure remote dir exists
+    async function ensureDir(rPath) {
+        try { await sftp.mkdir(rPath); } catch (_) {}
+    }
+
+    // List remote entries, returns Map<name, attrs>
+    async function remoteList(rPath) {
+        return new Promise((resolve, reject) => {
+            sftp.readdir(rPath, (err, list) => {
+                if (err) resolve(new Map());
+                else resolve(new Map(list.map(e => [e.filename, e.attrs])));
+            });
+        });
+    }
+
+    async function walk(lDir, rDir) {
+        await ensureDir(rDir);
+        const localEntries  = fs.readdirSync(lDir, { withFileTypes: true });
+        const localNames    = new Set(localEntries.map(e => e.name));
+        const remoteEntries = await remoteList(rDir);
+
+        // Delete remote entries no longer in local
+        for (const [name] of remoteEntries) {
+            if (skip.has(name)) continue;
+            if (!localNames.has(name)) {
+                const rPath = `${rDir}/${name}`;
+                try {
+                    // Try rmdir first (dir), then unlink (file)
+                    await exec(conn, `rm -rf "${rPath}"`);
+                    deleted++;
+                } catch (_) {}
+            }
         }
-    }
-    return manifest;
-}
 
-// Download the manifest from the server; return {} if it doesn't exist yet
-async function fetchRemoteManifest(client) {
-    try {
-        await client.downloadTo(MANIFEST_LOCAL_TMP, MANIFEST_REMOTE_PATH);
-        return JSON.parse(fs.readFileSync(MANIFEST_LOCAL_TMP, "utf8"));
-    } catch {
-        return {};
-    }
-}
+        // Upload new / changed local entries
+        for (const entry of localEntries) {
+            if (skip.has(entry.name)) { skipped++; continue; }
+            const lPath = path.join(lDir, entry.name);
+            const rPath = `${rDir}/${entry.name}`;
 
-// Upload only files that are new or whose hash changed
-async function uploadDirIncremental(client, localDir, remoteBase, remoteManifest, skip = new Set()) {
-    let uploaded = 0;
-    let skipped  = 0;
-
-    async function walk(localCurrent, remoteCurrent) {
-        for (const entry of fs.readdirSync(localCurrent, { withFileTypes: true })) {
-            if (skip.has(entry.name)) continue;
-            const localPath  = path.join(localCurrent, entry.name);
-            const remotePath = remoteCurrent ? `${remoteCurrent}/${entry.name}` : entry.name;
             if (entry.isDirectory()) {
-                await safeEnsureDir(client, entry.name);
-                await walk(localPath, remotePath);
-                await client.cd("..");
+                await walk(lPath, rPath);
             } else {
-                const localHash = md5(localPath);
-                if (remoteManifest[remotePath] === localHash) {
-                    skipped++;
-                } else {
-                    await client.uploadFrom(localPath, entry.name);
+                const rAttrs = remoteEntries.get(entry.name);
+                const lStat  = fs.statSync(lPath);
+
+                let needsUpload = true;
+                if (rAttrs) {
+                    // Quick check: same size AND mtime within 2s → probably same
+                    if (rAttrs.size === lStat.size && Math.abs(rAttrs.mtime - lStat.mtimeMs / 1000) < 2) {
+                        needsUpload = false;
+                        skipped++;
+                    } else if (rAttrs.size === lStat.size) {
+                        // Same size but different mtime — compare md5 to be sure
+                        const localHash = md5File(lPath);
+                        const remoteHash = await exec(conn, `md5sum "${rPath}" | cut -d' ' -f1`).catch(() => "");
+                        if (localHash === remoteHash) {
+                            needsUpload = false;
+                            skipped++;
+                        }
+                    }
+                }
+
+                if (needsUpload) {
+                    await new Promise((resolve, reject) =>
+                        sftp.fastPut(lPath, rPath, err => err ? reject(err) : resolve())
+                    );
                     uploaded++;
                 }
             }
         }
     }
 
-    await walk(localDir, remoteBase);
-    return { uploaded, skipped };
+    await walk(localDir, remoteDir);
+    return { uploaded, deleted, skipped };
 }
 
+// ─── PHP config ────────────────────────────────────────────────────────────────
 function buildPhpConfig() {
     return `<?php
 // Production config — auto-generated by deploy-production.js
@@ -89,169 +169,90 @@ return [
 `;
 }
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-// Safely create or enter a directory (ignores "already exists" errors)
-async function safeEnsureDir(client, name) {
-    try {
-        await client.send("MKD " + name);
-    } catch (_) { /* already exists — fine */ }
-    await client.cd(name);
-}
-
-// Upload directory contents recursively, skipping reserved server dirs (full upload, no diff)
-async function uploadDir(client, localDir, skip = new Set()) {
-    const entries = fs.readdirSync(localDir, { withFileTypes: true });
-    for (const entry of entries) {
-        if (skip.has(entry.name)) continue;
-        if (entry.isDirectory()) {
-            await safeEnsureDir(client, entry.name);
-            await uploadDir(client, path.join(localDir, entry.name));
-            await client.cd("..");
-        } else {
-            await client.uploadFrom(path.join(localDir, entry.name), entry.name);
-        }
-    }
-}
-
-// Connect a fresh FTP client
-async function connect() {
-    const c = new ftp.Client();
-    c.ftp.verbose = false;
-    c.ftp.timeout = 120000;
-    await c.access({
-        host: process.env.DEPLOY_HOST,
-        user: process.env.DEPLOY_USER,
-        password: process.env.DEPLOY_PASSWORD,
-        secure: true,
-        secureOptions: { rejectUnauthorized: false },
-    });
-    return c;
-}
-
-// Run a phase with retry on 425 (ProFTPD PASV rate limiting)
-async function withRetry(label, fn, retries = 3) {
-    for (let attempt = 1; attempt <= retries; attempt++) {
-        let c;
-        try {
-            c = await connect();
-            await fn(c);
-            c.close();
-            return;
-        } catch (err) {
-            if (c) try { c.close(); } catch (_) {}
-            if (err.code === 425 && attempt < retries) {
-                const wait = attempt * 8000;
-                console.log(`  ⚠ ${label}: error 425, reintentando en ${wait/1000}s (intento ${attempt}/${retries})...`);
-                await sleep(wait);
-            } else {
-                throw err;
-            }
-        }
-    }
-}
-
+// ─── Main ──────────────────────────────────────────────────────────────────────
 async function deploy() {
+    const outDir    = path.resolve(__dirname, "../out");
+    const publicDir = path.resolve(__dirname, "../public");
+
+    console.log("🚀 Desplegando a PRODUCCIÓN — yutopias.com\n");
+
+    // 1. PHP config outside webroot via FTP (SSH can't reach /private above httpdocs in chroot)
+    console.log("📁 Subiendo config PHP fuera del webroot...");
     const tmpConfig = path.join(os.tmpdir(), "newsletter-config.php");
     fs.writeFileSync(tmpConfig, buildPhpConfig());
-
-    // Load remote manifest once; used to diff the static build
-    let remoteManifest = {};
-
+    const ftpClient = await ftpConnect();
     try {
-        // Quick connectivity check + fetch manifest
-        console.log("🚀 Conectando al servidor FTP (PRODUCCIÓN yutopias.com)...");
-        const probe = await connect();
-        console.log("  Descargando manifest de deploy anterior...");
-        remoteManifest = await fetchRemoteManifest(probe);
-        const manifestAge = Object.keys(remoteManifest).length;
-        console.log(manifestAge ? `  ✓ Manifest cargado (${manifestAge} entradas)\n` : "  ℹ Sin manifest previo — primer deploy completo\n");
-        probe.close();
-
-        // 1. Upload PHP config outside webroot
-        console.log("📁 Subiendo config PHP fuera del webroot...");
-        await withRetry("config PHP", async (c) => {
-            await c.cd("/");
-            await safeEnsureDir(c, "private");
-            await c.uploadFrom(tmpConfig, "newsletter-config.php");
-        });
-        console.log("  ✓ /private/newsletter-config.php\n");
-
-        // 2. Upload static build — incremental diff against manifest
-        const outDir = path.join(__dirname, "../out");
-        const skipDirs = new Set(["api", "pdfs", "admin"]);
-        console.log("📦 Subiendo build estático (incremental)...");
-        let buildStats;
-        await withRetry("build estático", async (c) => {
-            await c.cd("/httpdocs");
-            buildStats = await uploadDirIncremental(c, outDir, "", remoteManifest, skipDirs);
-        });
-        console.log(`  ✓ ${buildStats.uploaded} subidos, ${buildStats.skipped} sin cambios\n`);
-
-        // 3. Upload real PHP API files
-        console.log("🔌 Subiendo API PHP...");
-        await withRetry("API PHP", async (c) => {
-            await c.cd("/httpdocs");
-            await safeEnsureDir(c, "api");
-            const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "reserva-plaza.php", "ebook-lead.php", "openlab-contact.php"];
-            for (const f of phpFiles) {
-                await c.uploadFrom(path.join(__dirname, "../public/api", f), f);
-                console.log("  ✓ api/" + f);
-            }
-        });
-
-        // 4. Upload PDFs
-        const pdfsLocalDir = path.join(__dirname, "../public/pdfs");
-        if (fs.existsSync(pdfsLocalDir)) {
-            console.log("\n📄 Subiendo PDFs...");
-            await withRetry("PDFs", async (c) => {
-                await c.cd("/httpdocs");
-                await safeEnsureDir(c, "pdfs");
-                const pdfEntries = fs.readdirSync(pdfsLocalDir, { withFileTypes: true });
-                for (const entry of pdfEntries) {
-                    if (!entry.isDirectory() && entry.name !== ".gitkeep") {
-                        await c.uploadFrom(path.join(pdfsLocalDir, entry.name), entry.name);
-                        console.log("  ✓ pdfs/" + entry.name);
-                    }
-                }
-            });
-        }
-
-        // 5. Upload admin panel
-        console.log("\n🔐 Subiendo panel de admin...");
-        await withRetry("admin panel", async (c) => {
-            await c.cd("/");
-            await safeEnsureDir(c, "admin.yutopias.com");
-            await safeEnsureDir(c, "httpdocs");
-            const adminFiles = ["index.php", "login.php", "logout.php", "api.php", "export.php", "auth.php", ".htaccess"];
-            for (const f of adminFiles) {
-                await c.uploadFrom(path.join(__dirname, "../public/admin", f), f);
-                console.log("  ✓ admin/" + f);
-            }
-        });
-
-        // Save updated manifest to server so next deploy can diff against it
-        console.log("💾 Guardando manifest de deploy...");
-        const newManifest = buildLocalManifest(path.join(__dirname, "../out"), "", new Set(["api", "pdfs", "admin"]));
-        const manifestTmp = path.join(os.tmpdir(), "deploy-manifest-new.json");
-        fs.writeFileSync(manifestTmp, JSON.stringify(newManifest, null, 2));
-        await withRetry("manifest", async (c) => {
-            await c.cd("/httpdocs");
-            await c.uploadFrom(manifestTmp, ".deploy-manifest.json");
-        });
-        fs.unlinkSync(manifestTmp);
-        console.log(`  ✓ Manifest guardado (${Object.keys(newManifest).length} entradas)\n`);
-
-        console.log("✅ ¡Despliegue a PRODUCCIÓN finalizado con éxito!");
-        console.log("   🌐 https://yutopias.com");
-        console.log("   🔐 https://admin.yutopias.com");
-
-    } catch (err) {
-        console.error("\n❌ Error:", err.message);
-        process.exit(1);
+        await ftpClient.cd("/");
+        try { await ftpClient.send("MKD private"); } catch (_) {}
+        await ftpClient.cd("private");
+        await ftpClient.uploadFrom(tmpConfig, "newsletter-config.php");
     } finally {
+        ftpClient.close();
         fs.unlinkSync(tmpConfig);
     }
+    console.log("  ✓ /private/newsletter-config.php\n");
+
+    // 2–5. Everything else via SFTP over SSH
+    const conn = await openSSH();
+    const sftp = await openSFTP(conn);
+
+    try {
+        // 2. Static build — full sync with delete
+        console.log("📦 Sincronizando build estático (SFTP)...");
+        const stats = await syncDir(sftp, conn, outDir, "httpdocs", new Set(["api", "pdfs", "admin"]));
+        console.log(`  ✓ ${stats.uploaded} subidos, ${stats.deleted} eliminados, ${stats.skipped} sin cambios\n`);
+
+        // 3. PHP API files
+        console.log("🔌 Subiendo API PHP...");
+        const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "reserva-plaza.php", "ebook-lead.php", "openlab-contact.php"];
+        await exec(conn, "mkdir -p ~/httpdocs/api");
+        for (const f of phpFiles) {
+            const local = path.join(publicDir, "api", f);
+            await new Promise((resolve, reject) =>
+                sftp.fastPut(local, `httpdocs/api/${f}`, err => err ? reject(err) : resolve())
+            );
+            console.log(`  ✓ api/${f}`);
+        }
+
+        // 4. PDFs (no delete — preserve files uploaded outside this repo)
+        const pdfsLocal = path.join(publicDir, "pdfs");
+        if (fs.existsSync(pdfsLocal) && fs.readdirSync(pdfsLocal).some(f => f !== ".gitkeep")) {
+            console.log("\n📄 Subiendo PDFs...");
+            await exec(conn, "mkdir -p ~/httpdocs/pdfs");
+            const pdfEntries = fs.readdirSync(pdfsLocal, { withFileTypes: true });
+            for (const entry of pdfEntries) {
+                if (!entry.isDirectory() && entry.name !== ".gitkeep") {
+                    const local = path.join(pdfsLocal, entry.name);
+                    await new Promise((resolve, reject) =>
+                        sftp.fastPut(local, `httpdocs/pdfs/${entry.name}`, err => err ? reject(err) : resolve())
+                    );
+                    console.log(`  ✓ pdfs/${entry.name}`);
+                }
+            }
+        }
+
+        // 5. Admin panel
+        console.log("\n🔐 Subiendo panel de admin...");
+        await exec(conn, "mkdir -p ~/admin.yutopias.com/httpdocs");
+        const adminFiles = ["index.php", "login.php", "logout.php", "api.php", "export.php", "auth.php", ".htaccess"];
+        for (const f of adminFiles) {
+            const local = path.join(publicDir, "admin", f);
+            await new Promise((resolve, reject) =>
+                sftp.fastPut(local, `admin.yutopias.com/httpdocs/${f}`, err => err ? reject(err) : resolve())
+            );
+            console.log(`  ✓ admin/${f}`);
+        }
+
+    } finally {
+        conn.end();
+    }
+
+    console.log("\n✅ ¡Despliegue a PRODUCCIÓN finalizado con éxito!");
+    console.log("   🌐 https://yutopias.com");
+    console.log("   🔐 https://admin.yutopias.com");
 }
 
-deploy();
+deploy().catch((err) => {
+    console.error("\n❌ Error:", err.message);
+    process.exit(1);
+});

@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src/",
+    "lint:spacing": "node scripts/check-spacing.mjs",
     "lint:palette": "node scripts/check-color-palette.mjs",
     "check:json-bom": "node scripts/check-json-bom.mjs",
     "check:i18n-parity": "node scripts/check-i18n-parity.mjs",
@@ -52,6 +53,7 @@
     "eslint-config-next": "^15.5.0",
     "happy-dom": "^20.9.0",
     "postcss": "^8.0.0",
+    "ssh2": "^1.17.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.0.0",
     "vitest": "^4.1.5"

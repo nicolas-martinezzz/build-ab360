@@ -1,0 +1,14 @@
+Options -Indexes
+
+# Serve static assets directly — never rewrite known file extensions
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Locale redirect at root
+RewriteRule ^$ /es/ [R=302,L]
+
+# Fallback: serve 404 page
+ErrorDocument 404 /404.html
