@@ -62,7 +62,7 @@ export const EbookLeadForm = ({
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [startedAt, setStartedAt] = useState<number>(0);
+  const [startedAt, setStartedAt] = useState<number>(() => initiallyExpanded ? Date.now() : 0);
 
   const handleShowForm = () => {
     setShowForm(true);
