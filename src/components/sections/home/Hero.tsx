@@ -1,13 +1,13 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { SITE_SECTION_IDS } from "@/config/routes";
+import { SITE_SECTION_IDS, getDiagnosticPathByLocale } from "@/config/routes";
 import { HeroBackdropGif } from "./HeroBackdropGif";
 
 export const Hero = async () => {
-  const t = await getTranslations("home.hero");
+  const [locale, t] = await Promise.all([getLocale(), getTranslations("home.hero")]);
   const eyebrow = t("eyebrow").trim();
   const subhead = t("subhead").trim();
 
@@ -45,7 +45,7 @@ export const Hero = async () => {
         ) : null}
         <LinkButton
           className="mt-6 w-full max-w-sm sm:w-auto"
-          href="/autodiagnostico"
+          href={getDiagnosticPathByLocale(locale)}
           variant="primary"
         >
           {t("cta")}
