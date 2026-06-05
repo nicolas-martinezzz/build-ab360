@@ -59,8 +59,13 @@ export function ReservaPlazaForm({ locale }: Props) {
         return;
       }
 
+      const diagnosticSlug =
+        locale === "en" ? "/self-assessment" :
+        locale === "ca" ? "/autodiagnostic" :
+        "/autodiagnostico";
+
       router.push({
-        pathname: "/autodiagnostico",
+        pathname: diagnosticSlug,
         query: {
           name: name.trim(),
           company: company.trim(),
