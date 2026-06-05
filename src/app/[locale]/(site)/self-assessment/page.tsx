@@ -24,6 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+export function generateStaticParams() {
+  return [{ locale: "en" }];
+}
+
 export default async function SelfAssessmentPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);

@@ -21,6 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+export function generateStaticParams() {
+  return [{ locale: "en" }];
+}
+
 export default async function BookYourSpotPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);

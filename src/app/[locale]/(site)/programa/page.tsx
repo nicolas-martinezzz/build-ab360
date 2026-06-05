@@ -48,6 +48,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+export function generateStaticParams() {
+  return [{ locale: "es" }, { locale: "ca" }];
+}
+
 export default async function ProgramaPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);

@@ -21,6 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+export function generateStaticParams() {
+  return [{ locale: "ca" }];
+}
+
 export default async function ReservaPlacaPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);

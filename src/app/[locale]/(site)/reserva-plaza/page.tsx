@@ -16,6 +16,10 @@ export async function generateMetadata({
   };
 }
 
+export function generateStaticParams() {
+  return [{ locale: "es" }];
+}
+
 export default async function ReservaPlazaPage({
   params,
 }: {
