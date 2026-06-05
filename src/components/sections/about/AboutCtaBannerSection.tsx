@@ -1,12 +1,15 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { SITE_PATHS } from "@/config/routes";
+import { getBootcampPathByLocale } from "@/config/routes";
 
 export const AboutCtaBannerSection = async () => {
-  const t = await getTranslations("aboutPage.partnersBanner");
+  const [t, locale] = await Promise.all([
+    getTranslations("aboutPage.partnersBanner"),
+    getLocale(),
+  ]);
   const tagline2 = t("tagline2");
 
   return (
@@ -33,7 +36,7 @@ export const AboutCtaBannerSection = async () => {
         </h2>
         <LinkButton
           className="mx-auto mt-10 w-full max-w-sm justify-center sm:w-auto"
-          href={SITE_PATHS.reservaPlaza}
+          href={getBootcampPathByLocale(locale)}
           variant="primary"
         >
           {t("cta")}

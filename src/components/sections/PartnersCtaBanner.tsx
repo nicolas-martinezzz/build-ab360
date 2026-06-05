@@ -1,9 +1,10 @@
 import Image from "next/image";
+import { getLocale } from "next-intl/server";
 import { twMerge } from "tailwind-merge";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { SITE_PATHS } from "@/config/routes";
+import { getBootcampPathByLocale } from "@/config/routes";
 
 type PartnersCtaBannerProps = {
   headline: string;
@@ -15,7 +16,7 @@ type PartnersCtaBannerProps = {
   ctaWrapperClassName?: string;
 };
 
-export const PartnersCtaBanner = ({
+export const PartnersCtaBanner = async ({
   headline,
   cta,
   backgroundSrc,
@@ -23,7 +24,9 @@ export const PartnersCtaBanner = ({
   taglineLine2,
   headlineClassName,
   ctaWrapperClassName,
-}: PartnersCtaBannerProps) => (
+}: PartnersCtaBannerProps) => {
+  const locale = await getLocale();
+  return (
   <section aria-labelledby="partners-cta-banner-title" className="relative flex min-h-[28rem] items-center justify-center py-16 sm:min-h-[35.5625rem]">
     <div className="absolute inset-0 overflow-hidden">
       <Image
@@ -50,7 +53,7 @@ export const PartnersCtaBanner = ({
 
       <div className={twMerge("mt-12 flex justify-center", ctaWrapperClassName ?? "")}>
         <LinkButton
-          href={SITE_PATHS.reservaPlaza}
+          href={getBootcampPathByLocale(locale)}
           variant="primary"
         >
           {cta}
@@ -64,4 +67,5 @@ export const PartnersCtaBanner = ({
       )}
     </SectionContainer>
   </section>
-);
+  );
+};

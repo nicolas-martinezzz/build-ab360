@@ -1,8 +1,8 @@
 import { Link } from "@/i18n/navigation";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { SITE_PATHS, SITE_SECTION_IDS } from "@/config/routes";
+import { SITE_SECTION_IDS, getBootcampPathByLocale } from "@/config/routes";
 
 const OPENLAB_ICONS = [
   // col1 — database
@@ -36,7 +36,10 @@ const OPENLAB_ICONS = [
 ] as const;
 
 export const OpenlabSection = async () => {
-  const t = await getTranslations("home.openlab");
+  const [t, locale] = await Promise.all([
+    getTranslations("home.openlab"),
+    getLocale(),
+  ]);
 
   const featureKeys = ["col1", "col2", "col3", "col4"] as const;
 
@@ -94,7 +97,7 @@ export const OpenlabSection = async () => {
             </LinkButton>
             <Link
               className="inline-flex items-center text-surface-bg underline underline-offset-4 transition-opacity hover:opacity-70"
-              href={SITE_PATHS.reservaPlaza}
+              href={getBootcampPathByLocale(locale) as never}
             >
               {t("ctaSecondary")}
             </Link>
@@ -143,14 +146,14 @@ export const OpenlabSection = async () => {
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:gap-4">
                 <LinkButton
                   className="w-full justify-center sm:w-auto"
-                  href={SITE_PATHS.reservaPlaza}
+                  href={getBootcampPathByLocale(locale)}
                   variant="primary"
                 >
                   {t("bootcampCard.ctaPrimary")}
                 </LinkButton>
                 <Link
                   className="inline-flex items-center text-surface-bg underline underline-offset-4 transition-opacity hover:opacity-70"
-                  href={SITE_PATHS.reservaPlaza}
+                  href={getBootcampPathByLocale(locale) as never}
                 >
                   {t("bootcampCard.ctaSecondary")}
                 </Link>

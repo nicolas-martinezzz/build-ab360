@@ -1,14 +1,17 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { SITE_PATHS } from "@/config/routes";
+import { getBootcampPathByLocale } from "@/config/routes";
 import { ProgramaHeroBottomBanner } from "./ProgramaLogosStrip";
 
 export const ProgramaHeroSection = async () => {
-  const t = await getTranslations("programaPage.hero");
+  const [t, locale] = await Promise.all([
+    getTranslations("programaPage.hero"),
+    getLocale(),
+  ]);
 
   return (
     <section
@@ -49,7 +52,7 @@ export const ProgramaHeroSection = async () => {
 
         <LinkButton
           className="mt-7 w-full sm:w-auto"
-          href={SITE_PATHS.reservaPlaza}
+          href={getBootcampPathByLocale(locale)}
           variant="primary"
         >
           {t("cta")}
