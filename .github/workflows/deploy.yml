@@ -21,52 +21,25 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Push build to build-ab360
+      - name: Deploy to server
         env:
-          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
         run: |
-          # Setup SSH
           mkdir -p ~/.ssh
-          echo "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          export GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no"
+          ssh-keyscan -p 2222 185.47.247.175 >> ~/.ssh/known_hosts
 
-          # Configure git
-          git config --global user.email "deploy@yutopias.com"
-          git config --global user.name "Deploy Bot"
-
-          # Clone build repo, replace contents with new build
-          git clone git@github.com:nicolas-martinezzz/build-ab360.git /tmp/build-ab360
-          cd /tmp/build-ab360
-
-          # Copy build output
-          rsync -av --delete \
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p 2222 -o StrictHostKeyChecking=no" \
             --exclude='.git' \
             --exclude='.github' \
-            $GITHUB_WORKSPACE/out/ ./
+            out/ nico@185.47.247.175:/httpdocs/
 
-          # Copy PHP API files
-          mkdir -p api
-          cp $GITHUB_WORKSPACE/public/api/*.php api/
+          rsync -avz \
+            -e "ssh -i ~/.ssh/deploy_key -p 2222 -o StrictHostKeyChecking=no" \
+            public/api/ nico@185.47.247.175:/httpdocs/api/
 
-          # Copy private server files (deployed outside webroot by build-ab360 workflow)
-          mkdir -p _private
-          cp $GITHUB_WORKSPACE/private/smtp_mailer.php _private/
-
-          # Commit and push
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No file changes — skipping commit"
-          else
-            git commit -m "deploy: $(date -u '+%Y-%m-%d %H:%M UTC') — ${{ github.sha }}"
-            git push
-          fi
-
-      - name: Trigger deploy in build-ab360
-        run: |
-          curl -s -X POST \
-            -H "Authorization: Bearer ${{ secrets.DEPLOY_PAT }}" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/nicolas-martinezzz/build-ab360/dispatches \
-            -d '{"event_type":"deploy"}'
+          ssh -i ~/.ssh/deploy_key -p 2222 -o StrictHostKeyChecking=no \
+            nico@185.47.247.175 \
+            "mkdir -p ~/yutopias.com/private && cp /httpdocs/_private/smtp_mailer.php ~/yutopias.com/private/smtp_mailer.php 2>/dev/null || true"
