@@ -29,7 +29,7 @@ export const ArticleCard = ({
 
   return (
     <article className="group flex h-full w-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-card-hover)]">
-      <Link className="flex flex-1 flex-col" href={`${SITE_PATHS.resources}/${article.slug}`}>
+      <Link className="flex flex-1 flex-col" href={`/resources/${article.slug}` as never}>
         <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden">
           <Image
             alt={article.coverImageAlt}

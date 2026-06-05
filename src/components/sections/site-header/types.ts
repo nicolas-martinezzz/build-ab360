@@ -12,6 +12,7 @@ export type SiteHeaderBarProps = {
   resources: string;
   joinBootcamp: string;
   bootcampPath: string;
+  locale: string;
   localeNavAria: string;
   localeEs: string;
   localeEn: string;

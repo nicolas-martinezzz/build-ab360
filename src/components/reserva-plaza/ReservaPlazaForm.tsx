@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, Link } from "@/i18n/navigation";
 
 type Props = { locale: string };
 
@@ -59,12 +59,14 @@ export function ReservaPlazaForm({ locale }: Props) {
         return;
       }
 
-      const params = new URLSearchParams({
-        name: name.trim(),
-        company: company.trim(),
-        email: email.trim(),
+      router.push({
+        pathname: "/autodiagnostico",
+        query: {
+          name: name.trim(),
+          company: company.trim(),
+          email: email.trim(),
+        },
       });
-      router.push(`/${locale}/autodiagnostico?${params.toString()}`);
     } catch {
       setError("Error de conexión. Intentá de nuevo.");
     } finally {
@@ -127,14 +129,14 @@ export function ReservaPlazaForm({ locale }: Props) {
         />
         <span className="text-sm leading-relaxed text-surface-bg/60">
           Acepto la{" "}
-          <a
-            href={`/${locale}/privacy`}
+          <Link
+            href="/privacy"
             target="_blank"
             rel="noopener noreferrer"
             className="text-green-700 underline underline-offset-2 hover:text-green-800"
           >
             política de privacidad
-          </a>
+          </Link>
           {" "}y el tratamiento de mis datos.
         </span>
       </label>

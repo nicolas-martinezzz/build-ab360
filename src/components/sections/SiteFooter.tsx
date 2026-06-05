@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { SITE_PATHS, getDiagnosticPathByLocale, getBootcampPathByLocale } from "@/config/routes";
+import { SITE_PATHS, getAboutPathByLocale, getProgramaPathByLocale, getDiagnosticPathByLocale, getBootcampPathByLocale } from "@/config/routes";
 import { Link } from "@/i18n/navigation";
 import { FooterNewsletterForm } from "@/components/sections/FooterNewsletterForm";
 import { FooterLocaleSwitcher } from "@/components/sections/FooterLocaleSwitcher";
@@ -11,8 +11,6 @@ import { FooterCookieButton } from "@/components/sections/FooterCookieButton";
 export const SiteFooter = async () => {
   const locale = await getLocale();
   const t = await getTranslations("footer");
-  const diagnosticPath = getDiagnosticPathByLocale(locale);
-  const bootcampPath = getBootcampPathByLocale();
 
   return (
     <footer
@@ -101,10 +99,10 @@ export const SiteFooter = async () => {
               <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.solution}>
                 {t("solution")}
               </Link>
-              <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.programa}>
+              <Link className="text-white/75 transition hover:text-white" href={getProgramaPathByLocale(locale) as never}>
                 {t("program")}
               </Link>
-              <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.about}>
+              <Link className="text-white/75 transition hover:text-white" href={getAboutPathByLocale(locale) as never}>
                 {t("about")}
               </Link>
               <Link className="text-white/75 transition hover:text-white" href={SITE_PATHS.resources}>
@@ -120,10 +118,10 @@ export const SiteFooter = async () => {
                 {t("actionTitle")}
               </p>
               <div className="flex flex-col gap-2 text-sm">
-                <Link className="text-white/75 transition hover:text-white" href={bootcampPath}>
+                <Link className="text-white/75 transition hover:text-white" href={getBootcampPathByLocale(locale) as never}>
                   {t("joinBootcamp")}
                 </Link>
-                <Link className="text-white/75 transition hover:text-white" href={diagnosticPath}>
+                <Link className="text-white/75 transition hover:text-white" href={getDiagnosticPathByLocale(locale) as never}>
                   {t("selfDiagnostic")}
                 </Link>
               </div>
@@ -142,7 +140,6 @@ export const SiteFooter = async () => {
               errorMessage={t("newsletterErrorMessage")}
               namePlaceholder={t("namePlaceholder")}
               privacyCheck={t("privacyCheck")}
-              privacyHref={SITE_PATHS.privacy}
               privacyPolicyLabel={t("privacyLink")}
               successMessage={t("newsletterSuccessMessage")}
               subscribeButton={t("subscribeButton")}

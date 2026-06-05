@@ -10,7 +10,6 @@ interface FooterNewsletterFormProps {
   privacyCheck: string;
   privacyPolicyLabel: string;
   subscribeButton: string;
-  privacyHref: string;
   successMessage: string;
   errorMessage: string;
   botBlockedMessage: string;
@@ -22,7 +21,6 @@ export const FooterNewsletterForm = ({
   privacyCheck,
   privacyPolicyLabel,
   subscribeButton,
-  privacyHref,
   successMessage,
   errorMessage,
   botBlockedMessage,
@@ -143,7 +141,7 @@ export const FooterNewsletterForm = ({
         />
         <span>
           {privacyCheck}{" "}
-          <Link className="underline transition hover:text-white" href={privacyHref}>
+          <Link className="underline transition hover:text-white" href="/privacy">
             {privacyPolicyLabel}
           </Link>
         </span>

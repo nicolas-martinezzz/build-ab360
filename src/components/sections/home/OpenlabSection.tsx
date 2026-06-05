@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";

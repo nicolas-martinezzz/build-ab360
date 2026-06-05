@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import type { LeadData } from "@/lib/diagnostic/types";
 
@@ -21,7 +22,6 @@ export function StepPrelead({ locale, mode = "diagnostic", onDone }: Props) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const privacyHref = `/${locale}/privacy`;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -119,14 +119,14 @@ export function StepPrelead({ locale, mode = "diagnostic", onDone }: Props) {
                 />
                 <span className="text-sm text-grey-dark leading-[1.5]">
                   {t("privacyText")}{" "}
-                  <a
-                    href={privacyHref}
+                  <Link
+                    href="/privacy"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-600 underline underline-offset-2"
                   >
                     {t("privacyLinkText")}
-                  </a>{" "}
+                  </Link>{" "}
                   {t("privacySuffix")}
                 </span>
               </label>

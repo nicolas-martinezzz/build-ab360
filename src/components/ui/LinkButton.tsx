@@ -11,7 +11,7 @@ type LinkButtonProps = {
 };
 
 export const LinkButton = ({ href, children, className, variant = "primary", ariaLabel }: LinkButtonProps) => (
-  <Link aria-label={ariaLabel} className={getButtonClassName(variant, className)} href={href}>
+  <Link aria-label={ariaLabel} className={getButtonClassName(variant, className)} href={href as never}>
     {children}
   </Link>
 );

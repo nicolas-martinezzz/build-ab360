@@ -1,12 +1,9 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { getDiagnosticPathByLocale } from "@/config/routes";
 
 export const SolutionDiagnosticCta = async () => {
-  const locale = await getLocale();
   const t = await getTranslations("solutionPage.diagnosticCta");
-  const diagnosticPath = getDiagnosticPathByLocale(locale);
 
   return (
     <section aria-label={t("cta")} className="section-block bg-white">
@@ -17,7 +14,7 @@ export const SolutionDiagnosticCta = async () => {
 
         <div className="mt-10 flex justify-center md:mt-16">
           <LinkButton
-            href={diagnosticPath}
+            href="/autodiagnostico"
             variant="primary"
           >
             {t("cta")}

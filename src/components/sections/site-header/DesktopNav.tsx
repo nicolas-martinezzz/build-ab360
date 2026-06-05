@@ -18,7 +18,7 @@ export const DesktopNav = ({ mainNavAria, isCompact, links }: DesktopNavProps) =
     )}
   >
     {links.map((link) => (
-      <Link key={link.key} className={NAV_LINK_CLASS} href={link.href}>
+      <Link key={link.key} className={NAV_LINK_CLASS} href={link.href as never}>
         {link.label}
       </Link>
     ))}

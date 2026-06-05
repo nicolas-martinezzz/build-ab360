@@ -1,14 +1,11 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { getDiagnosticPathByLocale } from "@/config/routes";
 
 export const SolutionHeroSection = async () => {
-  const locale = await getLocale();
   const t = await getTranslations("solutionPage.hero");
-  const diagnosticPath = getDiagnosticPathByLocale(locale);
 
   return (
     <section
@@ -60,7 +57,7 @@ export const SolutionHeroSection = async () => {
         </p>
         <LinkButton
           className="mt-3 w-full max-w-sm sm:w-auto"
-          href={diagnosticPath}
+          href="/autodiagnostico"
           variant="primary"
         >
           {t("cta")}

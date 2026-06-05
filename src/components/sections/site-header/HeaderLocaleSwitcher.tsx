@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+import { getLocalizedPathname } from "@/i18n/slug-map";
 
 type Props = {
   localeEs: string;
@@ -56,7 +57,7 @@ export function HeaderLocaleSwitcher({ localeEs, localeEn, localeCa, ariaLabel, 
               <Link
                 aria-current={currentLocale === locale ? "page" : undefined}
                 className={currentLocale === locale ? "font-medium text-white" : "text-white/65 transition hover:text-white"}
-                href={pathname}
+                href={getLocalizedPathname(pathname, locale) as never}
                 locale={locale}
               >
                 {labels[locale]}
@@ -97,7 +98,7 @@ export function HeaderLocaleSwitcher({ localeEs, localeEn, localeCa, ariaLabel, 
                     ? "font-medium text-white"
                     : "text-white/65 hover:bg-white/[0.08] hover:text-white",
                 ].join(" ")}
-                href={pathname}
+                href={getLocalizedPathname(pathname, locale) as never}
                 locale={locale}
                 role="option"
                 onClick={() => setOpen(false)}

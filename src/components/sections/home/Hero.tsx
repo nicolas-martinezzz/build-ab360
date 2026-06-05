@@ -3,18 +3,13 @@ import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { SITE_SECTION_IDS, getDiagnosticPathByLocale } from "@/config/routes";
+import { SITE_SECTION_IDS } from "@/config/routes";
 import { HeroBackdropGif } from "./HeroBackdropGif";
 
-type HeroProps = {
-  locale: string;
-};
-
-export const Hero = async ({ locale }: HeroProps) => {
+export const Hero = async () => {
   const t = await getTranslations("home.hero");
   const eyebrow = t("eyebrow").trim();
   const subhead = t("subhead").trim();
-  const diagnosticPath = getDiagnosticPathByLocale(locale);
 
   return (
     <section
@@ -50,7 +45,7 @@ export const Hero = async ({ locale }: HeroProps) => {
         ) : null}
         <LinkButton
           className="mt-6 w-full max-w-sm sm:w-auto"
-          href={diagnosticPath}
+          href="/autodiagnostico"
           variant="primary"
         >
           {t("cta")}

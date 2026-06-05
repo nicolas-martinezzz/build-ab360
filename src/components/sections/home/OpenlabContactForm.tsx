@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { Link } from "@/i18n/navigation";
 
 type Props = {
   locale: string;
@@ -211,14 +212,14 @@ export function OpenlabContactForm({ locale, t }: Props) {
           />
           <span className="text-sm leading-relaxed text-surface-bg/60">
             {t.checkPrivacy}{" "}
-            <a
-              href={`/${locale}/privacy`}
+            <Link
+              href="/privacy"
               target="_blank"
               rel="noopener noreferrer"
               className="text-green-700 underline underline-offset-2 hover:text-green-800"
             >
               {t.checkPrivacyLink}
-            </a>{" "}
+            </Link>{" "}
             *
           </span>
         </label>

@@ -28,6 +28,7 @@ export const SiteHeaderBar = ({
   resources,
   joinBootcamp,
   bootcampPath,
+  locale,
   localeNavAria,
   localeEs,
   localeEn,
@@ -49,6 +50,7 @@ export const SiteHeaderBar = ({
     program,
     about,
     resources,
+    locale,
   });
 
   useHeaderCompact({ setIsCompact });

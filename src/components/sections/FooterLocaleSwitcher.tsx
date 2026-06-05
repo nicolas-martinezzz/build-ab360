@@ -2,6 +2,7 @@
 
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+import { getLocalizedPathname } from "@/i18n/slug-map";
 
 type FooterLocaleSwitcherProps = {
   ariaLabel: string;
@@ -29,7 +30,7 @@ export const FooterLocaleSwitcher = ({
       <Link
         aria-current={currentLocale === "es" ? "page" : undefined}
         className={getLocaleLinkClassName(currentLocale === "es")}
-        href={pathname}
+        href={getLocalizedPathname(pathname, "es") as never}
         locale="es"
       >
         {localeEs}
@@ -40,7 +41,7 @@ export const FooterLocaleSwitcher = ({
       <Link
         aria-current={currentLocale === "en" ? "page" : undefined}
         className={getLocaleLinkClassName(currentLocale === "en")}
-        href={pathname}
+        href={getLocalizedPathname(pathname, "en") as never}
         locale="en"
       >
         {localeEn}
@@ -51,7 +52,7 @@ export const FooterLocaleSwitcher = ({
       <Link
         aria-current={currentLocale === "ca" ? "page" : undefined}
         className={getLocaleLinkClassName(currentLocale === "ca")}
-        href={pathname}
+        href={getLocalizedPathname(pathname, "ca") as never}
         locale="ca"
       >
         {localeCa}

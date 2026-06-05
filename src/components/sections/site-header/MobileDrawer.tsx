@@ -84,7 +84,7 @@ export const MobileDrawer = ({
             key={link.key}
             ref={index === 0 ? firstDrawerLinkRef : undefined}
             className={DRAWER_LINK_CLASS}
-            href={link.href}
+            href={link.href as never}
             onClick={closeMenu}
           >
             {link.label}
@@ -93,7 +93,7 @@ export const MobileDrawer = ({
         <Link
           ref={lastDrawerActionRef}
           className={getButtonClassName("primary", "mt-4 w-full min-h-12 justify-center sm:max-w-sm")}
-          href={bootcampPath}
+          href={bootcampPath as never}
           onClick={closeMenu}
         >
           {joinBootcamp}

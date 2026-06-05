@@ -74,7 +74,7 @@ export default async function HomePage({ params }: Props) {
         type="application/ld+json"
       />
       <div className="relative bg-surface-bg">
-        <Hero locale={locale} />
+        <Hero />
       </div>
       <HomePageSections />
     </>

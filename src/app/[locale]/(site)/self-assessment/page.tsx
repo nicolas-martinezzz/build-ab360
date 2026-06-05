@@ -12,13 +12,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: `https://yutopias.com/${locale}/self-assessment`,
+      languages: {
+        es: "https://yutopias.com/es/autodiagnostico",
+        en: "https://yutopias.com/en/self-assessment",
+        ca: "https://yutopias.com/ca/autodiagnostic",
+        "x-default": "https://yutopias.com/es/autodiagnostico",
+      },
+    },
   };
 }
 
 export default async function SelfAssessmentPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-
   return (
     <>
       <DiagnosticHeroSection />

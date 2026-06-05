@@ -42,7 +42,7 @@ export const BlogResourcesSection = async () => {
             const tr = article.translations[lang] ?? article.translations.es;
             return (
               <li key={article.slug}>
-                <Link className="group block h-full" href={`${SITE_PATHS.resources}/${article.slug}`}>
+                <Link className="group block h-full" href={`/resources/${article.slug}` as never}>
                   <article className="flex h-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-card-hover)]">
                     <div className="relative h-[13rem] w-full shrink-0 overflow-hidden sm:h-[15rem]">
                       <Image
@@ -86,7 +86,7 @@ export const BlogResourcesSection = async () => {
             const tr = ebook.translations[lang] ?? ebook.translations.es;
             return (
               <li key={ebook.slug}>
-                <Link className="group block h-full" href={`${SITE_PATHS.resources}/${ebook.slug}`}>
+                <Link className="group block h-full" href={`/resources/${ebook.slug}` as never}>
                   <article className="flex h-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-card-hover)]">
                     <div className="relative h-[13rem] w-full shrink-0 overflow-hidden sm:h-[15rem]">
                       <Image
