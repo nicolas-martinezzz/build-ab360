@@ -24,7 +24,14 @@ next-env.d.ts
 
 # Claude Code personal settings (local only, never committed)
 /.claude/settings.local.json
+/.claude/settings.json
 /.claude/worktrees/
+/.claude/skills/
+
+# Other AI tool configs (local only)
+/.atl/
+/.continue/
+/.kiro/
 
 # Static HTML prototypes (implemented in Next.js)
 /autodiagnostico.html
@@ -32,6 +39,14 @@ next-env.d.ts
 
 # Deploy helper scripts (local only)
 /scripts/deploy-staging.ps1
+/scripts/debug_send.php
+/scripts/resend_diagnostics.php
+/scripts/resend_jjm.php
+/scripts/resend_session.php
+/scripts/smtp_test.php
+/scripts/test_forms.php
+/scripts/test_send.php
+/scripts/check-spacing.mjs
 
 # Playwright
 node_modules/
