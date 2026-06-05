@@ -43,6 +43,7 @@ jobs:
           # Copy build output
           rsync -av --delete \
             --exclude='.git' \
+            --exclude='.github' \
             $GITHUB_WORKSPACE/out/ ./
 
           # Copy PHP API files
