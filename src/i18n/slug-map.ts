@@ -14,9 +14,24 @@ const SLUG_EQUIVALENCES: LocaleSlugMap = {
   autodiagnostic:   { es: "/autodiagnostico", en: "/self-assessment", ca: "/autodiagnostic" },
 };
 
+const LOCALES = ["es", "en", "ca"] as const;
+
 export function getLocalizedPathname(pathname: string, targetLocale: string): string {
-  const slug = pathname.replace(/^\//, "").split("/")[0];
-  const equivalences = SLUG_EQUIVALENCES[slug];
-  if (equivalences) return equivalences[targetLocale] ?? pathname;
-  return pathname;
+  const queryIndex = pathname.indexOf("?");
+  const hashIndex = pathname.indexOf("#");
+  const cutIndex = [queryIndex, hashIndex].filter((n) => n >= 0).sort((a, b) => a - b)[0] ?? pathname.length;
+  const basePath = pathname.slice(0, cutIndex);
+  const suffix = pathname.slice(cutIndex);
+
+  const trimmed = basePath.replace(/^\/+|\/+$/g, "");
+  const segments = trimmed.split("/").filter(Boolean);
+  const pathSegments = LOCALES.includes(segments[0] as typeof LOCALES[number]) ? segments.slice(1) : segments;
+
+  const first = pathSegments[0] ?? "";
+  const rest = pathSegments.slice(1);
+  const equivalences = SLUG_EQUIVALENCES[first];
+  const localizedFirst = equivalences ? equivalences[targetLocale] : first ? `/${first}` : "";
+  const localizedPath = localizedFirst ? `${localizedFirst}${rest.length > 0 ? `/${rest.join("/")}` : ""}` : "/";
+
+  return localizedPath + suffix;
 }
