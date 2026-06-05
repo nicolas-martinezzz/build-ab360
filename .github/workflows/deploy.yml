@@ -55,6 +55,17 @@ jobs:
 
           # Commit and push
           git add -A
-          git diff --cached --quiet && echo "No changes to deploy" && exit 0
-          git commit -m "deploy: $(date -u '+%Y-%m-%d %H:%M UTC') — ${{ github.sha }}"
-          git push
+          if git diff --cached --quiet; then
+            echo "No file changes — skipping commit"
+          else
+            git commit -m "deploy: $(date -u '+%Y-%m-%d %H:%M UTC') — ${{ github.sha }}"
+            git push
+          fi
+
+      - name: Trigger deploy in build-ab360
+        run: |
+          curl -s -X POST \
+            -H "Authorization: Bearer ${{ secrets.DEPLOY_PAT }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/nicolas-martinezzz/build-ab360/dispatches \
+            -d '{"event_type":"deploy"}'
