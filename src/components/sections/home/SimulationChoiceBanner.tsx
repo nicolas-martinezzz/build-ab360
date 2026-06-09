@@ -7,7 +7,7 @@ export const SimulationChoiceBanner = async () => {
   return (
     <section
       aria-label={t("regionAria")}
-      className="section-band bg-green-100 md:min-h-[16.9375rem]"
+      className="section-band bg-[#9bbf64] md:min-h-[16.9375rem]"
     >
       <SectionContainer>
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-12">
