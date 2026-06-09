@@ -6,6 +6,7 @@ import { Inter, Montserrat } from "next/font/google";
 import type { ReactNode } from "react";
 import { routing } from "@/i18n/routing";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
+import { IntroOverlayLoader } from "@/components/ui/IntroOverlayLoader";
 
 const montserrat = Montserrat({
   subsets: ["latin", "latin-ext"],
@@ -99,6 +100,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     >
       <body className="min-h-screen antialiased pb-[env(safe-area-inset-bottom,0px)]">
         <NextIntlClientProvider messages={messages}>
+          <IntroOverlayLoader />
           {children}
           <CookieConsentBanner />
         </NextIntlClientProvider>
