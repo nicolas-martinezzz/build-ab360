@@ -16,7 +16,7 @@ export const TestimonialsSection = async () => {
   return (
     <section
       aria-labelledby="testimonials-title"
-      className="section-block bg-green-100/40"
+      className="section-block bg-green-50"
     >
       <SectionContainer>
         <p className="type-eyebrow text-grey-dark">{t("label")}</p>

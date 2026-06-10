@@ -7,7 +7,7 @@ export const ChallengeTodaySection = async () => {
   const t = await getTranslations("challengePage.todaySection");
 
   return (
-    <section aria-labelledby="challenge-today-title" className="section-block bg-green-100/40 md:min-h-[56.3125rem]">
+    <section aria-labelledby="challenge-today-title" className="section-block bg-green-50 md:min-h-[56.3125rem]">
       <SectionContainer>
         <div className="grid gap-10 lg:grid-cols-[1fr_minmax(0,28rem)] lg:items-start lg:justify-between">
           <div>

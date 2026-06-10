@@ -5,7 +5,7 @@ export const AboutVisionSection = async () => {
   const t = await getTranslations("aboutPage.vision");
 
   return (
-    <section aria-labelledby="about-vision-title" className="section-block bg-green-100/40">
+    <section aria-labelledby="about-vision-title" className="section-block bg-green-50">
       <SectionContainer>
         <div className="grid gap-9 md:grid-cols-2 md:gap-14">
           <div>

@@ -46,7 +46,7 @@ export const OpenlabSection = async () => {
   return (
     <section
       aria-labelledby="openlab-title"
-      className="section-block bg-white"
+      className="section-block bg-green-50"
       id={SITE_SECTION_IDS.program}
     >
       <SectionContainer>

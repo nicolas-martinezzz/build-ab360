@@ -52,7 +52,7 @@ export const AboutEcosystemSection = async () => {
   const t = await getTranslations("aboutPage.ecosystem");
 
   return (
-    <section aria-labelledby="about-ecosystem-title" className="section-block bg-grey-light/35">
+    <section aria-labelledby="about-ecosystem-title" className="section-block bg-green-50">
       <SectionContainer>
         <p className="type-eyebrow text-grey-dark/85">{t("eyebrow")}</p>
         <h2

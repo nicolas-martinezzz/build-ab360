@@ -37,7 +37,7 @@ export const AboutTeamSection = async () => {
   return (
     <>
       {/* Team intro — cream bg */}
-      <section aria-label={teamT("eyebrow")} className="section-block bg-green-100/40">
+      <section aria-label={teamT("eyebrow")} className="section-block bg-green-50">
         <SectionContainer>
           <div className="grid gap-8 md:grid-cols-2 md:gap-16">
             <p className="figma-text-l text-surface-bg">{introT("left")}</p>
