@@ -27,7 +27,14 @@ const css = `
 `
 
 export default function IntroOverlay() {
-  const [visible, setVisible] = useState(false)
+  // Lazy initializer: resolves synchronously on the client before the first
+  // render, so the overlay is in the DOM from frame 0 and never flashes.
+  // SSR always returns false (window is undefined there, but this component
+  // is loaded via next/dynamic ssr:false so it only runs on the client).
+  const [visible, setVisible] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return !sessionStorage.getItem('intro-seen')
+  })
   const [playing, setPlaying] = useState(false)
 
   const stageRef = useRef<HTMLDivElement>(null)
@@ -43,10 +50,11 @@ export default function IntroOverlay() {
   const runRef = useRef<() => void>(() => {})
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && sessionStorage.getItem('intro-seen')) {
-      return
-    }
-    setVisible(true)
+    if (!visible) return
+
+    // Remove the server-rendered shield — this overlay (z-index 9999) now covers everything.
+    const shield = document.getElementById('intro-shield')
+    if (shield) shield.style.display = 'none'
 
     const styleEl = document.createElement('style')
     styleEl.textContent = css

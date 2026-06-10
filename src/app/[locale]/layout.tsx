@@ -103,10 +103,20 @@ export default async function LocaleLayout({ children, params }: Props) {
         style={{ background: '#000' }}
         suppressHydrationWarning
       >
-        {/* Restores white bg immediately for returning visitors who already saw the intro */}
+        {/*
+          Pre-hydration shield: a server-rendered fixed overlay that blocks ALL
+          page content from being visible before React mounts the IntroOverlay.
+          z-index 9998 (overlay is 9999, so it renders above this).
+          — For returning visitors: the inline script below removes it immediately.
+          — For new visitors: IntroOverlay mounts above it and removes it on mount.
+        */}
+        <div
+          id="intro-shield"
+          style={{ position: 'fixed', inset: 0, background: '#000', zIndex: 9998 }}
+        />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(sessionStorage.getItem('intro-seen'))document.body.style.background=''}catch(e){}})()`,
+            __html: `(function(){try{var s=document.getElementById('intro-shield');if(sessionStorage.getItem('intro-seen')){if(s)s.style.display='none';document.body.style.background='';}}catch(e){}})()`,
           }}
         />
         <NextIntlClientProvider messages={messages}>
