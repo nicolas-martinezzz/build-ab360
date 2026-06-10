@@ -98,7 +98,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       suppressHydrationWarning
     >
-      <body className="min-h-screen antialiased pb-[env(safe-area-inset-bottom,0px)]">
+      <body className="min-h-screen antialiased pb-[env(safe-area-inset-bottom,0px)]" suppressHydrationWarning>
         {/* Blocks flash of page content before intro overlay mounts */}
         <script
           dangerouslySetInnerHTML={{
