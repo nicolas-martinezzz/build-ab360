@@ -7,7 +7,7 @@ export const IntroStripSection = async () => {
   return (
     <section
       aria-label={t("regionAria")}
-      className="section-band bg-green-100"
+      className="section-band bg-[#9bbf64]"
     >
       <SectionContainer>
         <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-x-20">

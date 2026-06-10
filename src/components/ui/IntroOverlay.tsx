@@ -144,20 +144,23 @@ export default function IntroOverlay() {
         return
       }
 
-      after(500,  () => diagram.classList.add('in'))
-      after(1300, () => uu.classList.add('in'))
-      after(1600, () => hint.classList.add('show'))
-      after(2700, () => { line.classList.add('in'); type(1); hint.classList.remove('show') })
-      after(5400, finish)
+      after(80,   () => diagram.classList.add('in'))
+      after(880,  () => uu.classList.add('in'))
+      after(1180, () => hint.classList.add('show'))
+      after(2280, () => { line.classList.add('in'); type(1); hint.classList.remove('show') })
+      after(4980, finish)
     }
     runRef.current = run
 
-    if (document.fonts?.ready) {
-      document.fonts.ready.then(() => { fitText(); run() })
-    } else {
+    // Defer run() by one rAF so React has flushed the JSX refs.
+    // fitText also re-runs once fonts settle (text is still invisible at that point).
+    requestAnimationFrame(() => {
       fitText()
       run()
-    }
+      if (document.fonts?.ready) {
+        document.fonts.ready.then(fitText)
+      }
+    })
 
     window.addEventListener('resize', fitText)
 
