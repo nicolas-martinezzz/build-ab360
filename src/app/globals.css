@@ -64,7 +64,7 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--color-surface-bg);
-  background-color: var(--color-white);
+  background-color: #000;
   overflow-x: hidden;
   text-wrap: pretty;
 }

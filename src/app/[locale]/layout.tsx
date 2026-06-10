@@ -102,7 +102,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         {/* Blocks flash of page content before intro overlay mounts */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(!sessionStorage.getItem('intro-seen'))document.body.style.background='#000'}catch(e){}})()`,
+            __html: `(function(){try{if(sessionStorage.getItem('intro-seen'))document.body.style.background='#fff'}catch(e){}})()`,
           }}
         />
         <NextIntlClientProvider messages={messages}>
