@@ -99,6 +99,12 @@ export default async function LocaleLayout({ children, params }: Props) {
       suppressHydrationWarning
     >
       <body className="min-h-screen antialiased pb-[env(safe-area-inset-bottom,0px)]">
+        {/* Blocks flash of page content before intro overlay mounts */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(!sessionStorage.getItem('intro-seen'))document.body.style.background='#000'}catch(e){}})()`,
+          }}
+        />
         <NextIntlClientProvider messages={messages}>
           <IntroOverlayLoader />
           {children}

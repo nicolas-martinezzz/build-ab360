@@ -47,6 +47,8 @@ export default function IntroOverlay() {
       return
     }
     setVisible(true)
+    // Clear the body background set by the inline script in layout
+    document.body.style.background = ''
 
     const styleEl = document.createElement('style')
     styleEl.textContent = css
