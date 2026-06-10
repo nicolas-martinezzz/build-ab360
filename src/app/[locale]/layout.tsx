@@ -98,11 +98,15 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       suppressHydrationWarning
     >
-      <body className="min-h-screen antialiased pb-[env(safe-area-inset-bottom,0px)]" suppressHydrationWarning>
-        {/* Blocks flash of page content before intro overlay mounts */}
+      <body
+        className="min-h-screen antialiased pb-[env(safe-area-inset-bottom,0px)]"
+        style={{ background: '#000' }}
+        suppressHydrationWarning
+      >
+        {/* Restores white bg immediately for returning visitors who already saw the intro */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(sessionStorage.getItem('intro-seen'))document.body.style.background='#fff'}catch(e){}})()`,
+            __html: `(function(){try{if(sessionStorage.getItem('intro-seen'))document.body.style.background=''}catch(e){}})()`,
           }}
         />
         <NextIntlClientProvider messages={messages}>
