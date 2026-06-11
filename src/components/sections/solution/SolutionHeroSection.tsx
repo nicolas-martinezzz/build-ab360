@@ -46,7 +46,38 @@ export const SolutionHeroSection = async () => {
         </h1>
 
         <p className="figma-text-m mt-3 font-semibold text-green-400">
-          {t("collaborators")}
+          {t.rich("collaborators", {
+            lasalle: (chunks) => (
+              <a
+                className="underline underline-offset-2 hover:opacity-80"
+                href="https://www.salleurl.edu/es/la-salle-y-la-investigacion"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {chunks}
+              </a>
+            ),
+            sngular: (chunks) => (
+              <a
+                className="underline underline-offset-2 hover:opacity-80"
+                href="https://www.sngular.com/es/insights/364/ab360-una-plataforma-pionera-de-inteligencia-colaborativa-para-la-edificacion-sostenible"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {chunks}
+              </a>
+            ),
+            accio: (chunks) => (
+              <a
+                className="underline underline-offset-2 hover:opacity-80"
+                href="https://www.accio.gencat.cat/ca/serveis/innovacio/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {chunks}
+              </a>
+            ),
+          })}
         </p>
 
         <p className="figma-text-l mt-5 max-w-[52.5rem] whitespace-pre-line text-white">

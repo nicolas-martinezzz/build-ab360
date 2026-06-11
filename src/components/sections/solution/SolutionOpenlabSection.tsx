@@ -59,7 +59,30 @@ export const SolutionOpenlabSection = async () => {
 
           {/* Right */}
           <div className="flex flex-col justify-center gap-6">
-            <p className="figma-text-l text-surface-bg">{t("body")}</p>
+            <p className="figma-text-l text-surface-bg">
+              {t.rich("body", {
+                lasalle: (chunks) => (
+                  <a
+                    className="underline underline-offset-2 hover:opacity-80"
+                    href="https://www.salleurl.edu/es/la-salle-y-la-investigacion"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {chunks}
+                  </a>
+                ),
+                accio: (chunks) => (
+                  <a
+                    className="underline underline-offset-2 hover:opacity-80"
+                    href="https://www.accio.gencat.cat/ca/serveis/innovacio/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {chunks}
+                  </a>
+                ),
+              })}
+            </p>
             <div className="flex flex-wrap items-center gap-4">
               <LinkButton href={SITE_PATHS.contact} variant="primary">
                 {t("ctaPrimary")}

@@ -12,7 +12,6 @@ const CATEGORY_1_LOGOS = [
 
 const CATEGORY_2_LOGOS = [
   { src: SITE_ASSETS.programa.ecosystemLasalleRd, alt: "La Salle R&D" },
-  { src: SITE_ASSETS.programa.ecosystemTechnova, alt: "La Salle TechnovaBarcelona" },
   { src: SITE_ASSETS.about.ecosystemEoi, alt: "EOI" },
   { src: SITE_ASSETS.programa.ecosystemIese, alt: "IESE Business School" },
   { src: SITE_ASSETS.about.ecosystemEsade, alt: "Esade" },
@@ -34,12 +33,12 @@ const LogoGrid = ({
     {logos.map((logo) => (
       <li
         key={logo.alt}
-        className="flex h-[5.875rem] items-center justify-center rounded-[2px] bg-white px-3 py-2"
+        className="flex h-[5.875rem] items-center justify-center rounded-[2px] bg-white px-3 py-[2mm]"
       >
         <Image
           alt={logo.alt}
-          className="h-10 w-auto object-contain"
-          height={40}
+          className="h-full w-auto object-contain"
+          height={80}
           src={logo.src}
           width={120}
         />

@@ -90,8 +90,8 @@ export const SITE_ASSETS = {
     heroBackground: "/images/programa/hero-background.jpg",
     ecosystemRectSmall: "/images/programa/ecosystem/rect-small.png",
     ecosystemRectWide: "/images/programa/ecosystem/rect-wide.png",
-    ecosystemLasalleRd: "/images/programa/ecosystem/lasalle-rd.png",
-    ecosystemTechnova: "/images/programa/ecosystem/technova.png",
+    ecosystemLasalleRd: "/images/programa/ecosystem/lasalle-rd.jpeg",
+
     ecosystemAccio: "/images/programa/ecosystem/accio.png",
     ecosystemGbce: "/images/programa/ecosystem/gbce.png",
     ecosystemItec: "/images/programa/ecosystem/itec.png",

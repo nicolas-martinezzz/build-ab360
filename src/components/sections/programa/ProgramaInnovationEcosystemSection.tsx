@@ -78,8 +78,6 @@ export const ProgramaInnovationEcosystemSection = async () => {
             <LogoTile
               logoAlt="La Salle R&D"
               logoSrc={SITE_ASSETS.programa.ecosystemLasalleRd}
-              secondaryLogoAlt="Technova Barcelona"
-              secondaryLogoSrc={SITE_ASSETS.programa.ecosystemTechnova}
               wide
             />
             <LogoTile logoAlt="ACCIÓ" logoSrc={SITE_ASSETS.programa.ecosystemAccio} />

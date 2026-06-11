@@ -834,7 +834,7 @@
       "cta": "Haz tu autodiagnóstico",
       "hint": "10 minutos. Te vas sabiendo dónde estás.",
       "demoAlt": "Demo interactiva de SimuLab — simulación de coste y sostenibilidad de un edificio.",
-      "collaborators": "Desarrollado en colaboración con La Salle R&D URL y SNGULAR. Con el soporte de ACCIÓ.",
+      "collaborators": "Desarrollado en colaboración con <lasalle>La Salle R&D URL</lasalle> y <sngular>SNGULAR</sngular>. Con el soporte de <accio>ACCIÓ</accio>.",
       "ctaLabel": "¿Cómo toma decisiones tu empresa?"
     },
     "simulab": {
@@ -985,7 +985,7 @@
     "hero": {
       "eyebrow": "EL PROGRAMA",
       "headline": "OpenLab, un viaje de innovación abierta de 6 meses",
-      "body": "Yutopias, La Salle R&D y ACCIÓ han decidido que la mejor forma de desplegar Simulab es co-creándolo con los primeros partners. No vendemos un software terminado — construimos juntos el estándar.",
+      "body": "Yutopias, <lasalle>La Salle R&D</lasalle> y <accio>ACCIÓ</accio> han decidido que la mejor forma de desplegar Simulab es co-creándolo con los primeros partners. No vendemos un software terminado — construimos juntos el estándar.",
       "cta": "Únete al Bootcamp Zero"
     },
     "ecosystem": {

@@ -27,6 +27,7 @@ const specialElite = Special_Elite({
   weight: "400",
   variable: "--font-special-elite",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 type Props = {
@@ -120,6 +121,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <div
           id="intro-shield"
           style={{ position: 'fixed', inset: 0, background: 'var(--color-black)', zIndex: 9998 }}
+          suppressHydrationWarning
         />
         <script
           dangerouslySetInnerHTML={{
