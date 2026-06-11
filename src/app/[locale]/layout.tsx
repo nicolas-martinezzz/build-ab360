@@ -100,7 +100,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     >
       <body
         className="min-h-screen antialiased pb-[env(safe-area-inset-bottom,0px)]"
-        style={{ background: '#000' }}
+        style={{ background: 'var(--color-black)' }}
         suppressHydrationWarning
       >
         {/*
@@ -112,7 +112,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         */}
         <div
           id="intro-shield"
-          style={{ position: 'fixed', inset: 0, background: '#000', zIndex: 9998 }}
+          style={{ position: 'fixed', inset: 0, background: 'var(--color-black)', zIndex: 9998 }}
         />
         <script
           dangerouslySetInnerHTML={{

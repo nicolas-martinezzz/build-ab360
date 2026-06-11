@@ -11,16 +11,16 @@ const TEXT = 'Construye desde el centro.'
 
 const css = `
 .intro-stage{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5.5vh;padding:30px 16px;background:#000;z-index:9999;cursor:pointer}
-.intro-markwrap{position:relative;display:inline-block;width:clamp(102px,28vw,170px);line-height:0}
+.intro-markwrap{position:relative;display:inline-block;width:clamp(82px,22.4vw,136px);line-height:0}
 .intro-diagram{width:100%;display:block;opacity:0;transform:scale(.94);transform-origin:center}
 .intro-diagram.in{opacity:.45;transform:scale(1);transition:opacity 1.6s ease,transform 1.8s cubic-bezier(.16,1,.3,1)}
-.intro-uu{position:absolute;left:50%;top:56%;width:18.5%;opacity:1;visibility:hidden;transform:translate(-50%,-50%) scale(.88)}
+.intro-uu{position:absolute;left:50%;top:56%;width:14.8%;opacity:1;visibility:hidden;transform:translate(-50%,-50%) scale(.88)}
 .intro-uu.in{visibility:visible;transform:translate(-50%,-50%) scale(1);transition:transform .9s cubic-bezier(.16,1,.3,1)}
 .intro-line{font-family:'Special Elite','Courier New',monospace;font-size:34px;line-height:1.1;white-space:nowrap;color:#EDEBE3;opacity:0;filter:blur(7px);transform:scale(1.05)}
 .intro-line.in{opacity:1;filter:blur(0);transform:scale(1);transition:opacity 2.2s ease,filter 2.2s ease,transform 2.4s cubic-bezier(.16,1,.3,1)}
 .intro-cur{display:inline-block;width:.6em;height:1em;border-bottom:.085em solid #7FA277;vertical-align:baseline;transform:translateY(.02em);animation:intro-blink 1.02s steps(1) infinite}
 @keyframes intro-blink{50%{opacity:0}}
-.intro-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.22em;color:#3A3A36;text-transform:uppercase;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .4s ease}
+.intro-hint{position:fixed;left:0;right:0;bottom:26px;text-align:center;font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.22em;color:#3A3A36;text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity .8s ease}
 .intro-hint.show{opacity:1}
 .intro-stage.out{opacity:0;transition:opacity .6s ease}
 @media (prefers-reduced-motion:reduce){.intro-diagram,.intro-uu,.intro-line,.intro-stage{transition:none!important;animation:none!important}}
@@ -105,17 +105,6 @@ export default function IntroOverlay() {
       })
     }
 
-    const type = (i: number) => {
-      if (!typedRef.current) return
-      if (i > TEXT.length) return
-      typedRef.current.textContent = TEXT.slice(0, i)
-      const p = TEXT[i - 1]
-      let d = 48 + Math.random() * 28
-      if (p === ' ') d += 55
-      if (p === ',') d += 140
-      after(d, () => type(i + 1))
-    }
-
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const run = () => {
@@ -138,8 +127,8 @@ export default function IntroOverlay() {
       diagram.classList.remove('in')
       uu.classList.remove('in')
       line.classList.remove('in')
-      typed.textContent = ''
-      cur.style.display = 'inline-block'
+      typed.textContent = TEXT
+      cur.style.display = 'none'
       hint.classList.remove('show')
       hint.textContent = 'toca para saltar'
       void stage.offsetWidth
@@ -153,11 +142,11 @@ export default function IntroOverlay() {
         return
       }
 
-      after(80,   () => diagram.classList.add('in'))
-      after(880,  () => uu.classList.add('in'))
-      after(1180, () => hint.classList.add('show'))
-      after(2280, () => { line.classList.add('in'); type(1); hint.classList.remove('show') })
-      after(4980, finish)
+      after(500,  () => diagram.classList.add('in'))
+      after(1300, () => uu.classList.add('in'))
+      after(1600, () => { if (playingRef.current) hint.classList.add('show') })
+      after(2700, () => { line.classList.add('in'); hint.classList.remove('show') })
+      after(5400, finish)
     }
     runRef.current = run
 

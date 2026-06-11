@@ -27,17 +27,21 @@ export const Hero = async () => {
         <MediaBackdrop opacity={0.8} />
       </div>
       <SectionContainer className="relative z-10 text-left">
+        {/* SEO H1: keyword-rich, always visible — Google reads this as the primary topic signal */}
+        <h1 className="type-eyebrow mb-3 text-green-200">
+          {t("seoH1")}
+        </h1>
         {eyebrow ? (
           <p className="type-eyebrow mb-4 text-green-200">
             {eyebrow}
           </p>
         ) : null}
-        <h1
+        <h2
           className="figma-title-1 max-w-[62.5625rem] text-white [overflow-wrap:anywhere]"
           id="hero-heading"
         >
           {t("headline")}
-        </h1>
+        </h2>
         {subhead ? (
           <p className="figma-text-l mt-5 max-w-[52.5rem] whitespace-pre-line text-white/85">
             {subhead}
