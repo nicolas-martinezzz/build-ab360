@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter, Montserrat, Special_Elite } from "next/font/google";
 import type { ReactNode } from "react";
 import { routing } from "@/i18n/routing";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
@@ -20,6 +20,13 @@ const inter = Inter({
   variable: "--font-inter",
   display: "swap",
   adjustFontFallback: true,
+});
+
+const specialElite = Special_Elite({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-special-elite",
+  display: "swap",
 });
 
 type Props = {
@@ -94,7 +101,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html
-      className={`${montserrat.variable} ${inter.variable}`}
+      className={`${montserrat.variable} ${inter.variable} ${specialElite.variable}`}
       lang={locale}
       suppressHydrationWarning
     >

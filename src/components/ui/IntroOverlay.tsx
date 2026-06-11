@@ -16,11 +16,11 @@ const css = `
 .intro-diagram.in{opacity:.45;transform:scale(1);transition:opacity 1.6s ease,transform 1.8s cubic-bezier(.16,1,.3,1)}
 .intro-uu{position:absolute;left:50%;top:56%;width:14.8%;opacity:1;visibility:hidden;transform:translate(-50%,-50%) scale(.88)}
 .intro-uu.in{visibility:visible;transform:translate(-50%,-50%) scale(1);transition:transform .9s cubic-bezier(.16,1,.3,1)}
-.intro-line{font-family:'Special Elite','Courier New',monospace;font-size:34px;line-height:1.1;white-space:nowrap;color:#EDEBE3;opacity:0;filter:blur(7px);transform:scale(1.05)}
+.intro-line{font-family:var(--font-special-elite),'Courier New',monospace;font-size:34px;line-height:1.1;white-space:nowrap;color:#EDEBE3;opacity:0;filter:blur(7px);transform:scale(1.05)}
 .intro-line.in{opacity:1;filter:blur(0);transform:scale(1);transition:opacity 2.2s ease,filter 2.2s ease,transform 2.4s cubic-bezier(.16,1,.3,1)}
 .intro-cur{display:inline-block;width:.6em;height:1em;border-bottom:.085em solid #7FA277;vertical-align:baseline;transform:translateY(.02em);animation:intro-blink 1.02s steps(1) infinite}
 @keyframes intro-blink{50%{opacity:0}}
-.intro-hint{position:fixed;left:0;right:0;bottom:26px;text-align:center;font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.22em;color:#3A3A36;text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity .8s ease}
+.intro-hint{position:fixed;left:0;right:0;bottom:26px;text-align:center;font-family:var(--font-special-elite),monospace;font-size:11px;letter-spacing:.22em;color:#3A3A36;text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity .8s ease}
 .intro-hint.show{opacity:1}
 .intro-stage.out{opacity:0;transition:opacity .6s ease}
 @media (prefers-reduced-motion:reduce){.intro-diagram,.intro-uu,.intro-line,.intro-stage{transition:none!important;animation:none!important}}
@@ -75,7 +75,7 @@ export default function IntroOverlay() {
       if (!lineRef.current) return
       const target = Math.min(window.innerWidth * 0.92, 940)
       const probe = document.createElement('span')
-      probe.style.cssText = "position:absolute;visibility:hidden;white-space:nowrap;font-family:'Special Elite',monospace;font-size:100px;letter-spacing:.01em"
+      probe.style.cssText = "position:absolute;visibility:hidden;white-space:nowrap;font-family:var(--font-special-elite),monospace;font-size:100px;letter-spacing:.01em"
       probe.textContent = TEXT + '  '
       document.body.appendChild(probe)
       const w = probe.getBoundingClientRect().width
