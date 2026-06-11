@@ -98,8 +98,7 @@ export default function IntroOverlay() {
       }
       playingRef.current = false
       setPlaying(false)
-      // auto-dismiss: finish fires at ~5.4s, wait 14.6s more = 20s total
-      after(14600, () => {
+      after(2000, () => {
         if (stageRef.current) stageRef.current.classList.add('out')
         after(600, dismiss)
       })
