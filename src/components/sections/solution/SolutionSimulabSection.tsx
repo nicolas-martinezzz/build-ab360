@@ -16,7 +16,7 @@ export const SolutionSimulabSection = async () => {
   const t = await getTranslations("solutionPage.simulab");
 
   return (
-    <section aria-label="SimuLab" className="section-block-spacious bg-white">
+    <section aria-label="SimuLab" className="section-block-spacious bg-white" id="simulab">
       <SectionContainer>
 
         {/* Intro — heading then body, single column */}
