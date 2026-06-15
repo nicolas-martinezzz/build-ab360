@@ -154,8 +154,8 @@ export default function IntroOverlay() {
       after(500,  () => diagram.classList.add('in'))
       after(1300, () => uu.classList.add('in'))
       after(1600, () => { if (playingRef.current) hint.classList.add('show') })
-      after(2700, () => { line.classList.add('in'); hint.classList.remove('show') })
-      after(5400, finish)
+      after(1400, () => { line.classList.add('in'); hint.classList.remove('show') })
+      after(4100, finish)
     }
     runRef.current = run
 
