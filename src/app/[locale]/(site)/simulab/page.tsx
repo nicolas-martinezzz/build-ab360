@@ -34,7 +34,7 @@ export default async function SimulabPage({ params }: Props) {
         <iframe
           className="h-[32rem] w-full sm:h-[40rem] lg:h-[56rem]"
           loading="eager"
-          src="/simulab-teaser.html?standalone"
+          src="/simulab-demo.html"
           title="SimuLab — Proyección de impacto de decisiones en gemelo digital"
         />
       </div>
