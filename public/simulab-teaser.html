@@ -578,6 +578,24 @@
     background:radial-gradient(ellipse at center, rgba(0,0,0,.55), rgba(0,0,0,0) 72%);filter:blur(7px);z-index:-1}
 
 </style>
+<script>
+(function(){
+  if(new URLSearchParams(location.search).has('standalone')){
+    var s=document.createElement('style');
+    s.textContent=[
+      'html,body{height:100vh!important;overflow:hidden!important;padding:0!important;background:#0c0e16!important;align-items:stretch!important}',
+      'body::before{display:none!important}',
+      '.stage{width:100vw!important;height:100vh!important;z-index:0}',
+      '.laptop{width:100%!important;height:100%!important}',
+      '.screen{width:100%!important;margin:0!important;border-radius:0!important;padding:0!important;background:transparent!important;box-shadow:none!important}',
+      '.bezel{border-radius:0!important;background:transparent!important;padding:0!important}',
+      '.notch,.base,.notch-hinge,.shadow{display:none!important}',
+      '.viewport{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;aspect-ratio:unset!important;border-radius:0!important}'
+    ].join('');
+    document.head.appendChild(s);
+  }
+})();
+</script>
 </head>
 <body>
   <div class="stage">
