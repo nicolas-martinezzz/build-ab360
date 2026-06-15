@@ -29,6 +29,19 @@ export const SimulabSection = async () => {
           />
         </div>
 
+        <div className="mt-12 flex justify-center px-1">
+          <div className="flex flex-col items-center">
+            <LinkButton
+              className="w-full max-w-sm px-8 sm:w-auto"
+              href={SITE_PATHS.solution}
+              variant="primary"
+            >
+              {t("cta")}
+            </LinkButton>
+            <p className="figma-text-m mt-4 italic text-grey-dark">{t("ctaHint")}</p>
+          </div>
+        </div>
+
         <ul className="mt-10 grid gap-8 text-center sm:mt-12 sm:grid-cols-3">
           <li className="min-w-0 px-1">
             <h3 className="figma-text-l-bold text-surface-bg">{t("feature1Title")}</h3>
@@ -43,19 +56,6 @@ export const SimulabSection = async () => {
             <p className="mt-1 figma-text-l text-grey-dark">{t("feature3Body")}</p>
           </li>
         </ul>
-
-        <div className="mt-12 flex justify-center px-1">
-          <div className="flex flex-col items-center">
-            <LinkButton
-              className="w-full max-w-sm px-8 sm:w-auto"
-              href={SITE_PATHS.solution}
-              variant="primary"
-            >
-              {t("cta")}
-            </LinkButton>
-            <p className="figma-text-m mt-4 italic text-grey-dark">{t("ctaHint")}</p>
-          </div>
-        </div>
 
         <div className="mx-auto mt-24 max-w-[57.375rem] space-y-0.5">
           <p className="figma-text-l text-grey-dark">{t("closing1")}</p>
