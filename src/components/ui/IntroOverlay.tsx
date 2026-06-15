@@ -108,7 +108,7 @@ export default function IntroOverlay() {
       }
       playingRef.current = false
       setPlaying(false)
-      after(2000, () => {
+      after(0, () => {
         if (stageRef.current) stageRef.current.classList.add('out')
         after(600, dismiss)
       })
