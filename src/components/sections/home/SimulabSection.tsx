@@ -29,7 +29,7 @@ export const SimulabSection = async () => {
           />
         </div>
 
-        <div className="mt-12 flex justify-center px-1">
+        <div className="flex justify-center px-1">
           <div className="flex flex-col items-center">
             <LinkButton
               className="w-full max-w-sm px-8 sm:w-auto"
