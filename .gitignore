@@ -33,6 +33,9 @@ next-env.d.ts
 /.continue/
 /.kiro/
 
+# Editor settings (personal preference, local only)
+/.vscode/
+
 # Static HTML prototypes (implemented in Next.js)
 /autodiagnostico.html
 /self-assessment.html
