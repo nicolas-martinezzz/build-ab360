@@ -8,6 +8,7 @@ const TARGET_EXTENSIONS = new Set([".ts", ".tsx", ".css"]);
 const HEX_REGEX = /#[0-9a-fA-F]{3,8}\b/g;
 
 const ALLOWED_HEX = new Set([
+  // Core brand palette
   "#E4F1CF",
   "#C3E195",
   "#9BBF64",
@@ -20,9 +21,38 @@ const ALLOWED_HEX = new Set([
   "#F4F6F3",
   "#FFFFFF",
   "#000000",
+
+  // Intro overlay animation — a self-contained dark scene with its own
+  // typewriter styling, injected as a raw CSS string in IntroOverlay.tsx.
+  "#EDEBE3", // typed line on black
+  "#7FA277", // blinking cursor underline
+  "#3A3A36", // low-contrast skip hint
+
+  // Print-only overrides — light backgrounds that replace dark cards so the
+  // diagnostic report stays legible on paper.
+  "#F0F7EC", // band card background
+  "#F8FAF5", // dimension card background
 ]);
 
-const toUpperHex = (value) => value.toUpperCase();
+// Files exempt from the palette rule.
+// Standalone HTML documents (email/PDF reports) cannot use CSS variables or
+// Tailwind tokens: mail clients such as Outlook and Gmail strip them, so colors
+// must be inlined as literal hex values.
+const EXEMPT_FILES = new Set([
+  "src/lib/diagnostic/report-html.ts",
+]);
+
+// Normalizes a hex color for comparison: uppercases it and expands the
+// 3-digit shorthand (#ABC) to its 6-digit form (#AABBCC) so that equivalent
+// notations of an approved color are not reported as violations.
+const toUpperHex = (value) => {
+  const upper = value.toUpperCase();
+  if (upper.length === 4) {
+    const [, r, g, b] = upper;
+    return `#${r}${r}${g}${g}${b}${b}`;
+  }
+  return upper;
+};
 
 const readDirRecursive = (dir) => {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -48,6 +78,10 @@ const checkFile = (filePath) => {
   const content = fs.readFileSync(filePath, "utf8");
   const errors = [];
   const relativePath = path.relative(ROOT, filePath).replaceAll("\\", "/");
+
+  if (EXEMPT_FILES.has(relativePath)) {
+    return errors;
+  }
 
   for (const match of content.matchAll(HEX_REGEX)) {
     const rawHex = match[0];
