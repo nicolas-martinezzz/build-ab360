@@ -1,5 +1,4 @@
 import type { DiagnosticResults } from "./types";
-import { DIM } from "./data";
 
 type ReportData = {
   results: DiagnosticResults;

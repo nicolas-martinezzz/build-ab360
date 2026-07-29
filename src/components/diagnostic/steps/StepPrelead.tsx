@@ -12,7 +12,7 @@ type Props = {
   onDone: (lead: LeadData) => Promise<void>;
 };
 
-export function StepPrelead({ locale, mode = "diagnostic", onDone }: Props) {
+export function StepPrelead({ mode = "diagnostic", onDone }: Props) {
   const t = useTranslations("diagnosticPage.prelead");
   const searchParams = useSearchParams();
   const [name, setName] = useState(searchParams.get("name") ?? "");

@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { SITE_ASSETS } from "@/config/assets";
-import { LinkButton } from "@/components/ui/LinkButton";
 import { SITE_PATHS } from "@/config/routes";
 import { Link } from "@/i18n/navigation";
 import { DesktopNav } from "@/components/sections/site-header/DesktopNav";

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import type { Article } from "@/content/articles";
 import { formatArticleDate } from "@/lib/dateFormat";
-import { SITE_PATHS } from "@/config/routes";
 
 interface ArticleCardProps {
   article: Article;
