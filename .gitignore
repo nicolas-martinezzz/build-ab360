@@ -17,18 +17,15 @@ next-env.d.ts
 /skills-lock.json
 /.cursor/
 
-# Harness Engineering — tracked in develop only, never staging/main
-# conventions.md, features.json, init.sh, .claude/agents/ are committed in develop
-# agents.md, history.md, progress/ are local-only (never committed)
+# Harness Engineering — agent tooling, not part of the application
 /agents.md
 /history.md
 /progress/
+/features.json
+/init.sh
 
-# Claude Code personal settings (local only, never committed)
-/.claude/settings.local.json
-/.claude/settings.json
-/.claude/worktrees/
-/.claude/skills/
+# Claude Code settings and agent definitions (local only, never committed)
+/.claude/
 
 # Other AI tool configs (local only)
 /.atl/
@@ -60,6 +57,9 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+# Screenshots are test output, not fixtures: no test reads them back.
+# Regenerate with: npx playwright test visual-audit --project=chromium
+/tests/screenshots/
 
 # Admin local dev (never deploy to prod)
 /public/admin/.local
