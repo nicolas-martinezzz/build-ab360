@@ -10,3 +10,8 @@ DirectoryIndex login.php
 
 # ─── Disable directory listing ────────────────────────────────────────────────
 Options -Indexes
+
+# ─── Deny dotfiles (version control metadata, env files, htaccess itself) ─────
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
