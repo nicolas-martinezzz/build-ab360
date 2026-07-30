@@ -1,8 +1,17 @@
 Options -Indexes
 
-# Serve static assets directly — never rewrite known file extensions
 RewriteEngine On
 
+# Deny version control and CI metadata.
+# Must run before the static-asset passthrough below: that rule stops rewriting
+# for any path that exists on disk, which would otherwise serve .git/ contents.
+RewriteRule (^|/)\.(git|github|env|svn|hg)(/|$) - [F,L]
+
+<FilesMatch "^\.(git|env|htaccess|htpasswd)">
+    Require all denied
+</FilesMatch>
+
+# Serve static assets directly — never rewrite known file extensions
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
