@@ -5,6 +5,8 @@
 .env*.local
 .env
 .env.*
+# .env.example documents the required variables and holds no secrets
+!.env.example
 npm-debug.log*
 .DS_Store
 *.tsbuildinfo
