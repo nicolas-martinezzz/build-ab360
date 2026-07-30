@@ -4,6 +4,13 @@ on:
   push:
     branches: [main]
 
+# Server details come from repository variables, not from this file:
+#   vars.DEPLOY_HOST     hostname or IP of the production server
+#   vars.DEPLOY_PORT     SSH port
+#   vars.DEPLOY_USER     SSH user
+#   vars.DEPLOY_WEBROOT  remote webroot path
+# The private key stays in secrets.SERVER_SSH_KEY.
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -18,28 +25,43 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Verify
+        run: npm run verify
 
       - name: Deploy to server
         env:
           SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ vars.DEPLOY_PORT }}
+          DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+          DEPLOY_WEBROOT: ${{ vars.DEPLOY_WEBROOT }}
         run: |
+          set -euo pipefail
+
+          for var in DEPLOY_HOST DEPLOY_PORT DEPLOY_USER DEPLOY_WEBROOT; do
+            if [ -z "${!var}" ]; then
+              echo "Missing repository variable: $var" >&2
+              exit 1
+            fi
+          done
+
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p 2222 185.47.247.175 >> ~/.ssh/known_hosts
+          ssh-keyscan -p "$DEPLOY_PORT" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
 
+          SSH_CMD="ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT"
+          TARGET="$DEPLOY_USER@$DEPLOY_HOST"
+
+          # Static build. --delete removes remote files no longer in out/,
+          # so api/ is excluded here and synced separately below.
           rsync -avz --delete \
-            -e "ssh -i ~/.ssh/deploy_key -p 2222 -o StrictHostKeyChecking=no" \
+            -e "$SSH_CMD" \
             --exclude='.git' \
             --exclude='.github' \
-            out/ nico@185.47.247.175:/httpdocs/
+            --exclude='api' \
+            out/ "$TARGET:$DEPLOY_WEBROOT/"
 
           rsync -avz \
-            -e "ssh -i ~/.ssh/deploy_key -p 2222 -o StrictHostKeyChecking=no" \
-            public/api/ nico@185.47.247.175:/httpdocs/api/
-
-          ssh -i ~/.ssh/deploy_key -p 2222 -o StrictHostKeyChecking=no \
-            nico@185.47.247.175 \
-            "mkdir -p ~/yutopias.com/private && cp /httpdocs/_private/smtp_mailer.php ~/yutopias.com/private/smtp_mailer.php 2>/dev/null || true"
+            -e "$SSH_CMD" \
+            public/api/ "$TARGET:$DEPLOY_WEBROOT/api/"
