@@ -11,7 +11,8 @@ import { mkdirSync } from "fs";
 import path from "path";
 import os from "os";
 
-const BASE = "https://yutopias.com/es";
+const SITE = process.env.PROD_BASE_URL ?? "https://yutopias.com";
+const BASE = `${SITE}/es`;
 const SHOTS = path.join(os.tmpdir(), "form-tests");
 mkdirSync(SHOTS, { recursive: true });
 
@@ -306,7 +307,7 @@ async function testEbookLead(page) {
     return;
   }
   const href = await link.getAttribute("href");
-  const url = href?.startsWith("http") ? href : `https://yutopias.com${href}`;
+  const url = href?.startsWith("http") ? href : `${SITE}${href}`;
   await page.goto(url, { waitUntil: "networkidle", timeout: 20000 });
 
   const textInputs = page.locator('form input[type="text"]');

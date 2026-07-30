@@ -7,7 +7,7 @@
 import { test, expect } from "@playwright/test";
 
 const PROD = process.env.PLAYWRIGHT_BASE_URL ?? "https://yutopias.com";
-const ADMIN = "https://admin.yutopias.com";
+const ADMIN = process.env.ADMIN_BASE_URL ?? "https://admin.yutopias.com";
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
 

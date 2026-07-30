@@ -15,7 +15,7 @@
 
 import { test, expect, Page } from "@playwright/test";
 
-const PROD = "https://yutopias.com";
+const PROD = process.env.PROD_BASE_URL ?? "https://yutopias.com";
 const INTRO_SEEN_KEY = "intro-seen";
 const OVERLAY_SELECTOR = ".intro-stage";
 
