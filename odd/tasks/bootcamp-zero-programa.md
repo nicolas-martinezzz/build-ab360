@@ -99,9 +99,32 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
   `programaPage.openlabIntro`): fondo blanco, dos columnas, deliberadamente
   compacto (sin imagen de fondo) para no leerse como un segundo hero. Todavía
   no cableado en `ProgramaPageSections.tsx` (T9).
-- [ ] T9 — Reorden `ProgramaPageSections.tsx` condicionado a locale: orden
-  Bootcamp Zero completo para `es`; orden actual intacto para en/ca. Logo
-  APCE gris añadido al bloque de ecosistema (sin cambiar su texto).
+- [x] T9 — `ProgramaPageSections` ahora recibe `locale` como prop (pasado
+  desde `src/app/[locale]/(site)/programa/page.tsx` Y también desde
+  `src/app/[locale]/(site)/program/page.tsx` — este segundo call site no
+  estaba en el enunciado pero también renderiza `ProgramaPageSections` y
+  habría roto el build de no actualizarlo). Orden verificado ANTES de
+  tocar nada (`git show` del archivo original): Hero → LogosStrip →
+  EcosystemSection (las 8 claves) → InnovationEcosystemSection (ecosistema +
+  logos) → JourneySection (tarjetas T1–T6) → QuoteBanner (co-crear el
+  sistema) → BootcampSection (jornada, antes al final) → PartnersBanner
+  (cierre). Para `es`: Hero (Bootcamp Zero) → BootcampSection (jornada+form)
+  → ScheduleSection (programa) → ponentes (`ProgramaFormadoresSection` con
+  `speakers`/`headline` de T7 construidos aquí mismo con los 9 nuevos) →
+  OpenLabIntroSection → el resto de los 6 bloques en el MISMO orden relativo
+  de hoy (LogosStrip, EcosystemSection, InnovationEcosystemSection,
+  JourneySection, QuoteBanner, PartnersBanner). Para en/ca: orden idéntico al
+  original, sin tocar.
+  "ProgramaInnovationEcosystemSection.tsx" confirmado como "el bloque de
+  ecosistema" correcto (headline "Forma parte del ecosistema de Innovación
+  de la edificación.", grid de logos La Salle R&D/ACCIÓ/GBCe/ITeC/etc. —
+  `ProgramaEcosystemSection.tsx` es en realidad "las 8 claves", nombre
+  engañoso ya existente en el código). Logo APCE gris añadido ahí como
+  tile `wide` destacado, primero en el grid, antes de La Salle R&D — este
+  cambio aplica a los 3 locales (no es contenido de campaña).
+  `npm run build` completo corrido localmente (no solo lint/parity) para
+  confirmar que compila y que `/es/programa`, `/ca/programa` y
+  `/en/program` generan estáticamente sin errores.
 - [ ] T10 — Verificación local: `npm run lint`, `npm run check:i18n-parity`,
   `npm run build`, y revisión visual en `http://localhost:3000/es/programa`
   contra `mockup-programa.html`.
@@ -116,6 +139,9 @@ check:i18n-parity, build, y verificación visual manual en navegador local.
 quedan para cuando el usuario confirme que lo probado en local está OK.
 
 ## Estado
-En progreso. Explicación completa de hallazgos ya hecha. Próximo paso:
-delegar implementación T1–T9 a un agente escritor único, luego T10 verificado
-por el orquestador.
+T1–T9 implementadas y commiteadas (una por tarea) en
+`feature/bootcamp-zero-programa`. `npm run lint`, `npm run check:i18n-parity`
+y `npm run build` completo pasan en local tras cada tarea. Pendiente: T10
+(revisión visual manual contra `mockup-programa.html` en
+`http://localhost:3000/es/programa`, a cargo del orquestador/usuario) y, tras
+confirmación, push + PR.
