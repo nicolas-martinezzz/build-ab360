@@ -81,8 +81,10 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
   actual). Integración HubSpot aislada tras `getenv('HUBSPOT_PRIVATE_APP_TOKEN')`,
   con 2 TODOs marcados para confirmar los nombres internos de las propiedades
   custom.
-- [ ] T6 — Nuevo bloque "Programa" (agenda 10:00/10:30/12:00/13:30):
-  componente nuevo `ProgramaScheduleSection.tsx`, solo es.
+- [x] T6 — `ProgramaScheduleSection.tsx` nuevo (namespace
+  `programaPage.schedule`, texto literal del programa enviado a APCE). Todavía
+  no está cableado en `ProgramaPageSections.tsx` — eso es parte de T9. No
+  tiene contraparte en/ca porque nunca se renderiza para esos locales.
 - [ ] T7 — Ponentes (`ProgramaFormadoresSection.tsx`): reemplazar lista por
   los 9 de la especificación, fotos nuevas, quitar los 6 que ya no van.
 - [ ] T8 — Nuevo bloque "Cómo funciona OpenLab": componente nuevo
