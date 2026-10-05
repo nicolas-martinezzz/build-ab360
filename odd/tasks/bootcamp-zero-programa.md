@@ -53,8 +53,12 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
 - [x] T2 — Rutas: `BOOTCAMP_ZERO_CTA_HREF = "/es/programa#bootcamp-formulario"`
   añadido en `src/config/routes.ts`. Falta usarlo en los componentes (parte
   de T3/T4/T5/T9).
-- [ ] T3 — Banner sitewide (`AnnouncementBar.tsx` + `nav.announcementText` /
-  `announcementLinkLabel` en es/en/ca): texto nuevo + link al nuevo destino.
+- [x] T3 — Banner sitewide: `AnnouncementBar.tsx` reescrito para usar un `<a>`
+  plano a `BOOTCAMP_ZERO_CTA_HREF` (el `Link` de next-intl duplicaría el
+  prefijo de locale porque el href ya incluye `/es`). `LinkButton` ganó un
+  prop `external` para el mismo motivo, reutilizado en T4/T5/T9.
+  `nav.announcementText`/`announcementLinkLabel` traducidos de verdad en
+  es/en/ca (bug de "Próximamente en julio" corregido de paso).
 - [ ] T4 — Hero de `/programa` (solo es): copy nuevo Bootcamp Zero + logo APCE
   blanco, condicionado a `locale === "es"`.
 - [ ] T5 — Bloque "La jornada + formulario" (`ProgramaBootcampSection.tsx`):
