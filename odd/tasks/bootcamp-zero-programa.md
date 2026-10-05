@@ -95,8 +95,10 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
   Ramón Martín, Paco Gómez, Tere Trepat, Xavier Baño, Genís Roca, Lurdes
   Mochales) se construye y se pasa como `speakers` en T9, donde el bloque se
   monta como sección propia para es.
-- [ ] T8 — Nuevo bloque "Cómo funciona OpenLab": componente nuevo
-  `ProgramaOpenLabIntroSection.tsx`, solo es.
+- [x] T8 — `ProgramaOpenLabIntroSection.tsx` nuevo (namespace
+  `programaPage.openlabIntro`): fondo blanco, dos columnas, deliberadamente
+  compacto (sin imagen de fondo) para no leerse como un segundo hero. Todavía
+  no cableado en `ProgramaPageSections.tsx` (T9).
 - [ ] T9 — Reorden `ProgramaPageSections.tsx` condicionado a locale: orden
   Bootcamp Zero completo para `es`; orden actual intacto para en/ca. Logo
   APCE gris añadido al bloque de ecosistema (sin cambiar su texto).
