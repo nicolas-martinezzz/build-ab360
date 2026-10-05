@@ -37,6 +37,14 @@ export const getAboutPathByLocale = (locale: string): string =>
 export const getProgramaPathByLocale = (locale: string): string =>
   LOCALIZED_SLUGS.programa[locale] ?? LOCALIZED_SLUGS.programa.es;
 
+/**
+ * Campaña Bootcamp Zero × APCE Catalunya (hasta 22/10/2026): todos los CTA de
+ * inscripción apuntan aquí, sin importar el locale del visitante — igual que
+ * /reserva-plaza hoy, que tampoco tiene versión en/ca. Revertir manualmente
+ * tras la fecha del evento (ver odd/tasks/bootcamp-zero-programa.md).
+ */
+export const BOOTCAMP_ZERO_CTA_HREF = "/es/programa#bootcamp-formulario";
+
 export const SITE_SECTION_IDS = {
   challenge: "desafio",
   solution: "solution",
