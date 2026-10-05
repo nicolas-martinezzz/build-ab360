@@ -986,7 +986,12 @@
       "eyebrow": "EL PROGRAMA",
       "headline": "OpenLab, un viaje de innovación abierta de 6 meses",
       "body": "Yutopias, <lasalle>La Salle R&D</lasalle> y <accio>ACCIÓ</accio> han decidido que la mejor forma de desplegar Simulab es co-creándolo con los primeros partners. No vendemos un software terminado — construimos juntos el estándar.",
-      "cta": "Únete al Bootcamp Zero"
+      "cta": "Únete al Bootcamp Zero",
+      "bootcampEyebrow": "LANZAMIENTO DEL PROGRAMA OPENLAB BARCELONA",
+      "bootcampTitle": "Bootcamp Zero",
+      "bootcampSubtitle": "Innovación abierta y adopción de IA agéntica en la edificación plurifamiliar",
+      "bootcampBody": "Debate sectorial y taller de inmersión sobre cómo adaptar la IA agéntica a los datos de tu empresa antes de adoptarla en tus proyectos.",
+      "bootcampCollaboration": "Con la colaboración de"
     },
     "ecosystem": {
       "eyebrow": "LIDERA",

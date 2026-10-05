@@ -1,13 +1,10 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { LinkButton } from "@/components/ui/LinkButton";
-import { getBootcampPathByLocale } from "@/config/routes";
+import { BOOTCAMP_ZERO_CTA_HREF } from "@/config/routes";
 
 export const ProgramaHeroBottomBanner = async () => {
-  const [t, locale] = await Promise.all([
-    getTranslations("programaPage"),
-    getLocale(),
-  ]);
+  const t = await getTranslations("programaPage");
 
   return (
     <div className="bg-green-500 py-2.5">
@@ -17,7 +14,8 @@ export const ProgramaHeroBottomBanner = async () => {
         </p>
         <LinkButton
           className="bg-white px-6 font-semibold text-surface-bg hover:bg-white/90"
-          href={getBootcampPathByLocale(locale)}
+          external
+          href={BOOTCAMP_ZERO_CTA_HREF}
         >
           {t("logosStrip.topCta")}
         </LinkButton>

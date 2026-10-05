@@ -59,8 +59,11 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
   prop `external` para el mismo motivo, reutilizado en T4/T5/T9.
   `nav.announcementText`/`announcementLinkLabel` traducidos de verdad en
   es/en/ca (bug de "Próximamente en julio" corregido de paso).
-- [ ] T4 — Hero de `/programa` (solo es): copy nuevo Bootcamp Zero + logo APCE
-  blanco, condicionado a `locale === "es"`.
+- [x] T4 — Hero de `/programa`: `ProgramaHeroSection.tsx` branchea en
+  `locale === "es"` (copy Bootcamp Zero + logo APCE blanco, sin CTA propio ni
+  `ProgramaHeroBottomBanner`) vs. el hero OpenLab actual intacto para en/ca.
+  CTA de journey y logos-strip repuntados a `BOOTCAMP_ZERO_CTA_HREF` (vía
+  `LinkButton external`) en los 3 locales, tal como decidido en T3.
 - [ ] T5 — Bloque "La jornada + formulario" (`ProgramaBootcampSection.tsx`):
   fecha/venue/APCE nuevos, 2 preguntas nuevas obligatorias en el formulario,
   tarjeta "Aprobación requerida", envío a HubSpot aislado tras flag de env,

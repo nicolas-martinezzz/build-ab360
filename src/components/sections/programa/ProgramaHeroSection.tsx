@@ -4,7 +4,7 @@ import { LinkButton } from "@/components/ui/LinkButton";
 import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { getBootcampPathByLocale } from "@/config/routes";
+import { BOOTCAMP_ZERO_CTA_HREF } from "@/config/routes";
 import { ProgramaHeroBottomBanner } from "./ProgramaLogosStrip";
 
 export const ProgramaHeroSection = async () => {
@@ -12,6 +12,11 @@ export const ProgramaHeroSection = async () => {
     getTranslations("programaPage.hero"),
     getLocale(),
   ]);
+
+  // Bootcamp Zero × APCE Catalunya campaign (until 22/10/2026): new hero
+  // content is es-only. /en/program and /ca/programa keep the OpenLab hero
+  // unchanged. See odd/tasks/bootcamp-zero-programa.md.
+  const isBootcampZeroHero = locale === "es";
 
   return (
     <section
@@ -37,52 +42,89 @@ export const ProgramaHeroSection = async () => {
       </div>
 
       <SectionContainer className="relative z-10">
-        <p className="type-eyebrow text-green-300">{t("eyebrow")}</p>
+        {isBootcampZeroHero ? (
+          <>
+            <p className="type-eyebrow text-green-300">{t("bootcampEyebrow")}</p>
 
-        <h1
-          className="figma-title-1 mt-4 max-w-[44rem] text-white"
-          id="programa-hero-heading"
-        >
-          {t("headline")}
-        </h1>
+            <h1
+              className="figma-title-1 mt-4 max-w-[44rem] text-white"
+              id="programa-hero-heading"
+            >
+              {t("bootcampTitle")}
+            </h1>
 
-        <p className="figma-text-l mt-5 max-w-[43rem] text-white/85">
-          {t.rich("body", {
-            lasalle: (chunks) => (
-              <a
-                className="underline underline-offset-2 hover:opacity-80"
-                href="https://www.salleurl.edu/es/la-salle-y-la-investigacion"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {chunks}
-              </a>
-            ),
-            accio: (chunks) => (
-              <a
-                className="underline underline-offset-2 hover:opacity-80"
-                href="https://www.accio.gencat.cat/ca/serveis/innovacio/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {chunks}
-              </a>
-            ),
-          })}
-        </p>
+            <p className="figma-text-l mt-4 max-w-[40rem] font-medium text-white/90">
+              {t("bootcampSubtitle")}
+            </p>
 
-        <LinkButton
-          className="mt-7 w-full sm:w-auto"
-          href={getBootcampPathByLocale(locale)}
-          variant="primary"
-        >
-          {t("cta")}
-        </LinkButton>
+            <p className="figma-text-l mt-5 max-w-[43rem] text-white/85">
+              {t("bootcampBody")}
+            </p>
+
+            <div className="mt-8 flex flex-col items-start gap-3">
+              <span className="figma-text-m text-white/70">{t("bootcampCollaboration")}</span>
+              <Image
+                alt="APCE, Associació de Promotors de Catalunya"
+                className="h-[72px] w-auto sm:h-[107px]"
+                height={160}
+                src={SITE_ASSETS.programa.bootcampZero.apceLogoWhite}
+                width={460}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="type-eyebrow text-green-300">{t("eyebrow")}</p>
+
+            <h1
+              className="figma-title-1 mt-4 max-w-[44rem] text-white"
+              id="programa-hero-heading"
+            >
+              {t("headline")}
+            </h1>
+
+            <p className="figma-text-l mt-5 max-w-[43rem] text-white/85">
+              {t.rich("body", {
+                lasalle: (chunks) => (
+                  <a
+                    className="underline underline-offset-2 hover:opacity-80"
+                    href="https://www.salleurl.edu/es/la-salle-y-la-investigacion"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {chunks}
+                  </a>
+                ),
+                accio: (chunks) => (
+                  <a
+                    className="underline underline-offset-2 hover:opacity-80"
+                    href="https://www.accio.gencat.cat/ca/serveis/innovacio/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {chunks}
+                  </a>
+                ),
+              })}
+            </p>
+
+            <LinkButton
+              className="mt-7 w-full sm:w-auto"
+              external
+              href={BOOTCAMP_ZERO_CTA_HREF}
+              variant="primary"
+            >
+              {t("cta")}
+            </LinkButton>
+          </>
+        )}
       </SectionContainer>
 
-      <div className="absolute inset-x-0 bottom-0 z-20">
-        <ProgramaHeroBottomBanner />
-      </div>
+      {isBootcampZeroHero ? null : (
+        <div className="absolute inset-x-0 bottom-0 z-20">
+          <ProgramaHeroBottomBanner />
+        </div>
+      )}
     </section>
   );
 };
