@@ -85,8 +85,16 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
   `programaPage.schedule`, texto literal del programa enviado a APCE). Todavía
   no está cableado en `ProgramaPageSections.tsx` — eso es parte de T9. No
   tiene contraparte en/ca porque nunca se renderiza para esos locales.
-- [ ] T7 — Ponentes (`ProgramaFormadoresSection.tsx`): reemplazar lista por
-  los 9 de la especificación, fotos nuevas, quitar los 6 que ya no van.
+- [x] T7 — `ProgramaFormadoresSection.tsx` gana props opcionales `speakers`/
+  `headline` en vez de mutar el array `Formador[]` global: verifiqué que este
+  componente SOLO se usa embebido dentro de `ProgramaBootcampSection.tsx`
+  (grep confirmó que no hay otro call site), pero como ese embed sigue vivo
+  para en/ca con la lista vieja de 11, no podía reemplazar el array por
+  defecto sin romperlos. Sin `speakers`, el comportamiento es idéntico a
+  hoy (en/ca). La lista nueva de 9 ponentes (con los 6 antiguos quitados:
+  Ramón Martín, Paco Gómez, Tere Trepat, Xavier Baño, Genís Roca, Lurdes
+  Mochales) se construye y se pasa como `speakers` en T9, donde el bloque se
+  monta como sección propia para es.
 - [ ] T8 — Nuevo bloque "Cómo funciona OpenLab": componente nuevo
   `ProgramaOpenLabIntroSection.tsx`, solo es.
 - [ ] T9 — Reorden `ProgramaPageSections.tsx` condicionado a locale: orden

@@ -2,11 +2,7 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { SITE_ASSETS } from "@/config/assets";
 
-type ProgramaFormadoresSectionProps = {
-  embedded?: boolean;
-};
-
-type Formador = {
+export type Formador = {
   avatar: string;
   name: string;
   role: string;
@@ -15,12 +11,27 @@ type Formador = {
   pending?: boolean;
 };
 
+type ProgramaFormadoresSectionProps = {
+  embedded?: boolean;
+  /**
+   * Overrides the default (OpenLab) speakers list. Used by the es-only
+   * Bootcamp Zero × APCE Catalunya lineup (see
+   * odd/tasks/bootcamp-zero-programa.md) without mutating the array used by
+   * every other caller of this component.
+   */
+  speakers?: Formador[];
+  /** Overrides the default headline when `speakers` is provided. */
+  headline?: string;
+};
+
 export const ProgramaFormadoresSection = async ({
   embedded = false,
+  speakers,
+  headline,
 }: ProgramaFormadoresSectionProps = {}) => {
   const t = await getTranslations("programaPage.formadores");
 
-  const formadores: Formador[] = [
+  const defaultFormadores: Formador[] = [
     {
       avatar: SITE_ASSETS.solution.ponentes.eduardoNunez,
       name: t("formador1Name"),
@@ -100,11 +111,14 @@ export const ProgramaFormadoresSection = async ({
     },
   ];
 
+  const formadores = speakers ?? defaultFormadores;
+  const sectionHeadline = headline ?? t("headline");
+
   return (
     <div className={embedded ? "mt-10 md:mt-12" : "section-block bg-green-50"}>
-      <h2 className="figma-title-3 text-surface-bg">{t("headline")}</h2>
+      <h2 className="figma-title-3 text-surface-bg">{sectionHeadline}</h2>
 
-      <ul className="mt-7 grid gap-x-10 gap-y-7 sm:grid-cols-2">
+      <ul className={`mt-7 grid gap-x-10 gap-y-7 sm:grid-cols-2 ${speakers ? "lg:grid-cols-3" : ""}`}>
         {formadores.map(({ avatar, name, role, org, linkedin, pending }) => (
           <li key={pending ? "pending" : name} className="flex items-start gap-4">
             <div
