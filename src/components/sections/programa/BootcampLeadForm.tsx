@@ -3,6 +3,18 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 
+type LunchQuestionProps = {
+  lunchLegend: string;
+  lunchOptionYes: string;
+  lunchOptionNo: string;
+};
+
+type CompanyTypeQuestionProps = {
+  companyTypeLegend: string;
+  companyTypeOptionMember: string;
+  companyTypeOptionNonMember: string;
+};
+
 type BootcampLeadFormProps = {
   fieldName: string;
   fieldEmail: string;
@@ -11,7 +23,8 @@ type BootcampLeadFormProps = {
   submitLabel: string;
   successMessage: string;
   errorMessage: string;
-};
+} & Partial<LunchQuestionProps> &
+  Partial<CompanyTypeQuestionProps>;
 
 export const BootcampLeadForm = ({
   fieldName,
@@ -21,7 +34,22 @@ export const BootcampLeadForm = ({
   submitLabel,
   successMessage,
   errorMessage,
+  lunchLegend,
+  lunchOptionYes,
+  lunchOptionNo,
+  companyTypeLegend,
+  companyTypeOptionMember,
+  companyTypeOptionNonMember,
 }: BootcampLeadFormProps) => {
+  // Bootcamp Zero × APCE Catalunya (es-only, see odd/tasks/bootcamp-zero-programa.md):
+  // the two extra required questions only render when the caller passes their
+  // copy. The en/ca call site keeps passing none of these props, so this
+  // component renders exactly as it did before for them.
+  const hasLunchQuestion = Boolean(lunchLegend && lunchOptionYes && lunchOptionNo);
+  const hasCompanyTypeQuestion = Boolean(
+    companyTypeLegend && companyTypeOptionMember && companyTypeOptionNonMember,
+  );
+
   const isLocalDev =
     typeof window !== "undefined" &&
     (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
@@ -30,6 +58,8 @@ export const BootcampLeadForm = ({
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [company, setCompany] = useState("");
+  const [lunch, setLunch] = useState("");
+  const [companyType, setCompanyType] = useState("");
   const [website, setWebsite] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -57,6 +87,8 @@ export const BootcampLeadForm = ({
           email,
           role,
           company,
+          ...(hasLunchQuestion ? { lunch } : {}),
+          ...(hasCompanyTypeQuestion ? { companyType } : {}),
           submittedAt: Date.now(),
         });
         window.localStorage.setItem(storageKey, JSON.stringify(existing));
@@ -74,6 +106,8 @@ export const BootcampLeadForm = ({
           email,
           role,
           company,
+          ...(hasLunchQuestion ? { lunch } : {}),
+          ...(hasCompanyTypeQuestion ? { companyType } : {}),
           website,
           accepted: true,
           locale: document.documentElement.lang || "es",
@@ -156,6 +190,67 @@ export const BootcampLeadForm = ({
           value={company}
         />
       </label>
+
+      {hasLunchQuestion ? (
+        <fieldset className="space-y-2">
+          <legend className="figma-text-m font-bold text-white">{lunchLegend}</legend>
+          <label className="flex items-center gap-2 text-sm text-white">
+            <input
+              checked={lunch === "yes"}
+              className="size-4 accent-white"
+              name="lunch"
+              onChange={() => setLunch("yes")}
+              required
+              type="radio"
+              value="yes"
+            />
+            {lunchOptionYes}
+          </label>
+          <label className="flex items-center gap-2 text-sm text-white">
+            <input
+              checked={lunch === "no"}
+              className="size-4 accent-white"
+              name="lunch"
+              onChange={() => setLunch("no")}
+              required
+              type="radio"
+              value="no"
+            />
+            {lunchOptionNo}
+          </label>
+        </fieldset>
+      ) : null}
+
+      {hasCompanyTypeQuestion ? (
+        <fieldset className="space-y-2">
+          <legend className="figma-text-m font-bold text-white">{companyTypeLegend}</legend>
+          <label className="flex items-center gap-2 text-sm text-white">
+            <input
+              checked={companyType === "member"}
+              className="size-4 accent-white"
+              name="companyType"
+              onChange={() => setCompanyType("member")}
+              required
+              type="radio"
+              value="member"
+            />
+            {companyTypeOptionMember}
+          </label>
+          <label className="flex items-center gap-2 text-sm text-white">
+            <input
+              checked={companyType === "non_member"}
+              className="size-4 accent-white"
+              name="companyType"
+              onChange={() => setCompanyType("non_member")}
+              required
+              type="radio"
+              value="non_member"
+            />
+            {companyTypeOptionNonMember}
+          </label>
+        </fieldset>
+      ) : null}
+
       <input
         autoComplete="off"
         className="pointer-events-none absolute -left-[9999px] top-auto h-px w-px opacity-0"

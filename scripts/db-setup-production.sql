@@ -24,6 +24,9 @@ CREATE TABLE IF NOT EXISTS newsletter_subscribers (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ── bootcamp_leads ───────────────────────────────────────────────────────────
+-- `lunch` ('yes'|'no') and `company_type` ('member'|'non_member') were added
+-- for the Bootcamp Zero × APCE Catalunya campaign (22/10/2026, es-only form).
+-- See odd/tasks/bootcamp-zero-programa.md.
 
 CREATE TABLE IF NOT EXISTS bootcamp_leads (
     id               BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -32,6 +35,8 @@ CREATE TABLE IF NOT EXISTS bootcamp_leads (
     role_name        VARCHAR(180)    NOT NULL,
     company          VARCHAR(180)    NOT NULL,
     locale           VARCHAR(8)      NULL,
+    lunch            VARCHAR(16)     NULL,
+    company_type     VARCHAR(16)     NULL,
     privacy_accepted TINYINT(1)      NOT NULL DEFAULT 0,
     source           VARCHAR(120)    NOT NULL,
     ip_hash          VARCHAR(64)     NULL,
@@ -41,6 +46,15 @@ CREATE TABLE IF NOT EXISTS bootcamp_leads (
     UNIQUE KEY uq_bootcamp_email (email),
     KEY idx_bootcamp_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- If `bootcamp_leads` already exists in production without these columns
+-- (i.e. this script is being re-run against an existing DB rather than used
+-- to bootstrap a brand new one), run this once instead of the CREATE TABLE
+-- above:
+--
+-- ALTER TABLE bootcamp_leads
+--     ADD COLUMN lunch        VARCHAR(16) NULL AFTER locale,
+--     ADD COLUMN company_type VARCHAR(16) NULL AFTER lunch;
 
 -- ── diagnostic_sessions ──────────────────────────────────────────────────────
 

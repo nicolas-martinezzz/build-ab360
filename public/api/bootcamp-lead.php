@@ -52,6 +52,14 @@ $submittedAt = (int)($payload["submittedAt"]  ?? 0);
 $locale      = substr(trim((string)($payload["locale"] ?? "es")), 0, 8);
 $nowMs       = (int)round(microtime(true) * 1000);
 
+// Bootcamp Zero × APCE Catalunya (22/10/2026) — two extra required questions.
+// Validated exactly as strictly as the pre-existing fields below. See
+// odd/tasks/bootcamp-zero-programa.md.
+$lunch       = trim((string)($payload["lunch"]       ?? ""));
+$companyType = trim((string)($payload["companyType"] ?? ""));
+$validLunchValues       = ["yes", "no"];
+$validCompanyTypeValues = ["member", "non_member"];
+
 // Honeypot — bots fill hidden fields
 if ($website !== "") {
     echo json_encode(["ok" => true]);
@@ -70,7 +78,16 @@ if (!$accepted) {
     exit;
 }
 
-if ($name === "" || $company === "" || $role === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+// The lunch/company-type questions only exist in the es-locale form (see
+// ProgramaBootcampSection.tsx); en/ca never send them, so they stay optional
+// there to avoid breaking their unrelated, unchanged submission flow.
+$isEsSubmission = strtolower(substr($locale, 0, 2)) === "es";
+
+if (
+    $name === "" || $company === "" || $role === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)
+    || ($isEsSubmission && !in_array($lunch, $validLunchValues, true))
+    || ($isEsSubmission && !in_array($companyType, $validCompanyTypeValues, true))
+) {
     http_response_code(400);
     echo json_encode(["message" => "Invalid form data"]);
     exit;
@@ -148,6 +165,8 @@ try {
             role_name        VARCHAR(180)    NOT NULL,
             company          VARCHAR(180)    NOT NULL,
             locale           VARCHAR(8)      NULL,
+            lunch            VARCHAR(16)     NULL,
+            company_type     VARCHAR(16)     NULL,
             privacy_accepted TINYINT(1)      NOT NULL DEFAULT 0,
             source           VARCHAR(120)    NOT NULL,
             ip_hash          VARCHAR(64)     NULL,
@@ -160,25 +179,80 @@ try {
     ");
 
     $pdo->prepare("
-        INSERT INTO bootcamp_leads (name, email, role_name, company, locale, privacy_accepted, source, ip_hash, user_agent)
-        VALUES (:name, :email, :role_name, :company, :locale, 1, 'programa-bootcamp-form', :ip_hash, :user_agent)
+        INSERT INTO bootcamp_leads (name, email, role_name, company, locale, lunch, company_type, privacy_accepted, source, ip_hash, user_agent)
+        VALUES (:name, :email, :role_name, :company, :locale, :lunch, :company_type, 1, 'programa-bootcamp-form', :ip_hash, :user_agent)
         ON DUPLICATE KEY UPDATE
             name             = VALUES(name),
             role_name        = VALUES(role_name),
             company          = VALUES(company),
             locale           = VALUES(locale),
+            lunch            = VALUES(lunch),
+            company_type     = VALUES(company_type),
             privacy_accepted = 1,
             ip_hash          = VALUES(ip_hash),
             user_agent       = VALUES(user_agent)
     ")->execute([
-        ":name"      => substr($name, 0, 120),
-        ":email"     => substr($email, 0, 255),
-        ":role_name" => substr($role, 0, 180),
-        ":company"   => substr($company, 0, 180),
-        ":locale"    => $locale,
-        ":ip_hash"   => $ipHash,
-        ":user_agent"=> $userAgent !== "" ? $userAgent : null,
+        ":name"         => substr($name, 0, 120),
+        ":email"        => substr($email, 0, 255),
+        ":role_name"    => substr($role, 0, 180),
+        ":company"      => substr($company, 0, 180),
+        ":locale"       => $locale,
+        ":lunch"        => $lunch !== "" ? $lunch : null,
+        ":company_type" => $companyType !== "" ? $companyType : null,
+        ":ip_hash"      => $ipHash,
+        ":user_agent"   => $userAgent !== "" ? $userAgent : null,
     ]);
+
+    // ─── HubSpot (optional, isolated) ───────────────────────────────────────
+    // Gated entirely behind HUBSPOT_PRIVATE_APP_TOKEN. No credentials are
+    // hardcoded here: when the env var is unset (the case today), this block
+    // is skipped and MySQL + the internal notification email below remain
+    // the only effects of a submission, exactly as before. Once the Private
+    // App + custom properties exist in the HubSpot portal, set the env var
+    // and this starts working without further code changes. The "request
+    // received" email is sent by a HubSpot workflow, not from here.
+    $hubspotToken = getenv("HUBSPOT_PRIVATE_APP_TOKEN");
+    if ($hubspotToken !== false && $hubspotToken !== "") {
+        try {
+            $nameParts = preg_split('/\s+/', trim($name), 2);
+            $firstName = $nameParts[0] ?? "";
+            $lastName  = $nameParts[1] ?? "";
+
+            $hubspotProperties = [
+                "email"     => $email,
+                "firstname" => $firstName,
+                "lastname"  => $lastName,
+                "company"   => $company,
+                "jobtitle"  => $role,
+                // TODO: confirmar nombre interno exacto en el portal de HubSpot antes de ir a producción
+                "bootcamp_zero_almuerzo_networking" => $lunch === "yes" ? "si" : "no",
+                // TODO: confirmar nombre interno exacto en el portal de HubSpot antes de ir a producción
+                "bootcamp_zero_tipo_empresa" => $companyType === "member" ? "asociada" : "no_asociada",
+            ];
+
+            $ch = curl_init("https://api.hubapi.com/crm/v3/objects/contacts");
+            curl_setopt_array($ch, [
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_POST           => true,
+                CURLOPT_TIMEOUT        => 8,
+                CURLOPT_HTTPHEADER     => [
+                    "Authorization: Bearer " . $hubspotToken,
+                    "Content-Type: application/json",
+                ],
+                CURLOPT_POSTFIELDS => json_encode(["properties" => $hubspotProperties]),
+            ]);
+            curl_exec($ch);
+            $hubspotStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            if ($hubspotStatus < 200 || $hubspotStatus >= 300) {
+                error_log("[bootcamp-lead] HubSpot contact upsert returned HTTP " . $hubspotStatus);
+            }
+        } catch (Throwable $hubspotError) {
+            // A HubSpot failure must never break the submission for the user.
+            error_log("[bootcamp-lead] HubSpot sync failed: " . $hubspotError->getMessage());
+        }
+    }
 
     $subject = "Nueva solicitud Bootcamp Zero";
     $message = "Se ha recibido una nueva solicitud de plaza para Bootcamp Zero.\n\n"

@@ -64,10 +64,23 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
   `ProgramaHeroBottomBanner`) vs. el hero OpenLab actual intacto para en/ca.
   CTA de journey y logos-strip repuntados a `BOOTCAMP_ZERO_CTA_HREF` (vía
   `LinkButton external`) en los 3 locales, tal como decidido en T3.
-- [ ] T5 — Bloque "La jornada + formulario" (`ProgramaBootcampSection.tsx`):
-  fecha/venue/APCE nuevos, 2 preguntas nuevas obligatorias en el formulario,
-  tarjeta "Aprobación requerida", envío a HubSpot aislado tras flag de env,
-  deja de embeber ponentes (pasan a ser bloque propio).
+- [x] T5 — `ProgramaBootcampSection.tsx` ahora exporta dos variantes internas
+  (`...Es` nueva / `...Default` = contenido actual byte-a-byte) elegidas por
+  `getLocale()`, porque el componente es compartido entre los 3 locales y
+  en/ca deben seguir mostrando la agenda vieja de 12 ítems + los ponentes
+  embebidos sin cambios. La variante es: fecha/venue (link a Google Maps)
+  nuevos, sello APCE, 2 párrafos (el 1º sin cambios), tarjeta "Aprobación
+  requerida" (icono SVG inline), 2 preguntas radio obligatorias nuevas
+  (`BootcampLeadForm` las acepta como props opcionales — si no se pasan,
+  renderiza exactamente igual que antes, por eso en/ca quedan intactos), y ya
+  no embebe `ProgramaFormadoresSection`. Backend (`bootcamp-lead.php`):
+  columnas `lunch`/`company_type` nuevas en MySQL (`scripts/db-setup-production.sql`
+  actualizado con CREATE TABLE + ALTER TABLE documentado para DB ya
+  existentes), validación estricta de los 2 campos nuevos pero solo cuando
+  `locale` empieza por "es" (en/ca nunca los envían, así no se rompe su envío
+  actual). Integración HubSpot aislada tras `getenv('HUBSPOT_PRIVATE_APP_TOKEN')`,
+  con 2 TODOs marcados para confirmar los nombres internos de las propiedades
+  custom.
 - [ ] T6 — Nuevo bloque "Programa" (agenda 10:00/10:30/12:00/13:30):
   componente nuevo `ProgramaScheduleSection.tsx`, solo es.
 - [ ] T7 — Ponentes (`ProgramaFormadoresSection.tsx`): reemplazar lista por
