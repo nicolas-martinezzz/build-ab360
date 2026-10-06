@@ -209,8 +209,9 @@ try {
     // is skipped and MySQL + the internal notification email below remain
     // the only effects of a submission, exactly as before. Once the Private
     // App + custom properties exist in the HubSpot portal, set the env var
-    // and this starts working without further code changes. The "request
-    // received" email is sent by a HubSpot workflow, not from here.
+    // and this starts working without further code changes. The "solicitud
+    // recibida" email no longer depends on HubSpot: it is sent below over
+    // the server's own SMTP (see the yutopias_mail() block further down).
     $hubspotToken = getenv("HUBSPOT_PRIVATE_APP_TOKEN");
     if ($hubspotToken !== false && $hubspotToken !== "") {
         try {
@@ -260,14 +261,57 @@ try {
         . "Email: "   . $email   . "\n"
         . "Cargo: "   . $role    . "\n"
         . "Empresa: " . $company . "\n"
-        . "Idioma: "  . $locale  . "\n"
-        . "Fecha: "   . gmdate("Y-m-d H:i:s") . " UTC\n";
+        . "Idioma: "  . $locale  . "\n";
+    // Bootcamp Zero × APCE: the two extra questions only arrive on the
+    // es-locale campaign form; include them only when present.
+    if ($lunch !== "") {
+        $message .= "Almuerzo de networking: " . ($lunch === "yes" ? "Sí" : "No") . "\n";
+    }
+    if ($companyType !== "") {
+        $message .= "Tipo de empresa: " . ($companyType === "member" ? "Asociada a APCE" : "No asociada") . "\n";
+    }
+    $message .= "Fecha: " . gmdate("Y-m-d H:i:s") . " UTC\n";
     $safeEmail = filter_var($email, FILTER_VALIDATE_EMAIL) ? preg_replace('/[\r\n]/', '', $email) : $mailFrom;
     $headers = "From: "     . $mailFrom  . "\r\n"
              . "Reply-To: " . $safeEmail . "\r\n"
              . "Content-Type: text/plain; charset=UTF-8\r\n";
     if (!yutopias_mail($notifyTo, $subject, $message, $headers)) {
         error_log("[bootcamp-lead] Failed to send notification to " . $notifyTo);
+    }
+
+    // ─── "Solicitud recibida" email to the applicant ─────────────────────────
+    // Sent over the server's own SMTP (same yutopias_mail() pattern as
+    // public/api/diagnostic.php), only for the es-locale campaign form — the
+    // legacy en/ca form must not trigger it. The copy mirrors the "Aprobación
+    // requerida" card on the form: the request was RECEIVED and is subject to
+    // approval; it is NOT a seat confirmation. yutopias_mail() returns false
+    // on any failure (it never throws), so a mail failure can never break
+    // this response — the lead is already saved; we only log, exactly like
+    // the internal notification above.
+    if ($isEsSubmission) {
+        $safeName    = htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
+        $subjectUser = "=?UTF-8?B?" . base64_encode("Hemos recibido tu solicitud · Bootcamp Zero") . "?=";
+        $bodyUser    = '<!DOCTYPE html>
+<html lang="es">
+  <body style="margin:0;padding:24px;background-color:#f4f4f5;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;">
+    <div style="max-width:560px;margin:0 auto;background-color:#ffffff;padding:32px;border-radius:8px;">
+      <h1 style="margin:0 0 16px;font-size:20px;line-height:1.3;">Hemos recibido tu solicitud</h1>
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Hola ' . $safeName . ',</p>
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Tu solicitud de plaza para el <strong>Bootcamp Zero</strong> (22 de octubre de 2026, Hub BStartup Barcelona) se ha recibido correctamente.</p>
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Tu solicitud est&aacute; sujeta a la aprobaci&oacute;n de la organizaci&oacute;n. Te contactaremos para confirmar tu plaza.</p>
+      <p style="margin:0;font-size:15px;line-height:1.6;">Un saludo,<br />El equipo de y&#363;topias systems</p>
+    </div>
+  </body>
+</html>';
+        $headersUser = implode("\r\n", [
+            "MIME-Version: 1.0",
+            "Content-Type: text/html; charset=UTF-8",
+            "From: =?UTF-8?B?" . base64_encode("yūtopias systems") . "?= <{$mailFrom}>",
+            "Reply-To: {$mailFrom}",
+        ]);
+        if (!yutopias_mail($email, $subjectUser, $bodyUser, $headersUser)) {
+            error_log("[bootcamp-lead] Failed to send solicitud-recibida email to " . $email);
+        }
     }
 
     echo json_encode(["ok" => true]);

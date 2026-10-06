@@ -29,8 +29,11 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
   (`HUBSPOT_PRIVATE_APP_TOKEN`), sin romper el flujo actual que sigue
   guardando en MySQL (`bootcamp_leads`) + notificación interna. Cuando el
   usuario cree el Private App + propiedades, se activa solo.
-- Email "solicitud recibida": lo dispara un **workflow de HubSpot** (no
-  backend propio). No hay que escribir plantilla de email PHP para esto.
+- Email "solicitud recibida": ~~lo dispara un workflow de HubSpot~~ —
+  decisión SUPERSEDIDA por el usuario (06/10/2026): se envía por el **SMTP
+  propio del servidor** desde `bootcamp-lead.php` (mismo patrón
+  `yutopias_mail()` que `diagnostic.php`), solo para envíos con `locale`
+  "es*". Ver sección Pendiente.
 - i18n parity (`npm run check:i18n-parity`) exige mismas *keys* en los 3
   locales, no mismo contenido: las keys nuevas se agregan también a
   `en.json`/`ca.json` con el texto en español como relleno inerte (no se
@@ -173,6 +176,17 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
   que el usuario cree el Private App + las 2 propiedades custom en el portal
   y confirme sus nombres internos exactos (hoy son placeholders marcados con
   TODO en `public/api/bootcamp-lead.php`). No bloquea el resto del cambio.
+  IMPORTANTE: el email de "solicitud recibida" al solicitante ya NO depende
+  de HubSpot — se envía desde `bootcamp-lead.php` por el SMTP propio del
+  servidor (`yutopias_mail()`, mismo patrón que `diagnostic.php`), solo
+  cuando el `locale` del envío empieza por "es" (el form viejo en/ca no lo
+  dispara), y su fallo nunca rompe la respuesta del endpoint (la función
+  devuelve `false` sin lanzar; solo se registra en `error_log`). Lo único
+  que queda en HubSpot es el upsert de contacto con sus propiedades
+  (estándar + las 2 custom) detrás del token. La notificación interna a
+  `NEWSLETTER_NOTIFY_TO` incluye además las 2 respuestas nuevas (almuerzo de
+  networking Sí/No y tipo de empresa Asociada a APCE / No asociada) cuando
+  vienen en el payload.
 
 ## TDD / checks
 No hay modo TDD configurado para este tipo de contenido de marketing (no hay
