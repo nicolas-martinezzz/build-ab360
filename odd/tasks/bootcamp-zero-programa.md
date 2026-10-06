@@ -125,9 +125,24 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
   `npm run build` completo corrido localmente (no solo lint/parity) para
   confirmar que compila y que `/es/programa`, `/ca/programa` y
   `/en/program` generan estáticamente sin errores.
-- [ ] T10 — Verificación local: `npm run lint`, `npm run check:i18n-parity`,
-  `npm run build`, y revisión visual en `http://localhost:3000/es/programa`
-  contra `mockup-programa.html`.
+- [x] T10 — Verificación local, en curso. Dos bugs reales encontrados durante
+  la revisión visual con el usuario (ninguno de los dos estaba en el alcance
+  original, ambos preexistentes expuestos por este trabajo) y ya arreglados:
+  1. `html { scroll-behavior: smooth }` (preexistente, global) rompía el
+     salto al ancla `#bootcamp-formulario` en navegaciones entre páginas —
+     aterrizaba en un punto intermedio, dejando un hueco en blanco antes de
+     "Ponentes". Fix: `data-scroll-behavior="smooth"` en `<html>`
+     (`src/app/[locale]/layout.tsx`), recomendado por el propio warning de
+     Next.js.
+  2. El `<script dangerouslySetInnerHTML>` del intro-shield (preexistente)
+     tiraba un error fatal de React ("Encountered a script tag while
+     rendering React component") al cambiar de idioma desde el selector,
+     porque `LocaleLayout` se re-renderiza del lado del cliente al cruzar el
+     segmento `[locale]`, y React no soporta un `<script>` crudo en ese
+     caso. Fix: migrado a `next/script` con `strategy="beforeInteractive"`.
+  Falta: confirmación visual del usuario en su propio navegador (el
+  extension de Chrome del agente no logra cargar la página en esta sesión,
+  causa no relacionada al sitio) contra `mockup-programa.html`.
 
 ## TDD / checks
 No hay modo TDD configurado para este tipo de contenido de marketing (no hay
