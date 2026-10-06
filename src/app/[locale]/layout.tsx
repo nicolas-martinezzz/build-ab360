@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Inter, Montserrat, Special_Elite } from "next/font/google";
+import Script from "next/script";
 import type { ReactNode } from "react";
 import { routing } from "@/i18n/routing";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
@@ -103,6 +104,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html
       className={`${montserrat.variable} ${inter.variable} ${specialElite.variable}`}
+      data-scroll-behavior="smooth"
       lang={locale}
       suppressHydrationWarning
     >
@@ -123,7 +125,9 @@ export default async function LocaleLayout({ children, params }: Props) {
           style={{ position: 'fixed', inset: 0, background: 'var(--color-black)', zIndex: 9998 }}
           suppressHydrationWarning
         />
-        <script
+        <Script
+          id="intro-shield-boot"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var s=document.getElementById('intro-shield');if(sessionStorage.getItem('intro-seen')){if(s)s.style.display='none';document.body.style.background='';}}catch(e){}})()`,
           }}
