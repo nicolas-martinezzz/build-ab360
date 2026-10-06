@@ -139,7 +139,32 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
      rendering React component") al cambiar de idioma desde el selector,
      porque `LocaleLayout` se re-renderiza del lado del cliente al cruzar el
      segmento `[locale]`, y React no soporta un `<script>` crudo en ese
-     caso. Fix: migrado a `next/script` con `strategy="beforeInteractive"`.
+     caso. Fix intentado (`de3b2c4`): migrado a `next/script` con
+     `strategy="beforeInteractive"` — NO alcanzó, mismo crash (el motivo:
+     `[locale]/layout.tsx` sigue re-renderizándose en cliente, y eso rompe
+     cualquier `<script>`, crudo o `next/script`, que viva ahí).
+     Fix definitivo (`e9fba09`): la lógica se movió a
+     `src/instrumentation-client.ts` (convención de Next.js 15.3+, corre una
+     vez por carga completa de documento, después de parsear el HTML y antes
+     de hidratar, fuera del árbol de componentes de React — sobrevive a los
+     cambios de locale porque el módulo ya está cargado, no se re-renderiza).
+     Se probó primero mover el `<Script>` al layout raíz estático
+     (`src/app/layout.tsx`) tal como se había diseñado, pero introducía una
+     regresión nueva: un `console.error` de React ("Cannot render a sync or
+     defer <script> outside the main document...") en TODA carga de página,
+     porque ese `layout.tsx` no renderiza `<html>` él mismo (lo hace
+     `[locale]/layout.tsx`, que no se tocó). Se descartó ese approach por
+     esa regresión y se usó `instrumentation-client.ts` en su lugar.
+     Test de regresión nuevo: `tests/e2e/locale-switch.spec.ts` — reproduce
+     el cambio de idioma real vía el selector del header (navegación
+     client-side) en los 6 pares de locale dirigidos, verificado que falla
+     con el texto exacto del crash contra el código pre-fix y pasa contra el
+     fix. `intro-local`, `navigation`, lint y `check:i18n-parity` siguen en
+     verde (la única falla, preexistente y no relacionada, es
+     `intro-local.spec.ts` › "body has inline background:#000" — el body
+     usa `background: var(--color-black)` desde antes de este trabajo, el
+     test espera literalmente `#000`/`rgb(0,0,0)`; confirmado que ya fallaba
+     en `de3b2c4` sin ninguno de mis cambios).
   Falta: confirmación visual del usuario en su propio navegador (el
   extension de Chrome del agente no logra cargar la página en esta sesión,
   causa no relacionada al sitio) contra `mockup-programa.html`.
