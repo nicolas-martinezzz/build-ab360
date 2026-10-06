@@ -75,6 +75,16 @@ export const ProgramaInnovationEcosystemSection = async () => {
           </div>
 
           <ul className="grid grid-cols-2 gap-4">
+            {/*
+              Bootcamp Zero × APCE Catalunya — permanent addition to the
+              ecosystem grid, not campaign-only content, so it applies to all
+              locales. See odd/tasks/bootcamp-zero-programa.md.
+            */}
+            <LogoTile
+              logoAlt="APCE, Associació de Promotors de Catalunya"
+              logoSrc={SITE_ASSETS.programa.ecosystemApceCatalunya}
+              wide
+            />
             <LogoTile
               logoAlt="La Salle R&D"
               logoSrc={SITE_ASSETS.programa.ecosystemLasalleRd}

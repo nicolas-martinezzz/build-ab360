@@ -100,5 +100,21 @@ export const SITE_ASSETS = {
     ecosystemBarcelonaContechHub: "/images/programa/ecosystem/barcelona-contech-hub.png",
     ecosystemSngular: "/images/programa/ecosystem/sngular.png",
     ecosystemGoogleForStartups: "/images/programa/ecosystem/google-for-startups.png",
+    ecosystemApceCatalunya: "/images/programa/bootcamp-zero/logo-apce-catalunya-gris.png",
+    bootcampZero: {
+      apceLogoWhite: "/images/programa/bootcamp-zero/logo-apce-catalunya-blanco.png",
+      apceLogoGray: "/images/programa/bootcamp-zero/logo-apce-catalunya-gris.png",
+      speakers: {
+        juanjoMoreno: "/images/programa/bootcamp-zero/ponente-juanjo-moreno.jpg",
+        ivanPerez: "/images/programa/bootcamp-zero/ponente-ivan-perez.jpg",
+        eduardoNunez: "/images/programa/bootcamp-zero/ponente-eduardo-nunez.jpg",
+        joseRamonMartinVega: "/images/programa/bootcamp-zero/ponente-jose-ramon-martin-vega.jpg",
+        sandraColom: "/images/programa/bootcamp-zero/ponente-sandra-colom.jpg",
+        xavierVilajoana: "/images/programa/bootcamp-zero/ponente-xavier-vilajoana.jpg",
+        brunoSauer: "/images/programa/bootcamp-zero/ponente-bruno-sauer.jpg",
+        javierMolina: "/images/programa/bootcamp-zero/ponente-javier-molina.jpg",
+        josepMiquelPique: "/images/programa/bootcamp-zero/ponente-josep-miquel-pique.jpg",
+      },
+    },
   },
 } as const;

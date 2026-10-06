@@ -55,5 +55,5 @@ export function generateStaticParams() {
 export default async function ProgramaPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <ProgramaPageSections />;
+  return <ProgramaPageSections locale={locale} />;
 }

@@ -103,6 +103,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html
       className={`${montserrat.variable} ${inter.variable} ${specialElite.variable}`}
+      data-scroll-behavior="smooth"
       lang={locale}
       suppressHydrationWarning
     >
@@ -122,11 +123,6 @@ export default async function LocaleLayout({ children, params }: Props) {
           id="intro-shield"
           style={{ position: 'fixed', inset: 0, background: 'var(--color-black)', zIndex: 9998 }}
           suppressHydrationWarning
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=document.getElementById('intro-shield');if(sessionStorage.getItem('intro-seen')){if(s)s.style.display='none';document.body.style.background='';}}catch(e){}})()`,
-          }}
         />
         <NextIntlClientProvider messages={messages}>
           <IntroOverlayLoader />

@@ -1,7 +1,7 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { getBootcampPathByLocale } from "@/config/routes";
+import { BOOTCAMP_ZERO_CTA_HREF } from "@/config/routes";
 
 type Pill = { key: string; label: string };
 
@@ -41,10 +41,7 @@ const JourneyCard = ({ token, title, body, pills }: JourneyCardProps) => (
 );
 
 export const ProgramaJourneySection = async () => {
-  const [t, locale] = await Promise.all([
-    getTranslations("programaPage.journey"),
-    getLocale(),
-  ]);
+  const t = await getTranslations("programaPage.journey");
 
   return (
     <section aria-labelledby="programa-journey-title" className="section-block-spacious bg-journey-surface">
@@ -59,7 +56,8 @@ export const ProgramaJourneySection = async () => {
 
             <LinkButton
               className="mt-7 border-green-500 px-4"
-              href={getBootcampPathByLocale(locale)}
+              external
+              href={BOOTCAMP_ZERO_CTA_HREF}
               variant="outline"
             >
               {t("cta")}
