@@ -67,8 +67,14 @@ function yutopias_mail(string $to, string $subject, string $body, string $additi
     $message .= "Subject: $subject\r\n";
     $message .= rtrim($additionalHeaders, "\r\n") . "\r\n";
     $message .= "\r\n";
-    // Escape lines that start with a dot (RFC 2821 transparency).
-    $message .= preg_replace('/^\./', '..', $body, -1, $count);
+    // Normalize body line endings to CRLF (RFC 5321) so every line boundary
+    // is a real SMTP line boundary before dot-stuffing.
+    $body = preg_replace('/\r\n|\r|\n/', "\r\n", $body);
+    // Escape lines that start with a dot (RFC 5321 §4.5.2 transparency).
+    // /m is essential: without it only a dot at the very start of the whole
+    // body is escaped, and a body containing "\r\n.\r\n" would terminate
+    // DATA early and let the rest be interpreted as SMTP commands.
+    $message .= preg_replace('/^\./m', '..', $body);
     $message .= "\r\n";
     fwrite($fp, $message);
 
