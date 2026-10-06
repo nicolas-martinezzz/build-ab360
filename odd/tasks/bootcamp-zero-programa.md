@@ -170,6 +170,53 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
      en `de3b2c4` sin ninguno de mis cambios).
   Confirmado por el usuario: cambio de idioma funciona en los 3 locales.
 
+## Hallazgos de la code review del PR #1
+
+Los 5 bloqueantes, arreglados en esta rama (archivos:
+`public/api/bootcamp-lead.php`, `private/smtp_mailer.php`):
+
+- [x] F1 — Inyección de comandos SMTP: el dot-stuffing de `yutopias_mail()`
+  no tenía el modificador `/m` (solo escapaba un punto al inicio del body
+  entero). Fix: `'/^\./m'` + normalización del body a CRLF (RFC 5321) antes
+  del dot-stuffing. Verificado con harness contra un fake SMTP local que el
+  body con `"\n.\n"` ya no produce una línea "." sola. Revisados todos los
+  callers de `yutopias_mail` (diagnostic, reserva-plaza, newsletter,
+  ebook-lead, bootcamp-lead): todos componen bodies texto/HTML con `\n`;
+  la normalización CRLF es segura e idempotente para todos.
+- [x] F2 — Mail-bombing: el email "solicitud recibida" salía en cada POST.
+  Ahora se gatea con `$isNewLead` derivado de `rowCount()` del upsert
+  (`INSERT ... ON DUPLICATE KEY UPDATE`: 1 = insert nuevo, 2 = update,
+  0 = sin cambios) — solo un INSERT nuevo dispara el email al solicitante.
+  La notificación interna sigue saliendo en cada envío (el staff ve los
+  reintentos). Verificado por lectura (sin MySQL local no se puede ejercitar
+  el rowCount real).
+- [x] F3 — Validación esquivable por `locale`: `lunch`/`companyType` ahora
+  se validan contra el allow-list SIEMPRE que vengan presentes (presentes e
+  inválidos → 400, en cualquier locale); el locale solo decide la
+  obligatoriedad (es* los exige) y el email al solicitante. Cinturón: los
+  valores que llegan al INSERT/HubSpot/notificación se re-derivan del
+  allow-list (`$lunchDb`/`$companyTypeDb`), nunca del input crudo — esto
+  elimina también el 500 por overflow de VARCHAR(16).
+- [x] F4 — Datos falsos hacia staff/HubSpot: las líneas de almuerzo/tipo de
+  empresa en la notificación y las 2 propiedades custom de HubSpot solo se
+  incluyen cuando los campos vinieron presentes y válidos; nunca un
+  "No"/"No asociada" fabricado para envíos en/ca que no fueron preguntados.
+- [x] F5 — Name sin sanear en emails: nueva `$emailSafe()` (control chars y
+  saltos de línea → espacio, truncado igual que el INSERT) aplicada a
+  name/role/company/locale en AMBOS cuerpos de email; `htmlspecialchars`
+  sobre la versión saneada en el HTML al solicitante. Verificado con harness
+  que un name con `"\n.\nMAIL FROM:<x>"` queda aplanado a una sola línea.
+
+No bloqueantes anotados como follow-up (no se tocan en esta rama):
+- Boilerplate de headers CORS/validación triplicado entre endpoints.
+- Fecha y venue del bootcamp hardcodeados en el email PHP (22/10/2026,
+  Hub BStartup) — duplican el contenido de las traducciones.
+- Envíos de email síncronos antes de responder al cliente (latencia).
+- Riesgo de email duplicado si algún día se arma un workflow de email en
+  HubSpot: NO debe armarse ese workflow — el PHP ya envía este email.
+- Entidades HTML (`&aacute;` etc.) mezcladas con UTF-8 en el cuerpo del
+  email al solicitante.
+
 ## Pendiente (follow-up, fuera de esta rama)
 - HubSpot: queda explícitamente pendiente a pedido del usuario. El código ya
   está preparado (aislado tras `HUBSPOT_PRIVATE_APP_TOKEN`, ver T5) — falta

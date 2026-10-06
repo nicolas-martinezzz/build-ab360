@@ -79,19 +79,31 @@ if (!$accepted) {
 }
 
 // The lunch/company-type questions only exist in the es-locale form (see
-// ProgramaBootcampSection.tsx); en/ca never send them, so they stay optional
-// there to avoid breaking their unrelated, unchanged submission flow.
+// ProgramaBootcampSection.tsx); en/ca never send them, so they stay OPTIONAL
+// there to avoid breaking their unrelated, unchanged submission flow. The
+// locale only decides whether they are REQUIRED: whenever they are present,
+// they are validated against the allow-list regardless of locale — the
+// client-controlled `locale` field must not be able to bypass validation.
 $isEsSubmission = strtolower(substr($locale, 0, 2)) === "es";
 
 if (
     $name === "" || $company === "" || $role === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)
-    || ($isEsSubmission && !in_array($lunch, $validLunchValues, true))
-    || ($isEsSubmission && !in_array($companyType, $validCompanyTypeValues, true))
+    || ($lunch !== "" && !in_array($lunch, $validLunchValues, true))
+    || ($companyType !== "" && !in_array($companyType, $validCompanyTypeValues, true))
+    || ($isEsSubmission && $lunch === "")
+    || ($isEsSubmission && $companyType === "")
 ) {
     http_response_code(400);
     echo json_encode(["message" => "Invalid form data"]);
     exit;
 }
+
+// Belt-and-suspenders for the VARCHAR(16) columns: the values that reach the
+// INSERT (and HubSpot/notification below) are re-derived from the allow-list,
+// never taken from raw input. After the validation above these are either ""
+// (absent, allowed for en/ca) or an exact allow-list value.
+$lunchDb       = in_array($lunch, $validLunchValues, true) ? $lunch : null;
+$companyTypeDb = in_array($companyType, $validCompanyTypeValues, true) ? $companyType : null;
 
 $configPath = getenv("NEWSLETTER_CONFIG_FILE") ?: dirname(dirname(__DIR__)) . "/private/newsletter-config.php";
 $config = [];
@@ -178,7 +190,7 @@ try {
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     ");
 
-    $pdo->prepare("
+    $leadStmt = $pdo->prepare("
         INSERT INTO bootcamp_leads (name, email, role_name, company, locale, lunch, company_type, privacy_accepted, source, ip_hash, user_agent)
         VALUES (:name, :email, :role_name, :company, :locale, :lunch, :company_type, 1, 'programa-bootcamp-form', :ip_hash, :user_agent)
         ON DUPLICATE KEY UPDATE
@@ -191,17 +203,24 @@ try {
             privacy_accepted = 1,
             ip_hash          = VALUES(ip_hash),
             user_agent       = VALUES(user_agent)
-    ")->execute([
+    ");
+    $leadStmt->execute([
         ":name"         => substr($name, 0, 120),
         ":email"        => substr($email, 0, 255),
         ":role_name"    => substr($role, 0, 180),
         ":company"      => substr($company, 0, 180),
         ":locale"       => $locale,
-        ":lunch"        => $lunch !== "" ? $lunch : null,
-        ":company_type" => $companyType !== "" ? $companyType : null,
+        ":lunch"        => $lunchDb,
+        ":company_type" => $companyTypeDb,
         ":ip_hash"      => $ipHash,
         ":user_agent"   => $userAgent !== "" ? $userAgent : null,
     ]);
+    // MySQL INSERT ... ON DUPLICATE KEY UPDATE affected-rows semantics:
+    // 1 = new row inserted, 2 = existing row updated, 0 = existing row
+    // untouched (identical values). Only a genuinely new lead may trigger
+    // the "solicitud recibida" email below — otherwise anyone could re-POST
+    // the same email address to make us mail-bomb the applicant.
+    $isNewLead = $leadStmt->rowCount() === 1;
 
     // ─── HubSpot (optional, isolated) ───────────────────────────────────────
     // Gated entirely behind HUBSPOT_PRIVATE_APP_TOKEN. No credentials are
@@ -225,11 +244,19 @@ try {
                 "lastname"  => $lastName,
                 "company"   => $company,
                 "jobtitle"  => $role,
-                // TODO: confirmar nombre interno exacto en el portal de HubSpot antes de ir a producción
-                "bootcamp_zero_almuerzo_networking" => $lunch === "yes" ? "si" : "no",
-                // TODO: confirmar nombre interno exacto en el portal de HubSpot antes de ir a producción
-                "bootcamp_zero_tipo_empresa" => $companyType === "member" ? "asociada" : "no_asociada",
             ];
+            // Only send the two campaign answers when they were actually
+            // present in the payload and passed the allow-list — never a
+            // fabricated "no"/"no_asociada" default for en/ca submissions
+            // that were never asked these questions.
+            if ($lunchDb !== null) {
+                // TODO: confirmar nombre interno exacto en el portal de HubSpot antes de ir a producción
+                $hubspotProperties["bootcamp_zero_almuerzo_networking"] = $lunchDb === "yes" ? "si" : "no";
+            }
+            if ($companyTypeDb !== null) {
+                // TODO: confirmar nombre interno exacto en el portal de HubSpot antes de ir a producción
+                $hubspotProperties["bootcamp_zero_tipo_empresa"] = $companyTypeDb === "member" ? "asociada" : "no_asociada";
+            }
 
             $ch = curl_init("https://api.hubapi.com/crm/v3/objects/contacts");
             curl_setopt_array($ch, [
@@ -255,20 +282,33 @@ try {
         }
     }
 
+    // Email-safe variants of user-controlled fields: strip control chars and
+    // line breaks (defeats header/body injection and SMTP dot-stuffing abuse)
+    // and truncate to the same lengths as the INSERT above. Used in BOTH
+    // email bodies below — never interpolate the raw values.
+    $emailSafe = static function (string $value, int $max): string {
+        return substr((string)preg_replace('/[\r\n\t\x00-\x1F\x7F]+/', ' ', $value), 0, $max);
+    };
+    $nameMail    = $emailSafe($name, 120);
+    $roleMail    = $emailSafe($role, 180);
+    $companyMail = $emailSafe($company, 180);
+    $localeMail  = $emailSafe($locale, 8);
+
     $subject = "Nueva solicitud Bootcamp Zero";
     $message = "Se ha recibido una nueva solicitud de plaza para Bootcamp Zero.\n\n"
-        . "Nombre: "  . $name    . "\n"
-        . "Email: "   . $email   . "\n"
-        . "Cargo: "   . $role    . "\n"
-        . "Empresa: " . $company . "\n"
-        . "Idioma: "  . $locale  . "\n";
+        . "Nombre: "  . $nameMail    . "\n"
+        . "Email: "   . $email       . "\n"
+        . "Cargo: "   . $roleMail    . "\n"
+        . "Empresa: " . $companyMail . "\n"
+        . "Idioma: "  . $localeMail  . "\n";
     // Bootcamp Zero × APCE: the two extra questions only arrive on the
-    // es-locale campaign form; include them only when present.
-    if ($lunch !== "") {
-        $message .= "Almuerzo de networking: " . ($lunch === "yes" ? "Sí" : "No") . "\n";
+    // es-locale campaign form; include them only when they were present AND
+    // passed the allow-list — never show a fabricated "No"/"No asociada".
+    if ($lunchDb !== null) {
+        $message .= "Almuerzo de networking: " . ($lunchDb === "yes" ? "Sí" : "No") . "\n";
     }
-    if ($companyType !== "") {
-        $message .= "Tipo de empresa: " . ($companyType === "member" ? "Asociada a APCE" : "No asociada") . "\n";
+    if ($companyTypeDb !== null) {
+        $message .= "Tipo de empresa: " . ($companyTypeDb === "member" ? "Asociada a APCE" : "No asociada") . "\n";
     }
     $message .= "Fecha: " . gmdate("Y-m-d H:i:s") . " UTC\n";
     $safeEmail = filter_var($email, FILTER_VALIDATE_EMAIL) ? preg_replace('/[\r\n]/', '', $email) : $mailFrom;
@@ -287,9 +327,13 @@ try {
     // approval; it is NOT a seat confirmation. yutopias_mail() returns false
     // on any failure (it never throws), so a mail failure can never break
     // this response — the lead is already saved; we only log, exactly like
-    // the internal notification above.
-    if ($isEsSubmission) {
-        $safeName    = htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
+    // the internal notification above. Gated on $isNewLead: re-POSTing an
+    // already-registered email is an UPDATE, not a new lead, and must not
+    // let anyone use this endpoint to bombard the applicant with emails
+    // (the internal notification above still goes out on every attempt so
+    // the staff sees retries).
+    if ($isEsSubmission && $isNewLead) {
+        $safeName    = htmlspecialchars($nameMail, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
         $subjectUser = "=?UTF-8?B?" . base64_encode("Hemos recibido tu solicitud · Bootcamp Zero") . "?=";
         $bodyUser    = '<!DOCTYPE html>
 <html lang="es">
