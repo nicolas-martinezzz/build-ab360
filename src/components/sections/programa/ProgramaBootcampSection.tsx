@@ -91,9 +91,9 @@ const ProgramaBootcampSectionEs = async () => {
                   className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-full bg-green-50"
                 >
                   <svg
+                    className="stroke-green-500"
                     fill="none"
                     height="20"
-                    stroke="#236f39"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
