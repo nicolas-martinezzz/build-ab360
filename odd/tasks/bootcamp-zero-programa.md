@@ -165,9 +165,14 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
      usa `background: var(--color-black)` desde antes de este trabajo, el
      test espera literalmente `#000`/`rgb(0,0,0)`; confirmado que ya fallaba
      en `de3b2c4` sin ninguno de mis cambios).
-  Falta: confirmación visual del usuario en su propio navegador (el
-  extension de Chrome del agente no logra cargar la página en esta sesión,
-  causa no relacionada al sitio) contra `mockup-programa.html`.
+  Confirmado por el usuario: cambio de idioma funciona en los 3 locales.
+
+## Pendiente (follow-up, fuera de esta rama)
+- HubSpot: queda explícitamente pendiente a pedido del usuario. El código ya
+  está preparado (aislado tras `HUBSPOT_PRIVATE_APP_TOKEN`, ver T5) — falta
+  que el usuario cree el Private App + las 2 propiedades custom en el portal
+  y confirme sus nombres internos exactos (hoy son placeholders marcados con
+  TODO en `public/api/bootcamp-lead.php`). No bloquea el resto del cambio.
 
 ## TDD / checks
 No hay modo TDD configurado para este tipo de contenido de marketing (no hay
@@ -179,9 +184,8 @@ check:i18n-parity, build, y verificación visual manual en navegador local.
 quedan para cuando el usuario confirme que lo probado en local está OK.
 
 ## Estado
-T1–T9 implementadas y commiteadas (una por tarea) en
-`feature/bootcamp-zero-programa`. `npm run lint`, `npm run check:i18n-parity`
-y `npm run build` completo pasan en local tras cada tarea. Pendiente: T10
-(revisión visual manual contra `mockup-programa.html` en
-`http://localhost:3000/es/programa`, a cargo del orquestador/usuario) y, tras
-confirmación, push + PR.
+T1–T10 completas y commiteadas en `feature/bootcamp-zero-programa`. Probado
+en local por el usuario, incluidos los 2 bugs de locale-switch/scroll
+encontrados y arreglados durante la prueba. HubSpot queda pendiente a
+propósito (ver sección arriba). Próximo paso: push de la rama + abrir PR,
+pendiente de confirmación explícita del usuario.
