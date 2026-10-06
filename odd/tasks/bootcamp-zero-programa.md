@@ -17,10 +17,23 @@ Encargo de Juanjo. Fuente de verdad: `ESPECIFICACION.md` (si el mockup
 - Reversión del 22/10 en adelante: **manual, por PR aparte**. No se construye
   ningún mecanismo de fecha en el código.
 - Banner verde sitewide: se traduce y actualiza en **los 3 idiomas** (es/en/ca).
-- Todos los CTA "Solicita tu plaza / Únete al Bootcamp Zero" (banner, hero,
+- ~~Todos los CTA "Solicita tu plaza / Únete al Bootcamp Zero" (banner, hero,
   journey, logos-strip) se repuntan a un destino fijo
   `/es/programa#bootcamp-formulario` (hardcodeado a `/es`, igual que el
-  comportamiento actual de `/reserva-plaza` que tampoco tiene versión en/ca).
+  comportamiento actual de `/reserva-plaza` que tampoco tiene versión en/ca).~~
+  — decisión SUPERSEDIDA (06/10/2026): el usuario reportó en producción que
+  un visitante en inglés o catalán era arrastrado a la versión española sin
+  aviso. Nueva decisión: cada CTA lleva a la página de programa DEL IDIOMA
+  DEL VISITANTE con scroll a su formulario — `/es/programa#bootcamp-formulario`
+  (campaña completa), `/en/program#bootcamp-formulario` y
+  `/ca/programa#bootcamp-formulario` (página OpenLab existente, cuyo bloque de
+  jornada ya contiene un formulario funcional que guarda en la misma tabla).
+  No se traduce nada. Implementado en la rama `fix/bootcamp-cta-locale`:
+  `BOOTCAMP_ZERO_CTA_HREF` y el prop `external` de `LinkButton` eliminados
+  (ya sin call sites); los CTA usan el `Link` de `@/i18n/navigation` con
+  `${getProgramaPathByLocale(locale)}#bootcamp-formulario`, y la variante
+  default de `ProgramaBootcampSection` (en/ca) ganó `id="bootcamp-formulario"`
+  como único cambio (contenido intacto).
   `/reserva-plaza` queda intacta en el código, solo sin tráfico nuevo durante
   la campaña.
 - HubSpot: **no hay credenciales todavía** (confirmado con el usuario). Se

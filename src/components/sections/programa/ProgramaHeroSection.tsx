@@ -4,7 +4,7 @@ import { LinkButton } from "@/components/ui/LinkButton";
 import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { BOOTCAMP_ZERO_CTA_HREF } from "@/config/routes";
+import { getProgramaPathByLocale } from "@/config/routes";
 import { ProgramaHeroBottomBanner } from "./ProgramaLogosStrip";
 
 export const ProgramaHeroSection = async () => {
@@ -110,8 +110,7 @@ export const ProgramaHeroSection = async () => {
 
             <LinkButton
               className="mt-7 w-full sm:w-auto"
-              external
-              href={BOOTCAMP_ZERO_CTA_HREF}
+              href={`${getProgramaPathByLocale(locale)}#bootcamp-formulario`}
               variant="primary"
             >
               {t("cta")}

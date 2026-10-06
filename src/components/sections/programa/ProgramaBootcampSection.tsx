@@ -157,7 +157,7 @@ const ProgramaBootcampSectionDefault = async () => {
   ];
 
   return (
-    <section aria-labelledby="programa-bootcamp-title" className="section-block bg-green-50">
+    <section aria-labelledby="programa-bootcamp-title" className="section-block bg-green-50" id="bootcamp-formulario">
       <SectionContainer>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,28.5rem)] lg:gap-14">
           <div className="max-w-[48rem]">
