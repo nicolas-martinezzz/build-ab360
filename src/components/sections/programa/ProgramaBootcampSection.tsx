@@ -233,7 +233,14 @@ const ProgramaBootcampSectionDefault = async () => {
   );
 };
 
+// Campaign expanded to ALL locales (user decision of 07/10/2026 — see
+// odd/tasks/bootcamp-zero-programa.md): the Es variant now renders for
+// es/en/ca. ProgramaBootcampSectionDefault is intentionally kept (unused)
+// for the post-22/10 revert: restore the `getLocale()` selector
+// (`locale === "es" ? Es : Default`) to bring the OpenLab content back.
+void ProgramaBootcampSectionDefault;
+void getLocale;
+
 export const ProgramaBootcampSection = async () => {
-  const locale = await getLocale();
-  return locale === "es" ? <ProgramaBootcampSectionEs /> : <ProgramaBootcampSectionDefault />;
+  return <ProgramaBootcampSectionEs />;
 };

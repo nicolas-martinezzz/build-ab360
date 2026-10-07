@@ -78,20 +78,16 @@ if (!$accepted) {
     exit;
 }
 
-// The lunch/company-type questions only exist in the es-locale form (see
-// ProgramaBootcampSection.tsx); en/ca never send them, so they stay OPTIONAL
-// there to avoid breaking their unrelated, unchanged submission flow. The
-// locale only decides whether they are REQUIRED: whenever they are present,
-// they are validated against the allow-list regardless of locale — the
-// client-controlled `locale` field must not be able to bypass validation.
-$isEsSubmission = strtolower(substr($locale, 0, 2)) === "es";
-
+// The campaign form (with the lunch/company-type questions) now renders for
+// ALL locales — es, en and ca (user decision of 07/10/2026, see
+// odd/tasks/bootcamp-zero-programa.md) — so both fields are REQUIRED for
+// every submission and always validated against the allow-list. The
+// client-controlled `locale` field can no longer bypass validation; it only
+// selects the language of the applicant email below.
 if (
     $name === "" || $company === "" || $role === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)
-    || ($lunch !== "" && !in_array($lunch, $validLunchValues, true))
-    || ($companyType !== "" && !in_array($companyType, $validCompanyTypeValues, true))
-    || ($isEsSubmission && $lunch === "")
-    || ($isEsSubmission && $companyType === "")
+    || !in_array($lunch, $validLunchValues, true)
+    || !in_array($companyType, $validCompanyTypeValues, true)
 ) {
     http_response_code(400);
     echo json_encode(["message" => "Invalid form data"]);
@@ -100,8 +96,8 @@ if (
 
 // Belt-and-suspenders for the VARCHAR(16) columns: the values that reach the
 // INSERT (and HubSpot/notification below) are re-derived from the allow-list,
-// never taken from raw input. After the validation above these are either ""
-// (absent, allowed for en/ca) or an exact allow-list value.
+// never taken from raw input. After the validation above these are always
+// exact allow-list values (both fields are required for every locale).
 $lunchDb       = in_array($lunch, $validLunchValues, true) ? $lunch : null;
 $companyTypeDb = in_array($companyType, $validCompanyTypeValues, true) ? $companyType : null;
 
@@ -319,31 +315,60 @@ try {
         error_log("[bootcamp-lead] Failed to send notification to " . $notifyTo);
     }
 
-    // ─── "Solicitud recibida" email to the applicant ─────────────────────────
+    // ─── "Application received" email to the applicant ──────────────────────
     // Sent over the server's own SMTP (same yutopias_mail() pattern as
-    // public/api/diagnostic.php), only for the es-locale campaign form — the
-    // legacy en/ca form must not trigger it. The copy mirrors the "Aprobación
-    // requerida" card on the form: the request was RECEIVED and is subject to
-    // approval; it is NOT a seat confirmation. yutopias_mail() returns false
-    // on any failure (it never throws), so a mail failure can never break
-    // this response — the lead is already saved; we only log, exactly like
-    // the internal notification above. Gated on $isNewLead: re-POSTing an
-    // already-registered email is an UPDATE, not a new lead, and must not
-    // let anyone use this endpoint to bombard the applicant with emails
-    // (the internal notification above still goes out on every attempt so
-    // the staff sees retries).
-    if ($isEsSubmission && $isNewLead) {
-        $safeName    = htmlspecialchars($nameMail, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
-        $subjectUser = "=?UTF-8?B?" . base64_encode("Hemos recibido tu solicitud · Bootcamp Zero") . "?=";
+    // public/api/diagnostic.php) for ALL locales — the campaign form now
+    // renders for es/en/ca (user decision of 07/10/2026) — with subject and
+    // body in the language of the submitted `locale` (es is the fallback).
+    // The copy mirrors the "Approval required" card on the form: the request
+    // was RECEIVED and is subject to approval; it is NOT a seat confirmation.
+    // yutopias_mail() returns false on any failure (it never throws), so a
+    // mail failure can never break this response — the lead is already
+    // saved; we only log, exactly like the internal notification above.
+    // Gated on $isNewLead: re-POSTing an already-registered email is an
+    // UPDATE, not a new lead, and must not let anyone use this endpoint to
+    // bombard the applicant with emails (the internal notification above
+    // still goes out on every attempt so the staff sees retries).
+    if ($isNewLead) {
+        $safeName   = htmlspecialchars($nameMail, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
+        $langPrefix = strtolower(substr($locale, 0, 2));
+
+        if ($langPrefix === "en") {
+            $mailLang       = "en";
+            $subjectUserRaw = "We've received your application · Bootcamp Zero";
+            $mailHeading    = "We've received your application";
+            $mailGreeting   = "Hello " . $safeName . ",";
+            $mailParagraph1 = "Your seat application for <strong>Bootcamp Zero</strong> (October 22, 2026, Hub BStartup Barcelona) has been received successfully.";
+            $mailParagraph2 = "Your application is subject to approval by the organization. We will contact you to confirm your seat.";
+            $mailSignOff    = "Best regards,<br />The y&#363;topias systems team";
+        } elseif ($langPrefix === "ca") {
+            $mailLang       = "ca";
+            $subjectUserRaw = "Hem rebut la teva sol·licitud · Bootcamp Zero";
+            $mailHeading    = "Hem rebut la teva sol&middot;licitud";
+            $mailGreeting   = "Hola " . $safeName . ",";
+            $mailParagraph1 = "La teva sol&middot;licitud de pla&ccedil;a per al <strong>Bootcamp Zero</strong> (22 d'octubre de 2026, Hub BStartup Barcelona) s'ha rebut correctament.";
+            $mailParagraph2 = "La teva sol&middot;licitud est&agrave; subjecta a l'aprovaci&oacute; de l'organitzaci&oacute;. Et contactarem per confirmar la teva pla&ccedil;a.";
+            $mailSignOff    = "Salutacions,<br />L'equip de y&#363;topias systems";
+        } else {
+            $mailLang       = "es";
+            $subjectUserRaw = "Hemos recibido tu solicitud · Bootcamp Zero";
+            $mailHeading    = "Hemos recibido tu solicitud";
+            $mailGreeting   = "Hola " . $safeName . ",";
+            $mailParagraph1 = "Tu solicitud de plaza para el <strong>Bootcamp Zero</strong> (22 de octubre de 2026, Hub BStartup Barcelona) se ha recibido correctamente.";
+            $mailParagraph2 = "Tu solicitud est&aacute; sujeta a la aprobaci&oacute;n de la organizaci&oacute;n. Te contactaremos para confirmar tu plaza.";
+            $mailSignOff    = "Un saludo,<br />El equipo de y&#363;topias systems";
+        }
+
+        $subjectUser = "=?UTF-8?B?" . base64_encode($subjectUserRaw) . "?=";
         $bodyUser    = '<!DOCTYPE html>
-<html lang="es">
+<html lang="' . $mailLang . '">
   <body style="margin:0;padding:24px;background-color:#f4f4f5;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;">
     <div style="max-width:560px;margin:0 auto;background-color:#ffffff;padding:32px;border-radius:8px;">
-      <h1 style="margin:0 0 16px;font-size:20px;line-height:1.3;">Hemos recibido tu solicitud</h1>
-      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Hola ' . $safeName . ',</p>
-      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Tu solicitud de plaza para el <strong>Bootcamp Zero</strong> (22 de octubre de 2026, Hub BStartup Barcelona) se ha recibido correctamente.</p>
-      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Tu solicitud est&aacute; sujeta a la aprobaci&oacute;n de la organizaci&oacute;n. Te contactaremos para confirmar tu plaza.</p>
-      <p style="margin:0;font-size:15px;line-height:1.6;">Un saludo,<br />El equipo de y&#363;topias systems</p>
+      <h1 style="margin:0 0 16px;font-size:20px;line-height:1.3;">' . $mailHeading . '</h1>
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">' . $mailGreeting . '</p>
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">' . $mailParagraph1 . '</p>
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">' . $mailParagraph2 . '</p>
+      <p style="margin:0;font-size:15px;line-height:1.6;">' . $mailSignOff . '</p>
     </div>
   </body>
 </html>';
