@@ -240,11 +240,16 @@ test.describe("3. Body inline-style gate", () => {
     // We check the body style AFTER it's been parsed but before React hydrates.
     await page.goto(`${LOCAL}/es`, { waitUntil: "domcontentloaded" });
 
-    // body.style.background should still be '#000' (first visit — inline script
-    // only clears it for returning visitors).
+    // body.style.background should still be black (first visit — inline script
+    // only clears it for returning visitors). The layout sets it via the
+    // `var(--color-black)` design token since before the Bootcamp Zero campaign.
     const inlineBg = await page.evaluate(() => document.body?.style.background ?? "");
     // Browsers normalise '#000' → 'rgb(0, 0, 0)' in style.background.
-    const isBlack = inlineBg === "#000" || inlineBg === "rgb(0, 0, 0)" || inlineBg === "black";
+    const isBlack =
+      inlineBg === "#000" ||
+      inlineBg === "rgb(0, 0, 0)" ||
+      inlineBg === "black" ||
+      inlineBg === "var(--color-black)";
     expect(isBlack, `Inline body background must be black on first visit, got: "${inlineBg}"`).toBe(true);
   });
 
