@@ -1293,12 +1293,10 @@
       "fieldEmail": "Tu e-mail",
       "fieldEmailPlaceholder": "nombre@empresa.com",
       "infoBoxDiagnostic": "Te enviaremos un informe PDF personalizado con los resultados y los retos prioritarios para tu perfil.",
-      "infoBoxBootcamp": "Te contactaremos para informar si tu solicitud ha sido aceptada.",
       "privacyText": "Acepto el tratamiento de datos según la",
       "privacyLinkText": "política de privacidad",
       "privacySuffix": "de yūtopias systems. Sin spam, solo el informe y un eventual seguimiento.",
       "submitDiagnostic": "Empezar diagnóstico",
-      "submitBootcamp": "Empezar",
       "submitting": "Guardando...",
       "errorRequired": "Completa nombre, empresa y e-mail para continuar.",
       "errorEmail": "Introduce un e-mail válido.",
@@ -1308,17 +1306,7 @@
       "diagnosticLeftHeading": "Tu empresa toma buenas decisiones. Siempre lo ha hecho.",
       "diagnosticLeftBody": "El problema es que las toma con la mitad de la información que debería tener. Este diagnóstico mide exactamente qué mitad te falta, y te devuelve los <strong>tres retos</strong> que más te están costando hoy — en coste, en tiempo, en criterio.",
       "badge7min": "7 min",
-      "badgeResult": "Resultado inmediato",
-      "bootcampLeftEyebrow": "Bootcamp Zero · Próximamente",
-      "bootcampLeftHeading": "Solicita tu plaza.",
-      "bootcampLeftSubheading": "No todas las solicitudes se aceptan",
-      "bootcampLeftBody": "El Bootcamp Zero es gratuito. Las plazas son limitadas a 60 participantes y el proceso de selección es real — queremos que cada empresa en la sala tenga un reto concreto en edificación al que darle respuesta. Por eso empezamos por el autodiagnóstico: es lo que nos permite entender tu caso antes de decidir si encajas en esta edición.",
-      "bootcampStep1Title": "Completa el autodiagnóstico",
-      "bootcampStep1Body": "Cuéntanos quién eres y qué retos tienes.",
-      "bootcampStep2Title": "Revisamos tu solicitud",
-      "bootcampStep2Body": "El equipo evalúa cada solicitud individualmente. Buscamos diversidad de tipologías de edificación y perfiles decisores reales.",
-      "bootcampStep3Title": "Confirmación y acceso",
-      "bootcampStep3Body": "Si tu solicitud es aceptada, recibes la confirmación por email con toda la información. Si no encaja en esta edición, te avisamos igualmente."
+      "badgeResult": "Resultado inmediato"
     },
     "profile": {
       "eyebrow": "Paso 1 · Perfil",
@@ -1378,32 +1366,6 @@
       "and": "y",
       "bridgeAlertRequired": "Por favor completa al menos nombre, empresa y email para solicitar la plaza.",
       "bridgeAlertEmail": "Por favor introduce un email válido."
-    }
-  },
-  "reservaPlazaPage": {
-    "metadata": {
-      "title": "Reserva tu plaza — Bootcamp Zero",
-      "description": "Solicita tu plaza en el Bootcamp Zero. Plazas limitadas, proceso de selección real."
-    },
-    "hero": {
-      "eyebrow": "BOOTCAMP ZERO",
-      "title": "Únete al Bootcamp Zero",
-      "body": "Plazas limitadas · Selección real. Reserva tu plaza y completa el diagnóstico — analizamos tu perfil y te confirmamos si encajas con el programa."
-    },
-    "steps": {
-      "eyebrow": "CÓMO FUNCIONA",
-      "title": "Tres pasos para entrar",
-      "body": "El proceso está diseñado para que llegues al bootcamp con el diagnóstico de tu empresa ya hecho.",
-      "step1Title": "Reserva tu plaza",
-      "step1Body": "Déjanos tus datos y te reservamos el lugar.",
-      "step2Title": "Haz el diagnóstico",
-      "step2Body": "Completas el autodiagnóstico de tu empresa en 10 minutos.",
-      "step3Title": "Te confirmamos",
-      "step3Body": "Revisamos tu perfil y te contactamos para confirmar."
-    },
-    "form": {
-      "stepLabel": "Paso 1 de 2",
-      "stepTitle": "Tus datos"
     }
   },
   "footer": {

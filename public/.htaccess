@@ -11,6 +11,14 @@ RewriteRule (^|/)\.(git|github|env|svn|hg)(/|$) - [F,L]
     Require all denied
 </FilesMatch>
 
+# 301: la página /reserva-plaza se eliminó (07/10/2026) — el formulario de
+# inscripción vive en la página de programa de cada idioma. [NE] evita que el
+# fragmento #bootcamp-formulario se escape como %23 en el Location.
+# Deben ir ANTES del passthrough de -f/-d por si quedara un directorio stale.
+RewriteRule ^es/reserva-plaza/?$ /es/programa/#bootcamp-formulario [R=301,NE,L]
+RewriteRule ^en/book-your-spot/?$ /en/program/#bootcamp-formulario [R=301,NE,L]
+RewriteRule ^ca/reserva-placa/?$ /ca/programa/#bootcamp-formulario [R=301,NE,L]
+
 # Serve static assets directly — never rewrite known file extensions
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d

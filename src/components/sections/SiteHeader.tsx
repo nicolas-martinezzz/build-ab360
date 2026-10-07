@@ -1,6 +1,6 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { SiteHeaderBar } from "@/components/sections/SiteHeaderBar";
-import { getBootcampPathByLocale } from "@/config/routes";
+import { getProgramaPathByLocale } from "@/config/routes";
 
 export const SiteHeader = async () => {
   const locale = await getLocale();
@@ -11,7 +11,7 @@ export const SiteHeader = async () => {
     <SiteHeaderBar
       about={t("about")}
       resources={t("resources")}
-      bootcampPath={getBootcampPathByLocale(locale)}
+      bootcampPath={`${getProgramaPathByLocale(locale)}#bootcamp-formulario`}
       brandAria={t("brandAria")}
       challenge={t("challenge")}
       closeMenuLabel={t("closeMenu")}

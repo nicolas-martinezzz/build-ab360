@@ -1215,12 +1215,10 @@
       "fieldEmail": "Your e-mail",
       "fieldEmailPlaceholder": "name@company.com",
       "infoBoxDiagnostic": "We will send you a personalised PDF report with your results and priority challenges for your profile.",
-      "infoBoxBootcamp": "We will contact you to let you know if your application has been accepted.",
       "privacyText": "I accept the processing of my data in accordance with the",
       "privacyLinkText": "privacy policy",
       "privacySuffix": "of yūtopias systems. No spam — just the report and an occasional follow-up.",
       "submitDiagnostic": "Start assessment",
-      "submitBootcamp": "Start",
       "submitting": "Saving...",
       "errorRequired": "Please fill in your name, company and e-mail to continue.",
       "errorEmail": "Please enter a valid e-mail address.",
@@ -1230,17 +1228,7 @@
       "diagnosticLeftHeading": "Your organisation makes good decisions. It always has.",
       "diagnosticLeftBody": "The problem is that it makes them with half the information it should have. This assessment pinpoints exactly which half is missing and returns the <strong>three challenges</strong> that are costing you the most today — in cost, time, and expertise.",
       "badge7min": "7 min",
-      "badgeResult": "Instant results",
-      "bootcampLeftEyebrow": "Bootcamp Zero · Coming soon",
-      "bootcampLeftHeading": "Apply for your place.",
-      "bootcampLeftSubheading": "Not all applications are accepted",
-      "bootcampLeftBody": "Bootcamp Zero is free. Places are limited to 60 participants and the selection process is real — we want every company in the room to have a specific construction challenge to address. That is why we start with the self-assessment: it lets us understand your situation before deciding whether you fit this edition.",
-      "bootcampStep1Title": "Complete the self-assessment",
-      "bootcampStep1Body": "Tell us who you are and what challenges you face.",
-      "bootcampStep2Title": "We review your application",
-      "bootcampStep2Body": "The team evaluates each application individually. We look for diversity in building typologies and genuine decision-maker profiles.",
-      "bootcampStep3Title": "Confirmation and access",
-      "bootcampStep3Body": "If your application is accepted, you receive confirmation by email with all the details. If it does not fit this edition, we will let you know regardless."
+      "badgeResult": "Instant results"
     },
     "profile": {
       "eyebrow": "Step 1 · Profile",
@@ -1300,32 +1288,6 @@
       "and": "and",
       "bridgeAlertRequired": "Please fill in at least your name, company and email to apply for a place.",
       "bridgeAlertEmail": "Please enter a valid email address."
-    }
-  },
-  "reservaPlazaPage": {
-    "metadata": {
-      "title": "Reserve your place — Bootcamp Zero",
-      "description": "Apply for your place in Bootcamp Zero. Limited spots, real selection process."
-    },
-    "hero": {
-      "eyebrow": "BOOTCAMP ZERO",
-      "title": "Join Bootcamp Zero",
-      "body": "Limited spots · Real selection. Reserve your place and complete the assessment — we review your profile and confirm whether you are a fit."
-    },
-    "steps": {
-      "eyebrow": "HOW IT WORKS",
-      "title": "Three steps to join",
-      "body": "The process is designed so you arrive at the bootcamp with your company diagnosis already done.",
-      "step1Title": "Reserve your place",
-      "step1Body": "Share your details and we will hold your spot.",
-      "step2Title": "Take the assessment",
-      "step2Body": "Complete your company self-assessment in 10 minutes.",
-      "step3Title": "We confirm",
-      "step3Body": "We review your profile and contact you to confirm."
-    },
-    "form": {
-      "stepLabel": "Step 1 of 2",
-      "stepTitle": "Your details"
     }
   },
   "footer": {

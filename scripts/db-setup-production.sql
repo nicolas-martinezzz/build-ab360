@@ -117,6 +117,10 @@ CREATE TABLE IF NOT EXISTS diagnostic_results (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ── reserva_plaza_leads ──────────────────────────────────────────────────────
+-- LEGACY: la página /reserva-plaza (y su API reserva-plaza.php) se eliminó el
+-- 07/10/2026 — el único formulario de inscripción es ahora el de la campaña en
+-- /programa (bootcamp_leads). La tabla se conserva por los datos históricos;
+-- no borrarla.
 
 CREATE TABLE IF NOT EXISTS reserva_plaza_leads (
     id               BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,

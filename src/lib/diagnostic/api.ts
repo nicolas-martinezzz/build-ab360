@@ -52,14 +52,14 @@ async function post(payload: Record<string, unknown>): Promise<void> {
 
 // init — asks the server to create a session and return a server-generated ID.
 // Falls back to a local ID when not on yutopias.com.
-export async function initSession(locale: string, source: "autodiagnostico" | "reserva-plaza" = "autodiagnostico"): Promise<string> {
+export async function initSession(locale: string): Promise<string> {
   if (!shouldPersistRemotely()) {
     return generateLocalSessionId();
   }
   const r = await fetch(ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ action: "init", locale, source }),
+    body: JSON.stringify({ action: "init", locale, source: "autodiagnostico" }),
   });
   if (!r.ok) throw new Error("init_failed");
   const data = await r.json();

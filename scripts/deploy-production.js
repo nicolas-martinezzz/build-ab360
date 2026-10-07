@@ -245,8 +245,11 @@ async function deploy() {
 
         // 3. PHP API files
         console.log("🔌 Subiendo API PHP...");
-        const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "reserva-plaza.php", "ebook-lead.php", "openlab-contact.php"];
+        const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "ebook-lead.php", "openlab-contact.php"];
         await exec(conn, `mkdir -p ~/${REMOTE_WEBROOT}/api`);
+        // reserva-plaza.php fue eliminado del repo (07/10/2026); borrarlo del
+        // servidor para que la URL vieja responda 404 en vez de seguir aceptando POSTs.
+        await exec(conn, `rm -f ~/${REMOTE_WEBROOT}/api/reserva-plaza.php`);
         for (const f of phpFiles) {
             const local = path.join(publicDir, "api", f);
             await new Promise((resolve, reject) =>

@@ -8,11 +8,10 @@ import type { LeadData } from "@/lib/diagnostic/types";
 
 type Props = {
   locale: string;
-  mode?: "diagnostic" | "bootcamp";
   onDone: (lead: LeadData) => Promise<void>;
 };
 
-export function StepPrelead({ mode = "diagnostic", onDone }: Props) {
+export function StepPrelead({ onDone }: Props) {
   const t = useTranslations("diagnosticPage.prelead");
   const searchParams = useSearchParams();
   const [name, setName] = useState(searchParams.get("name") ?? "");
@@ -55,9 +54,9 @@ export function StepPrelead({ mode = "diagnostic", onDone }: Props) {
       <div className="bg-white rounded-[10px] border border-grey-light shadow-[var(--shadow-step)] overflow-hidden">
         <div className="grid md:grid-cols-2 gap-0">
 
-          {/* Left panel — changes per mode */}
+          {/* Left panel */}
           <div className="p-8 lg:p-10 border-b md:border-b-0 md:border-r border-grey-light">
-            {mode === "bootcamp" ? <BootcampLeft t={t} /> : <DiagnosticLeft t={t} />}
+            <DiagnosticLeft t={t} />
           </div>
 
           {/* Right — form (shared) */}
@@ -106,7 +105,7 @@ export function StepPrelead({ mode = "diagnostic", onDone }: Props) {
 
               <div className="rounded-lg bg-green-100 border border-green-200 px-4 py-3">
                 <p className="text-sm text-green-600 leading-[1.5]">
-                  {mode === "bootcamp" ? t("infoBoxBootcamp") : t("infoBoxDiagnostic")}
+                  {t("infoBoxDiagnostic")}
                 </p>
               </div>
 
@@ -142,8 +141,6 @@ export function StepPrelead({ mode = "diagnostic", onDone }: Props) {
               >
                 {loading
                   ? t("submitting")
-                  : mode === "bootcamp"
-                  ? <>{t("submitBootcamp")} <span aria-hidden>→</span></>
                   : <>{t("submitDiagnostic")} <span aria-hidden>→</span></>
                 }
               </button>
@@ -189,42 +186,6 @@ function DiagnosticLeft({ t }: { t: TranslationFn }) {
           {t("badgeResult")}
         </span>
       </div>
-    </>
-  );
-}
-
-function BootcampLeft({ t }: { t: TranslationFn }) {
-  const steps = [
-    { n: "01", title: t("bootcampStep1Title"), body: t("bootcampStep1Body") },
-    { n: "02", title: t("bootcampStep2Title"), body: t("bootcampStep2Body") },
-    { n: "03", title: t("bootcampStep3Title"), body: t("bootcampStep3Body") },
-  ];
-
-  return (
-    <>
-      <p className="text-xs font-bold tracking-[0.14em] uppercase text-green-600 mb-4">
-        {t("bootcampLeftEyebrow")}
-      </p>
-      <h2 className="text-[28px] sm:text-[32px] font-semibold text-surface-bg leading-[1.2] tracking-[-0.02em] mb-2">
-        {t("bootcampLeftHeading")}
-      </h2>
-      <p className="text-base font-semibold text-grey-dark mb-5">
-        {t("bootcampLeftSubheading")}
-      </p>
-      <p className="text-[15px] text-grey-dark leading-[1.65] mb-8">
-        {t("bootcampLeftBody")}
-      </p>
-      <ol className="space-y-3">
-        {steps.map(({ n, title, body }) => (
-          <li key={n} className="flex gap-4 rounded-lg border border-grey-light px-5 py-4">
-            <span className="text-[1.125rem] font-bold text-green-600 leading-[1.4] shrink-0 w-7">{n}.</span>
-            <div>
-              <p className="text-sm font-bold text-surface-bg">{title}</p>
-              <p className="text-sm text-grey-dark leading-[1.55] mt-0.5">{body}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
     </>
   );
 }

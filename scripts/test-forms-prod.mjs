@@ -101,37 +101,10 @@ async function testBootcampLead(page) {
   log("BootcampLead (/programa)", s === 200 ? "PASS" : "FAIL", `HTTP ${s} — ${b}`);
 }
 
-// ─── 2. ReservaPlaza (/reserva-plaza) ────────────────────────────────────────
-async function testReservaPlaza(page) {
-  await page.goto(`${BASE}/reserva-plaza/`, { waitUntil: "networkidle", timeout: 20000 });
-  await page.locator("#rp-name").scrollIntoViewIfNeeded();
-  await shot(page, "02a-reserva");
+// La página /reserva-plaza se eliminó el 07/10/2026 — el formulario de
+// inscripción es el de la campaña en /programa (testBootcampLead, arriba).
 
-  await reactSet(page, "#rp-name", "Test Playwright");
-  await reactSet(page, "#rp-company", "Empresa Test S.L.");
-  await reactSet(page, "#rp-email", "test-playwright@yutopias-test.com");
-
-  // Check all checkboxes in the form
-  await page.evaluate(() => {
-    document.querySelectorAll('form input[type="checkbox"]').forEach(cb => {
-      if (!cb.checked) {
-        cb.checked = true;
-        cb.dispatchEvent(new Event("change", { bubbles: true }));
-      }
-    });
-  });
-
-  const res = await collectApiResponse(page, () =>
-    reactSubmit(page, "form:has(#rp-name)")
-  );
-  await shot(page, "02b-reserva-result");
-
-  const s = res?.status();
-  const b = (await res?.text().catch(() => ""))?.slice(0, 200);
-  log("ReservaPlaza (/reserva-plaza)", s === 200 ? "PASS" : "FAIL", `HTTP ${s} — ${b}`);
-}
-
-// ─── 3. OpenlabContact (home) ─────────────────────────────────────────────────
+// ─── 2. OpenlabContact (home) ─────────────────────────────────────────────────
 async function testOpenlabContact(page) {
   await page.goto(`${BASE}/`, { waitUntil: "networkidle", timeout: 20000 });
   await page.locator("#ol-name").scrollIntoViewIfNeeded();
@@ -166,7 +139,7 @@ async function testOpenlabContact(page) {
   log("OpenlabContact (home)", s === 200 ? "PASS" : "FAIL", `HTTP ${s} — ${b}`);
 }
 
-// ─── 4. Diagnostic StepPrelead (/autodiagnostico) ────────────────────────────
+// ─── 3. Diagnostic StepPrelead (/autodiagnostico) ────────────────────────────
 async function testDiagnosticPrelead(page) {
   await page.goto(`${BASE}/autodiagnostico/`, { waitUntil: "networkidle", timeout: 20000 });
 
@@ -214,7 +187,7 @@ async function testDiagnosticPrelead(page) {
   log("Diagnostic StepPrelead", s === 200 ? "PASS" : "FAIL", `HTTP ${s} — ${b}`);
 }
 
-// ─── 5. Newsletter (footer, home) ────────────────────────────────────────────
+// ─── 4. Newsletter (footer, home) ────────────────────────────────────────────
 async function testNewsletter(page) {
   await page.goto(`${BASE}/`, { waitUntil: "networkidle", timeout: 20000 });
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -297,7 +270,7 @@ async function testNewsletter(page) {
   log("Newsletter (footer)", s === 200 ? "PASS" : "FAIL", `HTTP ${s} — ${b}`);
 }
 
-// ─── 6. EbookLead (/resources/*) ─────────────────────────────────────────────
+// ─── 5. EbookLead (/resources/*) ─────────────────────────────────────────────
 async function testEbookLead(page) {
   await page.goto(`${BASE}/resources/`, { waitUntil: "networkidle", timeout: 20000 });
 
@@ -376,7 +349,6 @@ try {
   console.log(`\nTesting forms on ${BASE}\nScreenshots → ${SHOTS}\n${"─".repeat(60)}`);
 
   await testBootcampLead(page);
-  await testReservaPlaza(page);
   await testOpenlabContact(page);
   await testDiagnosticPrelead(page);
   await testNewsletter(page);

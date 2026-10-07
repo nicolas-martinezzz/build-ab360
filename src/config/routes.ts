@@ -8,7 +8,6 @@ export const SITE_PATHS = {
   about: "/nosotros",
   challenge: "/challenge",
   autodiagnostico: "/autodiagnostico",
-  reservaPlaza: "/reserva-plaza",
   solution: "/solution",
   programa: "/programa",
   privacy: "/privacy",
@@ -21,15 +20,11 @@ export const SITE_PATHS = {
 const LOCALIZED_SLUGS: Record<string, Record<string, string>> = {
   about:       { es: "/nosotros",        en: "/about",           ca: "/nosaltres" },
   programa:    { es: "/programa",        en: "/program",         ca: "/programa" },
-  reserva:     { es: "/reserva-plaza",   en: "/book-your-spot",  ca: "/reserva-placa" },
   diagnostic:  { es: "/autodiagnostico", en: "/self-assessment", ca: "/autodiagnostic" },
 };
 
 export const getDiagnosticPathByLocale = (locale: string): string =>
   LOCALIZED_SLUGS.diagnostic[locale] ?? LOCALIZED_SLUGS.diagnostic.es;
-
-export const getBootcampPathByLocale = (locale: string): string =>
-  LOCALIZED_SLUGS.reserva[locale] ?? LOCALIZED_SLUGS.reserva.es;
 
 export const getAboutPathByLocale = (locale: string): string =>
   LOCALIZED_SLUGS.about[locale] ?? LOCALIZED_SLUGS.about.es;

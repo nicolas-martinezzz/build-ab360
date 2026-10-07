@@ -1215,12 +1215,10 @@
       "fieldEmail": "El teu e-mail",
       "fieldEmailPlaceholder": "nom@empresa.com",
       "infoBoxDiagnostic": "T'enviarem un informe PDF personalitzat amb els resultats i els reptes prioritaris per al teu perfil.",
-      "infoBoxBootcamp": "Et contactarem per informar-te si la teva sol·licitud ha estat acceptada.",
       "privacyText": "Accepto el tractament de dades d'acord amb la",
       "privacyLinkText": "política de privadesa",
       "privacySuffix": "de yūtopias systems. Sense spam, només l'informe i un eventual seguiment.",
       "submitDiagnostic": "Iniciar diagnòstic",
-      "submitBootcamp": "Iniciar",
       "submitting": "Guardant...",
       "errorRequired": "Omple el nom, l'empresa i el correu electrònic per continuar.",
       "errorEmail": "Introdueix un correu electrònic vàlid.",
@@ -1230,17 +1228,7 @@
       "diagnosticLeftHeading": "La teva empresa pren bones decisions. Sempre ho ha fet.",
       "diagnosticLeftBody": "El problema és que les pren amb la meitat de la informació que hauria de tenir. Aquest diagnòstic mesura exactament quina meitat et falta i et retorna els <strong>tres reptes</strong> que més et costen avui — en cost, en temps, en criteri.",
       "badge7min": "7 min",
-      "badgeResult": "Resultat immediat",
-      "bootcampLeftEyebrow": "Bootcamp Zero · Pròximament",
-      "bootcampLeftHeading": "Sol·licita la teva plaça.",
-      "bootcampLeftSubheading": "No totes les sol·licituds s'accepten",
-      "bootcampLeftBody": "El Bootcamp Zero és gratuït. Les places estan limitades a 60 participants i el procés de selecció és real — volem que cada empresa a la sala tingui un repte concret en edificació al qual donar resposta. Per això comencem per l'autodiagnòstic: és el que ens permet entendre el teu cas abans de decidir si encaixes en aquesta edició.",
-      "bootcampStep1Title": "Completa l'autodiagnòstic",
-      "bootcampStep1Body": "Explica'ns qui ets i quins reptes tens.",
-      "bootcampStep2Title": "Revisem la teva sol·licitud",
-      "bootcampStep2Body": "L'equip avalua cada sol·licitud individualment. Busquem diversitat de tipologies d'edificació i perfils decisors reals.",
-      "bootcampStep3Title": "Confirmació i accés",
-      "bootcampStep3Body": "Si la teva sol·licitud és acceptada, reps la confirmació per correu amb tota la informació. Si no encaixa en aquesta edició, t'avisem igualment."
+      "badgeResult": "Resultat immediat"
     },
     "profile": {
       "eyebrow": "Pas 1 · Perfil",
@@ -1300,32 +1288,6 @@
       "and": "i",
       "bridgeAlertRequired": "Si us plau, omple almenys el nom, l'empresa i el correu per sol·licitar la plaça.",
       "bridgeAlertEmail": "Si us plau, introdueix un correu electrònic vàlid."
-    }
-  },
-  "reservaPlazaPage": {
-    "metadata": {
-      "title": "Reserva la teva plaça — Bootcamp Zero",
-      "description": "Sol·licita la teva plaça al Bootcamp Zero. Places limitades, procés de selecció real."
-    },
-    "hero": {
-      "eyebrow": "BOOTCAMP ZERO",
-      "title": "Uneix-te al Bootcamp Zero",
-      "body": "Places limitades · Selecció real. Reserva la teva plaça i completa el diagnòstic — analitzem el teu perfil i et confirmem si encaixes amb el programa."
-    },
-    "steps": {
-      "eyebrow": "COM FUNCIONA",
-      "title": "Tres passos per entrar",
-      "body": "El procés està dissenyat perquè arribis al bootcamp amb el diagnòstic de la teva empresa ja fet.",
-      "step1Title": "Reserva la teva plaça",
-      "step1Body": "Deixa'ns les teves dades i et reservem el lloc.",
-      "step2Title": "Fes el diagnòstic",
-      "step2Body": "Compleixes l'autodiagnòstic de la teva empresa en 10 minuts.",
-      "step3Title": "Et confirmem",
-      "step3Body": "Revisem el teu perfil i ens posem en contacte per confirmar."
-    },
-    "form": {
-      "stepLabel": "Pas 1 de 2",
-      "stepTitle": "Les teves dades"
     }
   },
   "footer": {

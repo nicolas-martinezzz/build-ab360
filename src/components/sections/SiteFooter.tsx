@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { SITE_PATHS, getAboutPathByLocale, getProgramaPathByLocale, getDiagnosticPathByLocale, getBootcampPathByLocale } from "@/config/routes";
+import { SITE_PATHS, getAboutPathByLocale, getProgramaPathByLocale, getDiagnosticPathByLocale } from "@/config/routes";
 import { Link } from "@/i18n/navigation";
 import { FooterNewsletterForm } from "@/components/sections/FooterNewsletterForm";
 import { FooterLocaleSwitcher } from "@/components/sections/FooterLocaleSwitcher";
@@ -118,7 +118,7 @@ export const SiteFooter = async () => {
                 {t("actionTitle")}
               </p>
               <div className="flex flex-col gap-2 text-sm">
-                <Link className="text-white/75 transition hover:text-white" href={getBootcampPathByLocale(locale) as never}>
+                <Link className="text-white/75 transition hover:text-white" href={`${getProgramaPathByLocale(locale)}#bootcamp-formulario` as never}>
                   {t("joinBootcamp")}
                 </Link>
                 <Link className="text-white/75 transition hover:text-white" href={getDiagnosticPathByLocale(locale) as never}>

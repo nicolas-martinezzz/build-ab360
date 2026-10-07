@@ -2,7 +2,7 @@ import { Link } from "@/i18n/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { SITE_SECTION_IDS, getBootcampPathByLocale } from "@/config/routes";
+import { SITE_SECTION_IDS, getProgramaPathByLocale } from "@/config/routes";
 
 const OPENLAB_ICONS = [
   // col1 — database
@@ -97,7 +97,7 @@ export const OpenlabSection = async () => {
             </LinkButton>
             <Link
               className="inline-flex items-center text-surface-bg underline underline-offset-4 transition-opacity hover:opacity-70"
-              href={getBootcampPathByLocale(locale) as never}
+              href={`${getProgramaPathByLocale(locale)}#bootcamp-formulario` as never}
             >
               {t("ctaSecondary")}
             </Link>
@@ -146,14 +146,14 @@ export const OpenlabSection = async () => {
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:gap-4">
                 <LinkButton
                   className="w-full justify-center sm:w-auto"
-                  href={getBootcampPathByLocale(locale)}
+                  href={`${getProgramaPathByLocale(locale)}#bootcamp-formulario`}
                   variant="primary"
                 >
                   {t("bootcampCard.ctaPrimary")}
                 </LinkButton>
                 <Link
                   className="inline-flex items-center text-surface-bg underline underline-offset-4 transition-opacity hover:opacity-70"
-                  href={getBootcampPathByLocale(locale) as never}
+                  href={`${getProgramaPathByLocale(locale)}#bootcamp-formulario` as never}
                 >
                   {t("bootcampCard.ctaSecondary")}
                 </Link>

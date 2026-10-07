@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { SITE_PATHS, getBootcampPathByLocale } from "@/config/routes";
+import { SITE_PATHS, getProgramaPathByLocale } from "@/config/routes";
 
 const IconCalendar = () => (
   <svg fill="none" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +87,7 @@ export const SolutionOpenlabSection = async () => {
               <LinkButton href={SITE_PATHS.contact} variant="primary">
                 {t("ctaPrimary")}
               </LinkButton>
-              <LinkButton href={getBootcampPathByLocale(locale)} variant="text">
+              <LinkButton href={`${getProgramaPathByLocale(locale)}#bootcamp-formulario`} variant="text">
                 {t("ctaSecondary")}
               </LinkButton>
             </div>
@@ -118,7 +118,7 @@ export const SolutionOpenlabSection = async () => {
           <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_auto]">
             <p className="figma-text-l max-w-[45rem] text-grey-dark">{t("bootcampBody")}</p>
             <div className="flex flex-col items-start gap-3 lg:items-end lg:justify-center">
-              <LinkButton href={getBootcampPathByLocale(locale)} variant="outline">
+              <LinkButton href={`${getProgramaPathByLocale(locale)}#bootcamp-formulario`} variant="outline">
                 {t("bootcampCtaPrimary")}
               </LinkButton>
               <LinkButton href={SITE_PATHS.programa} variant="text">
