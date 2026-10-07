@@ -1198,6 +1198,10 @@ const cols = {
     { field: "role_name",      headerName: "Rol",         minWidth: 150 },
     { field: "company",        headerName: "Empresa",     minWidth: 150 },
     { field: "locale",         headerName: "Idioma",      maxWidth: 80 },
+    { field: "lunch",          headerName: "Almuerzo",    maxWidth: 110,
+      valueFormatter: p => p.value === "yes" ? "Si" : p.value === "no" ? "No" : "" },
+    { field: "company_type",   headerName: "Empresa APCE", minWidth: 130,
+      valueFormatter: p => p.value === "member" ? "Asociada" : p.value === "non_member" ? "No asociada" : "" },
     { field: "created_at",     headerName: "Fecha",       minWidth: 148 },
   ],
   ebook: [
