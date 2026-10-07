@@ -13,10 +13,11 @@ export const ProgramaHeroSection = async () => {
     getLocale(),
   ]);
 
-  // Bootcamp Zero × APCE Catalunya campaign (until 22/10/2026): new hero
-  // content is es-only. /en/program and /ca/programa keep the OpenLab hero
-  // unchanged. See odd/tasks/bootcamp-zero-programa.md.
-  const isBootcampZeroHero = locale === "es";
+  // Bootcamp Zero × APCE Catalunya campaign (until 22/10/2026): the campaign
+  // hero now renders for ALL locales (user decision of 07/10/2026 — see
+  // odd/tasks/bootcamp-zero-programa.md). The OpenLab hero branch below is
+  // kept intact on purpose: restore `locale === "es"` after 22/10 to revert.
+  const isBootcampZeroHero = true;
 
   return (
     <section

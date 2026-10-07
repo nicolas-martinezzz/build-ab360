@@ -93,11 +93,15 @@ type ProgramaPageSectionsProps = {
   locale: string;
 };
 
-// Bootcamp Zero × APCE Catalunya (until 22/10/2026) reorders /es/programa
-// only; see odd/tasks/bootcamp-zero-programa.md. /en/program and
-// /ca/programa keep today's OpenLab order and content untouched.
+// Bootcamp Zero × APCE Catalunya (until 22/10/2026): the campaign section
+// order now applies to ALL locales (user decision of 07/10/2026 — see
+// odd/tasks/bootcamp-zero-programa.md). Set CAMPAIGN_ACTIVE to false after
+// 22/10 to restore the pre-campaign OpenLab order for every locale.
+const CAMPAIGN_ACTIVE = true;
+
 export const ProgramaPageSections = ({ locale }: ProgramaPageSectionsProps) => {
-  if (locale === "es") {
+  void locale; // kept for the post-campaign revert (`locale === "es"` gate)
+  if (CAMPAIGN_ACTIVE) {
     return (
       <>
         <ProgramaHeroSection />
