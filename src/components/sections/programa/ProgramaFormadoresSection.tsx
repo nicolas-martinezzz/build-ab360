@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
 
 export type Formador = {
@@ -114,8 +115,8 @@ export const ProgramaFormadoresSection = async ({
   const formadores = speakers ?? defaultFormadores;
   const sectionHeadline = headline ?? t("headline");
 
-  return (
-    <div className={embedded ? "mt-10 md:mt-12" : "section-block bg-green-50"}>
+  const content = (
+    <>
       <h2 className="figma-title-3 text-surface-bg">{sectionHeadline}</h2>
 
       <ul className={`mt-7 grid gap-x-10 gap-y-7 sm:grid-cols-2 ${speakers ? "lg:grid-cols-3" : ""}`}>
@@ -165,6 +166,16 @@ export const ProgramaFormadoresSection = async ({
           </li>
         ))}
       </ul>
-    </div>
+    </>
+  );
+
+  if (embedded) {
+    return <div className="mt-10 md:mt-12">{content}</div>;
+  }
+
+  return (
+    <section aria-label={sectionHeadline} className="section-block bg-green-50">
+      <SectionContainer>{content}</SectionContainer>
+    </section>
   );
 };
