@@ -15,6 +15,17 @@ function url(path: string) {
   return `${PROD}${path}`;
 }
 
+// El cookie banner es un overlay fijo inferior que puede interceptar clicks y
+// el intro overlay tapa la página en la primera visita. Ambos se desactivan
+// seteando el storage que el producto usa para recordarlos
+// (ver CookieConsentBanner/useCookieConsent y el intro-shield del layout).
+test.beforeEach(async ({ context }) => {
+  await context.addInitScript(() => {
+    localStorage.setItem("cookie-consent", JSON.stringify({ analytics: false }));
+    sessionStorage.setItem("intro-seen", "1");
+  });
+});
+
 // ─── 1. Homepage ─────────────────────────────────────────────────────────────
 
 test.describe("1. Homepage", () => {
@@ -104,10 +115,13 @@ test.describe("2. i18n — locales es / en / ca", () => {
 
   test("selector de idioma cambia la URL", async ({ page }) => {
     await page.goto(url("/es"));
-    // Buscar link al inglés en el selector de idioma
-    const enLink = page.locator("a[href*='/en']").first();
-    await expect(enLink).toBeVisible();
-    await enLink.click();
+    // El selector del header es un dropdown: hay que abrirlo con el botón
+    // (los links de idioma no son visibles/clickeables de entrada).
+    await page
+      .getByRole("banner")
+      .getByRole("button", { name: /selector de idioma/i })
+      .click();
+    await page.getByRole("option", { name: "English" }).click();
     await expect(page).toHaveURL(/\/en/);
   });
 });
@@ -187,11 +201,13 @@ test.describe("4. Autodiagnóstico — flujo completo", () => {
     await profileBtn.click();
     await page.getByRole("button", { name: /continuar|siguiente|continue/i }).click();
 
-    // 12 preguntas
+    // 12 preguntas — el botón de avance es "Siguiente →" y en la última
+    // pregunta "Ver mi mapa de retos →" (messages diagnostic.next/finish).
     for (let q = 0; q < 12; q++) {
       await expect(page.locator("text=/\\d+ \\/ 12/")).toBeVisible({ timeout: 10_000 });
       await page.locator("button.w-full.text-left").first().click();
-      await page.locator("button.bg-\\[\\#127334\\]").last().click();
+      // Anclado al texto exacto: algunas respuestas contienen "siguiente"
+      await page.getByRole("button", { name: /^(Siguiente|Ver mi mapa de retos) →$/ }).click();
     }
 
     // Resultados
@@ -220,8 +236,9 @@ test.describe("5. Reserva Plaza", () => {
 
   test("muestra título del formulario en el h2", async ({ page }) => {
     await page.goto(RP);
-    // Busca específicamente el h2 con ese texto (no el link de navegación)
-    await expect(page.locator("h2").filter({ hasText: "Únete al Bootcamp Zero" })).toBeVisible({ timeout: 8_000 });
+    // Busca específicamente el h2 con ese texto (no el link de navegación).
+    // La página actual usa "Tres pasos para entrar" (verificado contra prod).
+    await expect(page.locator("h2").filter({ hasText: "Tres pasos para entrar" })).toBeVisible({ timeout: 8_000 });
   });
 });
 

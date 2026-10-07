@@ -124,6 +124,22 @@ export default async function LocaleLayout({ children, params }: Props) {
           style={{ position: 'fixed', inset: 0, background: 'var(--color-black)', zIndex: 9998 }}
           suppressHydrationWarning
         />
+        {/*
+          Synchronous intro-shield boot for returning visitors. Injected via
+          innerHTML so the browser parses and executes it synchronously in the
+          server-rendered HTML (before first paint — no black flash), while on
+          client-side locale re-renders React only re-assigns innerHTML:
+          scripts inserted that way are NOT executed and never appear as React
+          <script> elements, so the "Encountered a script tag while rendering
+          React component" crash cannot happen (see odd/tasks/bootcamp-zero-programa.md T10).
+        */}
+        <div
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html:
+              "<script>(function(){try{var s=document.getElementById('intro-shield');if(sessionStorage.getItem('intro-seen')){if(s)s.style.display='none';document.body.style.background='';}}catch(e){}})()</script>",
+          }}
+        />
         <NextIntlClientProvider messages={messages}>
           <IntroOverlayLoader />
           {children}
