@@ -248,6 +248,72 @@ No bloqueantes anotados como follow-up (no se tocan en esta rama):
   networking Sí/No y tipo de empresa Asociada a APCE / No asociada) cuando
   vienen en el payload.
 
+## Campaña extendida a en/ca (07/10/2026) — supersede el alcance es-only
+
+Decisión del usuario (07/10/2026): el alcance es-only original (sección
+"Alcance y decisiones de producto") queda SUPERSEDIDO. La campaña Bootcamp
+Zero × APCE Catalunya debe estar COMPLETA también en `/en/program` y
+`/ca/programa`: hero de campaña, jornada + formulario (con las 2 preguntas
+obligatorias), agenda "Programa", los 9 ponentes, sección "Cómo funciona
+OpenLab" y el orden de secciones de campaña. Implementado en la rama
+`feature/bootcamp-en-ca`.
+
+Qué se tradujo (en/ca, registro profesional neutro, fiel al es que es la
+fuente de verdad; en.json 54 keys, ca.json 49 keys):
+- `programaPage.hero.bootcamp*` (eyebrow, subtitle, body, collaboration).
+- `programaPage.bootcamp.*` keys de campaña (dateLine con la fecha nueva —
+  en: "Thursday, October 22, 2026 · 10:00 to 13:30"; ca: "Dijous 22
+  d'octubre de 2026 · 10:00 a 13:30" —, apceBadge*, formTitle,
+  approval* ("Approval required"/"Aprovació requerida"), noCostLine,
+  lunch*, companyType*, ctaCardCta) Y ADEMÁS las keys compartidas con la
+  variante vieja que la variante Es ahora renderiza en en/ca y que tenían
+  traducciones obsoletas (dateLine decía "July 2026", paragraph2 y
+  value1–4Body eran el copy pre-campaña, ctaCardCta decía "Request
+  diagnosis..."). Las keys SOLO de la variante Default (agenda1–12*,
+  entryCard*, paragraph3, ctaCardHeadline/Subhead/Body, body, entryTitle)
+  no se tocaron: no se renderizan y conservan su traducción vieja para el
+  revert.
+- `programaPage.schedule.*`, `programaPage.openlabIntro.*` y
+  `programaPage.bootcampSpeakers.*` completos (nombres propios, marcas de
+  cargo CEO/COO/CiNO, "Bootcamp Zero", "OpenLab", "SimuLab Beta", entidades
+  y LinkedIn URLs sin traducir).
+- `nav.announcementText` ya estaba traducido — no se tocó.
+
+Cambios de código (mínimo diff, pensados para el revert):
+- `ProgramaHeroSection.tsx`: `isBootcampZeroHero = true` (antes
+  `locale === "es"`); el branch del hero OpenLab queda intacto.
+- `ProgramaBootcampSection.tsx`: siempre renderiza la variante Es;
+  `ProgramaBootcampSectionDefault` se conserva (supresión de no-usado con
+  `void` + comentario).
+- `ProgramaPageSections.tsx`: constante `CAMPAIGN_ACTIVE = true`
+  documentada; el orden de campaña aplica a los 3 locales, el branch viejo
+  se conserva como rama else.
+- `public/api/bootcamp-lead.php`: `lunch`/`companyType` ahora OBLIGATORIOS
+  para todos los locales (el allow-list ya aplicaba siempre); el email
+  "solicitud recibida" al solicitante se envía en los 3 locales con asunto
+  y cuerpo según el `locale` recibido (en: "We've received your
+  application · Bootcamp Zero"; ca: "Hem rebut la teva sol·licitud ·
+  Bootcamp Zero"; es fallback). Guards `$isNewLead`, `$emailSafe` y patrón
+  de headers UTF-8 intactos. `$isEsSubmission` eliminado (ya sin usos).
+
+Verificación (07/10/2026): lint 0 errores; i18n-parity 989 keys OK; build
+estático OK; texto renderizado de `out/es/programa/index.html` comparado
+IDÉNTICO contra una build del main pre-cambio; greps de out/en y out/ca
+confirman h1 "Bootcamp Zero", fechas localizadas, "Approval
+required"/"Aprovació requerida", las 2 preguntas radio y los 9 ponentes;
+Playwright locale-switch + navigation (chromium) 8/8; endpoint ejercitado
+con `php -S` + curl: en/ca válidos pasan validación (500 al conectar PDO
+sin MySQL local, esperado), payload sin lunch o sin companyType → 400 en
+cualquier locale, valor fuera del allow-list → 400.
+
+REVERT POST-22/10 (actualizado): ahora incluye además (1) restaurar
+`locale === "es"` en `ProgramaHeroSection`, (2) restaurar el selector
+`getLocale()` en `ProgramaBootcampSection`, (3) `CAMPAIGN_ACTIVE = false`
+en `ProgramaPageSections`, (4) decidir qué hacer con la obligatoriedad
+universal y el email localizado en `bootcamp-lead.php` (si en/ca vuelven
+al form viejo sin las 2 preguntas, la obligatoriedad universal rompería
+sus envíos — revertir a la condición por locale o retirar el form viejo).
+
 ## TDD / checks
 No hay modo TDD configurado para este tipo de contenido de marketing (no hay
 tests existentes sobre estas secciones). Checks aplicables: lint,
