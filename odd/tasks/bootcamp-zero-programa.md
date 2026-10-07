@@ -314,6 +314,53 @@ universal y el email localizado en `bootcamp-lead.php` (si en/ca vuelven
 al form viejo sin las 2 preguntas, la obligatoriedad universal rompería
 sus envíos — revertir a la condición por locale o retirar el form viejo).
 
+## Eliminación de /reserva-plaza (07/10/2026)
+
+Decisión del usuario (07/10/2026): la página "Únete al Bootcamp Zero / Tres
+pasos para entrar" (`/es/reserva-plaza`, `/en/book-your-spot`,
+`/ca/reserva-placa`) se ELIMINA del proyecto. Motivo: un solo formulario de
+inscripción — el de la campaña en la página de programa de cada idioma
+(`getProgramaPathByLocale(locale) + "#bootcamp-formulario"`). Implementado en
+la rama `feat/remove-reserva-plaza`.
+
+Qué se eliminó:
+- Las 3 rutas bajo `src/app/[locale]/(site)/` (reserva-plaza, book-your-spot,
+  reserva-placa) y `src/components/reserva-plaza/ReservaPlazaForm.tsx`.
+- `public/api/reserva-plaza.php` (el deploy ahora además borra el archivo
+  stale del servidor con `rm -f`).
+- `SITE_PATHS.reservaPlaza`, `LOCALIZED_SLUGS.reserva` y
+  `getBootcampPathByLocale` en `src/config/routes.ts`; las 3 entradas de
+  reserva en `src/i18n/slug-map.ts`.
+- Namespace `reservaPlazaPage` completo en es/en/ca, y las keys del modo
+  bootcamp de `diagnosticPage.prelead` (infoBoxBootcamp, submitBootcamp,
+  bootcampLeft*, bootcampStep*) — ese modo del wizard era código muerto del
+  funnel de reserva-plaza (ningún call site pasaba `mode="bootcamp"`); se
+  eliminó el prop `mode` de DiagnosticWizard/StepPrelead y el parámetro
+  `source` de `initSession`.
+- Tests: el describe "Reserva plaza form" de `forms.spec.ts` y las secciones
+  3/5/8 de `production-audit.spec.ts` reemplazados por checks de redirect 301
+  (página) y 404/410 (API); sección ReservaPlaza de `test-forms-prod.mjs`
+  eliminada.
+
+Call sites repuntados a `${getProgramaPathByLocale(locale)}#bootcamp-formulario`
+(mismo patrón del fix de locale del 06/10): SiteFooter (link "Únete al
+Bootcamp Zero"), SiteHeader (prop bootcampPath → drawer móvil),
+PartnersCtaBanner, AboutCtaBannerSection, ChallengeFinalCtaSection,
+PartnersBootcampCtaSection, SolutionOpenlabSection (2 CTAs), OpenlabSection
+del home (3 CTAs).
+
+Redirects 301 en `public/.htaccess` (la URL vieja circuló públicamente, el
+banner de julio apuntaba ahí): es/reserva-plaza → /es/programa/,
+en/book-your-spot → /en/program/, ca/reserva-placa → /ca/programa/, con y sin
+trailing slash, con fragmento #bootcamp-formulario y flag [NE]. La
+verificación real del 301 es POST-DEPLOY (next dev no lee .htaccess).
+
+La tabla MySQL `reserva_plaza_leads` NO se toca (datos históricos): se
+conserva en `scripts/db-setup-production.sql` con comentario LEGACY, y el
+admin (`public/admin/api.php`, `export.php`) sigue leyéndola. El allow-list
+de `source` en `public/api/diagnostic.php` conserva "reserva-plaza" a
+propósito (valor histórico válido en sesiones ya guardadas).
+
 ## TDD / checks
 No hay modo TDD configurado para este tipo de contenido de marketing (no hay
 tests existentes sobre estas secciones). Checks aplicables: lint,

@@ -136,7 +136,6 @@ test.describe("3. Páginas estáticas", () => {
     { path: "/es/nosotros",      name: "Nosotros" },
     { path: "/es/privacy",       name: "Privacy" },
     { path: "/es/cookies",       name: "Cookies" },
-    { path: "/es/reserva-plaza", name: "Reserva Plaza" },
   ];
 
   for (const { path, name } of pages) {
@@ -216,30 +215,22 @@ test.describe("4. Autodiagnóstico — flujo completo", () => {
   });
 });
 
-// ─── 5. Reserva Plaza ─────────────────────────────────────────────────────────
+// ─── 5. Reserva Plaza (eliminada el 07/10/2026 → 301 a programa) ─────────────
 
-test.describe("5. Reserva Plaza", () => {
-  const RP = url("/es/reserva-plaza");
+test.describe("5. Reserva Plaza — redirect 301", () => {
+  const cases = [
+    { from: "/es/reserva-plaza", to: "/es/programa/" },
+    { from: "/en/book-your-spot", to: "/en/program/" },
+    { from: "/ca/reserva-placa", to: "/ca/programa/" },
+  ];
 
-  test("carga el formulario de reserva-plaza con campos correctos", async ({ page }) => {
-    await page.goto(RP);
-    await expect(page.locator("#rp-name")).toBeVisible({ timeout: 8_000 });
-    await expect(page.locator("#rp-company")).toBeVisible();
-    await expect(page.locator("#rp-email")).toBeVisible();
-  });
-
-  test("valida campos vacíos en reserva-plaza", async ({ page }) => {
-    await page.goto(RP);
-    await page.getByRole("button", { name: /continuar/i }).click();
-    await expect(page.locator("p.text-red-600")).toBeVisible({ timeout: 5_000 });
-  });
-
-  test("muestra título del formulario en el h2", async ({ page }) => {
-    await page.goto(RP);
-    // Busca específicamente el h2 con ese texto (no el link de navegación).
-    // La página actual usa "Tres pasos para entrar" (verificado contra prod).
-    await expect(page.locator("h2").filter({ hasText: "Tres pasos para entrar" })).toBeVisible({ timeout: 8_000 });
-  });
+  for (const { from, to } of cases) {
+    test(`${from} responde 301 hacia ${to}`, async ({ request }) => {
+      const res = await request.get(url(from), { maxRedirects: 0 });
+      expect(res.status()).toBe(301);
+      expect(res.headers()["location"]).toContain(to);
+    });
+  }
 });
 
 // ─── 6. API PHP — newsletter.php (CORS-protected: requiere Origin header) ────
@@ -309,26 +300,15 @@ test.describe("7. API PHP — diagnostic.php", () => {
   });
 });
 
-// ─── 8. API PHP — reserva-plaza.php ──────────────────────────────────────────
+// ─── 8. API PHP — reserva-plaza.php (eliminada el 07/10/2026) ────────────────
 
-test.describe("8. API PHP — reserva-plaza.php", () => {
-  test("rechaza requests sin Origin header (CORS protection activa)", async ({ request }) => {
+test.describe("8. API PHP — reserva-plaza.php eliminada", () => {
+  test("el endpoint ya no existe — responde 404/410", async ({ request }) => {
     const res = await request.post(`${PROD}/api/reserva-plaza.php`, {
       data: { name: "Test", company: "Co", email: "test@test.com", locale: "es", accepted: true },
       headers: { "Content-Type": "application/json" },
     });
-    expect(res.status()).toBe(403);
-  });
-
-  test("con Origin correcto y email inválido devuelve 400", async ({ request }) => {
-    const res = await request.post(`${PROD}/api/reserva-plaza.php`, {
-      data: { name: "Test", company: "Co", email: "bad-email", locale: "es", accepted: true, submittedAt: Date.now() - 5000 },
-      headers: {
-        "Content-Type": "application/json",
-        "Origin": "https://yutopias.com",
-      },
-    });
-    expect([400, 422]).toContain(res.status());
+    expect([404, 410]).toContain(res.status());
   });
 });
 

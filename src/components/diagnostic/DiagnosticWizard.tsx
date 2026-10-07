@@ -94,9 +94,9 @@ function reducer(state: State, action: Action): State {
 }
 
 /* ─── Wizard component ─── */
-type Props = { locale: string; mode?: "diagnostic" | "bootcamp" };
+type Props = { locale: string };
 
-export function DiagnosticWizard({ locale, mode = "diagnostic" }: Props) {
+export function DiagnosticWizard({ locale }: Props) {
   const [state, dispatch] = useReducer(reducer, undefined, init);
   const completedRef = useRef(false);
   const t = useTranslations("diagnosticPage.wizard");
@@ -106,10 +106,10 @@ export function DiagnosticWizard({ locale, mode = "diagnostic" }: Props) {
 
   /* Prelead submit — server generates the session ID */
   const handlePreleadDone = useCallback(async (lead: LeadData) => {
-    const sessionId = await initSession(locale, mode === "bootcamp" ? "reserva-plaza" : "autodiagnostico");
+    const sessionId = await initSession(locale);
     await savePrelead(sessionId, locale, lead);
     dispatch({ type: "PRELEAD_DONE", lead, sessionId });
-  }, [locale, mode]);
+  }, [locale]);
 
   /* Profile selection */
   const handleProfileDone = useCallback((profile: ProfileKey) => {
@@ -193,7 +193,7 @@ export function DiagnosticWizard({ locale, mode = "diagnostic" }: Props) {
 
       {/* Steps */}
       {state.step === "prelead" && (
-        <StepPrelead locale={locale} mode={mode} onDone={handlePreleadDone} />
+        <StepPrelead locale={locale} onDone={handlePreleadDone} />
       )}
 
       {state.step === "profile" && (

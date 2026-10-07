@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { MediaBackdrop } from "@/components/ui/MediaBackdrop";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { getBootcampPathByLocale } from "@/config/routes";
+import { getProgramaPathByLocale } from "@/config/routes";
 
 type PartnersCtaBannerProps = {
   headline: string;
@@ -53,7 +53,7 @@ export const PartnersCtaBanner = async ({
 
       <div className={twMerge("mt-12 flex justify-center", ctaWrapperClassName ?? "")}>
         <LinkButton
-          href={getBootcampPathByLocale(locale)}
+          href={`${getProgramaPathByLocale(locale)}#bootcamp-formulario`}
           variant="primary"
         >
           {cta}

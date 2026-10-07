@@ -59,61 +59,27 @@ test.describe("Newsletter footer form", () => {
 });
 
 // ---------------------------------------------------------------------------
-// Reserva de plaza — /es/reserva-plaza
+// Reserva de plaza — la página se eliminó el 07/10/2026. Las URLs viejas
+// (circularon públicamente) deben responder 301 hacia la página de programa
+// del idioma del visitante (regla en public/.htaccess).
 // ---------------------------------------------------------------------------
-test.describe("Reserva plaza form", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto(`${BASE}/es/reserva-plaza`);
-  });
+test.describe("Reserva plaza → 301 redirect to programa", () => {
+  const cases = [
+    { from: "/es/reserva-plaza", to: "/es/programa/" },
+    { from: "/es/reserva-plaza/", to: "/es/programa/" },
+    { from: "/en/book-your-spot", to: "/en/program/" },
+    { from: "/en/book-your-spot/", to: "/en/program/" },
+    { from: "/ca/reserva-placa", to: "/ca/programa/" },
+    { from: "/ca/reserva-placa/", to: "/ca/programa/" },
+  ];
 
-  // El form sí tiene labels asociados (htmlFor/id), pero getByLabel("Nombre")
-  // colisiona con el "Tu nombre" del newsletter del footer (substring match).
-  // Usamos los ids estables del form, como hace production-audit.spec.ts.
-  const fillForm = async (
-    page: import("@playwright/test").Page,
-    { name, company, email }: { name: string; company: string; email: string },
-  ) => {
-    await page.locator("#rp-name").fill(name);
-    await page.locator("#rp-company").fill(company);
-    await page.locator("#rp-email").fill(email);
-  };
-
-  test("shows validation errors when fields are empty", async ({ page }) => {
-    await page.getByRole("button", { name: /continuar/i }).click();
-    await expect(page.getByText(/completá todos los campos/i)).toBeVisible();
-  });
-
-  test("shows email validation error for invalid email", async ({ page }) => {
-    await fillForm(page, { name: "Test", company: "Empresa S.A.", email: "noesunemail" });
-    await page.getByRole("button", { name: /continuar/i }).click();
-    await expect(page.getByText(/email no es válido/i)).toBeVisible();
-  });
-
-  test("shows privacy error when not accepted", async ({ page }) => {
-    await fillForm(page, { name: "Test", company: "Empresa S.A.", email: "test@empresa.com" });
-    await page.getByRole("button", { name: /continuar/i }).click();
-    await expect(
-      page.getByText(/tenés que aceptar la política de privacidad/i),
-    ).toBeVisible();
-  });
-
-  test("submits and redirects to autodiagnostico", async ({ page }) => {
-    await fillForm(page, {
-      name: "Test E2E",
-      company: "Empresa E2E S.A.",
-      email: "test+e2e@yutopias.com",
+  for (const { from, to } of cases) {
+    test(`${from} responde 301 → ${to}`, async ({ request }) => {
+      const res = await request.get(`${BASE}${from}`, { maxRedirects: 0 });
+      expect(res.status()).toBe(301);
+      expect(res.headers()["location"]).toContain(to);
     });
-    // Scoped al form: el footer tiene su propio checkbox de privacidad
-    await page
-      .locator("form", { has: page.locator("#rp-name") })
-      .getByRole("checkbox")
-      .check();
-
-    await page.waitForTimeout(BOT_TIME_GATE_MS);
-    await page.getByRole("button", { name: /continuar/i }).click();
-    await page.waitForURL(/autodiagnostico/, { timeout: 15_000 });
-    expect(page.url()).toContain("autodiagnostico");
-  });
+  }
 });
 
 // ---------------------------------------------------------------------------

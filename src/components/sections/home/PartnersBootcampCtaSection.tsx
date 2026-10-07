@@ -3,7 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE_ASSETS } from "@/config/assets";
-import { getBootcampPathByLocale } from "@/config/routes";
+import { getProgramaPathByLocale } from "@/config/routes";
 
 export const PartnersBootcampCtaSection = async () => {
   const [t, locale] = await Promise.all([
@@ -35,7 +35,7 @@ export const PartnersBootcampCtaSection = async () => {
         </h2>
         <LinkButton
           className="mx-auto mt-10 w-full max-w-sm justify-center sm:w-auto"
-          href={getBootcampPathByLocale(locale)}
+          href={`${getProgramaPathByLocale(locale)}#bootcamp-formulario`}
           variant="primary"
         >
           {t("cta")}
