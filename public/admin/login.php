@@ -26,18 +26,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "Sesión inválida. Recargá la página.";
     } elseif (!checkRateLimit($ip)) {
         $error = "Demasiados intentos. Esperá 15 minutos.";
-    } elseif (adminVerifyCredentials($config, $email, $pass)) {
-        // Los hashes viven en `admin_users`; ADMIN_USERS sólo actúa de fallback
-        // si esa consulta falla. Una cuenta con password_hash NULL nunca
-        // verifica, así que cae en el mismo mensaje genérico de abajo.
-        session_regenerate_id(true);
-        $_SESSION["admin_logged_in"] = true;
-        $_SESSION["admin_email"]     = $email;
-        clearRateLimit($ip);
-        header("Location: index.php");
-        exit;
     } else {
-        $error = "Email o contraseña incorrectos.";
+        // Sello de la última rotación de contraseña, que requireAuth() compara
+        // con el valor vivo en DB para expulsar las sesiones anteriores a un
+        // cambio de contraseña. "" = nunca rotada, o DB no disponible (camino
+        // del fallback de emergencia).
+        //
+        // Se lee ANTES de verificar la credencial a propósito: si una rotación
+        // cae justo entre ambos pasos, la sesión queda con el sello viejo y
+        // requireAuth() la cierra en la carga siguiente. Leerlo después abriría
+        // una ventana en la que un login con la contraseña vieja se quedaría
+        // con el sello nuevo y sobreviviría a la rotación que debía echarlo.
+        $pwdStamp = adminCurrentPasswordStamp($config, $email) ?? "";
+
+        if (adminVerifyCredentials($config, $email, $pass)) {
+            // Los hashes viven en `admin_users`; el único fallback es
+            // $config["admin_users_fallback"] del servidor, y sólo si esa
+            // consulta lanza. Una cuenta con password_hash NULL nunca verifica,
+            // así que cae en el mismo mensaje genérico de abajo.
+            session_regenerate_id(true);
+            $_SESSION["admin_logged_in"] = true;
+            $_SESSION["admin_email"]     = $email;
+            $_SESSION["admin_pwd_stamp"] = $pwdStamp;
+            clearRateLimit($ip);
+            header("Location: index.php");
+            exit;
+        } else {
+            $error = "Email o contraseña incorrectos.";
+        }
     }
 }
 
@@ -164,20 +180,20 @@ $token = csrfToken();
     </div>
 
     <?php if ($error): ?>
-      <div class="error"><?= htmlspecialchars($error) ?></div>
+      <div class="error"><?= htmlspecialchars($error, ENT_QUOTES, "UTF-8") ?></div>
     <?php endif; ?>
 
     <?php if ($notice): ?>
-      <div class="notice"><?= htmlspecialchars($notice) ?></div>
+      <div class="notice"><?= htmlspecialchars($notice, ENT_QUOTES, "UTF-8") ?></div>
     <?php endif; ?>
 
     <form method="POST" autocomplete="off">
-      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($token) ?>">
+      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($token, ENT_QUOTES, "UTF-8") ?>">
 
       <div class="field">
         <label for="email">Email</label>
         <input type="email" id="email" name="email"
-               value="<?= htmlspecialchars($_POST["email"] ?? "") ?>"
+               value="<?= htmlspecialchars((string)($_POST["email"] ?? ""), ENT_QUOTES, "UTF-8") ?>"
                required autofocus placeholder="admin@yutopias.com">
       </div>
 

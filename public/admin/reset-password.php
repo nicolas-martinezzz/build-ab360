@@ -123,6 +123,11 @@ if (!$isLocalMode) {
         } elseif (!hash_equals($confirm, $password)) {
             $error = "Las contraseñas no coinciden.";
         } else {
+            // bcrypt es deliberadamente lento: calcularlo DENTRO de la
+            // transacción mantendría abierto el lock de fila de
+            // admin_password_resets todo ese tiempo.
+            $newHash = password_hash($password, PASSWORD_BCRYPT);
+
             try {
                 $pdo->beginTransaction();
                 try {
@@ -136,13 +141,18 @@ if (!$isLocalMode) {
                     } else {
                         $email = adminNormalizeEmail((string)$row["email"]);
 
+                        // `password_changed_at` viaja en el MISMO UPDATE: es el
+                        // sello que requireAuth() compara contra el guardado en
+                        // sesión, así que cambiar la contraseña sin moverlo
+                        // dejaría vivas las sesiones abiertas.
                         $update = $pdo->prepare(
                             "UPDATE admin_users
-                                SET password_hash = :password_hash
+                                SET password_hash       = :password_hash,
+                                    password_changed_at = NOW()
                               WHERE email = :email"
                         );
                         $update->execute([
-                            ":password_hash" => password_hash($password, PASSWORD_BCRYPT),
+                            ":password_hash" => $newHash,
                             ":email"         => $email,
                         ]);
                         $accountUpdated = $update->rowCount() >= 1;
@@ -343,15 +353,15 @@ $csrfToken = csrfToken();
     </div>
 <?php else: ?>
     <?php if ($error): ?>
-      <div class="error"><?= htmlspecialchars($error) ?></div>
+      <div class="error"><?= htmlspecialchars($error, ENT_QUOTES, "UTF-8") ?></div>
     <?php endif; ?>
 
     <?php if ($tokenValid): ?>
     <p class="intro">Elegí una contraseña nueva para tu cuenta del panel.</p>
 
     <form method="POST" action="reset-password.php" autocomplete="off">
-      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
-      <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
+      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, "UTF-8") ?>">
+      <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_QUOTES, "UTF-8") ?>">
 
       <div class="field">
         <label for="password">Contraseña nueva</label>

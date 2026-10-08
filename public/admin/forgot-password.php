@@ -28,11 +28,13 @@ require_once ($isLocalMode && is_file($localAuth)) ? $localAuth : __DIR__ . "/au
 startSecureSession();
 
 // Mensaje único para TODOS los finales del camino felizmente-ambiguo: cuenta
-// existente, cuenta inexistente, límite por email alcanzado o fallo de envío.
+// existente, cuenta inexistente, límite horario alcanzado o fallo de envío.
 const FORGOT_GENERIC_NOTICE =
     "Si el email corresponde a una cuenta, te enviamos un enlace para restablecer la contraseña.";
 
-// Máximo de solicitudes por email y hora (se cuentan filas en admin_password_resets).
+// Máximo de solicitudes por hora para una misma cuenta Y un mismo solicitante
+// (se cuentan filas en admin_password_resets). Ver la nota sobre el alcance del
+// límite más abajo, en el bloque del POST.
 const FORGOT_MAX_PER_EMAIL_PER_HOUR = 3;
 
 // Vigencia del token.
@@ -137,12 +139,37 @@ if (!$isLocalMode && $_SERVER["REQUEST_METHOD"] === "POST") {
             $pdo = getDb($config);
 
             if (adminUserExists($pdo, $email)) {
-                $countStmt = $pdo->prepare(
-                    "SELECT COUNT(*) FROM admin_password_resets
-                      WHERE email = :email
-                        AND created_at >= DATE_SUB(NOW(), INTERVAL 1 HOUR)"
-                );
-                $countStmt->execute([":email" => $email]);
+                // ── Alcance del límite y de la invalidación ──────────────────
+                // Antes el límite se contaba por email OBJETIVO sin importar
+                // quién pedía, y cada solicitud nueva mataba los tokens vivos
+                // de esa cuenta. Tres POST por hora contra la cuenta del admin
+                // bastaban para dejarlo sin poder recibir ningún enlace, en
+                // silencio y de forma indefinida.
+                //
+                // Las dos mitades del abuso se cierran por separado, y hacen
+                // falta las dos: contar por solicitante evita que un tercero
+                // consuma la cuota del admin, y no invalidar los tokens de
+                // otros solicitantes evita que le mate el enlace que ya
+                // recibió. Con sólo una de las dos el bloqueo sigue siendo
+                // posible (consumir la cuota antes, o invalidar después).
+                //
+                // La identidad del solicitante es el ip_hash que ya se guarda.
+                // Si no hay `ip_salt` configurado es null y no se puede
+                // distinguir a nadie: ahí se cuenta por email, como antes
+                // (degradación conservadora: mantiene un techo), y la
+                // invalidación no alcanza a nadie.
+                $ipHash = adminIpHash($config, (string)($_SERVER["REMOTE_ADDR"] ?? ""));
+
+                $countSql = "SELECT COUNT(*) FROM admin_password_resets
+                              WHERE email = :email
+                                AND created_at >= DATE_SUB(NOW(), INTERVAL 1 HOUR)";
+                $countParams = [":email" => $email];
+                if ($ipHash !== null) {
+                    $countSql .= " AND ip_hash = :ip_hash";
+                    $countParams[":ip_hash"] = $ipHash;
+                }
+                $countStmt = $pdo->prepare($countSql);
+                $countStmt->execute($countParams);
                 $recentRequests = (int)$countStmt->fetchColumn();
 
                 if ($recentRequests >= FORGOT_MAX_PER_EMAIL_PER_HOUR) {
@@ -151,18 +178,29 @@ if (!$isLocalMode && $_SERVER["REQUEST_METHOD"] === "POST") {
                 } else {
                     $token     = bin2hex(random_bytes(32));
                     $tokenHash = hash("sha256", $token);
-                    $ipHash    = adminIpHash($config, (string)($_SERVER["REMOTE_ADDR"] ?? ""));
 
                     $pdo->beginTransaction();
                     try {
-                        // Un solo enlace vivo por cuenta: pedir uno nuevo
-                        // invalida el anterior.
-                        $invalidate = $pdo->prepare(
-                            "UPDATE admin_password_resets
-                                SET used_at = NOW()
-                              WHERE email = :email AND used_at IS NULL"
-                        );
-                        $invalidate->execute([":email" => $email]);
+                        // Pedir un enlace nuevo invalida los anteriores DEL
+                        // MISMO SOLICITANTE, no los de la cuenta entera: así
+                        // una solicitud ajena no mata el enlace que el admin ya
+                        // tiene en su bandeja. Pueden convivir varios enlaces
+                        // vigentes por cuenta; siguen siendo de un solo uso y
+                        // con TTL, y el techo por solicitante los limita a
+                        // FORGOT_MAX_PER_EMAIL_PER_HOUR dentro de la ventana.
+                        if ($ipHash !== null) {
+                            $invalidate = $pdo->prepare(
+                                "UPDATE admin_password_resets
+                                    SET used_at = NOW()
+                                  WHERE email = :email
+                                    AND ip_hash = :ip_hash
+                                    AND used_at IS NULL"
+                            );
+                            $invalidate->execute([
+                                ":email"   => $email,
+                                ":ip_hash" => $ipHash,
+                            ]);
+                        }
 
                         $insert = $pdo->prepare(
                             "INSERT INTO admin_password_resets (email, token_hash, expires_at, ip_hash)
@@ -346,20 +384,20 @@ $csrfToken = csrfToken();
     </p>
 
     <?php if ($error): ?>
-      <div class="error"><?= htmlspecialchars($error) ?></div>
+      <div class="error"><?= htmlspecialchars($error, ENT_QUOTES, "UTF-8") ?></div>
     <?php endif; ?>
 
     <?php if ($notice): ?>
-      <div class="notice"><?= htmlspecialchars($notice) ?></div>
+      <div class="notice"><?= htmlspecialchars($notice, ENT_QUOTES, "UTF-8") ?></div>
     <?php endif; ?>
 
     <form method="POST" autocomplete="off">
-      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
+      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, "UTF-8") ?>">
 
       <div class="field">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" maxlength="255"
-               value="<?= htmlspecialchars($emailValue) ?>"
+               value="<?= htmlspecialchars($emailValue, ENT_QUOTES, "UTF-8") ?>"
                required autofocus placeholder="admin@yutopias.com">
       </div>
 

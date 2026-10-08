@@ -158,23 +158,44 @@ CREATE TABLE IF NOT EXISTS diagnostic_leads (
 
 -- ── admin_users ──────────────────────────────────────────────────────────────
 -- Cuentas del panel admin (admin.yutopias.com). Sustituye a la constante PHP
--- ADMIN_USERS de public/admin/auth.php, que a partir de ahora sólo actúa como
--- fallback de emergencia si esta tabla no está disponible.
+-- ADMIN_USERS de public/admin/auth.php, que quedó VACÍA: los hashes que tenía
+-- están publicados en este repositorio público, así que el fallback ya no vive
+-- en el código. Esta tabla es la ÚNICA fuente de verdad; la red de seguridad
+-- opcional ante un fallo de DB es $config["admin_users_fallback"] en
+-- private/newsletter-config.php (sólo en el servidor, no versionado).
 -- Ver odd/tasks/admin-password-recovery.md.
 --
 -- `password_hash` NULL = cuenta SIN contraseña: no puede iniciar sesión nunca
 -- (login.php trata NULL como credencial inválida) y debe establecer su
 -- contraseña mediante el flujo de recuperación (/forgot-password.php).
+--
+-- `password_changed_at` = momento de la última rotación. login.php lo guarda en
+-- la sesión al autenticar y requireAuth() lo revalida en cada carga: si cambió,
+-- la sesión es anterior al cambio de contraseña y se destruye. Es lo que hace
+-- que un reset expulse las sesiones ya abiertas (incluida la de un atacante).
 
 CREATE TABLE IF NOT EXISTS admin_users (
-    id            BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    email         VARCHAR(255) NOT NULL,
-    password_hash VARCHAR(255) NULL,          -- NULL = cuenta sin contraseña: debe establecerla vía recuperación
-    created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    id                  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    email               VARCHAR(255) NOT NULL,
+    password_hash       VARCHAR(255) NULL,     -- NULL = cuenta sin contraseña: debe establecerla vía recuperación
+    password_changed_at DATETIME     NULL,     -- última rotación; NULL = nunca rotada. Invalida sesiones abiertas
+    created_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE KEY uq_admin_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ── MIGRACIÓN: password_changed_at sobre una tabla ya existente ───────────────
+-- `CREATE TABLE IF NOT EXISTS` NO agrega columnas a una tabla que ya existe. Si
+-- `admin_users` se creó en un despliegue anterior, ejecutar esto UNA SOLA VEZ
+-- antes de subir el código nuevo:
+--
+-- ALTER TABLE admin_users
+--     ADD COLUMN password_changed_at DATETIME NULL AFTER password_hash;
+--
+-- Dejarla en NULL para las cuentas existentes es correcto: NULL significa
+-- "nunca rotada", y las sesiones abiertas guardan el mismo valor vacío, así que
+-- nadie queda expulsado por la migración en sí.
 
 -- ── admin_password_resets ────────────────────────────────────────────────────
 -- Tokens de un solo uso para restablecer la contraseña del panel.
@@ -201,15 +222,26 @@ CREATE TABLE IF NOT EXISTS admin_password_resets (
 -- el momento de ejecutar la migración desde el auth.php que vive EN EL
 -- SERVIDOR, y no guardes la sentencia ya rellenada en ningún sitio.
 --
--- ── MIGRACIÓN: sembrar admin_users desde la constante ADMIN_USERS ─────────────
--- Ejecutar UNA SOLA VEZ, desde phpMyAdmin, DESPUÉS de crear las dos tablas de
--- arriba y ANTES de subir los PHP nuevos por SFTP (si se sube el código
--- primero, el fallback de emergencia de auth.php evita el lockout, pero el
--- orden correcto es: migración → SFTP → smoke test).
+-- ── MIGRACIÓN: sembrar admin_users ───────────────────────────────────────────
+-- ⚠️  OBLIGATORIO Y ANTES DE SUBIR EL CÓDIGO. El código nuevo tiene ADMIN_USERS
+-- VACÍA: ya no hay fallback en el código que evite el lockout. Si se sube el
+-- PHP primero y la tabla está vacía, NADIE puede entrar al panel.
 --
--- Los hashes son exactamente los que hoy viven en la constante ADMIN_USERS de
--- public/admin/auth.php, así que las contraseñas actuales siguen funcionando
--- sin cambios. `ON DUPLICATE KEY UPDATE id = id` hace la sentencia idempotente:
+-- Ejecutar UNA SOLA VEZ, desde phpMyAdmin, DESPUÉS de crear las dos tablas de
+-- arriba y ANTES del SFTP. Orden correcto:
+--   1) CREATE TABLE (+ ALTER de password_changed_at si la tabla ya existía)
+--   2) sembrar admin_users (esta sentencia)
+--   3) SFTP del código nuevo
+--   4) smoke test de login
+--   5) rotar AMBAS contraseñas por /forgot-password.php  ← no es opcional
+--
+-- Los hashes a pegar son los que viven en la constante ADMIN_USERS del auth.php
+-- QUE TODAVÍA ESTÁ EN EL SERVIDOR (el código nuevo ya no los tiene). Sirven
+-- sólo para no perder el acceso durante el despliegue: son los hashes
+-- publicados en el repositorio público, así que esas contraseñas están
+-- comprometidas y el paso 5 las reemplaza de inmediato.
+--
+-- `ON DUPLICATE KEY UPDATE id = id` hace la sentencia idempotente:
 -- re-ejecutarla NO sobreescribe una contraseña ya cambiada desde el panel.
 --
 -- INSERT INTO admin_users (email, password_hash) VALUES

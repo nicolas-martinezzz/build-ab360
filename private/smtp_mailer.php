@@ -4,6 +4,12 @@
 // Include this file before any yutopias_mail() call.
 
 function yutopias_mail(string $to, string $subject, string $body, string $additionalHeaders): bool {
+    // $to and $subject are interpolated straight into the message headers
+    // below, so strip CR/LF here too: header-injection defence must not depend
+    // on every caller remembering to sanitise.
+    $to      = (string)preg_replace('/[\r\n]+/', '', $to);
+    $subject = (string)preg_replace('/[\r\n]+/', '', $subject);
+
     $smtpHost = '127.0.0.1';
     $smtpPort = 25;
     $domain   = 'yutopias.com';
