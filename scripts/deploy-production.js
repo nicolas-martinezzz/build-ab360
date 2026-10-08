@@ -278,7 +278,13 @@ async function deploy() {
         // 5. Admin panel
         console.log("\n🔐 Subiendo panel de admin...");
         await exec(conn, `mkdir -p ~/${REMOTE_ADMIN_DIR}`);
-        const adminFiles = ["index.php", "login.php", "logout.php", "api.php", "export.php", "auth.php", ".htaccess"];
+        // Todo PHP nuevo del panel admin TIENE que estar en esta lista: el admin
+        // no se despliega con el workflow de GitHub, sólo por este SFTP.
+        const adminFiles = [
+            "index.php", "login.php", "logout.php", "api.php", "export.php", "auth.php",
+            "forgot-password.php", "reset-password.php",
+            ".htaccess",
+        ];
         for (const f of adminFiles) {
             const local = path.join(publicDir, "admin", f);
             await new Promise((resolve, reject) =>

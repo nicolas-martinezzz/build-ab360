@@ -155,3 +155,78 @@ CREATE TABLE IF NOT EXISTS diagnostic_leads (
         FOREIGN KEY (session_id) REFERENCES diagnostic_sessions (id)
         ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ── admin_users ──────────────────────────────────────────────────────────────
+-- Cuentas del panel admin (admin.yutopias.com). Sustituye a la constante PHP
+-- ADMIN_USERS de public/admin/auth.php, que a partir de ahora sólo actúa como
+-- fallback de emergencia si esta tabla no está disponible.
+-- Ver odd/tasks/admin-password-recovery.md.
+--
+-- `password_hash` NULL = cuenta SIN contraseña: no puede iniciar sesión nunca
+-- (login.php trata NULL como credencial inválida) y debe establecer su
+-- contraseña mediante el flujo de recuperación (/forgot-password.php).
+
+CREATE TABLE IF NOT EXISTS admin_users (
+    id            BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    email         VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255) NULL,          -- NULL = cuenta sin contraseña: debe establecerla vía recuperación
+    created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_admin_email (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ── admin_password_resets ────────────────────────────────────────────────────
+-- Tokens de un solo uso para restablecer la contraseña del panel.
+-- `token_hash` es el sha256 (hex, 64 chars) del token: el token EN CLARO nunca
+-- se guarda ni se registra en logs, sólo viaja en el enlace del email.
+-- `ip_hash` usa el mismo salteado que el resto del proyecto:
+--   sha256(ip . ':' . ip_salt)  — ver public/api/bootcamp-lead.php.
+
+CREATE TABLE IF NOT EXISTS admin_password_resets (
+    id         BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    email      VARCHAR(255) NOT NULL,
+    token_hash CHAR(64)     NOT NULL,         -- sha256 del token; el token crudo NUNCA se guarda
+    expires_at DATETIME     NOT NULL,
+    used_at    DATETIME     NULL,
+    ip_hash    VARCHAR(64)  NULL,
+    created_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_token (token_hash),
+    KEY idx_email_created (email, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ⚠️  Los hashes NO se escriben en este archivo: está versionado en el
+-- repositorio, así que cualquier hash pegado aquí queda publicado. Copialos en
+-- el momento de ejecutar la migración desde el auth.php que vive EN EL
+-- SERVIDOR, y no guardes la sentencia ya rellenada en ningún sitio.
+--
+-- ── MIGRACIÓN: sembrar admin_users desde la constante ADMIN_USERS ─────────────
+-- Ejecutar UNA SOLA VEZ, desde phpMyAdmin, DESPUÉS de crear las dos tablas de
+-- arriba y ANTES de subir los PHP nuevos por SFTP (si se sube el código
+-- primero, el fallback de emergencia de auth.php evita el lockout, pero el
+-- orden correcto es: migración → SFTP → smoke test).
+--
+-- Los hashes son exactamente los que hoy viven en la constante ADMIN_USERS de
+-- public/admin/auth.php, así que las contraseñas actuales siguen funcionando
+-- sin cambios. `ON DUPLICATE KEY UPDATE id = id` hace la sentencia idempotente:
+-- re-ejecutarla NO sobreescribe una contraseña ya cambiada desde el panel.
+--
+-- INSERT INTO admin_users (email, password_hash) VALUES
+--     ('jjm@yutopias.com',             '<<PEGAR_HASH_DESDE_auth.php_EN_EL_SERVIDOR>>'),
+--     ('nicolas.martinez23@gmail.com', '<<PEGAR_HASH_DESDE_auth.php_EN_EL_SERVIDOR>>')
+-- ON DUPLICATE KEY UPDATE id = id;
+--
+-- ── Alta de una cuenta nueva SIN contraseña ──────────────────────────────────
+-- La cuenta queda inhabilitada para login (password_hash NULL) hasta que su
+-- dueño la active pidiendo un enlace en https://admin.yutopias.com/forgot-password.php
+--
+-- INSERT INTO admin_users (email, password_hash) VALUES
+--     ('nicolasmartinezc@icloud.com', NULL)
+-- ON DUPLICATE KEY UPDATE id = id;
+--
+-- ── Limpieza opcional (cron / mantenimiento manual) ──────────────────────────
+-- Los tokens caducados o usados no sirven para nada; se pueden purgar.
+--
+-- DELETE FROM admin_password_resets
+--  WHERE created_at < DATE_SUB(NOW(), INTERVAL 30 DAY);

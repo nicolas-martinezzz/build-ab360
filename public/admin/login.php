@@ -8,11 +8,17 @@ if (isLoggedIn()) {
     exit;
 }
 
-$error = "";
+$error  = "";
+// Mensaje de éxito tras completar reset-password.php. Es un flag sin datos:
+// no refleja ningún valor enviado por el usuario.
+$notice = (($_GET["reset"] ?? "") === "1")
+    ? "Contraseña actualizada. Iniciá sesión con la nueva contraseña."
+    : "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $notice = "";
     $ip    = $_SERVER["REMOTE_ADDR"] ?? "unknown";
-    $email = trim((string)($_POST["email"] ?? ""));
+    $email = adminNormalizeEmail((string)($_POST["email"] ?? ""));
     $pass  = (string)($_POST["password"] ?? "");
     $csrf  = (string)($_POST["csrf_token"] ?? "");
 
@@ -20,10 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "Sesión inválida. Recargá la página.";
     } elseif (!checkRateLimit($ip)) {
         $error = "Demasiados intentos. Esperá 15 minutos.";
-    } elseif (
-        isset(ADMIN_USERS[$email]) &&
-        password_verify($pass, ADMIN_USERS[$email])
-    ) {
+    } elseif (adminVerifyCredentials($config, $email, $pass)) {
+        // Los hashes viven en `admin_users`; ADMIN_USERS sólo actúa de fallback
+        // si esa consulta falla. Una cuenta con password_hash NULL nunca
+        // verifica, así que cae en el mismo mensaje genérico de abajo.
         session_regenerate_id(true);
         $_SESSION["admin_logged_in"] = true;
         $_SESSION["admin_email"]     = $email;
@@ -128,6 +134,26 @@ $token = csrfToken();
       font-size: 13px;
       margin-bottom: 16px;
     }
+    .notice {
+      background: #12241A;
+      border: 1px solid #1F5134;
+      color: #7EE2A8;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .alt-link {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 13px;
+    }
+    .alt-link a {
+      color: #8B949E;
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .alt-link a:hover { color: #4CAF50; text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -139,6 +165,10 @@ $token = csrfToken();
 
     <?php if ($error): ?>
       <div class="error"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
+
+    <?php if ($notice): ?>
+      <div class="notice"><?= htmlspecialchars($notice) ?></div>
     <?php endif; ?>
 
     <form method="POST" autocomplete="off">
@@ -158,6 +188,10 @@ $token = csrfToken();
 
       <button type="submit" class="btn">Ingresar</button>
     </form>
+
+    <div class="alt-link">
+      <a href="forgot-password.php">¿Olvidaste tu contraseña?</a>
+    </div>
   </div>
 </body>
 </html>
