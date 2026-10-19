@@ -176,6 +176,11 @@ $csrf      = csrfToken();
       font-size: 11px; font-weight: 500; color: var(--text-3);
       text-transform: uppercase; letter-spacing: .05em;
     }
+    .stat-hint {
+      font-size: 11px;
+      opacity: .55;
+      margin-top: 4px;
+    }
     .stat-value {
       font-size: 26px; font-weight: 600; margin-top: 8px;
       color: var(--text); letter-spacing: -.02em;
@@ -595,6 +600,9 @@ $csrf      = csrfToken();
       <div class="nav-item" data-section="retos">
         <span class="nav-dot"></span> Retos
       </div>
+      <div class="nav-item" data-section="evento">
+        <span class="nav-dot"></span> Evento 22/10
+      </div>
       <div class="nav-item" data-section="ebook">
         <span class="nav-dot"></span> Ebook Leads
       </div>
@@ -884,6 +892,28 @@ $csrf      = csrfToken();
       </div>
     </section>
 
+    <section id="section-evento" class="section">
+      <div class="page-header">
+        <div class="page-title">Evento 22/10</div>
+        <div class="page-subtitle">Seguimiento del Bootcamp Zero: cifras y ficha por persona</div>
+      </div>
+
+      <div id="evento-stats" class="stats-grid"></div>
+
+      <div class="page-header" style="margin-top:28px">
+        <div class="page-title" style="font-size:18px">Ficha de una persona</div>
+        <div class="page-subtitle">Todo lo que ha hecho un email en la web, de todos los formularios</div>
+      </div>
+      <div class="table-toolbar">
+        <div class="search-wrap" style="min-width:320px">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input class="search-input" type="email" id="ev-person" placeholder="email@empresa.com" autocomplete="off">
+        </div>
+        <button class="page-btn" id="ev-person-btn">Buscar</button>
+      </div>
+      <div id="evento-person"></div>
+    </section>
+
     <!-- Contenido -->
     <section id="section-contenido" class="section">
       <div class="page-header">
@@ -1094,6 +1124,7 @@ document.querySelectorAll(".nav-item").forEach(el => {
       if (sec === "ebook")         initGrid("ebook");
       if (sec === "openlab")       initGrid("openlab");
       if (sec === "retos")         initGrid("retos");
+      if (sec === "evento")        initEvento();
     }
   });
 });
@@ -1123,6 +1154,7 @@ function createGrid(containerId, colDefs, opts = {}) {
     suppressMovableColumns: false,
     rowStyle: opts.onRowClicked ? { cursor: "pointer" } : {},
     onRowClicked: opts.onRowClicked ?? null,
+    onCellValueChanged: opts.onCellValueChanged ?? null,
     onGridReady: (e) => { gridApis[containerId] = e.api; },
   });
 }
@@ -1182,6 +1214,14 @@ const diagCols = [
     { field: "completed_at",   headerName: "Completado",  minWidth: 148 },
 ];
 
+// Estados de seguimiento. Deben coincidir EXACTAMENTE con la lista blanca de
+// api.php (case "set_status"): el servidor rechaza cualquier otro valor.
+const STATUS_VALUES = {
+  bootcamp: ["pendiente", "aprobado", "rechazado", "confirmado"],
+  retos:    ["pendiente", "contactado", "descartado"],
+};
+const STATUS_TABLE = { bootcamp: "bootcamp_leads", retos: "bootcamp_challenges" };
+
 // Claves que guarda public/api/bootcamp-challenges.php -> etiqueta legible.
 const RETO_LABELS = {
   predictive:  "Analisis predictivo y benchmark",
@@ -1239,6 +1279,9 @@ const cols = {
       valueFormatter: p => p.value === "yes" ? "Si" : p.value === "no" ? "No" : "" },
     { field: "company_type",   headerName: "Empresa APCE", minWidth: 130,
       valueFormatter: p => p.value === "member" ? "Asociada" : p.value === "non_member" ? "No asociada" : "" },
+    { field: "status",         headerName: "Estado",      minWidth: 130, editable: true,
+      cellEditor: "agSelectCellEditor", cellEditorParams: { values: STATUS_VALUES.bootcamp },
+      valueGetter: p => p.data.status || "pendiente" },
     { field: "created_at",     headerName: "Fecha",       minWidth: 148 },
   ],
   retos: [
@@ -1251,6 +1294,9 @@ const cols = {
     { field: "challenge_other", headerName: "Otro reto",  minWidth: 200 },
     { field: "wants_contact",   headerName: "Contactar",  maxWidth: 110,
       valueFormatter: p => Number(p.value) === 1 ? "Si" : "No" },
+    { field: "status",          headerName: "Estado",     minWidth: 130, editable: true,
+      cellEditor: "agSelectCellEditor", cellEditorParams: { values: STATUS_VALUES.retos },
+      valueGetter: p => p.data.status || "pendiente" },
     { field: "locale",          headerName: "Idioma",     maxWidth: 80 },
     { field: "created_at",      headerName: "Fecha",      minWidth: 148 },
   ],
@@ -1300,9 +1346,138 @@ const exportTableMap = {
 
 const prefixMap = { diagnosticos: "diag", reservaplaza: "rp", leads: "ld", newsletter: "nl", bootcamp: "bc", ebook: "eb", openlab: "ol", retos: "rt" };
 
+// ─── Seguimiento del evento ──────────────────────────────────────────────────
+
+const STATUS_LABELS = {
+  pendiente: "Pendiente", aprobado: "Aprobado", rechazado: "Rechazado",
+  confirmado: "Confirmado", contactado: "Contactado", descartado: "Descartado",
+};
+
+function statCard(label, value, hint) {
+  return `<div class="stat-card">
+    <div class="stat-label">${esc(label)}</div>
+    <div class="stat-value">${esc(String(value))}</div>
+    ${hint ? `<div class="stat-hint">${esc(hint)}</div>` : ""}
+  </div>`;
+}
+
+async function initEvento() {
+  await loadEventoStats();
+  const btn = document.getElementById("ev-person-btn");
+  const input = document.getElementById("ev-person");
+  if (!btn.dataset.wired) {
+    btn.dataset.wired = "1";
+    btn.addEventListener("click", loadPersonProfile);
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter") loadPersonProfile(); });
+  }
+}
+
+async function loadEventoStats() {
+  const box = document.getElementById("evento-stats");
+  box.innerHTML = "<div class='stat-card'>Cargando…</div>";
+  try {
+    const res = await api({ action: "event_stats" });
+    const d = res.data || {};
+    const byStatus = d.leads_by_status || {};
+    const lunch = d.lunch || {};
+    const ctype = d.company_type || {};
+
+    let html = "";
+    html += statCard("Inscritos", d.leads_total ?? 0, "total del formulario");
+    html += statCard("Se quedan al almuerzo", lunch.yes ?? 0, "para el catering");
+    html += statCard("No se quedan", lunch.no ?? 0, "");
+    html += statCard("Socios de APCE", ctype.member ?? 0, "");
+    html += statCard("No asociadas", ctype.non_member ?? 0, "");
+    Object.keys(byStatus).forEach(k => {
+      html += statCard(STATUS_LABELS[k] || k, byStatus[k], "estado de la solicitud");
+    });
+
+    html += statCard("Respuestas de retos", d.challenges_total ?? 0, "landing del QR");
+    html += statCard("Quieren que les contactemos", d.challenges_wants_contact ?? 0, "de la landing de retos");
+
+    const byKey = d.challenges_by_key || {};
+    const keys = Object.keys(byKey);
+    if (keys.length) {
+      html += `<div class="stat-card" style="grid-column:1/-1">
+        <div class="stat-label">Retos más votados</div>
+        <div style="margin-top:8px;display:flex;flex-direction:column;gap:6px">
+          ${keys.map(k => `<div style="display:flex;justify-content:space-between;gap:12px">
+              <span>${esc(RETO_LABELS[k] || k)}</span><b>${esc(String(byKey[k]))}</b>
+            </div>`).join("")}
+        </div>
+      </div>`;
+    }
+    box.innerHTML = html;
+  } catch (e) {
+    box.innerHTML = "<div class='stat-card'>No se pudieron cargar las cifras.</div>";
+  }
+}
+
+async function loadPersonProfile() {
+  const email = document.getElementById("ev-person").value.trim();
+  const box = document.getElementById("evento-person");
+  if (!email) { box.innerHTML = ""; return; }
+  box.innerHTML = "<p style='padding:12px'>Buscando…</p>";
+  try {
+    const res = await api({ action: "person_profile", email });
+    const d = res.data || {};
+    const titles = {
+      bootcamp: "Inscripción al Bootcamp", retos: "Respuesta de retos",
+      diagnostico: "Autodiagnóstico", newsletter: "Newsletter",
+      ebook: "Descarga de ebook", openlab: "Contacto OpenLab",
+    };
+    let html = "";
+    let found = 0;
+    Object.keys(titles).forEach(k => {
+      const rows = d[k] || [];
+      if (!rows.length) return;
+      found += rows.length;
+      html += `<div class="stat-card" style="margin-bottom:12px">
+        <div class="stat-label">${esc(titles[k])} · ${rows.length}</div>
+        ${rows.map(r => `<div style="margin-top:8px;font-size:13px;line-height:1.7">
+          ${Object.keys(r).map(f => `<div><span style="opacity:.6">${esc(f)}:</span> ${esc(r[f])}</div>`).join("")}
+        </div>`).join("<hr style='opacity:.15;margin:10px 0'>")}
+      </div>`;
+    });
+    box.innerHTML = found
+      ? html
+      : `<p style="padding:12px;opacity:.7">Sin registros para ${esc(email)}.</p>`;
+  } catch (e) {
+    box.innerHTML = "<p style='padding:12px'>No se pudo cargar la ficha.</p>";
+  }
+}
+
 function initGrid(key) {
   const rowClickable = key === "diagnosticos" || key === "leads";
   const gridOpts = rowClickable ? { onRowClicked: (e) => openDrawer(e.data) } : {};
+
+  // Las dos tablas del evento permiten cambiar el estado desde la propia celda.
+  if (STATUS_TABLE[key]) {
+    gridOpts.onCellValueChanged = async (ev) => {
+      if (ev.colDef.field !== "status") return;
+      const previous = ev.oldValue || "pendiente";
+      try {
+        const res = await fetch("api.php?_csrf=" + encodeURIComponent(CSRF), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "set_status",
+            table: STATUS_TABLE[key],
+            id: ev.data.id,
+            status: ev.newValue,
+            _csrf: CSRF,
+          }),
+        });
+        if (!res.ok) throw new Error(await res.text());
+      } catch (err) {
+        // Si no se pudo guardar, la celda vuelve a su valor anterior: nunca
+        // debe quedar en pantalla un estado que no está en la base.
+        ev.data.status = previous;
+        ev.api.refreshCells({ rowNodes: [ev.node], columns: ["status"], force: true });
+        alert("No se pudo guardar el estado. Vuelve a intentarlo.");
+      }
+    };
+  }
   createGrid("grid-" + key, cols[key], gridOpts);
   pageState[key] = 0;
 

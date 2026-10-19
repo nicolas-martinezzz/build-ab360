@@ -248,7 +248,7 @@ switch ($action) {
 
         $stmt = $pdo->prepare("
             SELECT id, full_name, email, company, challenges, challenge_other,
-                   wants_contact, locale, created_at
+                   wants_contact, status, locale, created_at
             FROM bootcamp_challenges
             ORDER BY created_at DESC
             LIMIT :lim OFFSET :off
@@ -269,7 +269,7 @@ switch ($action) {
         $total = (int)$pdo->query("SELECT COUNT(*) FROM bootcamp_leads")->fetchColumn();
 
         $stmt = $pdo->prepare("
-            SELECT id, name, email, role_name, company, locale, lunch, company_type, privacy_accepted, created_at
+            SELECT id, name, email, role_name, company, locale, lunch, company_type, status, privacy_accepted, created_at
             FROM bootcamp_leads
             ORDER BY created_at DESC
             LIMIT :lim OFFSET :off
@@ -664,6 +664,106 @@ switch ($action) {
         }
         $row["translations"] = $translations;
         jsonOut(["ok" => true, "data" => $row]);
+
+    // ─── Seguimiento: cambiar el estado de una persona ────────────────────────
+    // Cada tabla tiene su propio juego de estados porque el flujo es distinto:
+    // una inscripción se aprueba o se rechaza; una respuesta de retos se
+    // contacta o se descarta. La lista blanca evita que llegue cualquier valor.
+    case "set_status":
+        if ($_SERVER["REQUEST_METHOD"] !== "POST") { http_response_code(405); echo json_encode(["error" => "POST required"]); exit; }
+        $body = json_decode(file_get_contents("php://input"), true) ?? [];
+
+        $allowed = [
+            "bootcamp_leads"      => ["pendiente", "aprobado", "rechazado", "confirmado"],
+            "bootcamp_challenges" => ["pendiente", "contactado", "descartado"],
+        ];
+
+        $table  = (string)($body["table"] ?? "");
+        $id     = (int)($body["id"] ?? 0);
+        $status = (string)($body["status"] ?? "");
+
+        if (!isset($allowed[$table]))                       { http_response_code(400); echo json_encode(["error" => "tabla no permitida"]); exit; }
+        if ($id <= 0)                                       { http_response_code(400); echo json_encode(["error" => "id requerido"]); exit; }
+        if (!in_array($status, $allowed[$table], true))     { http_response_code(400); echo json_encode(["error" => "estado no permitido"]); exit; }
+
+        // $table sale de la lista blanca de arriba, nunca del cliente directamente.
+        $upd = $pdo->prepare("UPDATE {$table} SET status = :status WHERE id = :id");
+        $upd->execute([":status" => $status, ":id" => $id]);
+
+        jsonOut(["ok" => true, "id" => $id, "status" => $status, "changed" => $upd->rowCount()]);
+
+    // ─── Seguimiento: cifras del evento ───────────────────────────────────────
+    case "event_stats":
+        $out = [];
+
+        $out["leads_total"] = (int)$pdo->query("SELECT COUNT(*) FROM bootcamp_leads")->fetchColumn();
+
+        foreach ($pdo->query("SELECT COALESCE(status,'pendiente') AS k, COUNT(*) AS n FROM bootcamp_leads GROUP BY k") as $r) {
+            $out["leads_by_status"][$r["k"]] = (int)$r["n"];
+        }
+        // El almuerzo manda el recuento del catering: sólo cuenta un "sí" explícito.
+        foreach ($pdo->query("SELECT COALESCE(lunch,'sin respuesta') AS k, COUNT(*) AS n FROM bootcamp_leads GROUP BY k") as $r) {
+            $out["lunch"][$r["k"]] = (int)$r["n"];
+        }
+        foreach ($pdo->query("SELECT COALESCE(company_type,'sin respuesta') AS k, COUNT(*) AS n FROM bootcamp_leads GROUP BY k") as $r) {
+            $out["company_type"][$r["k"]] = (int)$r["n"];
+        }
+
+        // Retos: la columna guarda claves separadas por coma, así que el
+        // recuento por reto se hace en PHP sobre un conjunto pequeño.
+        $out["challenges_total"] = 0;
+        $out["challenges_by_key"] = [];
+        $out["challenges_wants_contact"] = 0;
+        try {
+            foreach ($pdo->query("SELECT challenges, wants_contact FROM bootcamp_challenges") as $r) {
+                $out["challenges_total"]++;
+                if ((int)$r["wants_contact"] === 1) { $out["challenges_wants_contact"]++; }
+                foreach (explode(",", (string)$r["challenges"]) as $key) {
+                    $key = trim($key);
+                    if ($key === "") { continue; }
+                    if (!isset($out["challenges_by_key"][$key])) { $out["challenges_by_key"][$key] = 0; }
+                    $out["challenges_by_key"][$key]++;
+                }
+            }
+            arsort($out["challenges_by_key"]);
+        } catch (Throwable $e) {
+            // La tabla se crea con el primer envío: antes del evento puede no existir.
+            $out["challenges_table_missing"] = true;
+        }
+
+        jsonOut(["ok" => true, "data" => $out]);
+
+    // ─── Seguimiento: ficha unificada de una persona por email ────────────────
+    // Cada formulario vive en su propia tabla; esto junta todo lo que esa
+    // dirección ha hecho en la web, que es lo que hace falta antes de llamar.
+    case "person_profile":
+        $email = strtolower(trim((string)($_GET["email"] ?? "")));
+        if ($email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            http_response_code(400); echo json_encode(["error" => "email no válido"]); exit;
+        }
+
+        $sources = [
+            "bootcamp"   => "SELECT id, name, role_name, company, lunch, company_type, status, locale, created_at FROM bootcamp_leads WHERE email = :e ORDER BY created_at DESC",
+            "retos"      => "SELECT id, full_name, company, challenges, challenge_other, wants_contact, status, created_at FROM bootcamp_challenges WHERE email = :e ORDER BY created_at DESC",
+            "diagnostico"=> "SELECT session_id, first_name, last_name, company, role_name, updated_at FROM diagnostic_leads WHERE email = :e ORDER BY updated_at DESC",
+            "newsletter" => "SELECT id, name, source, created_at FROM newsletter_subscribers WHERE email = :e ORDER BY created_at DESC",
+            "ebook"      => "SELECT id, source_article, locale, created_at FROM ebook_leads WHERE email = :e ORDER BY created_at DESC",
+            "openlab"    => "SELECT id, name, org, priority, created_at FROM openlab_contacts WHERE email = :e ORDER BY created_at DESC",
+        ];
+
+        $profile = [];
+        foreach ($sources as $key => $sql) {
+            try {
+                $st = $pdo->prepare($sql);
+                $st->execute([":e" => $email]);
+                $profile[$key] = $st->fetchAll();
+            } catch (Throwable $e) {
+                // Una tabla ausente no debe tumbar la ficha completa.
+                $profile[$key] = [];
+            }
+        }
+
+        jsonOut(["ok" => true, "email" => $email, "data" => $profile]);
 
     // ─── Articles: save (insert or update) ────────────────────────────────────
     case "save_article":

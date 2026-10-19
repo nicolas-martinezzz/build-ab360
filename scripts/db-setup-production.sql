@@ -286,6 +286,7 @@ CREATE TABLE IF NOT EXISTS bootcamp_challenges (
     challenge_other  VARCHAR(500)    NULL,
     wants_contact    TINYINT(1)      NOT NULL DEFAULT 0,
     privacy_accepted TINYINT(1)      NOT NULL DEFAULT 0,
+    status           VARCHAR(20)     NOT NULL DEFAULT 'pendiente',
     locale           VARCHAR(8)      NOT NULL DEFAULT 'es',
     ip_hash          VARCHAR(64)     NULL,
     user_agent       VARCHAR(255)    NULL,
@@ -294,3 +295,17 @@ CREATE TABLE IF NOT EXISTS bootcamp_challenges (
     KEY idx_bc_email      (email),
     KEY idx_bc_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ── Seguimiento del evento: columna `status` ─────────────────────────────────
+-- Permite aprobar/rechazar y marcar contactados desde el panel
+-- (admin.yutopias.com → Evento 22/10). Valores permitidos, validados por
+-- public/admin/api.php (case "set_status"):
+--   bootcamp_leads      : pendiente | aprobado | rechazado | confirmado
+--   bootcamp_challenges : pendiente | contactado | descartado
+--
+-- Sobre una base ya existente, ejecutar una sola vez:
+--
+-- ALTER TABLE bootcamp_leads
+--     ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'pendiente' AFTER company_type;
+-- ALTER TABLE bootcamp_challenges
+--     ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'pendiente' AFTER privacy_accepted;

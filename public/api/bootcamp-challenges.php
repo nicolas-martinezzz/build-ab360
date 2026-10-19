@@ -198,6 +198,7 @@ try {
             challenge_other  VARCHAR(500)    NULL,
             wants_contact    TINYINT(1)      NOT NULL DEFAULT 0,
             privacy_accepted TINYINT(1)      NOT NULL DEFAULT 0,
+            status           VARCHAR(20)     NOT NULL DEFAULT 'pendiente',
             locale           VARCHAR(8)      NOT NULL DEFAULT 'es',
             ip_hash          VARCHAR(64)     NULL,
             user_agent       VARCHAR(255)    NULL,

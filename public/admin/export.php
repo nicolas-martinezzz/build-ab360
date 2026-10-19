@@ -126,12 +126,12 @@ $queries = [
     ",
     "retos" => "
         SELECT id, full_name, email, company, challenges, challenge_other,
-               wants_contact, locale, created_at
+               wants_contact, status, locale, created_at
         FROM bootcamp_challenges
         ORDER BY created_at DESC
     ",
     "bootcamp" => "
-        SELECT id, name, email, role_name, company, locale, lunch, company_type, privacy_accepted, created_at
+        SELECT id, name, email, role_name, company, locale, lunch, company_type, status, privacy_accepted, created_at
         FROM bootcamp_leads
         ORDER BY created_at DESC
     ",
