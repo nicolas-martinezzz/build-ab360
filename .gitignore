@@ -72,3 +72,6 @@ node_modules/
 *.xls
 *.doc
 ~$*
+
+# QR generados con scripts/make-qr.mjs (salida, no fuente)
+/qr/
