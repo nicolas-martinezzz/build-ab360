@@ -262,3 +262,35 @@ CREATE TABLE IF NOT EXISTS admin_password_resets (
 --
 -- DELETE FROM admin_password_resets
 --  WHERE created_at < DATE_SUB(NOW(), INTERVAL 30 DAY);
+
+-- ── bootcamp_challenges ──────────────────────────────────────────────────────
+-- Respuestas del formulario de retos de la landing oculta /es/bootcamp-retos
+-- (Bootcamp Zero, 22/10/2026). Ver odd/tasks/bootcamp-retos-landing.md.
+--
+-- NOTA: public/api/bootcamp-challenges.php crea esta tabla por sí mismo la
+-- primera vez que recibe un envío (mismo patrón que openlab-contact.php), así
+-- que el día del evento no depende de que esta migración se haya ejecutado.
+-- Se documenta aquí para que el esquema completo viva en un solo sitio.
+--
+-- `challenges` guarda las CLAVES separadas por coma (predictive, deviations,
+-- objectives, eu_taxonomy, dashboards), nunca las etiquetas: el panel las
+-- traduce al mostrarlas. Sin UNIQUE sobre email: en un evento varias personas
+-- responden y se quieren TODAS las respuestas, no un upsert.
+
+CREATE TABLE IF NOT EXISTS bootcamp_challenges (
+    id               BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    full_name        VARCHAR(180)    NOT NULL,
+    email            VARCHAR(255)    NOT NULL,
+    company          VARCHAR(180)    NOT NULL,
+    challenges       VARCHAR(500)    NOT NULL DEFAULT '',
+    challenge_other  VARCHAR(500)    NULL,
+    wants_contact    TINYINT(1)      NOT NULL DEFAULT 0,
+    privacy_accepted TINYINT(1)      NOT NULL DEFAULT 0,
+    locale           VARCHAR(8)      NOT NULL DEFAULT 'es',
+    ip_hash          VARCHAR(64)     NULL,
+    user_agent       VARCHAR(255)    NULL,
+    created_at       TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    KEY idx_bc_email      (email),
+    KEY idx_bc_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

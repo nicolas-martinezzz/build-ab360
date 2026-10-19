@@ -124,6 +124,12 @@ $queries = [
         FROM newsletter_subscribers
         ORDER BY created_at DESC
     ",
+    "retos" => "
+        SELECT id, full_name, email, company, challenges, challenge_other,
+               wants_contact, locale, created_at
+        FROM bootcamp_challenges
+        ORDER BY created_at DESC
+    ",
     "bootcamp" => "
         SELECT id, name, email, role_name, company, locale, lunch, company_type, privacy_accepted, created_at
         FROM bootcamp_leads
