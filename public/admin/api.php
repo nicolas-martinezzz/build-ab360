@@ -238,6 +238,28 @@ switch ($action) {
 
         jsonOut(["ok" => true, "total" => $total, "page" => $page, "limit" => $limit, "data" => $rows]);
 
+    // ─── AG Grid: bootcamp challenges (landing /es/bootcamp-retos) ────────────
+    case "table_retos":
+        $page   = max(0, (int)($_GET["page"] ?? 0));
+        $limit  = min(500, max(1, (int)($_GET["limit"] ?? 100)));
+        $offset = $page * $limit;
+
+        $total = (int)$pdo->query("SELECT COUNT(*) FROM bootcamp_challenges")->fetchColumn();
+
+        $stmt = $pdo->prepare("
+            SELECT id, full_name, email, company, challenges, challenge_other,
+                   wants_contact, locale, created_at
+            FROM bootcamp_challenges
+            ORDER BY created_at DESC
+            LIMIT :lim OFFSET :off
+        ");
+        $stmt->bindValue(":lim", $limit, PDO::PARAM_INT);
+        $stmt->bindValue(":off", $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
+
+        jsonOut(["ok" => true, "total" => $total, "page" => $page, "limit" => $limit, "data" => $rows]);
+
     // ─── AG Grid: bootcamp leads ──────────────────────────────────────────────
     case "table_bootcamp":
         $page   = max(0, (int)($_GET["page"] ?? 0));

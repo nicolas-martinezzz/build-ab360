@@ -592,6 +592,9 @@ $csrf      = csrfToken();
       <div class="nav-item" data-section="bootcamp">
         <span class="nav-dot"></span> Bootcamp
       </div>
+      <div class="nav-item" data-section="retos">
+        <span class="nav-dot"></span> Retos
+      </div>
       <div class="nav-item" data-section="ebook">
         <span class="nav-dot"></span> Ebook Leads
       </div>
@@ -857,6 +860,30 @@ $csrf      = csrfToken();
       </div>
     </section>
 
+    <section id="section-retos" class="section">
+      <div class="page-header">
+        <div class="page-title">Retos</div>
+        <div class="page-subtitle">Respuestas del formulario de retos (landing del Bootcamp)</div>
+      </div>
+      <div class="table-toolbar">
+        <div class="search-wrap">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input class="search-input" type="text" id="rt-search" placeholder="Buscar...">
+        </div>
+        <a id="export-rt-excel" class="btn-export" href="#">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Excel
+        </a>
+        <span class="table-info" id="rt-info"></span>
+      </div>
+      <div class="ag-wrap ag-theme-alpine-dark" id="grid-retos"></div>
+      <div class="pagination">
+        <button class="page-btn" id="rt-prev" disabled>Anterior</button>
+        <span class="page-info" id="rt-page">1</span>
+        <button class="page-btn" id="rt-next">Siguiente</button>
+      </div>
+    </section>
+
     <!-- Contenido -->
     <section id="section-contenido" class="section">
       <div class="page-header">
@@ -1066,6 +1093,7 @@ document.querySelectorAll(".nav-item").forEach(el => {
       if (sec === "bootcamp")      initGrid("bootcamp");
       if (sec === "ebook")         initGrid("ebook");
       if (sec === "openlab")       initGrid("openlab");
+      if (sec === "retos")         initGrid("retos");
     }
   });
 });
@@ -1154,6 +1182,15 @@ const diagCols = [
     { field: "completed_at",   headerName: "Completado",  minWidth: 148 },
 ];
 
+// Claves que guarda public/api/bootcamp-challenges.php -> etiqueta legible.
+const RETO_LABELS = {
+  predictive:  "Analisis predictivo y benchmark",
+  deviations:  "Control de desvios",
+  objectives:  "Gestion por objetivos",
+  eu_taxonomy: "Taxonomia UE",
+  dashboards:  "Cuadro de mandos",
+};
+
 const cols = {
   diagnosticos: diagCols,
   reservaplaza: [
@@ -1204,6 +1241,19 @@ const cols = {
       valueFormatter: p => p.value === "member" ? "Asociada" : p.value === "non_member" ? "No asociada" : "" },
     { field: "created_at",     headerName: "Fecha",       minWidth: 148 },
   ],
+  retos: [
+    { field: "id",              headerName: "ID",         maxWidth: 70 },
+    { field: "full_name",       headerName: "Nombre",     minWidth: 180 },
+    { field: "email",           headerName: "Email",      minWidth: 210 },
+    { field: "company",         headerName: "Empresa",    minWidth: 160 },
+    { field: "challenges",      headerName: "Retos",      minWidth: 300,
+      valueFormatter: p => (p.value || "").split(",").filter(Boolean).map(k => RETO_LABELS[k] || k).join(" · ") },
+    { field: "challenge_other", headerName: "Otro reto",  minWidth: 200 },
+    { field: "wants_contact",   headerName: "Contactar",  maxWidth: 110,
+      valueFormatter: p => Number(p.value) === 1 ? "Si" : "No" },
+    { field: "locale",          headerName: "Idioma",     maxWidth: 80 },
+    { field: "created_at",      headerName: "Fecha",      minWidth: 148 },
+  ],
   ebook: [
     { field: "id",               headerName: "ID",         maxWidth: 70 },
     { field: "email",            headerName: "Email",      minWidth: 240 },
@@ -1234,6 +1284,7 @@ const actionMap = {
   bootcamp:     "table_bootcamp",
   ebook:        "table_ebook_leads",
   openlab:      "table_openlab",
+  retos:        "table_retos",
 };
 
 const exportTableMap = {
@@ -1244,9 +1295,10 @@ const exportTableMap = {
   bootcamp:     "bootcamp",
   ebook:        "ebook_leads",
   openlab:      "openlab",
+  retos:        "retos",
 };
 
-const prefixMap = { diagnosticos: "diag", reservaplaza: "rp", leads: "ld", newsletter: "nl", bootcamp: "bc", ebook: "eb", openlab: "ol" };
+const prefixMap = { diagnosticos: "diag", reservaplaza: "rp", leads: "ld", newsletter: "nl", bootcamp: "bc", ebook: "eb", openlab: "ol", retos: "rt" };
 
 function initGrid(key) {
   const rowClickable = key === "diagnosticos" || key === "leads";
