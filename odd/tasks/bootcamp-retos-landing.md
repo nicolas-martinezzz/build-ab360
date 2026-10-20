@@ -67,6 +67,70 @@ imprimió).
 3. La tabla se crea sola con el primer envío; no hay migración que ejecutar.
 4. Prueba en producción: enviar una respuesta y verla en el panel.
 
+## Revisión 20/10/2026 — maquetas del cliente
+
+El cliente entregó tres maquetas HTML exportadas de su herramienta de diseño
+(`Prototipo interactivo`, `Maqueta 1 · sin contacto`, `Maqueta 2 · con
+contacto`: el mismo artboard de 390 px con tres estados). Son **referencia de
+diseño**, no código: los valores viven en los `style=` en línea y se replican
+con los tokens del proyecto, no se copian.
+
+### Qué cambia
+- **Los seis retos llevan tres líneas**: título, el problema en palabras del
+  asistente y lo que querría conseguir (`Quiero: …`). Antes era una etiqueta
+  plana por reto. Las **claves no cambian** (`predictive`, `deviations`,
+  `objectives`, `eu_taxonomy`, `dashboards`), así que el contrato con el
+  endpoint y los datos ya guardados siguen siendo válidos.
+- **"Otro reto" es la sexta tarjeta** y abre su `textarea` dentro de la propia
+  tarjeta al marcarla.
+- **El contacto pasa de dos radios (Sí/No) a una sola casilla.** Marcarla
+  despliega el bloque de datos (nombre, empresa, correo) y el consentimiento.
+- **Se aceptan respuestas anónimas.** Sin esa casilla no se piden —ni se
+  guardan— datos personales. La maqueta lo deja explícito: los campos están
+  dentro del bloque condicional, bajo "Para contactarte necesitamos tus datos",
+  y el agradecimiento sin contacto dice que los retos sirven igual. Es menos
+  dato personal por respuesta, que para un QR en una sala es lo correcto.
+- **La pantalla de gracias cambia según el contacto** y ofrece volver al
+  formulario.
+
+### Decisiones
+- **Columnas NOT NULL intactas.** Una respuesta anónima guarda cadena vacía en
+  `full_name`, `email` y `company`. El `CREATE TABLE IF NOT EXISTS` no altera
+  una tabla ya creada, así que relajarlas a NULL habría exigido una migración
+  manual el día del evento. El panel muestra `(anonimo)` en esas celdas.
+- **`privacy_accepted` deja de ser un `1` fijo** y refleja el consentimiento
+  real: 0 en las respuestas anónimas, que no lo piden.
+- **El servidor borra los datos personales que lleguen sin la casilla**, por si
+  un cliente modificado los envía igualmente.
+- **Se mantiene la validación de formato del correo**, que la maqueta no tiene:
+  quitarla sería perder una comprobación que ya existía.
+- **El error se pinta en `green-600`**, no en el `#A2401E` de la maqueta: ese
+  color no está en la paleta del proyecto y `lint:palette` lo rechaza. Añadir
+  un color de error al sistema es una decisión de diseño aparte.
+- **`CHALLENGE_KEYS` vive en `challenges.ts`**, no en el componente. Al
+  importarlo un Server Component desde un módulo `"use client"` se convierte en
+  una referencia de cliente y el prerender rompe con
+  `CHALLENGE_KEYS.map is not a function`.
+- **Fondo de la página `surface-light`** (antes `green-50`), siguiendo el
+  `#F6F7F4` de la maqueta.
+
+### Verificación hecha
+- RED observado: las 8 pruebas nuevas de `BootcampRetosForm.test.tsx` fallan
+  contra el componente anterior; GREEN con el nuevo.
+- `npm run verify` completo en verde (lint, palette, BOM, paridad i18n, 177
+  pruebas, build). Sólo quedan los 3 warnings previos, en otros archivos.
+- `php -l` en el endpoint y en `admin/index.php`.
+- Endpoint contra `php -S` con credenciales falsas, para pasar del chequeo de
+  configuración y llegar a la validación:
+  anónimo con un reto → pasa; anónimo sólo con "otro" → pasa; contacto sin
+  datos → 400; contacto sin consentimiento → 400; contacto con correo inválido
+  → 400; contacto completo → pasa; sin ningún reto → 400; reto fuera de la
+  lista blanca → 400.
+- Build: `/es/bootcamp-retos` sigue con `noindex, nofollow` y es la única
+  página del build que menciona la ruta.
+- Navegador a 390 px y a 1150 px: sin desbordamiento horizontal, tarjetas y
+  bloque de contacto correctos en ambos.
+
 ## Pendiente
 - Confirmar la URL definitiva con el cliente antes de imprimir el QR.
-- Textos finales de los retos (el cliente los estaba esperando).
+- Subir `public/admin/index.php` por SFTP: el workflow no lo despliega.
