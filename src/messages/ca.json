@@ -1359,41 +1359,71 @@
     "copyright": "Copyright © YUTOPIAS SYSTEMS S.L. 2026"
   },
   "bootcampRetosPage": {
-    "metaTitle": "Retos · Bootcamp Zero",
+    "metaTitle": "Encuesta de retos · Bootcamp Zero",
     "metaDescription": "Cuéntanos qué retos querría resolver tu empresa.",
     "eyebrow": "BOOTCAMP ZERO · 22 DE OCTUBRE DE 2026",
-    "headline": "¿Cuáles de estos retos le gustaría resolver a tu empresa?",
-    "intro": "Marca todos los que apliquen. Nos ayuda a preparar el taller alrededor de lo que de verdad os preocupa.",
+    "headline": "¿Qué retos te gustaría resolver en tu empresa?",
+    "intro": "Marca uno o varios. En cada reto, el problema y lo que querrías conseguir.",
     "challengesLegend": "Retos",
-    "challenge1": "Análisis predictivo y benchmark inteligente",
-    "challenge2": "Control de desvíos",
-    "challenge3": "Gestión por objetivos de empresa",
-    "challenge4": "Cumplimiento de la Taxonomía UE",
-    "challenge5": "Cuadro de mandos operativos",
-    "challengeOther": "Otro reto",
-    "challengeOtherPlaceholder": "Cuéntanos cuál",
+    "wantLabel": "Quiero:",
+    "challenges": {
+      "predictive": {
+        "title": "Estimar coste y huella, rápido y bien",
+        "problem": "Calcular coste y huella nos lleva días, y no siempre acertamos.",
+        "want": "tenerlo en horas, fiable y basado en mis proyectos anteriores."
+      },
+      "deviations": {
+        "title": "Ver los desvíos a tiempo",
+        "problem": "Los desvíos los descubrimos tarde, cuando ya no tienen arreglo.",
+        "want": "saber cuánto cuesta cada decisión, en euros y en huella, antes de tomarla."
+      },
+      "objectives": {
+        "title": "Que cada proyecto siga la estrategia de la empresa",
+        "problem": "Un proyecto puede tener buenos números y no encajar con lo que quiere la empresa.",
+        "want": "que la estrategia esté en cada decisión y que todo el equipo vaya en la misma dirección."
+      },
+      "eu_taxonomy": {
+        "title": "Cumplir la Taxonomía europea",
+        "problem": "Nos cuesta demostrar a bancos e inversores la huella y el encaje con la Taxonomía.",
+        "want": "tener en cuenta el impacto ambiental en cada proyecto, con criterio y con datos."
+      },
+      "dashboards": {
+        "title": "Llegar al comité con los datos listos",
+        "problem": "Cada comité nos obliga a rehacer los datos, y aun así decidimos sin verlo todo.",
+        "want": "que cada perfil, del comité al técnico, vea sus indicadores, conectados entre sí."
+      },
+      "other": {
+        "title": "Otro reto",
+        "problem": "Si tu reto no está en la lista, cuéntanoslo: también puede formar parte de OpenLab."
+      }
+    },
+    "challengeOtherLabel": "Tengo otro reto que me gustaría explorar:",
+    "challengeOtherPlaceholder": "Cuéntanos tu reto con tus palabras",
+    "contactCheck": "Me gustaría que me contactarais para explorar cómo el programa de innovación abierta OpenLab puede resolver estos retos.",
+    "contactIntro": "Para contactarte necesitamos tus datos:",
     "fieldName": "Nombre y apellidos",
     "fieldNamePlaceholder": "Tu nombre y apellidos",
-    "fieldEmail": "Correo",
-    "fieldEmailPlaceholder": "tu@empresa.com",
     "fieldCompany": "Empresa",
     "fieldCompanyPlaceholder": "Nombre de tu empresa",
-    "contactLegend": "¿Te gustaría que te contactáramos para verlo con un proyecto tuyo?",
-    "contactYes": "Sí",
-    "contactNo": "No",
+    "fieldEmail": "Correo",
+    "fieldEmailPlaceholder": "tu@empresa.com",
     "checkPrivacy": "He leído y acepto la",
     "checkPrivacyLink": "política de privacidad",
     "submit": "Enviar",
     "submitting": "Enviando…",
-    "errorRequired": "Completa nombre, correo y empresa.",
-    "errorEmail": "El correo no es válido.",
     "errorChallenges": "Marca al menos un reto.",
     "errorOtherEmpty": "Cuéntanos cuál es ese otro reto.",
-    "errorContact": "Indícanos si quieres que te contactemos.",
-    "errorPrivacy": "Necesitamos que aceptes la política de privacidad.",
+    "errorMissingPrefix": "Para contactarte, falta:",
+    "errorMissingName": "nombre",
+    "errorMissingCompany": "empresa",
+    "errorMissingEmail": "correo",
+    "errorEmail": "El correo no es válido.",
+    "errorPrivacy": "Para contactarte, falta aceptar la política de privacidad.",
     "errorGeneric": "No hemos podido guardar tu respuesta. Vuelve a intentarlo.",
     "errorConnection": "No hemos podido conectar. Revisa tu conexión y vuelve a intentarlo.",
     "successTitle": "Gracias.",
-    "successBody": "En breve nos pondremos en contacto contigo para explorar juntos tus retos"
+    "successBodyContact": "En breve nos pondremos en contacto contigo para explorar juntos tus retos.",
+    "successBodyNoContact": "Tus retos nos ayudan a preparar con el sector los siguientes pasos de OpenLab.",
+    "successBack": "Volver al formulario"
   }
 }

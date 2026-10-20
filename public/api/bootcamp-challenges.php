@@ -17,6 +17,10 @@ declare(strict_types=1);
  *     la mayoría. Sigue habiendo tope para frenar un abuso automatizado.
  *   - Sin email al asistente ni notificación interna: no se pidió, y 60
  *     escaneos simultáneos generarían 60 correos.
+ *   - Respuestas ANÓNIMAS permitidas: nombre, empresa, correo y consentimiento
+ *     sólo se exigen si la persona marca la casilla de contacto. Las columnas
+ *     siguen siendo NOT NULL y se guardan como cadena vacía, para no obligar a
+ *     migrar una tabla ya creada.
  *
  * PHP 7.2 compatible (es la versión del servidor): sin arrow functions, ??=,
  * ?->, match ni str_contains.
@@ -127,20 +131,33 @@ $locale   = substr(trim((string)(isset($payload["locale"]) ? $payload["locale"] 
 $accepted = !empty($payload["accepted"]);
 $wants    = !empty($payload["wantsContact"]);
 
-if ($fullName === "" || $email === "" || $company === "") {
-    http_response_code(400);
-    echo json_encode(["message" => "Missing required fields"]);
-    exit;
-}
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(400);
-    echo json_encode(["message" => "Invalid email"]);
-    exit;
-}
-if (!$accepted) {
-    http_response_code(400);
-    echo json_encode(["message" => "Privacy consent required"]);
-    exit;
+// Los datos de contacto y el consentimiento sólo son obligatorios cuando la
+// persona ha marcado que quiere que la contactemos. Sin esa casilla, la
+// respuesta es anónima y válida: nos interesan los retos aunque no nos deje
+// sus datos (ver maquetas del cliente, 20/10/2026).
+if ($wants) {
+    if ($fullName === "" || $email === "" || $company === "") {
+        http_response_code(400);
+        echo json_encode(["message" => "Missing required fields"]);
+        exit;
+    }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        http_response_code(400);
+        echo json_encode(["message" => "Invalid email"]);
+        exit;
+    }
+    if (!$accepted) {
+        http_response_code(400);
+        echo json_encode(["message" => "Privacy consent required"]);
+        exit;
+    }
+} else {
+    // Una respuesta anónima no guarda datos personales, ni siquiera si el
+    // cliente los envía por error.
+    $fullName = "";
+    $email    = "";
+    $company  = "";
+    $accepted = false;
 }
 
 // Lista blanca: al cliente sólo se le aceptan estas claves, nunca texto libre
@@ -242,7 +259,7 @@ try {
         ":challenges"       => implode(",", $challenges),
         ":challenge_other"  => $other !== "" ? $other : null,
         ":wants_contact"    => $wants ? 1 : 0,
-        ":privacy_accepted" => 1,
+        ":privacy_accepted" => $accepted ? 1 : 0,
         ":locale"           => $locale,
         ":ip_hash"          => $ipHash,
         ":user_agent"       => $userAgent !== "" ? $userAgent : null,

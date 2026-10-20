@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { BootcampRetosForm } from "@/components/sections/bootcamp-retos/BootcampRetosForm";
+import {
+  CHALLENGE_KEYS,
+  type ChallengeCopy,
+  type ChallengeKey,
+} from "@/components/sections/bootcamp-retos/challenges";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -36,49 +41,67 @@ export default async function BootcampRetosPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("bootcampRetosPage");
 
+  // Each challenge carries three lines of copy (title, the problem, what the
+  // visitor would like to achieve), so it is resolved here by key rather than
+  // passed as a long flat list of props.
+  const challenges = Object.fromEntries(
+    CHALLENGE_KEYS.map((key) => [
+      key,
+      {
+        title: t(`challenges.${key}.title`),
+        problem: t(`challenges.${key}.problem`),
+        want: t(`challenges.${key}.want`),
+      },
+    ]),
+  ) as Record<ChallengeKey, ChallengeCopy>;
+
   return (
-    <section className="section-block bg-green-50">
+    <section className="section-block bg-surface-light">
       <SectionContainer>
         <div className="mx-auto max-w-[40rem]">
           <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
           <h1 className="figma-title-2-bold mt-3 text-surface-bg">{t("headline")}</h1>
-          <p className="figma-text-m mt-4 text-surface-bg/70">{t("intro")}</p>
+          <p className="figma-text-m mt-3 text-surface-bg/70">{t("intro")}</p>
 
-          <div className="mt-8">
+          <div className="mt-6 sm:mt-8">
             <BootcampRetosForm
+              challenges={challenges}
               locale={locale}
+              other={{
+                title: t("challenges.other.title"),
+                problem: t("challenges.other.problem"),
+              }}
               t={{
                 challengesLegend: t("challengesLegend"),
-                challenge1: t("challenge1"),
-                challenge2: t("challenge2"),
-                challenge3: t("challenge3"),
-                challenge4: t("challenge4"),
-                challenge5: t("challenge5"),
-                challengeOther: t("challengeOther"),
+                wantLabel: t("wantLabel"),
+                challengeOtherLabel: t("challengeOtherLabel"),
                 challengeOtherPlaceholder: t("challengeOtherPlaceholder"),
+                contactCheck: t("contactCheck"),
+                contactIntro: t("contactIntro"),
                 fieldName: t("fieldName"),
                 fieldNamePlaceholder: t("fieldNamePlaceholder"),
-                fieldEmail: t("fieldEmail"),
-                fieldEmailPlaceholder: t("fieldEmailPlaceholder"),
                 fieldCompany: t("fieldCompany"),
                 fieldCompanyPlaceholder: t("fieldCompanyPlaceholder"),
-                contactLegend: t("contactLegend"),
-                contactYes: t("contactYes"),
-                contactNo: t("contactNo"),
+                fieldEmail: t("fieldEmail"),
+                fieldEmailPlaceholder: t("fieldEmailPlaceholder"),
                 checkPrivacy: t("checkPrivacy"),
                 checkPrivacyLink: t("checkPrivacyLink"),
                 submit: t("submit"),
                 submitting: t("submitting"),
-                errorRequired: t("errorRequired"),
-                errorEmail: t("errorEmail"),
                 errorChallenges: t("errorChallenges"),
                 errorOtherEmpty: t("errorOtherEmpty"),
-                errorContact: t("errorContact"),
+                errorMissingPrefix: t("errorMissingPrefix"),
+                errorMissingName: t("errorMissingName"),
+                errorMissingCompany: t("errorMissingCompany"),
+                errorMissingEmail: t("errorMissingEmail"),
+                errorEmail: t("errorEmail"),
                 errorPrivacy: t("errorPrivacy"),
                 errorGeneric: t("errorGeneric"),
                 errorConnection: t("errorConnection"),
                 successTitle: t("successTitle"),
-                successBody: t("successBody"),
+                successBodyContact: t("successBodyContact"),
+                successBodyNoContact: t("successBodyNoContact"),
+                successBack: t("successBack"),
               }}
             />
           </div>
