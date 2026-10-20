@@ -2,91 +2,96 @@
 
 import { useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
-
-/**
- * Challenge keys sent to the backend. The labels live in i18n (the copy may
- * still change before the event); these keys are the stable contract with
- * public/api/bootcamp-challenges.php, which validates them against the same
- * allow-list. Never send labels — only keys.
- */
-export const CHALLENGE_KEYS = [
-  "predictive",
-  "deviations",
-  "objectives",
-  "eu_taxonomy",
-  "dashboards",
-] as const;
-
-type ChallengeKey = (typeof CHALLENGE_KEYS)[number];
+import { CHALLENGE_KEYS, type ChallengeCopy, type ChallengeKey } from "./challenges";
 
 type Props = {
   locale: string;
+  challenges: Record<ChallengeKey, ChallengeCopy>;
+  other: { title: string; problem: string };
   t: {
     challengesLegend: string;
-    challenge1: string;
-    challenge2: string;
-    challenge3: string;
-    challenge4: string;
-    challenge5: string;
-    challengeOther: string;
+    wantLabel: string;
+    challengeOtherLabel: string;
     challengeOtherPlaceholder: string;
+    contactCheck: string;
+    contactIntro: string;
     fieldName: string;
     fieldNamePlaceholder: string;
-    fieldEmail: string;
-    fieldEmailPlaceholder: string;
     fieldCompany: string;
     fieldCompanyPlaceholder: string;
-    contactLegend: string;
-    contactYes: string;
-    contactNo: string;
+    fieldEmail: string;
+    fieldEmailPlaceholder: string;
     checkPrivacy: string;
     checkPrivacyLink: string;
     submit: string;
     submitting: string;
-    errorRequired: string;
-    errorEmail: string;
     errorChallenges: string;
     errorOtherEmpty: string;
-    errorContact: string;
+    errorMissingPrefix: string;
+    errorMissingName: string;
+    errorMissingCompany: string;
+    errorMissingEmail: string;
+    errorEmail: string;
     errorPrivacy: string;
     errorGeneric: string;
     errorConnection: string;
     successTitle: string;
-    successBody: string;
+    successBodyContact: string;
+    successBodyNoContact: string;
+    successBack: string;
   };
 };
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * A native checkbox styled to the mockup's 26px square. `appearance-none` plus
+ * `peer-checked` keeps the checkmark purely in CSS, so the control keeps its
+ * real semantics, keyboard behaviour and screen-reader state.
+ */
+const boxCls =
+  "peer size-[26px] flex-shrink-0 cursor-pointer appearance-none rounded-[6px] border-2 border-grey-dark bg-white transition-colors checked:border-green-600 checked:bg-green-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2";
+
+const checkCls =
+  "pointer-events-none absolute left-[6px] top-[6px] hidden size-3.5 stroke-white peer-checked:block";
+
 const inputCls =
-  "w-full rounded-[6px] border border-surface-bg/15 bg-white px-3 py-3 text-base text-surface-bg placeholder:text-surface-bg/40 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/30 focus-visible:ring-2 focus-visible:ring-green-500 transition-colors";
+  "w-full rounded-[8px] border border-grey-light bg-white px-3 py-3 text-base text-surface-bg placeholder:text-surface-bg/40 focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/30";
 
-const labelCls = "block text-sm font-semibold text-surface-bg mb-1.5";
+const labelCls = "mb-1.5 block text-xs font-semibold text-surface-bg/70";
 
-const optionCls =
-  "flex cursor-pointer items-start gap-3 rounded-[6px] border border-surface-bg/15 bg-white px-3 py-3 transition-colors hover:border-green-500/50";
+function CheckIcon({ className }: { className: string }) {
+  return (
+    <svg
+      aria-hidden
+      className={className}
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="3.5"
+      viewBox="0 0 24 24"
+    >
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
 
-export function BootcampRetosForm({ locale, t }: Props) {
+export function BootcampRetosForm({ locale, challenges, other, t }: Props) {
   const startedAt = useRef(Date.now());
-
-  const challengeLabels: Record<ChallengeKey, string> = {
-    predictive: t.challenge1,
-    deviations: t.challenge2,
-    objectives: t.challenge3,
-    eu_taxonomy: t.challenge4,
-    dashboards: t.challenge5,
-  };
 
   const [selected, setSelected] = useState<ChallengeKey[]>([]);
   const [otherChecked, setOtherChecked] = useState(false);
   const [otherText, setOtherText] = useState("");
+  const [wantsContact, setWantsContact] = useState(false);
   const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [wantsContact, setWantsContact] = useState<"" | "yes" | "no">("");
+  const [email, setEmail] = useState("");
   const [privacy, setPrivacy] = useState(false);
   const [contactRef, setContactRef] = useState("");
-  const [error, setError] = useState("");
+  const [tried, setTried] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState<null | { contacted: boolean }>(null);
 
   const toggleChallenge = (key: ChallengeKey) => {
     setSelected((current) =>
@@ -94,32 +99,47 @@ export function BootcampRetosForm({ locale, t }: Props) {
     );
   };
 
-  async function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
-    setError("");
-
-    if (!fullName.trim() || !email.trim() || !company.trim()) {
-      setError(t.errorRequired);
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError(t.errorEmail);
-      return;
-    }
+  /**
+   * Validation mirrors the mockup: the challenge selection is always required,
+   * the contact block is only validated when the visitor asked to be contacted.
+   * A response without any personal data is a valid, anonymous answer.
+   */
+  function validate(): string {
     if (selected.length === 0 && !otherChecked) {
-      setError(t.errorChallenges);
-      return;
+      return t.errorChallenges;
     }
-    if (otherChecked && !otherText.trim()) {
-      setError(t.errorOtherEmpty);
-      return;
+    if (otherChecked && otherText.trim() === "") {
+      return t.errorOtherEmpty;
     }
-    if (wantsContact === "") {
-      setError(t.errorContact);
-      return;
+    if (!wantsContact) {
+      return "";
+    }
+
+    const missing: string[] = [];
+    if (fullName.trim() === "") missing.push(t.errorMissingName);
+    if (company.trim() === "") missing.push(t.errorMissingCompany);
+    if (email.trim() === "") missing.push(t.errorMissingEmail);
+    if (missing.length > 0) {
+      return `${t.errorMissingPrefix} ${missing.join(", ")}.`;
+    }
+    if (!EMAIL_RE.test(email.trim())) {
+      return t.errorEmail;
     }
     if (!privacy) {
-      setError(t.errorPrivacy);
+      return t.errorPrivacy;
+    }
+    return "";
+  }
+
+  const validationError = validate();
+  const visibleError = submitError || (tried ? validationError : "");
+
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    setSubmitError("");
+
+    if (validationError !== "") {
+      setTried(true);
       return;
     }
 
@@ -129,13 +149,13 @@ export function BootcampRetosForm({ locale, t }: Props) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fullName: fullName.trim(),
-          email: email.trim(),
-          company: company.trim(),
+          fullName: wantsContact ? fullName.trim() : "",
+          email: wantsContact ? email.trim() : "",
+          company: wantsContact ? company.trim() : "",
           challenges: selected,
           challengeOther: otherChecked ? otherText.trim() : "",
-          wantsContact: wantsContact === "yes",
-          accepted: true,
+          wantsContact,
+          accepted: wantsContact ? privacy : false,
           contact_ref: contactRef,
           locale,
           submittedAt: startedAt.current,
@@ -144,183 +164,260 @@ export function BootcampRetosForm({ locale, t }: Props) {
 
       if (!response.ok) {
         const data = await response.json().catch(() => ({}));
-        setError((data as { message?: string }).message ?? t.errorGeneric);
+        setSubmitError((data as { message?: string }).message ?? t.errorGeneric);
         return;
       }
 
-      setSuccess(true);
+      setSuccess({ contacted: wantsContact });
     } catch {
-      setError(t.errorConnection);
+      setSubmitError(t.errorConnection);
     } finally {
       setLoading(false);
     }
   }
 
+  function reset() {
+    setSuccess(null);
+    setTried(false);
+    setSubmitError("");
+    startedAt.current = Date.now();
+  }
+
   if (success) {
     return (
-      <div className="flex flex-col items-center gap-4 rounded-[8px] bg-green-50 px-6 py-12 text-center">
+      <div className="flex flex-col items-start gap-4 rounded-[10px] border border-grey-light bg-white px-5 py-10 sm:px-8 sm:py-12">
         <span
           aria-hidden
-          className="flex size-12 items-center justify-center rounded-full bg-white"
+          className="flex size-14 items-center justify-center rounded-full bg-green-600"
         >
-          <svg
-            className="stroke-green-500"
-            fill="none"
-            height="24"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            width="24"
-          >
-            <path d="M20 6 9 17l-5-5" />
-          </svg>
+          <CheckIcon className="size-7 stroke-white" />
         </span>
-        <p className="figma-title-3 text-surface-bg">{t.successTitle}</p>
-        <p className="figma-text-m max-w-[32rem] text-surface-bg/70">{t.successBody}</p>
+        <h2 className="figma-title-3 text-surface-bg">{t.successTitle}</h2>
+        <p className="figma-text-m text-surface-bg/70">
+          {success.contacted ? t.successBodyContact : t.successBodyNoContact}
+        </p>
+        <button
+          className="text-sm font-semibold text-green-600 underline underline-offset-2"
+          onClick={reset}
+          type="button"
+        >
+          {t.successBack}
+        </button>
       </div>
     );
   }
 
   return (
-    <form className="flex flex-col gap-7" noValidate onSubmit={handleSubmit}>
-      <fieldset className="flex flex-col gap-2.5">
-        <legend className={labelCls}>{t.challengesLegend}</legend>
+    <form className="flex flex-col gap-4 sm:gap-5" noValidate onSubmit={handleSubmit}>
+      <fieldset className="flex min-w-0 flex-col gap-2">
+        <legend className="sr-only">{t.challengesLegend}</legend>
 
-        {CHALLENGE_KEYS.map((key) => (
-          <label className={optionCls} key={key}>
-            <input
-              checked={selected.includes(key)}
-              className="mt-0.5 size-5 flex-shrink-0 accent-green-600"
-              onChange={() => toggleChallenge(key)}
-              type="checkbox"
-              value={key}
-            />
-            <span className="figma-text-m text-surface-bg">{challengeLabels[key]}</span>
-          </label>
-        ))}
+        {CHALLENGE_KEYS.map((key) => {
+          const copy = challenges[key];
+          const checked = selected.includes(key);
 
-        <label className={optionCls}>
-          <input
-            checked={otherChecked}
-            className="mt-0.5 size-5 flex-shrink-0 accent-green-600"
-            onChange={(event) => setOtherChecked(event.target.checked)}
-            type="checkbox"
-          />
-          <span className="figma-text-m text-surface-bg">{t.challengeOther}</span>
-        </label>
+          return (
+            <div
+              className={`rounded-[10px] border-[1.5px] bg-white p-3 transition-colors sm:p-3.5 ${
+                checked ? "border-green-600" : "border-grey-light"
+              }`}
+              key={key}
+            >
+              <div className="flex items-start gap-3">
+                <span className="relative mt-px flex-shrink-0">
+                  <input
+                    checked={checked}
+                    className={boxCls}
+                    id={`br-${key}`}
+                    onChange={() => toggleChallenge(key)}
+                    type="checkbox"
+                    value={key}
+                  />
+                  <CheckIcon className={checkCls} />
+                </span>
 
-        {otherChecked ? (
-          <input
-            aria-label={t.challengeOther}
-            autoComplete="off"
-            className={inputCls}
-            maxLength={300}
-            onChange={(event) => setOtherText(event.target.value)}
-            placeholder={t.challengeOtherPlaceholder}
-            type="text"
-            value={otherText}
-          />
-        ) : null}
+                <div className="flex min-w-0 flex-1 flex-col gap-1">
+                  <label
+                    className="cursor-pointer text-[0.9375rem] font-semibold leading-snug text-surface-bg sm:text-base"
+                    htmlFor={`br-${key}`}
+                  >
+                    {copy.title}
+                  </label>
+                  <p className="text-sm leading-relaxed text-surface-bg/70 sm:text-[0.9375rem]">
+                    {copy.problem}
+                  </p>
+                  <p className="text-sm leading-relaxed text-green-600 sm:text-[0.9375rem]">
+                    <span className="font-bold">{t.wantLabel} </span>
+                    {copy.want}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        <div
+          className={`rounded-[10px] border-[1.5px] bg-white p-3 transition-colors sm:p-3.5 ${
+            otherChecked ? "border-green-600" : "border-grey-light"
+          }`}
+        >
+          <div className="flex items-start gap-3">
+            <span className="relative mt-px flex-shrink-0">
+              <input
+                checked={otherChecked}
+                className={boxCls}
+                id="br-other"
+                onChange={(event) => setOtherChecked(event.target.checked)}
+                type="checkbox"
+              />
+              <CheckIcon className={checkCls} />
+            </span>
+
+            <div className="flex min-w-0 flex-1 flex-col gap-1">
+              <label
+                className="cursor-pointer text-[0.9375rem] font-semibold leading-snug text-surface-bg sm:text-base"
+                htmlFor="br-other"
+              >
+                {other.title}
+              </label>
+              <p className="text-sm leading-relaxed text-surface-bg/70 sm:text-[0.9375rem]">
+                {other.problem}
+              </p>
+
+              {otherChecked ? (
+                <label className="mt-2 flex flex-col gap-1.5">
+                  <span className="text-xs font-semibold text-surface-bg/70">
+                    {t.challengeOtherLabel}
+                  </span>
+                  <textarea
+                    autoComplete="off"
+                    className={`${inputCls} resize-none`}
+                    maxLength={300}
+                    onChange={(event) => setOtherText(event.target.value)}
+                    placeholder={t.challengeOtherPlaceholder}
+                    rows={4}
+                    value={otherText}
+                  />
+                </label>
+              ) : null}
+            </div>
+          </div>
+        </div>
       </fieldset>
 
-      <div className="flex flex-col gap-4">
-        <div>
-          <label className={labelCls} htmlFor="br-name">
-            {t.fieldName} *
+      <div
+        className={`rounded-[10px] border-[1.5px] bg-white p-3 transition-colors sm:p-3.5 ${
+          wantsContact ? "border-green-600" : "border-grey-light"
+        }`}
+      >
+        <div className="flex items-start gap-3">
+          <span className="relative flex-shrink-0">
+            <input
+              checked={wantsContact}
+              className={boxCls}
+              id="br-contact"
+              onChange={(event) => setWantsContact(event.target.checked)}
+              type="checkbox"
+            />
+            <CheckIcon className={checkCls} />
+          </span>
+          <label
+            className="min-w-0 flex-1 cursor-pointer text-sm font-semibold leading-snug text-surface-bg sm:text-[0.9375rem]"
+            htmlFor="br-contact"
+          >
+            {t.contactCheck}
           </label>
-          <input
-            autoComplete="name"
-            className={inputCls}
-            id="br-name"
-            maxLength={180}
-            onChange={(event) => setFullName(event.target.value)}
-            placeholder={t.fieldNamePlaceholder}
-            type="text"
-            value={fullName}
-          />
-        </div>
-
-        <div>
-          <label className={labelCls} htmlFor="br-email">
-            {t.fieldEmail} *
-          </label>
-          <input
-            autoComplete="email"
-            className={inputCls}
-            id="br-email"
-            inputMode="email"
-            maxLength={255}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder={t.fieldEmailPlaceholder}
-            type="email"
-            value={email}
-          />
-        </div>
-
-        <div>
-          <label className={labelCls} htmlFor="br-company">
-            {t.fieldCompany} *
-          </label>
-          <input
-            autoComplete="organization"
-            className={inputCls}
-            id="br-company"
-            maxLength={180}
-            onChange={(event) => setCompany(event.target.value)}
-            placeholder={t.fieldCompanyPlaceholder}
-            type="text"
-            value={company}
-          />
         </div>
       </div>
 
-      <fieldset className="flex flex-col gap-2.5">
-        <legend className={labelCls}>{t.contactLegend}</legend>
-        <label className={optionCls}>
-          <input
-            checked={wantsContact === "yes"}
-            className="mt-0.5 size-5 flex-shrink-0 accent-green-600"
-            name="wantsContact"
-            onChange={() => setWantsContact("yes")}
-            type="radio"
-            value="yes"
-          />
-          <span className="figma-text-m text-surface-bg">{t.contactYes}</span>
-        </label>
-        <label className={optionCls}>
-          <input
-            checked={wantsContact === "no"}
-            className="mt-0.5 size-5 flex-shrink-0 accent-green-600"
-            name="wantsContact"
-            onChange={() => setWantsContact("no")}
-            type="radio"
-            value="no"
-          />
-          <span className="figma-text-m text-surface-bg">{t.contactNo}</span>
-        </label>
-      </fieldset>
+      {wantsContact ? (
+        <div className="flex flex-col gap-3 rounded-[10px] border border-grey-light bg-white p-3.5 sm:p-4">
+          <p className="text-sm text-surface-bg/70">{t.contactIntro}</p>
 
-      <label className="flex cursor-pointer items-start gap-3">
-        <input
-          checked={privacy}
-          className="mt-1 size-5 flex-shrink-0 accent-green-600"
-          onChange={(event) => setPrivacy(event.target.checked)}
-          type="checkbox"
-        />
-        <span className="text-sm leading-relaxed text-surface-bg/60">
-          {t.checkPrivacy}{" "}
-          <Link
-            className="text-green-700 underline underline-offset-2 hover:text-green-800"
-            href="/privacy"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            {t.checkPrivacyLink}
-          </Link>{" "}
-          *
-        </span>
-      </label>
+          <div>
+            <label className={labelCls} htmlFor="br-name">
+              {t.fieldName} *
+            </label>
+            <input
+              autoComplete="name"
+              className={inputCls}
+              id="br-name"
+              maxLength={180}
+              onChange={(event) => setFullName(event.target.value)}
+              placeholder={t.fieldNamePlaceholder}
+              type="text"
+              value={fullName}
+            />
+          </div>
+
+          <div>
+            <label className={labelCls} htmlFor="br-company">
+              {t.fieldCompany} *
+            </label>
+            <input
+              autoComplete="organization"
+              className={inputCls}
+              id="br-company"
+              maxLength={180}
+              onChange={(event) => setCompany(event.target.value)}
+              placeholder={t.fieldCompanyPlaceholder}
+              type="text"
+              value={company}
+            />
+          </div>
+
+          <div>
+            <label className={labelCls} htmlFor="br-email">
+              {t.fieldEmail} *
+            </label>
+            <input
+              autoComplete="email"
+              className={inputCls}
+              id="br-email"
+              inputMode="email"
+              maxLength={255}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder={t.fieldEmailPlaceholder}
+              type="email"
+              value={email}
+            />
+          </div>
+
+          <div className="flex items-start gap-3">
+            <span className="relative flex-shrink-0">
+              <input
+                checked={privacy}
+                className={boxCls}
+                id="br-privacy"
+                onChange={(event) => setPrivacy(event.target.checked)}
+                type="checkbox"
+              />
+              <CheckIcon className={checkCls} />
+            </span>
+            <label
+              className="min-w-0 flex-1 cursor-pointer pt-0.5 text-sm leading-relaxed text-surface-bg/70"
+              htmlFor="br-privacy"
+            >
+              {t.checkPrivacy}{" "}
+              <Link
+                className="text-green-600 underline underline-offset-2"
+                href="/privacy"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {t.checkPrivacyLink}
+              </Link>{" "}
+              *
+            </label>
+          </div>
+        </div>
+      ) : null}
+
+      {visibleError ? (
+        <p className="text-sm font-semibold text-green-600" role="alert">
+          {visibleError}
+        </p>
+      ) : null}
 
       {/*
         Honeypot. Deliberately NOT named "website": Chrome autofill and password
@@ -339,18 +436,12 @@ export function BootcampRetosForm({ locale, t }: Props) {
       />
 
       <button
-        className="h-[52px] w-full rounded-[6px] bg-surface-bg px-6 text-base font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+        className="h-[50px] w-full rounded-[10px] bg-green-600 px-6 text-base font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
         disabled={loading}
         type="submit"
       >
         {loading ? t.submitting : t.submit}
       </button>
-
-      {error ? (
-        <p className="figma-text-m text-center text-green-700" role="alert">
-          {error}
-        </p>
-      ) : null}
     </form>
   );
 }

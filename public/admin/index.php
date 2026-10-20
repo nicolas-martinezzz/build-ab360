@@ -1223,13 +1223,18 @@ const STATUS_VALUES = {
 const STATUS_TABLE = { bootcamp: "bootcamp_leads", retos: "bootcamp_challenges" };
 
 // Claves que guarda public/api/bootcamp-challenges.php -> etiqueta legible.
+// Version corta de los titulos de la landing, para que quepan en la grilla.
 const RETO_LABELS = {
-  predictive:  "Analisis predictivo y benchmark",
-  deviations:  "Control de desvios",
-  objectives:  "Gestion por objetivos",
-  eu_taxonomy: "Taxonomia UE",
-  dashboards:  "Cuadro de mandos",
+  predictive:  "Estimar coste y huella",
+  deviations:  "Ver los desvios a tiempo",
+  objectives:  "Proyectos alineados con la estrategia",
+  eu_taxonomy: "Cumplir la Taxonomia europea",
+  dashboards:  "Datos listos para el comite",
 };
+
+// Una respuesta sin casilla de contacto marcada se guarda sin datos
+// personales: la celda vacia es correcta, no un dato perdido.
+const anonCell = p => (p.value === null || p.value === "") ? "(anonimo)" : p.value;
 
 const cols = {
   diagnosticos: diagCols,
@@ -1286,9 +1291,9 @@ const cols = {
   ],
   retos: [
     { field: "id",              headerName: "ID",         maxWidth: 70 },
-    { field: "full_name",       headerName: "Nombre",     minWidth: 180 },
-    { field: "email",           headerName: "Email",      minWidth: 210 },
-    { field: "company",         headerName: "Empresa",    minWidth: 160 },
+    { field: "full_name",       headerName: "Nombre",     minWidth: 180, valueFormatter: anonCell },
+    { field: "email",           headerName: "Email",      minWidth: 210, valueFormatter: anonCell },
+    { field: "company",         headerName: "Empresa",    minWidth: 160, valueFormatter: anonCell },
     { field: "challenges",      headerName: "Retos",      minWidth: 300,
       valueFormatter: p => (p.value || "").split(",").filter(Boolean).map(k => RETO_LABELS[k] || k).join(" · ") },
     { field: "challenge_other", headerName: "Otro reto",  minWidth: 200 },
