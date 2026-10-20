@@ -91,6 +91,19 @@ function md5File(p) {
     return crypto.createHash("md5").update(fs.readFileSync(p)).digest("hex");
 }
 
+// Lists the .php files of a directory that belong in production.
+//
+// Reading the directory replaces the fixed lists this script used to carry: one
+// of them had already left bootcamp-challenges.php undeployed (20/10/2026).
+// The trade is that a scan can also pick up what must NEVER leave the machine —
+// public/admin holds auth.local.php and seed.local.php, both gitignored — so
+// anything carrying the ".local." marker is dropped.
+function deployablePhp(dir) {
+    return fs.readdirSync(dir)
+        .filter(f => f.endsWith(".php") && !f.includes(".local."))
+        .sort();
+}
+
 // ─── SFTP sync ─────────────────────────────────────────────────────────────────
 // Mirrors localDir → remoteDir:
 //   - uploads new or changed files (by size+mtime, falls back to md5 on mismatch)
@@ -245,7 +258,12 @@ async function deploy() {
 
         // 3. PHP API files
         console.log("🔌 Subiendo API PHP...");
-        const phpFiles = ["diagnostic.php", "newsletter.php", "bootcamp-lead.php", "export.php", "ebook-lead.php", "openlab-contact.php"];
+        // Every .php in public/api ships. A fixed list here already left
+        // bootcamp-challenges.php behind (20/10/2026): the endpoint was only
+        // alive because the GitHub workflow uploads the whole folder, and a
+        // ship would never have updated it. Reading the directory means a new
+        // endpoint cannot be forgotten.
+        const phpFiles = deployablePhp(path.join(publicDir, "api"));
         await exec(conn, `mkdir -p ~/${REMOTE_WEBROOT}/api`);
         // reserva-plaza.php fue eliminado del repo (07/10/2026); borrarlo del
         // servidor para que la URL vieja responda 404 en vez de seguir aceptando POSTs.
@@ -278,13 +296,14 @@ async function deploy() {
         // 5. Admin panel
         console.log("\n🔐 Subiendo panel de admin...");
         await exec(conn, `mkdir -p ~/${REMOTE_ADMIN_DIR}`);
-        // Todo PHP nuevo del panel admin TIENE que estar en esta lista: el admin
-        // no se despliega con el workflow de GitHub, sólo por este SFTP.
-        const adminFiles = [
-            "index.php", "login.php", "logout.php", "api.php", "export.php", "auth.php",
-            "forgot-password.php", "reset-password.php",
-            ".htaccess",
-        ];
+        // El admin no se despliega con el workflow de GitHub, sólo por este
+        // SFTP, así que olvidar un archivo aquí lo deja sin actualizar en
+        // producción sin que nada falle. Se lee el directorio por el mismo
+        // motivo que public/api, y .htaccess se añade aparte por no ser .php.
+        const adminFiles = deployablePhp(path.join(publicDir, "admin"));
+        if (fs.existsSync(path.join(publicDir, "admin", ".htaccess"))) {
+            adminFiles.push(".htaccess");
+        }
         for (const f of adminFiles) {
             const local = path.join(publicDir, "admin", f);
             await new Promise((resolve, reject) =>
