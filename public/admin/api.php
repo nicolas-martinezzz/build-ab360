@@ -238,6 +238,69 @@ switch ($action) {
 
         jsonOut(["ok" => true, "total" => $total, "page" => $page, "limit" => $limit, "data" => $rows]);
 
+    // ─── Estadisticas de retos (landing /es/bootcamp-retos) ───────────────────
+    // La columna 'challenges' guarda las claves separadas por coma, asi que el
+    // recuento por reto sale con FIND_IN_SET y no partiendo la cadena en PHP.
+    case "retos_stats":
+        $retoKeys = ["predictive", "deviations", "objectives", "eu_taxonomy", "dashboards"];
+
+        $data = [
+            "totals"  => ["responses" => 0, "marks" => 0, "with_contact" => 0, "anonymous" => 0, "with_other" => 0],
+            "ranking" => [],
+            "by_day"  => [],
+        ];
+
+        try {
+            $row = $pdo->query("
+                SELECT COUNT(*)                                             AS responses,
+                       COALESCE(SUM(wants_contact = 1), 0)                  AS with_contact,
+                       COALESCE(SUM(email = '' OR email IS NULL), 0)        AS anonymous,
+                       COALESCE(SUM(challenge_other IS NOT NULL
+                                    AND challenge_other <> ''), 0)          AS with_other
+                  FROM bootcamp_challenges
+            ")->fetch();
+
+            $data["totals"]["responses"]    = (int)$row["responses"];
+            $data["totals"]["with_contact"] = (int)$row["with_contact"];
+            $data["totals"]["anonymous"]    = (int)$row["anonymous"];
+            $data["totals"]["with_other"]   = (int)$row["with_other"];
+
+            // FIND_IN_SET no existe en SQLite, asi que se busca la clave rodeada de
+            // comas sobre la lista tambien rodeada de comas: igual en los dos motores.
+            $wrapped = $isSqlite
+                ? "(',' || challenges || ',')"
+                : "CONCAT(',', challenges, ',')";
+
+            $marks = 0;
+            foreach ($retoKeys as $key) {
+                $stmt = $pdo->prepare("
+                    SELECT COUNT(*) FROM bootcamp_challenges
+                     WHERE $wrapped LIKE :pat
+                ");
+                $stmt->execute([":pat" => "%," . $key . ",%"]);
+                $count = (int)$stmt->fetchColumn();
+                $marks += $count;
+                $data["ranking"][] = ["key" => $key, "count" => $count];
+            }
+            $data["totals"]["marks"] = $marks;
+
+            // Mas marcado primero: es la lectura que se busca en el panel.
+            usort($data["ranking"], function ($a, $b) {
+                return $b["count"] - $a["count"];
+            });
+
+            $data["by_day"] = $pdo->query("
+                SELECT DATE(created_at) AS day, COUNT(*) AS total
+                  FROM bootcamp_challenges
+                 GROUP BY DATE(created_at)
+                 ORDER BY day ASC
+            ")->fetchAll();
+        } catch (Throwable $ignored) {
+            // La tabla se crea con el primer envio: antes de eso, ceros.
+        }
+
+        jsonOut(["ok" => true, "data" => $data]);
+
     // ─── AG Grid: bootcamp challenges (landing /es/bootcamp-retos) ────────────
     case "table_retos":
         $page   = max(0, (int)($_GET["page"] ?? 0));

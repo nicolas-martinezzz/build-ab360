@@ -59,52 +59,55 @@ export default async function BootcampRetosPage({ params }: Props) {
     <section className="section-block bg-surface-light">
       <SectionContainer>
         <div className="mx-auto max-w-[40rem]">
-          <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
-          <h1 className="figma-title-2-bold mt-3 text-surface-bg">{t("headline")}</h1>
-          <p className="figma-text-m mt-3 text-surface-bg/70">{t("intro")}</p>
-
-          <div className="mt-6 sm:mt-8">
-            <BootcampRetosForm
-              challenges={challenges}
-              locale={locale}
-              other={{
-                title: t("challenges.other.title"),
-                problem: t("challenges.other.problem"),
-              }}
-              t={{
-                challengesLegend: t("challengesLegend"),
-                wantLabel: t("wantLabel"),
-                challengeOtherLabel: t("challengeOtherLabel"),
-                challengeOtherPlaceholder: t("challengeOtherPlaceholder"),
-                contactCheck: t("contactCheck"),
-                contactIntro: t("contactIntro"),
-                fieldName: t("fieldName"),
-                fieldNamePlaceholder: t("fieldNamePlaceholder"),
-                fieldCompany: t("fieldCompany"),
-                fieldCompanyPlaceholder: t("fieldCompanyPlaceholder"),
-                fieldEmail: t("fieldEmail"),
-                fieldEmailPlaceholder: t("fieldEmailPlaceholder"),
-                checkPrivacy: t("checkPrivacy"),
-                checkPrivacyLink: t("checkPrivacyLink"),
-                submit: t("submit"),
-                submitting: t("submitting"),
-                errorChallenges: t("errorChallenges"),
-                errorOtherEmpty: t("errorOtherEmpty"),
-                errorMissingPrefix: t("errorMissingPrefix"),
-                errorMissingName: t("errorMissingName"),
-                errorMissingCompany: t("errorMissingCompany"),
-                errorMissingEmail: t("errorMissingEmail"),
-                errorEmail: t("errorEmail"),
-                errorPrivacy: t("errorPrivacy"),
-                errorGeneric: t("errorGeneric"),
-                errorConnection: t("errorConnection"),
-                successTitle: t("successTitle"),
-                successBodyContact: t("successBodyContact"),
-                successBodyNoContact: t("successBodyNoContact"),
-                successBack: t("successBack"),
-              }}
-            />
-          </div>
+          <BootcampRetosForm
+            challenges={challenges}
+            header={
+              <>
+                <p className="type-eyebrow text-grey-dark">{t("eyebrow")}</p>
+                <h1 className="figma-title-2-bold mt-3 text-surface-bg">
+                  {t("headline")}
+                </h1>
+                <p className="figma-text-m mt-3 text-surface-bg/70">{t("intro")}</p>
+              </>
+            }
+            locale={locale}
+            other={{
+              title: t("challenges.other.title"),
+              problem: t("challenges.other.problem"),
+            }}
+            t={{
+              challengesLegend: t("challengesLegend"),
+              wantLabel: t("wantLabel"),
+              challengeOtherLabel: t("challengeOtherLabel"),
+              challengeOtherPlaceholder: t("challengeOtherPlaceholder"),
+              contactCheck: t("contactCheck"),
+              contactIntro: t("contactIntro"),
+              fieldName: t("fieldName"),
+              fieldNamePlaceholder: t("fieldNamePlaceholder"),
+              fieldCompany: t("fieldCompany"),
+              fieldCompanyPlaceholder: t("fieldCompanyPlaceholder"),
+              fieldEmail: t("fieldEmail"),
+              fieldEmailPlaceholder: t("fieldEmailPlaceholder"),
+              checkPrivacy: t("checkPrivacy"),
+              checkPrivacyLink: t("checkPrivacyLink"),
+              submit: t("submit"),
+              submitting: t("submitting"),
+              errorChallenges: t("errorChallenges"),
+              errorOtherEmpty: t("errorOtherEmpty"),
+              errorMissingPrefix: t("errorMissingPrefix"),
+              errorMissingName: t("errorMissingName"),
+              errorMissingCompany: t("errorMissingCompany"),
+              errorMissingEmail: t("errorMissingEmail"),
+              errorEmail: t("errorEmail"),
+              errorPrivacy: t("errorPrivacy"),
+              errorGeneric: t("errorGeneric"),
+              errorConnection: t("errorConnection"),
+              successTitle: t("successTitle"),
+              successBodyContact: t("successBodyContact"),
+              successBodyNoContact: t("successBodyNoContact"),
+              successBack: t("successBack"),
+            }}
+        />
         </div>
       </SectionContainer>
     </section>

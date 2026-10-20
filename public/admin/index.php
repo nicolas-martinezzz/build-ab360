@@ -865,6 +865,14 @@ $csrf      = csrfToken();
         <div class="page-title">Retos</div>
         <div class="page-subtitle">Respuestas del formulario de retos (landing del Bootcamp)</div>
       </div>
+
+      <div class="stats-grid" id="rt-stats"></div>
+
+      <div class="chart-card" style="margin-bottom:28px">
+        <div class="chart-title">Retos mas marcados</div>
+        <div id="rt-ranking"></div>
+      </div>
+
       <div class="table-toolbar">
         <div class="search-wrap">
           <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -1093,7 +1101,7 @@ document.querySelectorAll(".nav-item").forEach(el => {
       if (sec === "bootcamp")      initGrid("bootcamp");
       if (sec === "ebook")         initGrid("ebook");
       if (sec === "openlab")       initGrid("openlab");
-      if (sec === "retos")         initGrid("retos");
+      if (sec === "retos")       { initGrid("retos"); loadRetosStats(); }
     }
   });
 });
@@ -1280,6 +1288,44 @@ const cols = {
     { field: "created_at", headerName: "Fecha",        minWidth: 148 },
   ],
 };
+
+// Una respuesta puede marcar varios retos, asi que los porcentajes del ranking
+// se calculan sobre respuestas y suman mas de 100: es lo que se quiere leer.
+async function loadRetosStats() {
+  const grid = document.getElementById("rt-stats");
+  const rank = document.getElementById("rt-ranking");
+  try {
+    const res  = await api({ action: "retos_stats" });
+    const d    = res.data;
+    const resp = d.totals.responses;
+
+    const cards = [
+      ["Respuestas",    resp,                   "formularios enviados"],
+      ["Retos marcados", d.totals.marks,        "suma de casillas"],
+      ["Quieren contacto", d.totals.with_contact,
+        resp ? Math.round(d.totals.with_contact / resp * 100) + "% del total" : ""],
+      ["Anonimas",      d.totals.anonymous,     "sin datos de contacto"],
+      ["Con otro reto", d.totals.with_other,    "texto libre"],
+    ];
+    grid.innerHTML = cards.map(([label, value, sub]) => `<div class="stat-card">
+      <div class="stat-label">${label}</div>
+      <div class="stat-value">${value}</div>
+      <div class="stat-sub">${sub}</div>
+    </div>`).join("");
+
+    const max = Math.max(...d.ranking.map(r => r.count), 1);
+    rank.innerHTML = d.ranking.map(r => `
+      <div class="funnel-row">
+        <div class="funnel-label">${RETO_LABELS[r.key] || r.key}</div>
+        <div class="funnel-track"><div class="funnel-fill" style="width:${Math.round(r.count / max * 100)}%"></div></div>
+        <div class="funnel-val">${r.count}</div>
+        <div class="funnel-pct">${resp ? Math.round(r.count / resp * 100) + "%" : ""}</div>
+      </div>`).join("");
+  } catch (e) {
+    grid.innerHTML = "";
+    rank.innerHTML = '<div class="stat-sub">No se han podido cargar las estadisticas.</div>';
+  }
+}
 
 const actionMap = {
   diagnosticos: "table_diagnostics",
