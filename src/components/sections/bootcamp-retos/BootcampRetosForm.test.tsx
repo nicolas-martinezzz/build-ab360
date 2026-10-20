@@ -54,8 +54,24 @@ const t = {
   successBack: "Volver al formulario",
 };
 
+const HEADLINE = "¿Qué retos te gustaría resolver en tu empresa?";
+const INTRO = "Marca uno o varios.";
+
 function setup() {
-  render(<BootcampRetosForm challenges={challenges} locale="es" other={other} t={t} />);
+  render(
+    <BootcampRetosForm
+      challenges={challenges}
+      header={
+        <>
+          <h1>{HEADLINE}</h1>
+          <p>{INTRO}</p>
+        </>
+      }
+      locale="es"
+      other={other}
+      t={t}
+    />,
+  );
   return userEvent.setup();
 }
 
@@ -126,6 +142,36 @@ describe("BootcampRetosForm", () => {
       accepted: false,
     });
     expect(screen.getByText(t.successBodyNoContact)).toBeTruthy();
+  });
+
+  it("drops the question and its intro once the response is sent", async () => {
+    const user = setup();
+
+    expect(screen.getByText(HEADLINE)).toBeTruthy();
+    expect(screen.getByText(INTRO)).toBeTruthy();
+
+    await user.click(screen.getByLabelText("Titulo predictive"));
+    await user.click(screen.getByRole("button", { name: t.submit }));
+
+    await waitFor(() => expect(screen.getByText(t.successTitle)).toBeTruthy());
+    expect(screen.queryByText(HEADLINE)).toBeNull();
+    expect(screen.queryByText(INTRO)).toBeNull();
+
+    // "Gracias." becomes the page's only h1 once the question is gone.
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(t.successTitle);
+  });
+
+  it("brings the question back when the visitor returns to the form", async () => {
+    const user = setup();
+
+    await user.click(screen.getByLabelText("Titulo predictive"));
+    await user.click(screen.getByRole("button", { name: t.submit }));
+    await waitFor(() => expect(screen.getByText(t.successTitle)).toBeTruthy());
+
+    await user.click(screen.getByRole("button", { name: t.successBack }));
+
+    expect(screen.getByText(HEADLINE)).toBeTruthy();
+    expect(screen.getByText(INTRO)).toBeTruthy();
   });
 
   it("lists every missing contact field when contact was requested", async () => {
