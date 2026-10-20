@@ -42,15 +42,21 @@ if (!Number.isFinite(size) || size < 300 || size > 8000) {
 
 await mkdir(dirname(output), { recursive: true });
 
-await QRCode.toFile(output, url, {
-  type: "png",
+const common = {
   errorCorrectionLevel: "H",
-  width: size,
   margin: 4,
   color: { dark: "#1C1E2EFF", light: "#FFFFFFFF" },
-});
+};
+
+await QRCode.toFile(output, url, { ...common, type: "png", width: size });
+
+// Versión vectorial junto al PNG: es lo que pide una imprenta para escalar a
+// cualquier tamaño (cartel, roll-up) sin pixelar.
+const svgOutput = output.replace(/\.png$/i, "") + ".svg";
+await QRCode.toFile(svgOutput, url, { ...common, type: "svg" });
 
 console.log(`QR generado: ${output}`);
+console.log(`             ${svgOutput}`);
 console.log(`  URL:     ${url}`);
 console.log(`  Tamaño:  ${size}x${size} px`);
 console.log(`  Nivel:   H (30% de recuperación)`);
