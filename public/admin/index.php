@@ -224,10 +224,15 @@ $csrf      = csrfToken();
 
     /* ── Funnel bars ─────────────────────────────────────────────── */
     .funnel-row {
-      display: grid; grid-template-columns: 180px 1fr 60px 64px;
+      display: grid; grid-template-columns: 200px 1fr 60px 64px;
       align-items: center; gap: 12px;
     }
-    .funnel-label { font-size: 12px; color: var(--text-2); white-space: nowrap; }
+    /* Sin nowrap: una etiqueta larga parte en dos lineas en vez de desbordar la
+       columna y pintarse por debajo de la barra. Las cortas no se enteran. */
+    .funnel-label {
+      font-size: 12px; color: var(--text-2);
+      line-height: 1.3; overflow-wrap: break-word;
+    }
     .funnel-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
     .funnel-fill  { height: 100%; border-radius: 4px; background: var(--accent-lt); transition: width .5s; }
     .funnel-val   { font-size: 13px; font-weight: 600; color: var(--text); text-align: right; }
@@ -870,7 +875,7 @@ $csrf      = csrfToken();
 
       <div class="chart-card" style="margin-bottom:28px">
         <div class="chart-title">Retos mas marcados</div>
-        <div id="rt-ranking"></div>
+        <div id="rt-ranking" style="display:flex;flex-direction:column;gap:8px;padding:4px 0"></div>
       </div>
 
       <div class="table-toolbar">
