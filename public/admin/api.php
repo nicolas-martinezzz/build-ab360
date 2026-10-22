@@ -238,48 +238,6 @@ switch ($action) {
 
         jsonOut(["ok" => true, "total" => $total, "page" => $page, "limit" => $limit, "data" => $rows]);
 
-    // ─── Borrado de respuestas de retos ───────────────────────────────────────
-    // Sólo las filas que una persona con sesión ha marcado en la grilla. No hay
-    // "vaciar todo" a propósito: a un clic de distancia se llevaría el recuento
-    // entero del evento, y eso no se deshace.
-    case "delete_retos":
-        if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-            http_response_code(405);
-            echo json_encode(["error" => "POST required"]);
-            exit;
-        }
-
-        $body   = json_decode(file_get_contents("php://input"), true);
-        $rawIds = (is_array($body) && isset($body["ids"]) && is_array($body["ids"]))
-            ? $body["ids"]
-            : [];
-
-        $ids = [];
-        foreach ($rawIds as $candidate) {
-            $id = (int)$candidate;
-            if ($id > 0 && !in_array($id, $ids, true)) {
-                $ids[] = $id;
-            }
-        }
-
-        if (count($ids) === 0) {
-            http_response_code(400);
-            echo json_encode(["error" => "ids required"]);
-            exit;
-        }
-        // La grilla pagina de 100 en 100, asi que nada legitimo llega con mas.
-        if (count($ids) > 100) {
-            http_response_code(400);
-            echo json_encode(["error" => "too many ids"]);
-            exit;
-        }
-
-        $placeholders = implode(",", array_fill(0, count($ids), "?"));
-        $stmt = $pdo->prepare("DELETE FROM bootcamp_challenges WHERE id IN ($placeholders)");
-        $stmt->execute($ids);
-
-        jsonOut(["ok" => true, "deleted" => $stmt->rowCount()]);
-
     // ─── Estadisticas de retos (landing /es/bootcamp-retos) ───────────────────
     // La columna 'challenges' guarda las claves separadas por coma, asi que el
     // recuento por reto sale con FIND_IN_SET y no partiendo la cadena en PHP.
