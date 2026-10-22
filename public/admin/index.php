@@ -2182,6 +2182,37 @@ async function saveArticle() {
   closeArticleModalDirect();
   loadContentList();
 }
+
+// ─── Keep the open section across a reload ───────────────────────────────────
+// Refreshing used to drop you back on the dashboard. While responses are coming
+// in you refresh rather than navigate, so losing the section every time is the
+// difference between watching a number and hunting for it.
+//
+// The section lives in the URL hash: it survives a reload, back and forward
+// work, and two tabs can sit on different sections. replaceState keeps it out
+// of the history stack, so Back still leaves the panel instead of walking the
+// sections you visited.
+document.querySelectorAll(".nav-item").forEach(el => {
+  el.addEventListener("click", () => {
+    history.replaceState(null, "", "#" + el.dataset.section);
+  });
+});
+
+// Restore by clicking the nav item rather than re-opening the section here:
+// both click handlers above already know how to open one, including the lazy
+// grid init, and a copy of that logic would drift from them.
+//
+// This runs last on purpose — the handlers must be registered before the click.
+(function restoreSectionFromHash() {
+  const sec = location.hash.slice(1);
+  // The hash is whatever is in the address bar: anything but a plain section
+  // name is ignored, so a crafted value cannot throw inside querySelector and
+  // take the whole panel down on load.
+  if (!/^[a-z]+$/.test(sec) || sec === "dashboard") return;
+
+  const el = document.querySelector('.nav-item[data-section="' + sec + '"]');
+  if (el) el.click();
+})();
 </script>
 </body>
 </html>
