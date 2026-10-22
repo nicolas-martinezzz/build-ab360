@@ -182,6 +182,20 @@ $csrf      = csrfToken();
     }
     .stat-sub { font-size: 11px; color: var(--text-3); margin-top: 4px; }
 
+    /* ── Destructive action button ───────────────────────────── */
+    .btn-danger {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 500; font-family: inherit;
+      padding: 6px 12px; border-radius: var(--radius); cursor: pointer;
+      background: transparent; color: #e5484d; border: 1px solid #e5484d;
+      transition: background .15s, opacity .15s;
+    }
+    .btn-danger:hover:not(:disabled) { background: rgba(229, 72, 77, .12); }
+    .btn-danger:disabled {
+      opacity: .35; cursor: default;
+      color: var(--text-3); border-color: var(--border);
+    }
+
     /* ── Live indicator ──────────────────────────────────────── */
     .live-badge {
       display: inline-flex; align-items: center; gap: 5px;
@@ -882,6 +896,10 @@ $csrf      = csrfToken();
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Excel
         </a>
+        <button id="rt-delete" class="btn-danger" disabled>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <span id="rt-delete-label">Eliminar</span>
+        </button>
         <span class="table-info" id="rt-info"></span>
       </div>
       <div class="ag-wrap ag-theme-alpine-dark" id="grid-retos"></div>
@@ -1101,7 +1119,11 @@ document.querySelectorAll(".nav-item").forEach(el => {
       if (sec === "bootcamp")      initGrid("bootcamp");
       if (sec === "ebook")         initGrid("ebook");
       if (sec === "openlab")       initGrid("openlab");
-      if (sec === "retos")       { initGrid("retos"); loadRetosStats(); }
+      if (sec === "retos")       {
+        initGrid("retos");
+        loadRetosStats();
+        document.getElementById("rt-delete").addEventListener("click", deleteSelectedRetos);
+      }
     }
   });
 });
@@ -1131,6 +1153,9 @@ function createGrid(containerId, colDefs, opts = {}) {
     suppressMovableColumns: false,
     rowStyle: opts.onRowClicked ? { cursor: "pointer" } : {},
     onRowClicked: opts.onRowClicked ?? null,
+    rowSelection: opts.rowSelection ?? undefined,
+    suppressRowClickSelection: true,
+    onSelectionChanged: opts.onSelectionChanged ?? null,
     onGridReady: (e) => { gridApis[containerId] = e.api; },
   });
 }
@@ -1255,6 +1280,9 @@ const cols = {
     { field: "created_at",     headerName: "Fecha",       minWidth: 148 },
   ],
   retos: [
+    { headerName: "", maxWidth: 48, minWidth: 48, flex: 0,
+      checkboxSelection: true, headerCheckboxSelection: true,
+      sortable: false, filter: false, resizable: false },
     { field: "id",              headerName: "ID",         maxWidth: 70 },
     { field: "full_name",       headerName: "Nombre",     minWidth: 180, valueFormatter: anonCell },
     { field: "email",           headerName: "Email",      minWidth: 210, valueFormatter: anonCell },
@@ -1327,6 +1355,51 @@ async function loadRetosStats() {
   }
 }
 
+// ─── Borrado de respuestas de retos ───────────────────────────────────────────
+function selectedRetoIds() {
+  const api = gridApis["grid-retos"];
+  if (!api) return [];
+  return api.getSelectedRows().map(r => Number(r.id)).filter(Number.isInteger);
+}
+
+function refreshRetosDeleteButton() {
+  const btn = document.getElementById("rt-delete");
+  if (!btn) return;
+  const n = selectedRetoIds().length;
+  btn.disabled = n === 0;
+  document.getElementById("rt-delete-label").textContent =
+    n === 0 ? "Eliminar" : `Eliminar (${n})`;
+}
+
+async function deleteSelectedRetos() {
+  const ids = selectedRetoIds();
+  if (ids.length === 0) return;
+
+  const what = ids.length === 1 ? "1 respuesta" : `${ids.length} respuestas`;
+  if (!confirm(`¿Eliminar ${what}? Esta accion no se puede deshacer.`)) return;
+
+  const btn = document.getElementById("rt-delete");
+  btn.disabled = true;
+
+  try {
+    // 'action' va en la query string: api.php lo lee de $_GET, no del cuerpo.
+    const res = await fetch("api.php?action=delete_retos&_csrf=" + encodeURIComponent(CSRF), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      alert("No se ha podido eliminar: " + (err.error || res.status));
+      return;
+    }
+    await loadPage("retos", "table_retos");
+    await loadRetosStats();
+  } finally {
+    refreshRetosDeleteButton();
+  }
+}
+
 const actionMap = {
   diagnosticos: "table_diagnostics",
   reservaplaza: "table_reservaplaza",
@@ -1354,6 +1427,10 @@ const prefixMap = { diagnosticos: "diag", reservaplaza: "rp", leads: "ld", newsl
 function initGrid(key) {
   const rowClickable = key === "diagnosticos" || key === "leads";
   const gridOpts = rowClickable ? { onRowClicked: (e) => openDrawer(e.data) } : {};
+  if (key === "retos") {
+    gridOpts.rowSelection = "multiple";
+    gridOpts.onSelectionChanged = refreshRetosDeleteButton;
+  }
   createGrid("grid-" + key, cols[key], gridOpts);
   pageState[key] = 0;
 
